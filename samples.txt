@@ -1,0 +1,16 @@
+NAIVE
+
+iliiazbek@MODEL-NAME:~/msdb_queries_gpu$ ./main 100000 10
+---------GPU-SINGLE-KERNEL---------
+Sum of masses:                           4980103.00
+Running time:                            0.209sec
+---------CPU---------
+Sum of masses:                           5018020.00
+Running time:                            0.136sec
+iliiazbek@MODEL-NAME:~/msdb_queries_gpu$ ./main 100000 20
+---------GPU-SINGLE-KERNEL---------
+Sum of masses:                           9990474.00
+Running time:                            0.402sec
+---------CPU---------
+Sum of masses:                           9990488.00
+Running time:                            0.271sec

@@ -1,0 +1,8 @@
+srun --time=02:00:00 --mem=4096 --nodes=1 --ntasks=4 --gres=gpu:1 --pty /bin/bash
+module load apps/cuda/6.5.14
+
+#on msdb server
+export PATH=/usr/local/cuda/bin:$PATH
+export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
+
+nvcc SDH.cu -o SDH

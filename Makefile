@@ -1,4 +1,4 @@
-HEADERS = types.h utils.h
+HEADERS = types.h utils.h gpu_single.h
 OBJECTS = main.o
 
 CC = nvcc
@@ -9,7 +9,7 @@ default: main
 	$(CC) -c $< -o $@
 
 program: $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+	$(CC)  $(OBJECTS) -o $@
 
 clean:
 	-rm -f $(OBJECTS)

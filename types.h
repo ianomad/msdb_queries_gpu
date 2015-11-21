@@ -11,4 +11,14 @@ typedef struct atom {
     float mass;
 } atom;
 
+typedef struct query_results {
+	
+	float mass;
+	float charge;
+	float max_x;
+	float max_y;
+	float max_z;
+	
+} query_results;
+
 #endif // __INCLUDED_TYPES_H__
