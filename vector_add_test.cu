@@ -69,11 +69,18 @@ int main( int argc, char* argv[] )
  
     // Sum up vector c and print result divided by n, this should equal 1 within error
     double sum = 0;
-    for(i=0; i<n; i++)
+    for(i=0; i<n; i++) {
         sum += h_c[i];
-    
-    printf("final result: %f\n", sum/n);
- 
+    }
+
+    printf("final result: %f\n", sum/n); 
+
+    printf("contens of h_c: "); 
+    double sum = 0;
+    for(i=0; i<n; i++) {
+        printf("%d ", h_c[i]);
+    }
+
     // Release device memory
     cudaFree(d_a);
     cudaFree(d_b);
