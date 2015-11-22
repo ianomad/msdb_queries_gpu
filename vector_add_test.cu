@@ -15,7 +15,7 @@ __global__ void vecAdd(double *a, double *b, double *c, int n)
 
 int main( int argc, char* argv[] )
 {
-    int n = 1000;
+    int n = 100;
  
     // Host input vectors
     double *h_a;
@@ -77,8 +77,10 @@ int main( int argc, char* argv[] )
 
     printf("contens of h_c: ");
     for(i = 0; i < n; i++) {
-        printf("%d ", h_c[i]);
+        printf("%.2f ", h_c[i]);
     }
+
+    printf("\n", h_c[i]);
 
     // Release device memory
     cudaFree(d_a);
