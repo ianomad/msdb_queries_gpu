@@ -75,9 +75,8 @@ int main( int argc, char* argv[] )
 
     printf("final result: %f\n", sum/n); 
 
-    printf("contens of h_c: "); 
-    double sum = 0;
-    for(i=0; i<n; i++) {
+    printf("contens of h_c: ");
+    for(i = 0; i < n; i++) {
         printf("%d ", h_c[i]);
     }
 
