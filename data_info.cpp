@@ -13,6 +13,7 @@ int main(int arc, char **argv) {
 
 	string head;
 	int num;
+	int frame;
 	double val;
 
 	int rows = 0;
@@ -21,10 +22,16 @@ int main(int arc, char **argv) {
 	while(stream >> head) {
 		if(head.compare("HEAD") == 0) {
 			heads++;
-			printf("HEAD: %d\n", heads);
+			stream >> frame;
+			stream >> num;
+			printf("HEAD: %d %d %d\n", heads, frame, num);
+			rows++;
+		} else if(head.compare("ATOM")) {
+			rows++;
 		}
 	}
 
+	printf("Heads: %d\n", rows);
 	printf("Rows: %d\n", rows);
 
 	return 0;
