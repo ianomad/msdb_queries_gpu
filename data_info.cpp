@@ -7,7 +7,7 @@ using namespace std;
 int main(int arc, char **argv) {
 	
 	string fileName = argv[1];
-	ifstream stream(fileName);
+	ifstream stream(fileName.c_str());
 
 	cout << "Reading file... " << fileName << endl;
 
