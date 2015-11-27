@@ -18,16 +18,19 @@ int main(int arc, char **argv) {
 
 	int rows = 0;
 	int heads = 0;
+	int atoms = 0;
 
 	while(stream >> head) {
 		if(head.compare("HEAD") == 0) {
 			heads++;
 			stream >> frame;
 			stream >> num;
-			printf("HEAD: %d %d %d\n", heads, frame, num);
+			printf("HEAD: %d %d %d %d\n", heads, frame, num, atoms);
 			rows++;
+			atoms = 0;
 		} else if(head.compare("ATOM")) {
 			rows++;
+			atoms++;
 		}
 	}
 
