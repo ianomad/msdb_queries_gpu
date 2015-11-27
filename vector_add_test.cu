@@ -81,7 +81,7 @@ int main( int argc, char* argv[] )
     }
 
     printf("\n", h_c[i]);
-
+ 
     // Release device memory
     cudaFree(d_a);
     cudaFree(d_b);
