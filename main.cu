@@ -66,6 +66,8 @@ int main(int argc, char *argv[]) {
 
             atomCount++;
         }
+
+        printf("%s\n", token);
     }
 
     printf("Heads: %d\n", heads);
