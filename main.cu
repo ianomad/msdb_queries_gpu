@@ -57,13 +57,15 @@ int main(int argc, char *argv[]) {
             //skip the header
 
             std::cout << line << std::endl;
-            
+
             heads++;
             std::cout << "Frame #" << heads << " processing. " << std::endl;
-            std::cout << atomCount << " atoms read." << std::endl;
+            std::cout << atomCount << " atoms read in previous frame." << std::endl;
 
             atomCount = 0;
             continue;
+        } else {
+            std::cout << line << std::endl;
         }
 
         //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
