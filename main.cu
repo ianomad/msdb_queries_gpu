@@ -57,7 +57,8 @@ int main(int argc, char *argv[]) {
             //skip the header
             heads++;
             atomCount = 0;
-            std::cout << "Frame #" << heads << " processing.." << std::endl;
+            std::cout << "Frame #" << heads << " processing. " << std::endl;
+            std::cout << atomCount << " atoms read." << std::endl;
             continue;
         }
 
@@ -75,7 +76,7 @@ int main(int argc, char *argv[]) {
         lineStream >> atoms[atomCount].charge;
         lineStream >> atoms[atomCount].mass;
 
-        std::cout << "read " << atomCount << " atoms " << std::endl;
+        atomCount++;
     }
 
     printf("Heads: %d\n", heads);
