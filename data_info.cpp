@@ -34,8 +34,9 @@ int main(int arc, char **argv) {
 		}
 	}
 
-	printf("Heads: %d\n", rows);
+	printf("Heads: %d\n", heads);
 	printf("Rows: %d\n", rows);
+	printf("Atoms: %d\n", atoms);
 
 	return 0;
 }
