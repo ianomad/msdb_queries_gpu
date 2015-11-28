@@ -4,6 +4,7 @@
 #include <cuda_runtime.h>
 #include "cuda.h"
 #include <string>
+#include <fstream>
 
 #include <vector>
 #include <stdio.h>
@@ -33,7 +34,7 @@ int main(int argc, char *argv[]) {
     * Read name of the file
     */
     std::string fileName = argv[2];
-    std::ifstream fileStream(fileName.c_str(), std::ifstream::in);
+    std::ifstream fileStream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::cout;
 
     atom* atoms = (atom*)malloc(sizeof(atom) * numOfParticles);
