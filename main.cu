@@ -5,6 +5,7 @@
 #include "cuda.h"
 #include <string>
 #include <fstream>
+#include <sstream>
 
 #include <vector>
 #include <stdio.h>
@@ -67,14 +68,14 @@ int main(int argc, char *argv[]) {
         lineStream >> token;
         lineStream >> token;
 
-        double x, y, z, charge, mass;
+        //double x, y, z, charge, mass;
         lineStream >> atoms[atomCount].x;
         lineStream >> atoms[atomCount].y;
         lineStream >> atoms[atomCount].z;
         lineStream >> atoms[atomCount].charge;
         lineStream >> atoms[atomCount].mass;
 
-        std::cout << "read " << atomCount << " atoms " << endl;
+        std::cout << "read " << atomCount << " atoms " << std::endl;
     }
 
     printf("Heads: %d\n", heads);
