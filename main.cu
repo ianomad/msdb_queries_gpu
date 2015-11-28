@@ -37,37 +37,44 @@ int main(int argc, char *argv[]) {
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 
-    atom* atoms = (atom*)malloc(sizeof(atom) * numOfParticles);
+    atom* atoms = new atom[numOfParticles];
 
     int heads = 0;
     int atomCount = 0;
 
     std::string token;
-    while(stream >> token) {
+    std::string line;
+
+    while(!stream.eof()) {
+        //read line from file
+        get_line(stream, line);
+
+        std::stringstream lineStream(line);
+        
+        lineStream >> token;
         if(token.compare("HEAD") == 0) {
+            //skip the header
             heads++;
             atomCount = 0;
-
             std::cout << "Frame #" << heads << " processing.." << std::endl;
-        } else if(token.compare("ATOM")) {
-            //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
-
-            //frame (just skipping for now)
-            stream >> token;
-            //number
-            stream >> atoms[atomCount].id;
-            //type (just skipping for now)
-            stream >> token;
-            stream >> atoms[atomCount].x;
-            stream >> atoms[atomCount].y;
-            stream >> atoms[atomCount].z;
-            stream >> atoms[atomCount].charge;
-            stream >> atoms[atomCount].mass;
-
-            atomCount++;
+            continue;
         }
 
-        std::cout << token << " ";
+        //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
+        double val;
+        //skip some stuff
+        lineStream >> token;
+        lineStream >> token;
+        lineStream >> token;
+
+        double x, y, z, charge, mass;
+        lineStream >> atoms[atomCount].x;
+        lineStream >> atoms[atomCount].y;
+        lineStream >> atoms[atomCount].z;
+        lineStream >> atoms[atomCount].charge;
+        lineStream >> atoms[atomCount].mass;
+
+        std::cout << "read " << atomCount << " atoms " << endl;
     }
 
     printf("Heads: %d\n", heads);
