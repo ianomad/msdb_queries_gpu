@@ -67,6 +67,9 @@ int main(int argc, char *argv[]) {
         //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
         //skip some stuff
         lineStream >> token;
+
+        std::cout << token << std::endl;
+        
         lineStream >> token;
         lineStream >> token;
 
@@ -76,10 +79,6 @@ int main(int argc, char *argv[]) {
         lineStream >> atoms[atomCount].z;
         lineStream >> atoms[atomCount].charge;
         lineStream >> atoms[atomCount].mass;
-
-        if(atomCount % 1000 == 5) {
-            std::cout << atoms[atomCount].x << " " << atoms[atomCount].y << " " << std::endl;
-        }
 
         atomCount++;
     }
