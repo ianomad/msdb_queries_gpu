@@ -35,7 +35,7 @@ float time_calc(timeval startTime) {
 void generate_data(atom* atom_list, int atoms_cnt) {
     shuffle();
     
-    float space = 1000.0f;
+    //float space = 1000.0f;
 
     for(int i = 0; i < atoms_cnt; i++) {
         // atom_list[i].id = i;
