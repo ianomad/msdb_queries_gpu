@@ -55,10 +55,12 @@ int main(int argc, char *argv[]) {
         lineStream >> token;
         if(token.compare("HEAD") == 0) {
             //skip the header
+
             heads++;
-            atomCount = 0;
             std::cout << "Frame #" << heads << " processing. " << std::endl;
             std::cout << atomCount << " atoms read." << std::endl;
+
+            atomCount = 0;
             continue;
         }
 
