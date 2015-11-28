@@ -3,6 +3,7 @@
 #include "device_functions.h"
 #include <cuda_runtime.h>
 #include "cuda.h"
+#include <string>
 
 #include <vector>
 #include <stdio.h>
@@ -26,8 +27,8 @@ int main(int argc, char *argv[]) {
     /**
     * Read the number of particles
     */
-    int numOfParticles = argv[1];
-
+    int numOfParticles = atoi(argv[1]);
+    
     /**
     * Read name of the file
     */
@@ -45,6 +46,8 @@ int main(int argc, char *argv[]) {
         if(token.compare("HEAD") == 0) {
             heads++;
             atomCount = 0;
+
+            cout << "Frame #" << heads << " processing.." << endl;
         } else if(token.compare("ATOM")) {
             //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
 
@@ -63,6 +66,8 @@ int main(int argc, char *argv[]) {
             atomCount++;
         }
     }
+
+
 
     // int atoms_cnt = 200000;
     // int workload = 10;
