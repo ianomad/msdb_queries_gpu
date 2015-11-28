@@ -28,7 +28,7 @@ int main(int arc, char **argv) {
 			printf("HEAD: %d %d %d %d\n", heads, frame, num, atoms);
 			rows++;
 			atoms = 0;
-		} else if(head.compare("ATOM")) {
+		} else if(head.compare("ATOM") == 0) {
 			rows++;
 			atoms++;
 		}
