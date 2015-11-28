@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
     * Read name of the file
     */
     std::string fileName = argv[2];
-    std::ifstream fileStream(fileName.c_str());
+    std::ifstream fileStream(fileName.c_str(), std::ifstream::in);
     std::cout << "Reading file: " << fileName << std::cout;
-    
+
     atom* atoms = (atom*)malloc(sizeof(atom) * numOfParticles);
 
     int heads = 0;
