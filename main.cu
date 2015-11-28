@@ -65,7 +65,6 @@ int main(int argc, char *argv[]) {
         }
 
         //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
-        double val;
         //skip some stuff
         lineStream >> token;
         lineStream >> token;
