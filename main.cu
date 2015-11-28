@@ -64,8 +64,6 @@ int main(int argc, char *argv[]) {
 
             atomCount = 0;
             continue;
-        } else {
-            std::cout << line << std::endl;
         }
 
         //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
@@ -76,7 +74,7 @@ int main(int argc, char *argv[]) {
 
         lineStream >> token;
         lineStream >> token;
-
+        
         //double x, y, z, charge, mass;
         lineStream >> atoms[atomCount].x;
         lineStream >> atoms[atomCount].y;
