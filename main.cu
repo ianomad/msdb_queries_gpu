@@ -77,6 +77,10 @@ int main(int argc, char *argv[]) {
         lineStream >> atoms[atomCount].charge;
         lineStream >> atoms[atomCount].mass;
 
+        if(atomCount % 1000 == 0) {
+            std::cout << atoms[atomCount].x << " " << atoms[atomCount].y << " " << std::endl;
+        }
+
         atomCount++;
     }
 
