@@ -28,26 +28,26 @@ int main(int argc, char *argv[]) {
     * Read the number of particles
     */
     int numOfParticles = atoi(argv[1]);
-    
+
     /**
     * Read name of the file
     */
-    string fileName = argv[2];
-    ifstream fileStream(fileName.c_str());
-    cout << "Reading file: " << fileName << endl;
-
+    std::string fileName = argv[2];
+    std::ifstream fileStream(fileName.c_str());
+    std::cout << "Reading file: " << fileName << std::cout;
+    
     atom* atoms = (atom*)malloc(sizeof(atom) * numOfParticles);
 
     int heads = 0;
     int atomCount = 0;
 
-    string token;
+    std::string token;
     while(stream >> token) {
         if(token.compare("HEAD") == 0) {
             heads++;
             atomCount = 0;
 
-            cout << "Frame #" << heads << " processing.." << endl;
+            std::cout << "Frame #" << heads << " processing.." << std::endl;
         } else if(token.compare("ATOM")) {
             //example: `ATOM  00000000    00000001    00000001    17.297  15.357  5.428   -0.548  15.9994`
 
