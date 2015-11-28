@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 
     while(!stream.eof()) {
         //read line from file
-        std::get_line(stream, line);
+        std::getline(stream, line);
 
         std::stringstream lineStream(line);
         
