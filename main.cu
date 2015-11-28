@@ -68,6 +68,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    printf("Heads: %d\n", heads);
+    printf("Atom Count: %d\n", atomCount);
 
 
     // int atoms_cnt = 200000;
