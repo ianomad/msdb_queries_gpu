@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     */
     std::string fileName = argv[2];
     std::ifstream stream(fileName.c_str());
-    std::cout << "Reading file: " << fileName << std::cout;
+    std::cout << "Reading file: " << fileName << std::endl;
 
     atom* atoms = (atom*)malloc(sizeof(atom) * numOfParticles);
 
