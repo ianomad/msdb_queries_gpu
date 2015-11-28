@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
             atomCount++;
         }
 
-        printf("%s\n", token);
+        cout << token << " ";
     }
 
     printf("Heads: %d\n", heads);
