@@ -56,6 +56,8 @@ int main(int argc, char *argv[]) {
         if(token.compare("HEAD") == 0) {
             //skip the header
 
+            std::cout << line << std::endl;
+            
             heads++;
             std::cout << "Frame #" << heads << " processing. " << std::endl;
             std::cout << atomCount << " atoms read." << std::endl;
@@ -68,8 +70,8 @@ int main(int argc, char *argv[]) {
         //skip some stuff
         lineStream >> token;
 
-        std::cout << token << std::endl;
-        
+        //std::cout << token << std::endl;
+
         lineStream >> token;
         lineStream >> token;
 
