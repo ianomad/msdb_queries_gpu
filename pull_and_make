@@ -1,5 +1,6 @@
 #!/bin/bash
 
-git pull
-make
+git checkout master;
+git pull origin master;
+make;
 
