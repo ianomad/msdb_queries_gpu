@@ -39,8 +39,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     struct timezone i_dunno;
     struct timeval start_time;
     cudaStream_t streamComp;
-
-    cudaEvent_t start, stop;
+    
     float elapsedTime;
 
     int* g_s_atomsCnt;
@@ -54,7 +53,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     cudaMalloc((void**)&g_s_res, sizeof(query_results));
     cudaMalloc((void**)&g_s_atom_list, sizeof(atom) * atomsCnt);
     cudaMalloc((void**)&g_s_atomsCnt, sizeof(int));
-    
+
     cudaMemcpy(g_s_res, res, sizeof(query_results), cudaMemcpyHostToDevice);
     cudaMemcpy(g_s_atomsCnt, &atomsCnt, sizeof(int), cudaMemcpyHostToDevice);
 
@@ -65,7 +64,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     * KERNEL CALL
     */
     int blockSize = 1024;
-    int gridSize = ceil(atomsCnt / (float)block_size) + 1;// + (atomsCnt % block_size == 0 ? 0 : 1);
+    int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
     int sizeOfSharedMem = sizeof(float) * gridSize;
@@ -79,7 +78,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     cudaMemcpy(res, g_s_res, sizeof(query_results), cudaMemcpyDeviceToHost);
 
     float elapsed = time_calc(start_time); 
-    printf("%-40s %.3fsec\n", "Running time: ", elapsedTime / 1000.0f);
+    printf("%-40s %.3fsec\n", "Running time: ", elapsed / 1000.0f);
 
     /**
     * MEM FREE

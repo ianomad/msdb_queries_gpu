@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     /**
     * Read the number of particles
     */
-    int numOfParticles = atoi(argv[1]);
+    int atomsCnt = atoi(argv[1]);
 
     /**
     * Read name of the file
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 
-    atom* atomsList = new atom[numOfParticles];
+    atom* atomsList = new atom[atomsCnt];
 
     int heads = 0;
     int atomCount = 0;
