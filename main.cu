@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 
-    atom* atoms = new atom[numOfParticles];
+    atom* atomsList = new atom[numOfParticles];
 
     int heads = 0;
     int atomCount = 0;
@@ -62,6 +62,10 @@ int main(int argc, char *argv[]) {
             std::cout << "Frame #" << heads << " processing. " << std::endl;
             std::cout << atomCount << " atoms read in previous frame." << std::endl;
 
+            if(atomCount > 0) {
+                run_single_kernel(atomsCnt, atomsList);
+            }
+            
             atomCount = 0;
             continue;
         }
@@ -74,26 +78,19 @@ int main(int argc, char *argv[]) {
 
         lineStream >> token;
         lineStream >> token;
-        
+
         //double x, y, z, charge, mass;
-        lineStream >> atoms[atomCount].x;
-        lineStream >> atoms[atomCount].y;
-        lineStream >> atoms[atomCount].z;
-        lineStream >> atoms[atomCount].charge;
-        lineStream >> atoms[atomCount].mass;
+        lineStream >> atomsList[atomCount].x;
+        lineStream >> atomsList[atomCount].y;
+        lineStream >> atomsList[atomCount].z;
+        lineStream >> atomsList[atomCount].charge;
+        lineStream >> atomsList[atomCount].mass;
 
         atomCount++;
     }
 
     printf("Heads: %d\n", heads);
     printf("Atom Count: %d\n", atomCount);
-
-
-    // int atoms_cnt = 200000;
-    // int workload = 10;
-
-    // atoms_cnt = atoi(argv[1]);
-    // workload = atoi(argv[2]);
 
     // run_single_kernel(atoms_cnt, workload);
 
