@@ -4,7 +4,7 @@
 
 //1 body functions
 __global__
-void gpu_single_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query_results* g_s_res) {
+void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query_results* g_s_res) {
 
     extern __shared__ int sdata[];
 
@@ -29,6 +29,7 @@ void gpu_single_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query_results* g_
 void run_single_kernel(int atomsCnt, atom* atomList) {
 
     printf("---------GPU-SINGLE-KERNEL---------\n");
+
     query_results* res = (query_results*) malloc(sizeof(query_results));
     res->mass = 0;
     res->charge = 0;
@@ -66,7 +67,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     //int stripe = 1024 / ;
 
     int sizeOfSharedMem = sizeof(float) * gridSize;
-    gpu_single_kernel<<<1, gridSize, sizeOfSharedMem, streamComp >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
+    gpu_one_body_functions_kernel<<<1, gridSize, sizeOfSharedMem, streamComp >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
     
     cudaStreamSynchronize(streamComp);
 
@@ -76,7 +77,9 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     cudaMemcpy(res, g_s_res, sizeof(query_results), cudaMemcpyDeviceToHost);
 
     float elapsed = time_calc(start_time); 
+    printf("%-40s %.3f\n", "Mass Result: ", query_results->mass);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
+
 
     /**
     * MEM FREE
