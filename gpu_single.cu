@@ -39,8 +39,6 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     struct timezone i_dunno;
     struct timeval start_time;
     cudaStream_t streamComp;
-    
-    float elapsedTime;
 
     int* g_s_atomsCnt;
     atom* g_s_atom_list;
