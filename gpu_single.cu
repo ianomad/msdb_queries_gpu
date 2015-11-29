@@ -77,7 +77,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     cudaMemcpy(res, g_s_res, sizeof(query_results), cudaMemcpyDeviceToHost);
 
     float elapsed = time_calc(start_time); 
-    printf("%-40s %.3f\n", "Mass Result: ", query_results->mass);
+    printf("%-40s %.3f\n", "Mass Result: ", res->mass);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
 
 
