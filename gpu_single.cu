@@ -76,7 +76,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     //int stripe = 1024 / ;
 
     //mass and charge
-    int sizeOfSharedMem = (sizeof(float) * 2) * blockSize;
+    int sizeOfSharedMem = sizeof(float) * blockSize * 2;
     gpu_one_body_functions_kernel<<<1, gridSize, sizeOfSharedMem, streamComp >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
     
     cudaStreamSynchronize(streamComp);
