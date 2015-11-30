@@ -17,7 +17,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     }
 
     //shared memory structure:
-    
+
     //first mass
     sdata[tid] = g_s_atom_list[i].mass;
     //second charge
@@ -72,7 +72,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     /**
     * KERNEL CALL
     */
-    int blockSize = 1024;
+    int blockSize = 512;
     int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
