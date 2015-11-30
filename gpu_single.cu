@@ -14,7 +14,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
         return;
     }
     
-    int i = tid + blockDim.x * blockId.x;
+    int i = tid + blockDim.x * blockIdx.x;
     //shared memory structure:
 
     //first mass
