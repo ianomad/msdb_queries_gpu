@@ -16,24 +16,27 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
         return;
     }
 
-    //shared memory structure:
+    // //shared memory structure:
 
-    //first mass
-    sdata[tid] = g_s_atom_list[i].mass;
-    //second charge
-    sdata[blockDim.x + tid] = g_s_atom_list[i].charge;
+    // //first mass
+    // sdata[tid] = g_s_atom_list[i].mass;
+    // //second charge
+    // sdata[blockDim.x + tid] = g_s_atom_list[i].charge;
 
-    while(i < *g_s_atomsCnt) {
-        sdata[tid] += g_s_atom_list[i].mass;
-        sdata[blockDim.x + tid] += g_s_atom_list[i].charge;
+    // while(i < *g_s_atomsCnt) {
+    //     sdata[tid] += g_s_atom_list[i].mass;
+    //     sdata[blockDim.x + tid] += g_s_atom_list[i].charge;
 
-        i += blockDim.x;
+    //     i += blockDim.x;
 
-        __syncthreads();
-    }
+    //     __syncthreads();
+    // }
 
-    atomicAdd(&g_s_res->mass, sdata[tid]);
-    atomicAdd(&g_s_res->charge, sdata[blockDim.x + tid]);
+    // atomicAdd(&g_s_res->mass, sdata[tid]);
+    // atomicAdd(&g_s_res->charge, sdata[blockDim.x + tid]);
+
+    atomicAdd(&g_s_res->mass, g_s_atom_list[i].mass);
+    atomicAdd(&g_s_res->charge, g_s_atom_list[i].charge);
 }
 
 void run_single_kernel(int atomsCnt, atom* atomList) {
