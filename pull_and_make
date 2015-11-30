@@ -2,5 +2,6 @@
 
 git checkout master;
 git pull origin master;
+make clean;
 make;
 
