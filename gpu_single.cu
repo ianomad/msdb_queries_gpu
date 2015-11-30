@@ -20,7 +20,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     //first mass
     sdata[tid] = g_s_atom_list[tid].mass;
     //second charge
-    sdata[blockDim.x + tid] = g_s_atom_list[tid].charge;
+    sdata[blockDim.x + tid] = 1;
 
     while(i < *g_s_atomsCnt) {
         sdata[tid] += g_s_atom_list[i].mass;
