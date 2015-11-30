@@ -14,13 +14,13 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
         return;
     }
     
-    int i = tid + blockDim.x;
+    int i = tid + blockDim.x * blockId.x;
     //shared memory structure:
 
     //first mass
-    sdata[tid] = g_s_atom_list[tid].mass;
+    sdata[tid] = g_s_atom_list[i].mass;
     //second charge
-    sdata[blockDim.x + tid] = g_s_atom_list[tid].charge;
+    sdata[blockDim.x + tid] = g_s_atom_list[i].charge;
 
     while(i < *g_s_atomsCnt) {
         sdata[tid] += g_s_atom_list[i].mass;
