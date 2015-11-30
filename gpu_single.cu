@@ -9,14 +9,15 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     extern __shared__ int sdata[];
 
     int tid = threadIdx.x;
-
-    if(tid >= *g_s_atomsCnt) {
-        return;
-    }
     
     int i = tid + blockDim.x * blockIdx.x;
-    //shared memory structure:
 
+    if(i >= *g_s_atomsCnt) {
+        return;
+    }
+
+    //shared memory structure:
+    
     //first mass
     sdata[tid] = g_s_atom_list[i].mass;
     //second charge
