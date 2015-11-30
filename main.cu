@@ -46,6 +46,11 @@ int main(int argc, char *argv[]) {
     std::string token;
     std::string line;
 
+    struct timezone i_dunno;
+    struct timeval start_time;
+
+    gettimeofday(&start_time, &i_dunno);
+
     while(!stream.eof()) {
         //read line from file
         std::getline(stream, line);
@@ -91,6 +96,9 @@ int main(int argc, char *argv[]) {
 
     printf("Heads: %d\n", heads);
     printf("Atom Count: %d\n", atomCount);
+
+    float elapsed = time_calc(start_time);
+    printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
     // run_single_kernel(atoms_cnt, workload);
 
