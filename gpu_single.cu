@@ -32,7 +32,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     }
 
     atomicAdd(&g_s_res->mass, sdata[tid]);
-    atomicAdd(&g_s_res->charge, 1);
+    atomicAdd(&g_s_res->charge, sdata[blockDim.x + tid]);
 }
 
 void run_single_kernel(int atomsCnt, atom* atomList) {
