@@ -15,15 +15,24 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     }
     
     int i = tid + blockDim.x;
+    //shared memory structure:
+
+    //first mass
     sdata[tid] = g_s_atom_list[tid].mass;
+    //second charge
+    sdata[blockDim.x + tid] = g_s_atom_list[tid].charge;
 
     while(i < *g_s_atomsCnt) {
         sdata[tid] += g_s_atom_list[i].mass;
+        sdata[blockDim.x + tid] += g_s_atom_list[i].charge;
+
         i += blockDim.x;
+
         __syncthreads();
     }
 
     atomicAdd(&g_s_res->mass, sdata[tid]);
+    atomicAdd(&g_s_res->charge, sdata[tid + blockDim.x]);
 }
 
 void run_single_kernel(int atomsCnt, atom* atomList) {
@@ -66,7 +75,8 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
-    int sizeOfSharedMem = sizeof(float) * gridSize;
+    //mass and charge
+    int sizeOfSharedMem = (sizeof(float) * 2) * blockSize;
     gpu_one_body_functions_kernel<<<1, gridSize, sizeOfSharedMem, streamComp >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
     
     cudaStreamSynchronize(streamComp);
@@ -78,6 +88,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
 
     float elapsed = time_calc(start_time); 
     printf("%-40s %.3f\n", "Mass Result: ", res->mass);
+    printf("%-40s %.3f\n", "Charge Result: ", res->charge);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
 
 

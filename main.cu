@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
         atomCount++;
     }
 
-    printf("Heads: %d\n", heads);
+    printf("\n\n\nHeads: %d\n", heads);
     printf("Atom Count: %d\n", atomCount);
 
     float elapsed = time_calc(start_time);
