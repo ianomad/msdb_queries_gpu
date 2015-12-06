@@ -101,13 +101,13 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double x2, y2, z2;
         
         if(bi <= ind2 && ind2 < ei) {
-            x2 = sharedAtoms[ind2 - bi].x_pos;
-            y2 = sharedAtoms[ind2 - bi].y_pos;
-            z2 = sharedAtoms[ind2 - bi].z_pos;
+            x2 = sharedAtoms[ind2 - bi].x;
+            y2 = sharedAtoms[ind2 - bi].y;
+            z2 = sharedAtoms[ind2 - bi].z;
         } else {
-            x2 = at_list[ind2].x_pos;
-            y2 = at_list[ind2].y_pos;
-            z2 = at_list[ind2].z_pos;
+            x2 = at_list[ind2].x;
+            y2 = at_list[ind2].y;
+            z2 = at_list[ind2].z;
         }
 
         double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
@@ -145,6 +145,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     res->max_y = 0;
     res->max_z = 0;
 
+    int i;
     for(i = 0; i < num_buckets; i++) {
         histogram[i].d_cnt = 0;
     }
@@ -188,7 +189,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
 
     //----------------------------------2 BODY KERNEL---------------------------------------------------
     int smem2 = num_buckets * sizeof(unsigned long long) + blockSize * sizeof(atom);
-    gpu_two_body_functions_kernel<<<1, gridSize, smem2, streamComp2 >>>(d_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
+    gpu_two_body_functions_kernel<<<1, gridSize, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
     
     cudaStreamSynchronize(streamComp1);
     cudaStreamSynchronize(streamComp2);
