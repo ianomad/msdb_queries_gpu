@@ -124,7 +124,20 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     }
 }
 
-
+void output_histogram(bucket* hist){
+    int i; 
+    unsigned long long total_cnt = 0;
+    for(i = 0; i < num_buckets; i++) {
+        if(i % 5 == 0) /* we print 5 buckets in a row */
+            printf("\n%02d: ", i);
+        printf("%15lld ", hist[i].d_cnt);
+        total_cnt += hist[i].d_cnt;
+        /* we also want to make sure the total distance count is correct */
+        if(i == num_buckets - 1)    
+            printf("\nT:%lld \n", total_cnt);
+        else printf("| ");
+    }
+}
 
 
 void run_single_kernel(int atomsCnt, atom* atomList) {
@@ -198,11 +211,13 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     * DATA COPY TO HOST
     */
     cudaMemcpy(res, g_s_res, sizeof(query_results), cudaMemcpyDeviceToHost);
+    cudaMemcpy(histogram, d_histogram, num_buckets * sizeof(bucket), cudaMemcpyDeviceToHost);
 
     float elapsed = time_calc(start_time); 
     printf("%-40s %.3f\n", "Mass Result: ", res->mass);
     printf("%-40s %.3f\n", "Charge Result: ", res->charge);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
+    output_histogram(histogram);
 
 
     /**
