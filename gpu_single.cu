@@ -94,9 +94,9 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         ind2 = j % PDH_acnt;
 
-        double x1 = sharedAtoms[ind1].x_pos;
-        double y1 = sharedAtoms[ind1].y_pos;
-        double z1 = sharedAtoms[ind1].z_pos;
+        double x1 = sharedAtoms[ind1].x;
+        double y1 = sharedAtoms[ind1].y;
+        double z1 = sharedAtoms[ind1].z;
 
         double x2, y2, z2;
         
