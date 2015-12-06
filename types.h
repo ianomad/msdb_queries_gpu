@@ -21,4 +21,10 @@ typedef struct query_results {
 	
 } query_results;
 
+typedef struct hist_entry{
+	//float min;
+	//float max;
+	unsigned long long d_cnt;   /* need a long long type as the count might be huge */
+} bucket;
+
 #endif // __INCLUDED_TYPES_H__
