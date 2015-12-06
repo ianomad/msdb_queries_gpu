@@ -144,7 +144,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
 
     printf("---------GPU-SINGLE-KERNEL---------\n");
 
-    int BOX_SIZE = 30;
+    int BOX_SIZE = 100;
     int PDH_res = 500;
 
     int num_buckets = BOX_SIZE + 1;
