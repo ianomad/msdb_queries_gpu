@@ -124,7 +124,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     }
 }
 
-void output_histogram(bucket* hist){
+void output_histogram(bucket* hist, int num_buckets){
     int i; 
     unsigned long long total_cnt = 0;
     for(i = 0; i < num_buckets; i++) {
@@ -217,7 +217,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     printf("%-40s %.3f\n", "Mass Result: ", res->mass);
     printf("%-40s %.3f\n", "Charge Result: ", res->charge);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
-    output_histogram(histogram);
+    output_histogram(histogram, num_buckets);
 
 
     /**
