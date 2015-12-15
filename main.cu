@@ -20,6 +20,8 @@
 
 #include "utils.cu"
 #include "gpu_single.cu"
+#include <time.h>
+#include <stdlib.h>
 
 
 int block_size = 1024; //1025 max (# of threads in a block)
@@ -42,6 +44,9 @@ int main(int argc, char *argv[]) {
 
     int heads = 0;
     int atomCount = 0;
+
+    //seed the random generator
+    srand(time(NULL));
 
     std::string token;
     std::string line;
@@ -90,6 +95,10 @@ int main(int argc, char *argv[]) {
         lineStream >> atomsList[atomCount].z;
         lineStream >> atomsList[atomCount].charge;
         lineStream >> atomsList[atomCount].mass;
+        
+        atomsList[atomCount].x = rand() % 100;
+        atomsList[atomCount].y = rand() % 100;
+        atomsList[atomCount].z = rand() % 100;
 
         atomCount++;
     }
