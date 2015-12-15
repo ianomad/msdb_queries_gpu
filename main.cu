@@ -76,6 +76,15 @@ int main(int argc, char *argv[]) {
                 run_single_kernel(atomsCnt, atomsList);
             }
             
+            // check for error
+            cudaError_t error = cudaGetLastError();
+            if(error != cudaSuccess)
+            {
+                // print the CUDA error message and exit
+                printf("CUDA error: %s\n", cudaGetErrorString(error));
+                exit(-1);
+            }
+
             atomCount = 0;
             continue;
         }
@@ -95,7 +104,7 @@ int main(int argc, char *argv[]) {
         lineStream >> atomsList[atomCount].z;
         lineStream >> atomsList[atomCount].charge;
         lineStream >> atomsList[atomCount].mass;
-        
+
         atomsList[atomCount].x = rand() % 100;
         atomsList[atomCount].y = rand() % 100;
         atomsList[atomCount].z = rand() % 100;
