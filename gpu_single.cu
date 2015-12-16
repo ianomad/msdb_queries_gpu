@@ -1,6 +1,7 @@
 #include "gpu_single.h"
 #include "types.h"
 
+//added grid size 2 dimensions
 
 //1 body functions
 __global__
