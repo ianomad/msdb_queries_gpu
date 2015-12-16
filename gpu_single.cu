@@ -7,10 +7,13 @@ __global__
 void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query_results* g_s_res) {
 
     extern __shared__ int sdata[];
-
-    int tid = threadIdx.x;
     
-    int i = tid + blockDim.x * blockIdx.x;
+    long index_x = blockIdx.x * blockDim.x + threadIdx.x;
+    long index_y = blockIdx.y * blockDim.y + threadIdx.y;
+
+    // map the two 2D indices to a single linear, 1D index
+    long grid_width = gridDim.x * blockDim.x;
+    long i = index_y * grid_width + index_x;
 
     if(i >= *g_s_atomsCnt) {
         return;
@@ -49,9 +52,14 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     unsigned long long* shared_histo = smem;
     atom* sharedAtoms = (atom*) &shared_histo[num_buckets];
 
-    int i, j;
+    long index_x = blockIdx.x * blockDim.x + threadIdx.x;
+    long index_y = blockIdx.y * blockDim.y + threadIdx.y;
 
-    i = blockDim.x * blockIdx.x + threadIdx.x;
+    // map the two 2D indices to a single linear, 1D index
+    long grid_width = gridDim.x * blockDim.x;
+    long index = index_y * grid_width + index_x;
+
+    long i = index;
 
     //check the bound
     if(i >= PDH_acnt) {
@@ -64,7 +72,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             shared_histo[i] = 0;
         }
 
-        int start = blockDim.x * blockIdx.x + threadIdx.x;
+        int start = index;
         int k = 0;
         for(i = start; i < start + blockDim.x && i < PDH_acnt; i++, k++) {
             sharedAtoms[k] = at_list[i];
@@ -73,7 +81,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     __syncthreads();
 
-    i = blockDim.x * blockIdx.x + threadIdx.x;
+    i = index;
     
     int threadLoad = (PDH_acnt + 1) / 2;
 
@@ -90,6 +98,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     int ind1 = threadIdx.x;             // in this block from sharedAtoms
     int ind2;
 
+    int j;
     for(j = start; j < end; j++) {
 
         ind2 = j % PDH_acnt;
@@ -188,21 +197,41 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     cudaMemcpy(d_histogram, histogram, num_buckets * sizeof(bucket), cudaMemcpyHostToDevice);
     cudaMemcpy(g_s_atom_list, atomList, sizeof(atom) * atomsCnt, cudaMemcpyHostToDevice);
 
-    /**
-    * KERNEL CALL
-    */
-    int blockSize = 512;
-    int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
+    
+    dim3 block_size;
+    //static sizes due to big volume of data
+    block_size.x = 1024;
+    block_size.y = 1;
+
+    // configure a two dimensional grid as well
+    dim3 grid_size;
+
+    int maxGridX = 64000;
+    if(atomsCnt < block_size.x * maxGridX) {
+        grid_size.x = atomsCnt / block_size.x + 1;
+        grid_size.y = 1;
+    } else {
+        grid_size.x = maxGridX;
+        grid_size.y = atomsCnt / (block_size.x * maxGridX);
+    }
+
+    printf("grid_size.x/y: %d/%d\n", grid_size.x, grid_size.y);
+
+    //int blockSize = 1024;
+    //int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
+    /**
+    * KERNEL CALLS
+    */
     //mass and charge
     //----------------------------------1 BODY KERNEL---------------------------------------------------
-    int smem1 = sizeof(float) * blockSize * 2;
-    gpu_one_body_functions_kernel<<<1, gridSize, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
+    int smem1 = sizeof(float) * block_size.x * 2; //this is not really used for now
+    gpu_one_body_functions_kernel<<<grid_size, block_size, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
 
     //----------------------------------2 BODY KERNEL---------------------------------------------------
-    int smem2 = num_buckets * sizeof(unsigned long long) + blockSize * sizeof(atom);
-    gpu_two_body_functions_kernel<<<1, gridSize, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
+    int smem2 = num_buckets * sizeof(unsigned long long) + block_size.x * sizeof(atom);
+    gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
     
     cudaStreamSynchronize(streamComp1);
     cudaStreamSynchronize(streamComp2);

@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n\n\nHeads: %d\n", heads);
     printf("Atom Count: %d\n", atomCount);
-
+    
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
