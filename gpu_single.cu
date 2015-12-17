@@ -40,8 +40,15 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     // atomicAdd(&g_s_res->mass, sdata[tid]);
     // atomicAdd(&g_s_res->charge, sdata[blockDim.x + tid]);
 
-    atomicAdd(&g_s_res->mass, g_s_atom_list[i].mass);
-    atomicAdd(&g_s_res->charge, g_s_atom_list[i].charge);
+    //current atom instance
+    atom atomInstance = g_s_atom_list[i];
+
+    atomicAdd(&g_s_res->mass, atomInstance.mass);
+    atomicAdd(&g_s_res->charge, atomInstance.charge);
+
+    atomicAdd(&g_s_res->inertiaX, atomInstance.mass * atomInstance.x);
+    atomicAdd(&g_s_res->inertiaY, atomInstance.mass * atomInstance.y);
+    atomicAdd(&g_s_res->inertiaZ, atomInstance.mass * atomInstance.z);
 }
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
@@ -162,11 +169,15 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
     
+    //set default empty values to remove some garbage inside
     res->mass = 0;
     res->charge = 0;
     res->max_x = 0;
     res->max_y = 0;
     res->max_z = 0;
+    res->inertiaX = 0;
+    res->inertiaY = 0;
+    res->inertiaZ = 0;
 
     int i;
     for(i = 0; i < num_buckets; i++) {
@@ -246,6 +257,9 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     float elapsed = time_calc(start_time); 
     printf("%-40s %.3f\n", "Mass Result: ", res->mass);
     printf("%-40s %.3f\n", "Charge Result: ", res->charge);
+    printf("%-40s %.3f\n", "Inertia X Axis: ", res->inertiaX);
+    printf("%-40s %.3f\n", "Inertia Y Axis: ", res->inertiaY);
+    printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
     output_histogram(histogram, num_buckets);
 

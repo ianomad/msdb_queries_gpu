@@ -13,11 +13,15 @@ typedef struct atom {
 
 typedef struct query_results {
 	
-	float mass;
-	float charge;
-	float max_x;
-	float max_y;
-	float max_z;
+	double mass;
+	double charge;
+	double max_x;
+	double max_y;
+	double max_z;
+
+	double inertiaX;
+	double inertiaY;
+	double inertiaZ;
 	
 } query_results;
 
