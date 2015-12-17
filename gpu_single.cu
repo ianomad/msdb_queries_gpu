@@ -43,8 +43,8 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     //current atom instance
     atom atomInstance = g_s_atom_list[i];
 
-    atomicAdd(&g_s_res->mass, atomInstance.mass);
-    atomicAdd(&g_s_res->charge, atomInstance.charge);
+    atomicAdd(&g_s_res->mass, (double)atomInstance.mass);
+    atomicAdd(&g_s_res->charge, (double)atomInstance.charge);
 
     atomicAdd(&g_s_res->inertiaX, (double)(atomInstance.mass * atomInstance.x));
     atomicAdd(&g_s_res->inertiaY, (double)(atomInstance.mass * atomInstance.y));
