@@ -46,9 +46,9 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     atomicAdd(&g_s_res->mass, atomInstance.mass);
     atomicAdd(&g_s_res->charge, atomInstance.charge);
 
-    atomicAdd(&g_s_res->inertiaX, (double)atomInstance.mass * atomInstance.x);
-    atomicAdd(&g_s_res->inertiaY, (double)atomInstance.mass * atomInstance.y);
-    atomicAdd(&g_s_res->inertiaZ, (double)atomInstance.mass * atomInstance.z);
+    atomicAdd(&g_s_res->inertiaX, (double)(atomInstance.mass * atomInstance.x));
+    atomicAdd(&g_s_res->inertiaY, (double)atomInstance.mass * atomInstance.y));
+    atomicAdd(&g_s_res->inertiaZ, (double)atomInstance.mass * atomInstance.z));
 }
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
