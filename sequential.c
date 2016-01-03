@@ -56,6 +56,9 @@ int main(int argc, char *argv[]) {
 
     gettimeofday(&start_time, &i_dunno);
 
+    query_results* res = (query_results*) malloc(sizeof(query_results));
+    bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
+
     while(!stream.eof()) {
         //read line from file
         std::getline(stream, line);
@@ -74,9 +77,6 @@ int main(int argc, char *argv[]) {
 
             if(atomCount > 0) {
                 //here we run sequential
-                
-                query_results* res = (query_results*) malloc(sizeof(query_results));
-                bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
                 
                 //set default empty values to remove some garbage inside
                 res->mass = 0;
@@ -102,6 +102,16 @@ int main(int argc, char *argv[]) {
                     res->inertiaZ += atomsList[i].mass * atomsList[i].z;
                     res->depoleMoment += atomsList[i].charge * atomsList[i].z;
                 }
+
+                float elapsed = time_calc(start_time); 
+                printf("%-40s %.3f\n", "Mass Result: ", res->mass);
+                printf("%-40s %.3f\n", "Charge Result: ", res->charge);
+                printf("%-40s %.3f\n", "Inertia X Axis: ", res->inertiaX);
+                printf("%-40s %.3f\n", "Inertia Y Axis: ", res->inertiaY);
+                printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
+                printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
+                printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
+                //output_histogram(histogram, num_buckets);
 
             }
 
@@ -138,6 +148,7 @@ int main(int argc, char *argv[]) {
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
+    free(res);
 
 	return 0;
 }
