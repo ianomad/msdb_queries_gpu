@@ -49,6 +49,8 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     atomicAdd(&g_s_res->inertiaX, atomInstance.mass * atomInstance.x);
     atomicAdd(&g_s_res->inertiaY, atomInstance.mass * atomInstance.y);
     atomicAdd(&g_s_res->inertiaZ, atomInstance.mass * atomInstance.z);
+
+    atomicAdd(&g_s_res->depoleMoment, atomInstance.charge * atomInstance.z); //Depole on z
 }
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
@@ -178,6 +180,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     res->inertiaX = 0;
     res->inertiaY = 0;
     res->inertiaZ = 0;
+    res->depoleMoment = 0;
 
     int i;
     for(i = 0; i < num_buckets; i++) {
@@ -260,6 +263,7 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     printf("%-40s %.3f\n", "Inertia X Axis: ", res->inertiaX);
     printf("%-40s %.3f\n", "Inertia Y Axis: ", res->inertiaY);
     printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
+    printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
     output_histogram(histogram, num_buckets);
 

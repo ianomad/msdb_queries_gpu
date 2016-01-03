@@ -22,6 +22,8 @@ typedef struct query_results {
 	float inertiaX;
 	float inertiaY;
 	float inertiaZ;
+
+	float depoleMoment;
 	
 } query_results;
 
