@@ -13,6 +13,7 @@
 
 #include "types.h"
 #include "utils.h"
+#include "utils.cu"
 
 #include <time.h>
 #include <stdlib.h>
@@ -137,16 +138,6 @@ int main(int argc, char *argv[]) {
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
-    // run_single_kernel(atoms_cnt, workload);
-
-    // check for error
-    cudaError_t error = cudaGetLastError();
-    if(error != cudaSuccess)
-    {
-        // print the CUDA error message and exit
-        printf("CUDA error: %s\n", cudaGetErrorString(error));
-        exit(-1);
-    }
 
 	return 0;
 }
