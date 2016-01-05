@@ -21,6 +21,22 @@
 
 int block_size = 1024; //1025 max (# of threads in a block)
 
+
+void output_histogram(bucket* hist, int num_buckets){
+    int i; 
+    unsigned long long total_cnt = 0;
+    for(i = 0; i < num_buckets; i++) {
+        if(i % 5 == 0) /* we print 5 buckets in a row */
+            printf("\n%02d: ", i);
+        printf("%15lld ", hist[i].d_cnt);
+        total_cnt += hist[i].d_cnt;
+        /* we also want to make sure the total distance count is correct */
+        if(i == num_buckets - 1)    
+            printf("\nT:%lld \n", total_cnt);
+        else printf("| ");
+    }
+}
+
 int main(int argc, char *argv[]) {
 
     /**
