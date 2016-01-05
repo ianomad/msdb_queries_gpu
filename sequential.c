@@ -70,8 +70,6 @@ int main(int argc, char *argv[]) {
     struct timezone i_dunno;
     struct timeval start_time;
 
-    gettimeofday(&start_time, &i_dunno);
-
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
 
@@ -93,7 +91,9 @@ int main(int argc, char *argv[]) {
 
             if(atomCount > 0) {
                 //here we run sequential
-                
+                //fix the time
+                gettimeofday(&start_time, &i_dunno);
+
                 //set default empty values to remove some garbage inside
                 res->mass = 0;
                 res->charge = 0;
