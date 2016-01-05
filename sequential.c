@@ -89,11 +89,12 @@ int main(int argc, char *argv[]) {
                 res->inertiaZ = 0;
                 res->depoleMoment = 0;
 
-                int i;
+                int i, j;
                 for(i = 0; i < num_buckets; i++) {
                     histogram[i].d_cnt = 0;
                 }
 
+                //one body
                 for(i = 0; i < atomsCnt; i++) {
                     res->mass += atomsList[i].mass;
                     res->charge += atomsList[i].charge;
@@ -103,6 +104,24 @@ int main(int argc, char *argv[]) {
                     res->depoleMoment += atomsList[i].charge * atomsList[i].z;
                 }
 
+                //two body
+                for(i = 0; i < atomsCnt; i++) {
+                    float x1 = atomsList[i].x;
+                    float y1 = atomsList[i].y;
+                    float z1 = atomsList[i].z;
+
+                    for(j = i; j < atomsCnt; j++) {
+                        float x2 = atomsList[i].x;
+                        float y2 = atomsList[i].y;
+                        float z2 = atomsList[i].z;
+                        
+                        double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
+                        int h_pos = (int) (dist / PDH_res);
+                        histogram[h_pos]++;
+                    }
+                }
+
+
                 float elapsed = time_calc(start_time); 
                 printf("%-40s %.3f\n", "Mass Result: ", res->mass);
                 printf("%-40s %.3f\n", "Charge Result: ", res->charge);
@@ -111,8 +130,7 @@ int main(int argc, char *argv[]) {
                 printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
                 printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
                 printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
-                //output_histogram(histogram, num_buckets);
-
+                output_histogram(histogram, num_buckets);
             }
 
             atomCount = 0;
