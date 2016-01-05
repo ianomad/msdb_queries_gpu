@@ -127,9 +127,9 @@ int main(int argc, char *argv[]) {
                     float z1 = atomsList[i].z;
 
                     for(j = i; j < atomsCnt; j++) {
-                        float x2 = atomsList[i].x;
-                        float y2 = atomsList[i].y;
-                        float z2 = atomsList[i].z;
+                        float x2 = atomsList[j].x;
+                        float y2 = atomsList[j].y;
+                        float z2 = atomsList[j].z;
                         
                         double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
                         int h_pos = (int) (dist / PDH_res);
