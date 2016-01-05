@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
                         
                         double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
                         int h_pos = (int) (dist / PDH_res);
-                        histogram[h_pos]++;
+                        histogram[h_pos].d_cnt++;
                     }
                 }
 
