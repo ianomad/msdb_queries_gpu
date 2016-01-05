@@ -138,7 +138,8 @@ int main(int argc, char *argv[]) {
                 }
 
 
-                float elapsed = time_calc(start_time); 
+                float elapsed = time_calc(start_time);
+                printf("%-40s %.3f\n", "Count: ", (float)atomsCnt);
                 printf("%-40s %.3f\n", "Mass Result: ", res->mass);
                 printf("%-40s %.3f\n", "Charge Result: ", res->charge);
                 printf("%-40s %.3f\n", "Inertia X Axis: ", res->inertiaX);
