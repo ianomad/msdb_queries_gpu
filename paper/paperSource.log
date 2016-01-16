@@ -1,0 +1,769 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 JAN 2016 15:06
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**paperSource.tex
+(./paperSource.tex
+LaTeX2e <2015/01/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/IEEEtran/IEEEtran.cls
+Document Class: IEEEtran 2014/09/17 V1.8a by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen102
+\@IEEEtrantmpdimenB=\dimen103
+\@IEEEtrantmpdimenC=\dimen104
+\@IEEEtrantmpcountA=\count79
+\@IEEEtrantmpcountB=\count80
+\@IEEEtrantmpcountC=\count81
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 458.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+\@IEEEnormalsizeunitybaselineskip=\dimen105
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen106
+\CLASSINFOnormalsizeunitybaselineskip=\dimen107
+\IEEEnormaljot=\dimen108
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+\IEEEquantizedlength=\dimen109
+\IEEEquantizedlengthdiff=\dimen110
+\IEEEquantizedtextheightdiff=\dimen111
+\IEEEilabelindentA=\dimen112
+\IEEEilabelindentB=\dimen113
+\IEEEilabelindent=\dimen114
+\IEEEelabelindent=\dimen115
+\IEEEdlabelindent=\dimen116
+\IEEElabelindent=\dimen117
+\IEEEiednormlabelsep=\dimen118
+\IEEEiedmathlabelsep=\dimen119
+\IEEEiedtopsep=\skip41
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@IEEEsubequation=\count86
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\c@figure=\count87
+\c@table=\count88
+\@IEEEeqnnumcols=\count89
+\@IEEEeqncolcnt=\count90
+\@IEEEsubeqnnumrollback=\count91
+\@IEEEquantizeheightA=\dimen120
+\@IEEEquantizeheightB=\dimen121
+\@IEEEquantizeheightC=\dimen122
+\@IEEEquantizeprevdepth=\dimen123
+\@IEEEquantizemultiple=\count92
+\@IEEEquantizeboxA=\box26
+\@IEEEtmpitemindent=\dimen124
+\c@IEEEbiography=\count93
+\@IEEEtranrubishbin=\box27
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen125
+\WF@size=\dimen126
+\c@WF@wrappedlines=\count94
+\WF@box=\box28
+\WF@everypar=\toks15
+Package: wrapfig 2003/01/31  v 3.6
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip44
+\subfigcapskip=\skip45
+\subfigcaptopadj=\dimen127
+\subfigbottomskip=\skip46
+\subfigcapmargin=\dimen128
+\subfiglabelskip=\skip47
+\c@subfigure=\count95
+\c@lofdepth=\count96
+\c@subtable=\count97
+\c@lotdepth=\count98
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2015/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip48
+\subfig@bottom=\skip49
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read1
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count99
+))
+\Gin@req@height=\dimen129
+\Gin@req@width=\dimen130
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count100
+\float@exts=\toks19
+\float@box=\box29
+\@float@everytoks=\toks20
+\@floatcapt=\box30
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@ALC@unique=\count101
+\c@ALC@line=\count102
+\c@ALC@rem=\count103
+\c@ALC@depth=\count104
+\ALC@tlm=\skip50
+\algorithmicindent=\skip51
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks21
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks22
+\ex@=\dimen131
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen132
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count105
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count106
+\leftroot@=\count107
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count108
+\DOTSCASE@=\count109
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box31
+\strutbox@=\box32
+\big@size=\dimen133
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count110
+\c@MaxMatrixCols=\count111
+\dotsspace@=\muskip11
+\c@parentequation=\count112
+\dspbrk@lvl=\count113
+\tag@help=\toks23
+\row@=\count114
+\column@=\count115
+\maxfields@=\count116
+\andhelp@=\toks24
+\eqnshift@=\dimen134
+\alignsep@=\dimen135
+\tagshift@=\dimen136
+\tagwidth@=\dimen137
+\totwidth@=\dimen138
+\lineht@=\dimen139
+\@envbody=\toks25
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks26
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count117
+\calc@Bcount=\count118
+\calc@Adimen=\dimen140
+\calc@Bdimen=\dimen141
+\calc@Askip=\skip55
+\calc@Bskip=\skip56
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count119
+\calc@Cskip=\skip57
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/calrsfs/calrsfs.sty
+\symrsfscript=\mathgroup6
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+\@float@every@table=\toks27
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
+Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+))
+\c@qcounter=\count120
+\c@theorem=\count121
+\c@lemma=\count122
+\c@definition=\count123
+\c@remark=\count124
+
+(./paperSource.aux)
+\openout1 = `paperSource.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+
+-- Lines per column: 58 (exact).
+(/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count125
+\scratchdimen=\dimen142
+\scratchbox=\box33
+\nofMPsegments=\count126
+\nofMParguments=\count127
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen143
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
+\everyMPtoPDFconversion=\toks29
+)
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 69.
+LaTeX Font Info:    Try loading font information for U+msa on input line 69.
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 69.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 69.
+
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd)
+
+LaTeX Warning: Citation `nature_bigdata08' on page 1 undefined on input line 15
+4.
+
+
+LaTeX Warning: Citation `nature_bigdata12' on page 1 undefined on input line 15
+4.
+
+
+LaTeX Warning: Citation `science_social10' on page 1 undefined on input line 15
+4.
+
+
+LaTeX Warning: Citation `jcs_twitter11' on page 1 undefined on input line 157.
+
+
+LaTeX Warning: Citation `tkde_big14' on page 1 undefined on input line 161.
+
+
+LaTeX Warning: Citation `Frenkel:api01' on page 1 undefined on input line 195.
+
+
+LaTeX Warning: Citation `Landau:cup05' on page 1 undefined on input line 195.
+
+[1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+
+LaTeX Warning: Citation `Frenkel:api01' on page 2 undefined on input line 207.
+
+
+LaTeX Warning: Citation `Gromacs-online' on page 2 undefined on input line 211.
+
+
+
+LaTeX Warning: Citation `DataPath' on page 2 undefined on input line 243.
+
+
+LaTeX Warning: Citation `Volcano' on page 2 undefined on input line 243.
+
+
+LaTeX Warning: Citation `Qpipe' on page 2 undefined on input line 243.
+
+
+LaTeX Warning: Citation `Candea' on page 2 undefined on input line 246.
+
+
+LaTeX Warning: Citation `PredictablePerformance' on page 2 undefined on input l
+ine 246.
+
+
+LaTeX Warning: Citation `CooperativeScans' on page 2 undefined on input line 24
+6.
+
+Package epstopdf Info: Source file: <images/snap-white.eps>
+(epstopdf)                    date: 2012-08-20 13:16:04
+(epstopdf)                    size: 495727 bytes
+(epstopdf)             Output file: <images/snap-white-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-16 15:01:14
+(epstopdf)                    size: 189331 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/snap-white-eps-conv
+erted-to.pdf images/snap-white.eps>
+(epstopdf)             \includegraphics on input line 258.
+Package epstopdf Info: Output file is already uptodate.
+<images/snap-white-eps-converted-to.pdf, id=13, 921.4425pt x 265.99374pt>
+File: images/snap-white-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/snap-white-eps-converted-to.pdf>
+Package pdftex.def Info: images/snap-white-eps-converted-to.pdf used on input l
+ine 258.
+(pdftex.def)             Requested size: 252.0pt x 72.74466pt.
+
+
+LaTeX Warning: Citation `GROMACS4' on page 2 undefined on input line 271.
+
+
+LaTeX Warning: Citation `VMD' on page 2 undefined on input line 272.
+
+
+LaTeX Warning: Citation `MDAnalysis' on page 2 undefined on input line 272.
+
+
+LaTeX Warning: Citation `wordom' on page 2 undefined on input line 272.
+
+
+LaTeX Warning: Citation `MDtracks' on page 2 undefined on input line 273.
+
+
+LaTeX Warning: Citation `Simulaid' on page 2 undefined on input line 273.
+
+
+LaTeX Warning: Citation `CHARMM' on page 2 undefined on input line 274.
+
+[2 <./images/snap-white-eps-converted-to.pdf>]
+
+LaTeX Warning: Citation `DataStreamManagement' on page 3 undefined on input lin
+e 391.
+
+
+LaTeX Warning: Citation `DataPath' on page 3 undefined on input line 398.
+
+
+LaTeX Warning: Citation `Volcano' on page 3 undefined on input line 399.
+
+
+LaTeX Warning: Citation `Qpipe' on page 3 undefined on input line 399.
+
+
+LaTeX Warning: Citation `SDSS_SIGMOD02' on page 3 undefined on input line 409.
+
+
+LaTeX Warning: Citation `QBISM_ICDE94' on page 3 undefined on input line 409.
+
+
+LaTeX Warning: Citation `BDBMS_CIDR07' on page 3 undefined on input line 418.
+
+
+LaTeX Warning: Citation `PeriScope' on page 3 undefined on input line 420.
+
+
+LaTeX Warning: Citation `NewArch-VLDB07' on page 3 undefined on input line 424.
+
+
+
+LaTeX Warning: Citation `ROI-CIDR07' on page 3 undefined on input line 424.
+
+
+LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 424.
+
+
+
+LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 425.
+
+
+
+LaTeX Warning: Citation `SciDB' on page 3 undefined on input line 425.
+
+
+LaTeX Warning: Citation `Sci_SIGMODR05' on page 3 undefined on input line 440.
+
+
+LaTeX Warning: Citation `BioSimGrid' on page 3 undefined on input line 443.
+
+
+LaTeX Warning: Citation `SimDB' on page 3 undefined on input line 444.
+
+[3]
+
+LaTeX Warning: Citation `SimDB' on page 4 undefined on input line 492.
+
+
+Overfull \hbox (1.76169pt too wide) in paragraph at lines 550--550
+[][]
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Citation `SDSS_SIGMOD02' on page 4 undefined on input line 555.
+
+
+LaTeX Warning: Citation `bamdad06' on page 4 undefined on input line 574.
+
+
+LaTeX Warning: Citation `Frenkel:api01' on page 4 undefined on input line 574.
+
+
+LaTeX Warning: Citation `AstroAnalysis02' on page 4 undefined on input line 574
+.
+
+
+LaTeX Warning: Citation `ChemShift_BCB98' on page 4 undefined on input line 576
+.
+
+[4]
+Package epstopdf Info: Source file: <images/msstructure.eps>
+(epstopdf)                    date: 2014-09-09 06:49:48
+(epstopdf)                    size: 484195 bytes
+(epstopdf)             Output file: <images/msstructure-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-16 15:01:14
+(epstopdf)                    size: 20573 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/msstructure-eps-con
+verted-to.pdf images/msstructure.eps>
+(epstopdf)             \includegraphics on input line 601.
+Package epstopdf Info: Output file is already uptodate.
+ <images/msstructure-eps-converted-to.pdf, id=29, 665.48625pt x 273.02pt>
+File: images/msstructure-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/msstructure-eps-converted-to.pdf>
+Package pdftex.def Info: images/msstructure-eps-converted-to.pdf used on input 
+line 601.
+(pdftex.def)             Requested size: 516.0pt x 211.70496pt.
+
+
+LaTeX Warning: Citation `ytu:icde09' on page 5 undefined on input line 673.
+
+
+LaTeX Warning: Citation `EDBT12' on page 5 undefined on input line 673.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+Underfull \hbox (badness 2556) in paragraph at lines 678--682
+[]\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
+ []
+
+
+LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 704.
+
+
+LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 704.
+
+
+LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 707.
+
+
+LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 707.
+
+
+LaTeX Warning: Citation `orenstein:ipl82' on page 6 undefined on input line 719
+.
+
+Package epstopdf Info: Source file: <images/resolve.eps>
+(epstopdf)                    date: 2012-08-20 13:16:04
+(epstopdf)                    size: 210052 bytes
+(epstopdf)             Output file: <images/resolve-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-16 15:01:15
+(epstopdf)                    size: 4621 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
+ed-to.pdf images/resolve.eps>
+(epstopdf)             \includegraphics on input line 729.
+Package epstopdf Info: Output file is already uptodate.
+<images/resolve-eps-converted-to.pdf, id=38, 472.76625pt x 185.69376pt>
+File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/resolve-eps-converted-to.pdf>
+Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
+ 729.
+(pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
+ [6 <./images/msstructure-eps-converted-to.pdf> <./images/resolve-eps-converted
+-to.pdf>]
+
+LaTeX Warning: Citation `EDBT12' on page 7 undefined on input line 762.
+
+
+LaTeX Warning: Citation `TKDE12' on page 7 undefined on input line 762.
+
+Package epstopdf Info: Source file: <images/system.eps>
+(epstopdf)                    date: 2014-09-15 23:48:36
+(epstopdf)                    size: 185707 bytes
+(epstopdf)             Output file: <images/system-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-16 15:01:15
+(epstopdf)                    size: 10782 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
+d-to.pdf images/system.eps>
+(epstopdf)             \includegraphics on input line 805.
+Package epstopdf Info: Output file is already uptodate.
+<images/system-eps-converted-to.pdf, id=62, 278.03876pt x 204.765pt>
+File: images/system-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/system-eps-converted-to.pdf>
+Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
+805.
+(pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
+Package epstopdf Info: Source file: <images/workload_set_up1.eps>
+(epstopdf)                    date: 2014-10-18 22:41:26
+(epstopdf)                    size: 617458 bytes
+(epstopdf)             Output file: <images/workload_set_up1-eps-converted-to.p
+df>
+(epstopdf)                    date: 2016-01-16 15:01:15
+(epstopdf)                    size: 11015 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
+s-converted-to.pdf images/workload_set_up1.eps>
+(epstopdf)             \includegraphics on input line 832.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/workload_set_up1-eps-converted-to.pdf, id=63, 605.26125pt x 462.72874pt
+>
+File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/workload_set_up1-eps-converted-to.pdf>
+Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
+nput line 832.
+(pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
+ [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
+rted-to.pdf>]
+
+LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
+nput line 1007.
+
+
+LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
+nput line 1007.
+
+[8]
+
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 103
+1.
+
+
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 103
+1.
+
+
+LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
+ined on input line 1043.
+
+
+LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
+ed on input line 1051.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1088--1095
+
+ []
+
+No file paperSource.bbl.
+[9] (./paperSource.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5963 strings out of 493089
+ 102215 string characters out of 6134842
+ 183670 words of memory out of 5000000
+ 9337 multiletter control sequences out of 15000+600000
+ 49410 words of font info for 112 fonts, out of 8000000 for 9000
+ 1144 hyphenation exceptions out of 8191
+ 42i,18n,24p,305b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
+ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on paperSource.pdf (9 pages, 425567 bytes).
+PDF statistics:
+ 140 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+
