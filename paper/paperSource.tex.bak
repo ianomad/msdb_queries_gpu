@@ -38,7 +38,7 @@
 
 
 % paper title
-\title{Push-based System for Molecular Simulation Data Analysis}
+\title{Parallelization of Push-based System for Molecular Simulation Data Analysis}
 
 % author names and IEEE memberships
 % note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
@@ -48,7 +48,7 @@
 % a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
 % was not built to handle multiple paragraphs
 
-\author{Vladimir~Grupcev, Yi-Cheng~Tu~$\dagger$, Joseph~Fogarty, Sagar~Pandit% <-this % stops a space
+\author{Iliiazbek~Akhmedov, Yi-Cheng~Tu~$\dagger$% <-this % stops a space
 
 %\thanks{* These authors contributed equally to this work.}
 \thanks{$\dagger$ Author to whom all correspondence should be sent.}
@@ -69,6 +69,14 @@ FL 33620, U.S.A. Emails: jcfogart@mail.usf.edu, pandit@usf.edu} }
 \maketitle
 
 \begin{abstract}
+
+Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems generally follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on random I/O while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. 
+
+Thankfully, there is a relatively new approach to this problem -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and it's advantages are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filter the data and collect all the needed information. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
+
+In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster, but that might involve loss in data precision. 
+
+
 
 Thanks to the advancement of the modern computer simulation systems
 and state-of-the-art instrumentation, many scientific fields

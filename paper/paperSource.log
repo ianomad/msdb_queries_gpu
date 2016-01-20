@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 JAN 2016 15:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 JAN 2016 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -413,59 +413,59 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 69.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd)
 
-LaTeX Warning: Citation `nature_bigdata08' on page 1 undefined on input line 15
-4.
+LaTeX Warning: Citation `nature_bigdata08' on page 1 undefined on input line 12
+8.
 
 
-LaTeX Warning: Citation `nature_bigdata12' on page 1 undefined on input line 15
-4.
+LaTeX Warning: Citation `nature_bigdata12' on page 1 undefined on input line 12
+8.
 
 
-LaTeX Warning: Citation `science_social10' on page 1 undefined on input line 15
-4.
+LaTeX Warning: Citation `science_social10' on page 1 undefined on input line 12
+8.
 
 
-LaTeX Warning: Citation `jcs_twitter11' on page 1 undefined on input line 157.
+LaTeX Warning: Citation `jcs_twitter11' on page 1 undefined on input line 131.
 
 
-LaTeX Warning: Citation `tkde_big14' on page 1 undefined on input line 161.
+LaTeX Warning: Citation `tkde_big14' on page 1 undefined on input line 135.
 
 
-LaTeX Warning: Citation `Frenkel:api01' on page 1 undefined on input line 195.
+LaTeX Warning: Citation `Frenkel:api01' on page 1 undefined on input line 169.
 
 
-LaTeX Warning: Citation `Landau:cup05' on page 1 undefined on input line 195.
+LaTeX Warning: Citation `Landau:cup05' on page 1 undefined on input line 169.
 
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
 
-LaTeX Warning: Citation `Frenkel:api01' on page 2 undefined on input line 207.
+LaTeX Warning: Citation `Frenkel:api01' on page 2 undefined on input line 181.
 
 
-LaTeX Warning: Citation `Gromacs-online' on page 2 undefined on input line 211.
+LaTeX Warning: Citation `Gromacs-online' on page 2 undefined on input line 185.
 
 
 
-LaTeX Warning: Citation `DataPath' on page 2 undefined on input line 243.
+LaTeX Warning: Citation `DataPath' on page 2 undefined on input line 217.
 
 
-LaTeX Warning: Citation `Volcano' on page 2 undefined on input line 243.
+LaTeX Warning: Citation `Volcano' on page 2 undefined on input line 217.
 
 
-LaTeX Warning: Citation `Qpipe' on page 2 undefined on input line 243.
+LaTeX Warning: Citation `Qpipe' on page 2 undefined on input line 217.
 
 
-LaTeX Warning: Citation `Candea' on page 2 undefined on input line 246.
+LaTeX Warning: Citation `Candea' on page 2 undefined on input line 220.
 
 
 LaTeX Warning: Citation `PredictablePerformance' on page 2 undefined on input l
-ine 246.
+ine 220.
 
 
-LaTeX Warning: Citation `CooperativeScans' on page 2 undefined on input line 24
-6.
+LaTeX Warning: Citation `CooperativeScans' on page 2 undefined on input line 22
+0.
 
 Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    date: 2012-08-20 13:16:04
@@ -475,96 +475,96 @@ Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    size: 189331 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/snap-white-eps-conv
 erted-to.pdf images/snap-white.eps>
-(epstopdf)             \includegraphics on input line 258.
+(epstopdf)             \includegraphics on input line 232.
 Package epstopdf Info: Output file is already uptodate.
 <images/snap-white-eps-converted-to.pdf, id=13, 921.4425pt x 265.99374pt>
 File: images/snap-white-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/snap-white-eps-converted-to.pdf>
 Package pdftex.def Info: images/snap-white-eps-converted-to.pdf used on input l
-ine 258.
+ine 232.
 (pdftex.def)             Requested size: 252.0pt x 72.74466pt.
 
 
-LaTeX Warning: Citation `GROMACS4' on page 2 undefined on input line 271.
+LaTeX Warning: Citation `GROMACS4' on page 2 undefined on input line 245.
 
 
-LaTeX Warning: Citation `VMD' on page 2 undefined on input line 272.
+LaTeX Warning: Citation `VMD' on page 2 undefined on input line 246.
 
 
-LaTeX Warning: Citation `MDAnalysis' on page 2 undefined on input line 272.
+LaTeX Warning: Citation `MDAnalysis' on page 2 undefined on input line 246.
 
 
-LaTeX Warning: Citation `wordom' on page 2 undefined on input line 272.
+LaTeX Warning: Citation `wordom' on page 2 undefined on input line 246.
 
 
-LaTeX Warning: Citation `MDtracks' on page 2 undefined on input line 273.
+LaTeX Warning: Citation `MDtracks' on page 2 undefined on input line 247.
 
 
-LaTeX Warning: Citation `Simulaid' on page 2 undefined on input line 273.
+LaTeX Warning: Citation `Simulaid' on page 2 undefined on input line 247.
 
 
-LaTeX Warning: Citation `CHARMM' on page 2 undefined on input line 274.
+LaTeX Warning: Citation `CHARMM' on page 2 undefined on input line 248.
 
 [2 <./images/snap-white-eps-converted-to.pdf>]
 
 LaTeX Warning: Citation `DataStreamManagement' on page 3 undefined on input lin
-e 391.
+e 365.
 
 
-LaTeX Warning: Citation `DataPath' on page 3 undefined on input line 398.
+LaTeX Warning: Citation `DataPath' on page 3 undefined on input line 372.
 
 
-LaTeX Warning: Citation `Volcano' on page 3 undefined on input line 399.
+LaTeX Warning: Citation `Volcano' on page 3 undefined on input line 373.
 
 
-LaTeX Warning: Citation `Qpipe' on page 3 undefined on input line 399.
+LaTeX Warning: Citation `Qpipe' on page 3 undefined on input line 373.
 
 
-LaTeX Warning: Citation `SDSS_SIGMOD02' on page 3 undefined on input line 409.
+LaTeX Warning: Citation `SDSS_SIGMOD02' on page 3 undefined on input line 383.
 
 
-LaTeX Warning: Citation `QBISM_ICDE94' on page 3 undefined on input line 409.
+LaTeX Warning: Citation `QBISM_ICDE94' on page 3 undefined on input line 383.
 
 
-LaTeX Warning: Citation `BDBMS_CIDR07' on page 3 undefined on input line 418.
+LaTeX Warning: Citation `BDBMS_CIDR07' on page 3 undefined on input line 392.
 
 
-LaTeX Warning: Citation `PeriScope' on page 3 undefined on input line 420.
+LaTeX Warning: Citation `PeriScope' on page 3 undefined on input line 394.
 
 
-LaTeX Warning: Citation `NewArch-VLDB07' on page 3 undefined on input line 424.
-
-
-
-LaTeX Warning: Citation `ROI-CIDR07' on page 3 undefined on input line 424.
-
-
-LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 424.
+LaTeX Warning: Citation `NewArch-VLDB07' on page 3 undefined on input line 398.
 
 
 
-LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 425.
+LaTeX Warning: Citation `ROI-CIDR07' on page 3 undefined on input line 398.
+
+
+LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 398.
 
 
 
-LaTeX Warning: Citation `SciDB' on page 3 undefined on input line 425.
+LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 399.
 
 
-LaTeX Warning: Citation `Sci_SIGMODR05' on page 3 undefined on input line 440.
+
+LaTeX Warning: Citation `SciDB' on page 3 undefined on input line 399.
 
 
-LaTeX Warning: Citation `BioSimGrid' on page 3 undefined on input line 443.
+LaTeX Warning: Citation `Sci_SIGMODR05' on page 3 undefined on input line 414.
 
 
-LaTeX Warning: Citation `SimDB' on page 3 undefined on input line 444.
+LaTeX Warning: Citation `BioSimGrid' on page 3 undefined on input line 417.
+
+
+LaTeX Warning: Citation `SimDB' on page 3 undefined on input line 418.
 
 [3]
 
-LaTeX Warning: Citation `SimDB' on page 4 undefined on input line 492.
+LaTeX Warning: Citation `SimDB' on page 4 undefined on input line 466.
 
 
-Overfull \hbox (1.76169pt too wide) in paragraph at lines 550--550
+Overfull \hbox (1.76169pt too wide) in paragraph at lines 524--524
 [][]
  []
 
@@ -572,20 +572,20 @@ Overfull \hbox (1.76169pt too wide) in paragraph at lines 550--550
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation `SDSS_SIGMOD02' on page 4 undefined on input line 555.
+LaTeX Warning: Citation `SDSS_SIGMOD02' on page 4 undefined on input line 529.
 
 
-LaTeX Warning: Citation `bamdad06' on page 4 undefined on input line 574.
+LaTeX Warning: Citation `bamdad06' on page 4 undefined on input line 548.
 
 
-LaTeX Warning: Citation `Frenkel:api01' on page 4 undefined on input line 574.
+LaTeX Warning: Citation `Frenkel:api01' on page 4 undefined on input line 548.
 
 
-LaTeX Warning: Citation `AstroAnalysis02' on page 4 undefined on input line 574
+LaTeX Warning: Citation `AstroAnalysis02' on page 4 undefined on input line 548
 .
 
 
-LaTeX Warning: Citation `ChemShift_BCB98' on page 4 undefined on input line 576
+LaTeX Warning: Citation `ChemShift_BCB98' on page 4 undefined on input line 550
 .
 
 [4]
@@ -597,44 +597,44 @@ Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    size: 20573 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/msstructure-eps-con
 verted-to.pdf images/msstructure.eps>
-(epstopdf)             \includegraphics on input line 601.
+(epstopdf)             \includegraphics on input line 575.
 Package epstopdf Info: Output file is already uptodate.
  <images/msstructure-eps-converted-to.pdf, id=29, 665.48625pt x 273.02pt>
 File: images/msstructure-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/msstructure-eps-converted-to.pdf>
 Package pdftex.def Info: images/msstructure-eps-converted-to.pdf used on input 
-line 601.
+line 575.
 (pdftex.def)             Requested size: 516.0pt x 211.70496pt.
 
 
-LaTeX Warning: Citation `ytu:icde09' on page 5 undefined on input line 673.
+LaTeX Warning: Citation `ytu:icde09' on page 5 undefined on input line 647.
 
 
-LaTeX Warning: Citation `EDBT12' on page 5 undefined on input line 673.
+LaTeX Warning: Citation `EDBT12' on page 5 undefined on input line 647.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2600) has occurred while \output is active []
 
  [5]
-Underfull \hbox (badness 2556) in paragraph at lines 678--682
+Underfull \hbox (badness 2556) in paragraph at lines 652--656
 []\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
  []
 
 
-LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 704.
+LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 678.
 
 
-LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 704.
+LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 678.
 
 
-LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 707.
+LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 681.
 
 
-LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 707.
+LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 681.
 
 
-LaTeX Warning: Citation `orenstein:ipl82' on page 6 undefined on input line 719
+LaTeX Warning: Citation `orenstein:ipl82' on page 6 undefined on input line 693
 .
 
 Package epstopdf Info: Source file: <images/resolve.eps>
@@ -645,22 +645,22 @@ Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    size: 4621 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
 ed-to.pdf images/resolve.eps>
-(epstopdf)             \includegraphics on input line 729.
+(epstopdf)             \includegraphics on input line 703.
 Package epstopdf Info: Output file is already uptodate.
 <images/resolve-eps-converted-to.pdf, id=38, 472.76625pt x 185.69376pt>
 File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/resolve-eps-converted-to.pdf>
 Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
- 729.
+ 703.
 (pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
  [6 <./images/msstructure-eps-converted-to.pdf> <./images/resolve-eps-converted
 -to.pdf>]
 
-LaTeX Warning: Citation `EDBT12' on page 7 undefined on input line 762.
+LaTeX Warning: Citation `EDBT12' on page 7 undefined on input line 736.
 
 
-LaTeX Warning: Citation `TKDE12' on page 7 undefined on input line 762.
+LaTeX Warning: Citation `TKDE12' on page 7 undefined on input line 736.
 
 Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    date: 2014-09-15 23:48:36
@@ -670,14 +670,14 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 805.
+(epstopdf)             \includegraphics on input line 779.
 Package epstopdf Info: Output file is already uptodate.
 <images/system-eps-converted-to.pdf, id=62, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-805.
+779.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
@@ -688,7 +688,7 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 832.
+(epstopdf)             \includegraphics on input line 806.
 Package epstopdf Info: Output file is already uptodate.
 
 <images/workload_set_up1-eps-converted-to.pdf, id=63, 605.26125pt x 462.72874pt
@@ -696,37 +696,37 @@ Package epstopdf Info: Output file is already uptodate.
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 832.
+nput line 806.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
  [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
 rted-to.pdf>]
 
 LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 1007.
+nput line 981.
 
 
 LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 1007.
+nput line 981.
 
 [8]
 
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 103
-1.
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 100
+5.
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 103
-1.
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 100
+5.
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 1043.
+ined on input line 1017.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 1051.
+ed on input line 1025.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1088--1095
+Underfull \hbox (badness 10000) in paragraph at lines 1062--1069
 
  []
 
@@ -743,7 +743,7 @@ Here is how much of TeX's memory you used:
  9337 multiletter control sequences out of 15000+600000
  49410 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 42i,18n,24p,305b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,18n,24p,832b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
@@ -760,7 +760,7 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (9 pages, 425567 bytes).
+Output written on paperSource.pdf (9 pages, 425558 bytes).
 PDF statistics:
  140 PDF objects out of 1000 (max. 8388607)
  98 compressed objects within 1 object stream

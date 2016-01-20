@@ -70,43 +70,17 @@ FL 33620, U.S.A. Emails: jcfogart@mail.usf.edu, pandit@usf.edu} }
 
 \begin{abstract}
 
-Thanks to the advancement of the modern computer simulation systems
-and state-of-the-art instrumentation, many scientific fields
-generate, and require manipulation of large amounts of data. Known
-scientific data analysis systems, as well as traditional DBMSs,
-follow a pull-based type of architectural design, where the executed
-queries mandate the data needed on their part. This design, while
-suitable for traditional transaction-based workloads where number of
-queries retrieve small parts of data located at various places of
-the database, is ill-fitted for applications involving complex
-analysis on most of the data. Such design involves random I/O,
-considerably affecting the data throughput in the system. All of
-this gives rise of redundant and high I/O traffic in the process of
-scientific data analysis in pull-based type systems. In this paper,
-we design and implement a push-based type system which allows
-high-throughput data analysis in the process of scientific
-discovery. Our design improves on the aforementioned shortcomings in
-two ways: i) it uses a sequential scan-based I/O framework that
-loads the data into the main memory, and then ii) the system pushes
-the loaded data to a number of pre-programmed queries. These queries
-are being executed on the same data stream, with various data
-selections. This way, essentially, the system lowers the unnecessary
-I/O overhead imposed by the randomized, index-based scan and that of
-a multiple data reads if each query were to be fed separately.
-Considering the amount of MS data as well as the number of queries
-being executed, we believe our system provides substantial
-improvement over the current MS data analyzing systems. The
-efficiency of the proposed system is backed by the results of
-extensive experiments using MS generated data. The running times of
-our system are compared to those of the GROMACS system. The
-comparison shows the advantage and the potential of using such
-push-based system for MS system analysis.
+Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems generally follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on random I/O while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. 
+
+Thankfully, there is a relatively new approach to this problem -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and it's advantages are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filter the data and collect all the needed information. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
+
+In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster, but that might involve loss in data and some expectations from the type of data, too. In the new approach due to high performance of GPU processing and its nature, custom data structures were not needed in order to make it faster and still keep precision.
 
 \end{abstract}
 
 \begin{IEEEkeywords}
 Push-based system, molecular simulation, scientific databases,
-spatial distance histogram.
+spatial distance histogram, GPU, parallel processing.
 \end{IEEEkeywords}
 %\vspace{-5mm}
 
