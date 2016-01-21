@@ -1,8 +1,7 @@
-\documentclass[10pt,journal,final,letterpaper,twocolumn,conference]{IEEEtran}
+\documentclass[10pt,journal,final,letterpaper,twocolumn]{IEEEtran}
 %\documentclass{ssdbm}
 \usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{algorithmic,amsfonts,amssymb,amsmath,calc,calrsfs,cleveref}
-\usepackage{epstopdf,filecontents,lipsum}
 %\usepackage{fixltx2e}
 
 \restylefloat{table}
@@ -16,7 +15,10 @@
 
 %\smartqed  % flush right qed marks, e.g. at end of proof
 
+
+
 %----------------------------------------------------------
+
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -30,8 +32,8 @@
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
-\begin{document}
 
+\begin{document}
 
 % paper title
 \title{Parallelization of Push-based System for Molecular Simulation Data Analysis}
@@ -99,7 +101,7 @@ small portion of the data.
 
 \section{Introduction}\label{sc:intro}
 
-In various sciences simulation systems take big place and often times they may be very important for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations generally have the following flow:
+In various sciences simulation systems take big place and often times they may be very important for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations generally have the following flow \cite{mainPaper}:
 
 \vspace{5mm}
 
@@ -1086,14 +1088,12 @@ Medical Sciences (NIGMS) at the National Institutes of Health (NIH).
 The authors would like to thank Anand Kumar who has contributed his
 time and knowledge toward completion of the work.
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \bibliographystyle{IEEEtran}
-\bibliography{references.bib}
+\bibliography{references}
 
 \clearpage
 

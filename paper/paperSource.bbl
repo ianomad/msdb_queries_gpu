@@ -21,6 +21,10 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{mainPaper}
+{Vladimir Grupcev, Yicheng Tu {\it et. al.}}, ``Push-based system for molecular
+  simulation data analysis.'' \emph{TKDE}, 2015.
+
 \bibitem{nature_bigdata08}
 D.~H. et~al., ``Big data: The future of biocuration,'' \emph{Nature}, vol. 455,
   pp. 47--50, 2008.
@@ -204,5 +208,9 @@ D.~S. Wishart and A.~M. Nip, ``{Protein Chemical Shift Analysis: A Practical
 \bibitem{orenstein:ipl82}
 J.~Orenstein, ``Multidimensional tries used for associative searching,''
   \emph{Information Processing Letters}, vol.~14, no.~4, 1982.
+
+\bibitem{TKDE12}
+{Vladimir Grupcev {\it et. al.}}, ``Approximate algorithms for computing
+  spatial distance histograms with accuracy guarantees.'' \emph{TKDE}, 2012.
 
 \end{thebibliography}

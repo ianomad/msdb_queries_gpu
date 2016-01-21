@@ -8,20 +8,20 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib
-I was expecting a `,' or a `}'---line 199 of file references.bib
+I was expecting a `,' or a `}'---line 205 of file references.bib
  : 
  : @inproceedings{he:sigmod08,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 347 of file references.bib
+Repeated entry---line 353 of file references.bib
  : @book{Frenkel:api01
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 356 of file references.bib
+Repeated entry---line 362 of file references.bib
  : @book{Landau:cup05
  :                   ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 579 of file references.bib
+I was expecting a `,' or a `}'---line 585 of file references.bib
  :   
  :   volume    = {32},
 (Error may have been on previous line)
@@ -30,7 +30,6 @@ A bad cross reference---entry "NewArch-VLDB07"
 refers to entry "DBLP:conf/vldb/2007", which doesn't exist
 A bad cross reference---entry "ROI-CIDR07"
 refers to entry "DBLP:conf/cidr/2007", which doesn't exist
-Warning--I didn't find a database entry for "TKDE12"
 Warning--I didn't find a database entry for "DBLP:conf/vldb/2007"
 Warning--I didn't find a database entry for "DBLP:conf/cidr/2007"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
@@ -41,45 +40,45 @@ Name 1 in "M. Bamdad, S. Alavi, B. Najafi, and E. Keshavarzi" has a comma at the
 while executing---line 2419 of file IEEEtran.bst
 
 Done.
-You've used 39 entries,
+You've used 41 entries,
             4039 wiz_defined-function locations,
-            1059 strings with 13484 characters,
-and the built_in function-call counts, 28977 in all, are:
-= -- 2356
-> -- 620
+            1066 strings with 13729 characters,
+and the built_in function-call counts, 29665 in all, are:
+= -- 2414
+> -- 628
 < -- 262
-+ -- 369
-- -- 100
-* -- 1326
-:= -- 4325
-add.period$ -- 78
-call.type$ -- 39
-change.case$ -- 36
++ -- 373
+- -- 102
+* -- 1348
+:= -- 4463
+add.period$ -- 82
+call.type$ -- 41
+change.case$ -- 38
 chr.to.int$ -- 603
-cite$ -- 40
-duplicate$ -- 2109
-empty$ -- 2361
-format.name$ -- 119
-if$ -- 6768
+cite$ -- 42
+duplicate$ -- 2175
+empty$ -- 2431
+format.name$ -- 121
+if$ -- 6916
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 336
-newline$ -- 142
-num.names$ -- 39
-pop$ -- 753
+int.to.str$ -- 41
+missing$ -- 346
+newline$ -- 148
+num.names$ -- 41
+pop$ -- 779
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2309
+skip$ -- 2367
 stack$ -- 0
-substring$ -- 1452
-swap$ -- 1728
+substring$ -- 1454
+swap$ -- 1760
 text.length$ -- 61
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 39
+type$ -- 41
 warning$ -- 1
-while$ -- 127
-width$ -- 41
-write$ -- 391
+while$ -- 129
+width$ -- 43
+write$ -- 407
 (There were 7 error messages)
