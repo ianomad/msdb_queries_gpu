@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 JAN 2016 21:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 JAN 2016 22:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -351,6 +351,14 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/filecontents/filecontents.sty
+Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
+eX document
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/lipsum/lipsum.sty
+Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
+\c@lips@count=\count120
+)
 \@float@every@table=\toks27
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
@@ -359,114 +367,64 @@ Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 ))
-\c@qcounter=\count120
-\c@theorem=\count121
-\c@lemma=\count122
-\c@definition=\count123
-\c@remark=\count124
+\c@qcounter=\count121
+\c@theorem=\count122
+\c@lemma=\count123
+\c@definition=\count124
+\c@remark=\count125
 
 (./paperSource.aux)
 \openout1 = `paperSource.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 
--- Lines per column: 58 (exact).
+-- Lines per column: 56 (exact).
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count125
+\scratchcounter=\count126
 \scratchdimen=\dimen142
 \scratchbox=\box33
-\nofMPsegments=\count126
-\nofMParguments=\count127
+\nofMPsegments=\count127
+\nofMParguments=\count128
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count128
+\MPscratchCnt=\count129
 \MPscratchDim=\dimen143
-\MPnumerator=\count129
-\makeMPintoPDFobject=\count130
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
 \everyMPtoPDFconversion=\toks29
 )
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 69.
-LaTeX Font Info:    Try loading font information for U+msa on input line 69.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 63.
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 69.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 69.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 63.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd)
-
-LaTeX Warning: Citation `nature_bigdata08' on page 1 undefined on input line 12
-8.
-
-
-LaTeX Warning: Citation `nature_bigdata12' on page 1 undefined on input line 12
-8.
-
-
-LaTeX Warning: Citation `science_social10' on page 1 undefined on input line 12
-8.
-
-
-LaTeX Warning: Citation `jcs_twitter11' on page 1 undefined on input line 131.
-
-
-LaTeX Warning: Citation `tkde_big14' on page 1 undefined on input line 135.
-
-
-LaTeX Warning: Citation `Frenkel:api01' on page 1 undefined on input line 169.
-
-
-LaTeX Warning: Citation `Landau:cup05' on page 1 undefined on input line 169.
-
+** WARNING: \thanks is locked out when in conference mode (line 63).
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-
-LaTeX Warning: Citation `Frenkel:api01' on page 2 undefined on input line 181.
-
-
-LaTeX Warning: Citation `Gromacs-online' on page 2 undefined on input line 185.
-
-
-
-LaTeX Warning: Citation `DataPath' on page 2 undefined on input line 217.
-
-
-LaTeX Warning: Citation `Volcano' on page 2 undefined on input line 217.
-
-
-LaTeX Warning: Citation `Qpipe' on page 2 undefined on input line 217.
-
-
-LaTeX Warning: Citation `Candea' on page 2 undefined on input line 220.
-
-
-LaTeX Warning: Citation `PredictablePerformance' on page 2 undefined on input l
-ine 220.
-
-
-LaTeX Warning: Citation `CooperativeScans' on page 2 undefined on input line 22
-0.
-
 Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    date: 2012-08-20 13:16:04
 (epstopdf)                    size: 495727 bytes
@@ -475,120 +433,27 @@ Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    size: 189331 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/snap-white-eps-conv
 erted-to.pdf images/snap-white.eps>
-(epstopdf)             \includegraphics on input line 232.
+(epstopdf)             \includegraphics on input line 242.
 Package epstopdf Info: Output file is already uptodate.
-<images/snap-white-eps-converted-to.pdf, id=13, 921.4425pt x 265.99374pt>
+
+<images/snap-white-eps-converted-to.pdf, id=10, 921.4425pt x 265.99374pt>
 File: images/snap-white-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/snap-white-eps-converted-to.pdf>
 Package pdftex.def Info: images/snap-white-eps-converted-to.pdf used on input l
-ine 232.
+ine 242.
 (pdftex.def)             Requested size: 252.0pt x 72.74466pt.
-
-
-LaTeX Warning: Citation `GROMACS4' on page 2 undefined on input line 245.
-
-
-LaTeX Warning: Citation `VMD' on page 2 undefined on input line 246.
-
-
-LaTeX Warning: Citation `MDAnalysis' on page 2 undefined on input line 246.
-
-
-LaTeX Warning: Citation `wordom' on page 2 undefined on input line 246.
-
-
-LaTeX Warning: Citation `MDtracks' on page 2 undefined on input line 247.
-
-
-LaTeX Warning: Citation `Simulaid' on page 2 undefined on input line 247.
-
-
-LaTeX Warning: Citation `CHARMM' on page 2 undefined on input line 248.
-
-[2 <./images/snap-white-eps-converted-to.pdf>]
-
-LaTeX Warning: Citation `DataStreamManagement' on page 3 undefined on input lin
-e 365.
-
-
-LaTeX Warning: Citation `DataPath' on page 3 undefined on input line 372.
-
-
-LaTeX Warning: Citation `Volcano' on page 3 undefined on input line 373.
-
-
-LaTeX Warning: Citation `Qpipe' on page 3 undefined on input line 373.
-
-
-LaTeX Warning: Citation `SDSS_SIGMOD02' on page 3 undefined on input line 383.
-
-
-LaTeX Warning: Citation `QBISM_ICDE94' on page 3 undefined on input line 383.
-
-
-LaTeX Warning: Citation `BDBMS_CIDR07' on page 3 undefined on input line 392.
-
-
-LaTeX Warning: Citation `PeriScope' on page 3 undefined on input line 394.
-
-
-LaTeX Warning: Citation `NewArch-VLDB07' on page 3 undefined on input line 398.
-
-
-
-LaTeX Warning: Citation `ROI-CIDR07' on page 3 undefined on input line 398.
-
-
-LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 398.
-
-
-
-LaTeX Warning: Citation `SciDB-SIGMOD10' on page 3 undefined on input line 399.
-
-
-
-LaTeX Warning: Citation `SciDB' on page 3 undefined on input line 399.
-
-
-LaTeX Warning: Citation `Sci_SIGMODR05' on page 3 undefined on input line 414.
-
-
-LaTeX Warning: Citation `BioSimGrid' on page 3 undefined on input line 417.
-
-
-LaTeX Warning: Citation `SimDB' on page 3 undefined on input line 418.
-
-[3]
-
-LaTeX Warning: Citation `SimDB' on page 4 undefined on input line 466.
-
-
-Overfull \hbox (1.76169pt too wide) in paragraph at lines 524--524
+ [2 <./images/snap-white-eps-converted-to.pdf>] [3]
+Overfull \hbox (1.76169pt too wide) in paragraph at lines 534--534
 [][]
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Citation `SDSS_SIGMOD02' on page 4 undefined on input line 529.
-
-
-LaTeX Warning: Citation `bamdad06' on page 4 undefined on input line 548.
-
-
-LaTeX Warning: Citation `Frenkel:api01' on page 4 undefined on input line 548.
-
-
-LaTeX Warning: Citation `AstroAnalysis02' on page 4 undefined on input line 548
-.
-
-
-LaTeX Warning: Citation `ChemShift_BCB98' on page 4 undefined on input line 550
-.
-
 [4]
+Underfull \vbox (badness 3780) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    date: 2014-09-09 06:49:48
 (epstopdf)                    size: 484195 bytes
@@ -597,46 +462,22 @@ Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    size: 20573 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/msstructure-eps-con
 verted-to.pdf images/msstructure.eps>
-(epstopdf)             \includegraphics on input line 575.
+(epstopdf)             \includegraphics on input line 585.
 Package epstopdf Info: Output file is already uptodate.
- <images/msstructure-eps-converted-to.pdf, id=29, 665.48625pt x 273.02pt>
+
+<images/msstructure-eps-converted-to.pdf, id=28, 665.48625pt x 273.02pt>
 File: images/msstructure-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/msstructure-eps-converted-to.pdf>
 Package pdftex.def Info: images/msstructure-eps-converted-to.pdf used on input 
-line 575.
+line 585.
 (pdftex.def)             Requested size: 516.0pt x 211.70496pt.
-
-
-LaTeX Warning: Citation `ytu:icde09' on page 5 undefined on input line 647.
-
-
-LaTeX Warning: Citation `EDBT12' on page 5 undefined on input line 647.
-
-
-Underfull \vbox (badness 2600) has occurred while \output is active []
-
  [5]
-Underfull \hbox (badness 2556) in paragraph at lines 652--656
+Underfull \hbox (badness 2556) in paragraph at lines 662--666
 []\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
  []
 
-
-LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 678.
-
-
-LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 678.
-
-
-LaTeX Warning: Citation `ytu:icde09' on page 6 undefined on input line 681.
-
-
-LaTeX Warning: Citation `EDBT12' on page 6 undefined on input line 681.
-
-
-LaTeX Warning: Citation `orenstein:ipl82' on page 6 undefined on input line 693
-.
-
+[6 <./images/msstructure-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    date: 2012-08-20 13:16:04
 (epstopdf)                    size: 210052 bytes
@@ -645,22 +486,19 @@ Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    size: 4621 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
 ed-to.pdf images/resolve.eps>
-(epstopdf)             \includegraphics on input line 703.
+(epstopdf)             \includegraphics on input line 713.
 Package epstopdf Info: Output file is already uptodate.
-<images/resolve-eps-converted-to.pdf, id=38, 472.76625pt x 185.69376pt>
+
+<images/resolve-eps-converted-to.pdf, id=55, 472.76625pt x 185.69376pt>
 File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/resolve-eps-converted-to.pdf>
 Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
- 703.
+ 713.
 (pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
- [6 <./images/msstructure-eps-converted-to.pdf> <./images/resolve-eps-converted
--to.pdf>]
-
-LaTeX Warning: Citation `EDBT12' on page 7 undefined on input line 736.
 
 
-LaTeX Warning: Citation `TKDE12' on page 7 undefined on input line 736.
+LaTeX Warning: Citation `TKDE12' on page 7 undefined on input line 746.
 
 Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    date: 2014-09-15 23:48:36
@@ -670,14 +508,14 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 779.
+(epstopdf)             \includegraphics on input line 789.
 Package epstopdf Info: Output file is already uptodate.
-<images/system-eps-converted-to.pdf, id=62, 278.03876pt x 204.765pt>
+<images/system-eps-converted-to.pdf, id=56, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-779.
+789.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
@@ -688,60 +526,74 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 806.
+(epstopdf)             \includegraphics on input line 816.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/workload_set_up1-eps-converted-to.pdf, id=63, 605.26125pt x 462.72874pt
+<images/workload_set_up1-eps-converted-to.pdf, id=57, 605.26125pt x 462.72874pt
 >
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 806.
+nput line 816.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
- [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
-rted-to.pdf>]
+ [7 <./images/resolve-eps-converted-to.pdf> <./images/system-eps-converted-to.p
+df>] [8 <./images/workload_set_up1-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 981.
+LaTeX Warning: Reference `fg:speedup838K-select-level' on page 9 undefined on i
+nput line 991.
 
 
-LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 981.
+LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 9 undefined on i
+nput line 991.
 
-[8]
 
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 100
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 101
 5.
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 100
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 101
 5.
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 1017.
+ined on input line 1027.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 1025.
+ed on input line 1035.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1062--1069
+Underfull \hbox (badness 10000) in paragraph at lines 1072--1079
 
  []
 
-No file paperSource.bbl.
-[9] (./paperSource.aux)
+(./paperSource.bbl [9]
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no “ in font ptmr7t!
+) [10]
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+(./paperSource.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5963 strings out of 493089
- 102215 string characters out of 6134842
- 183670 words of memory out of 5000000
- 9337 multiletter control sequences out of 15000+600000
- 49410 words of font info for 112 fonts, out of 8000000 for 9000
+ 6175 strings out of 493089
+ 105041 string characters out of 6134842
+ 278408 words of memory out of 5000000
+ 9539 multiletter control sequences out of 15000+600000
+ 50517 words of font info for 113 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  42i,18n,24p,832b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -755,15 +607,14 @@ e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
 015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
-ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
-urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on paperSource.pdf (9 pages, 425558 bytes).
+xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on paperSource.pdf (10 pages, 424655 bytes).
 PDF statistics:
- 140 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
+ 139 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paperSource.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+I was expecting a `,' or a `}'---line 199 of file references.bib
+ : 
+ : @inproceedings{he:sigmod08,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 347 of file references.bib
+ : @book{Frenkel:api01
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 356 of file references.bib
+ : @book{Landau:cup05
+ :                   ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 579 of file references.bib
+ :   
+ :   volume    = {32},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "NewArch-VLDB07"
+refers to entry "DBLP:conf/vldb/2007", which doesn't exist
+A bad cross reference---entry "ROI-CIDR07"
+refers to entry "DBLP:conf/cidr/2007", which doesn't exist
+Warning--I didn't find a database entry for "TKDE12"
+Warning--I didn't find a database entry for "DBLP:conf/vldb/2007"
+Warning--I didn't find a database entry for "DBLP:conf/cidr/2007"
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty year in MDAnalysis
+Name 1 in "M. Bamdad, S. Alavi, B. Najafi, and E. Keshavarzi" has a comma at the end for entry bamdad06
+while executing---line 2419 of file IEEEtran.bst
+
+Done.
+You've used 39 entries,
+            4039 wiz_defined-function locations,
+            1059 strings with 13484 characters,
+and the built_in function-call counts, 28977 in all, are:
+= -- 2356
+> -- 620
+< -- 262
++ -- 369
+- -- 100
+* -- 1326
+:= -- 4325
+add.period$ -- 78
+call.type$ -- 39
+change.case$ -- 36
+chr.to.int$ -- 603
+cite$ -- 40
+duplicate$ -- 2109
+empty$ -- 2361
+format.name$ -- 119
+if$ -- 6768
+int.to.chr$ -- 0
+int.to.str$ -- 39
+missing$ -- 336
+newline$ -- 142
+num.names$ -- 39
+pop$ -- 753
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 2309
+stack$ -- 0
+substring$ -- 1452
+swap$ -- 1728
+text.length$ -- 61
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 39
+warning$ -- 1
+while$ -- 127
+width$ -- 41
+write$ -- 391
+(There were 7 error messages)

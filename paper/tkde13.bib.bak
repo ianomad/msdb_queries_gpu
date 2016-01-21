@@ -1,0 +1,364 @@
+@article{TKDE12,
+   author = "{Vladimir Grupcev {\it et. al.}}",
+   title = {Approximate Algorithms for Computing Spatial Distance Histograms with Accuracy Guarantees.},
+   journal   = {TKDE},
+year = {2012}
+}
+
+@inproceedings{Eltabakh:cidr07,
+  author = "{Mohamed Eltabakh {\it et. al.}}",
+  title = {{BDBMS: A Database management system for biological data}},
+  booktitle = {CIDR},
+  OPTpages = {196--206},
+  year = {2007},
+}
+
+@article{Gray:sigmod05,
+  author = "{Jim Gray {\it et. al.}}",
+  title = {{Scientific data management in the coming decade}},
+  journal = {In SIGMOD Record},
+  volume = {34},
+  issue = {4},
+  OPTpages = {34--41},
+  year = {2005},
+}
+
+@article{Ng:fgenCsys06,
+  author = "{Muan Hong Ng {\it et. al.}}",
+  title = {{In BioSimGrid: grid-enabled biomolecular simulation data storage and analysis}},
+  journal = {Future Gen. Comput. Syst.},
+  volume = {22},
+  issue = {6},
+  OPTpages = {657--664},
+  year = {2006},
+}
+
+@book{Frenkel:api01,
+  author = "{Daan Frenkel {\it et. al.}}",
+  title = {Understanding Molecular Simulation: From Algorithms to Applications},
+  edition = {2nd},
+  volume = {1},
+  publisher = {Academic Press, Inc.},
+  year = {2001},
+}
+
+@book{Landau:cup05,
+  author = "{David Landau {\it et. al.}}",
+  title = {A Guide to Monte Carlo Simulations in Statistical Physics},
+  publisher = {Cambridge University Press},
+  year = {2005},
+}
+
+@inproceedings{ytu:icde09,
+  author = "{Yicheng Tu {\it et. al.}}",
+  title = {Computing Distance Histograms Efficiently in Scientific Databases},
+  booktitle ={ICDE},
+  OPTpages = {796--807},
+  year = {2009},
+}
+
+@book{allen:nic03,
+   author = {Michael Allen},
+   title = {Introduction to Molecular Dynamics Simulation},
+   publisher = {John von Neumann Institute of Computing, NIC Seris},
+   volume = {23},
+   year = {2003},
+}
+
+@article{vashishta:phy99,
+   author = "{Andrey Omeltchenko {\it et. al.}}",
+   title = {{Scalable I/O of large-scale molecular dynamics simulations: A data-compression algorithm}},
+   journal = {Computer physics communications},
+   volume = {131},
+   number = {1--2},
+   OPTpages = {78--85},
+   year = {2000},
+}
+
+@book{szapudi:lnphy09,
+   author = {Istv\'an Szapudi},
+   title = {Introduction to Higher Order Spatial Statistics in Cosmology},
+   publisher = {Lecture Notes in Physics, Springer Verlag},
+   volume = {665},
+   year = {2009},
+}
+
+@Article{GROMACS4,
+author = "{Berk Hess {\it et. al.}}",
+title = {{GROMACS 4: Algorithms for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation}},
+journal = {Journal of Chemical Theory and Computation},
+year = {2008},
+volume = {4},
+number = {3},
+OPTpages = {435-447},
+month = {March}
+}
+
+@inproceedings{Gray:mit01,
+  author = "{Alexander G. Gray {\it et. al.}}",
+  title = {N-Body Problems in Statistical Learning},
+  booktitle = {Advances in Neural Info. Processing Systems},
+  OPTpages = {521--527},
+  year = {2001},
+}
+
+@inproceedings{EDBT12,
+  author    = "{Anand Kumar {\it et. al.}}",
+  title     = {Distance Histogram Computation Based on Spatiotemporal Uniformity in Scientific Data.},
+  booktitle = {EDBT},
+  year      = {2012},
+  month = {March},
+  location = {Berlin, Germany},
+  OPTpages     = {288--299}
+}
+
+@article{BHut_Nature86,
+ author = "{Josh Barnes {\it et. al.}}",
+ title = {{A Hierarchical O(N log N) Force-Calculation Algorithm}},
+ journal = {Nature},
+ volume = {324},
+ number = {4},
+ year = {1986},
+ OPTpages = {446--449}
+}
+
+@article{MultiPole_JCP87,
+ author = "{Leslie Greengard {\it et. al.}}",
+ title = {{A Fast Algorithm for Particle Simulations }},
+ journal = {Journal of Computational Physics},
+ volume = {135},
+ number = {12},
+ year = {1987},
+ OPTpages = {280--292}
+}
+
+@article{ytu:vldbj10,
+   author = "{Shaoping Chen {\it et. al.}}",
+   title = {Performance analysis of a dual-tree algorithm for computing spatial distance histograms},
+   journal = {VLDBJ},
+   volume = {20},
+   number = {4},
+   OPTpages = {471--494},
+   year = {2011}
+}
+
+@inproceedings{dietz:sda91,
+   author = "{Paul Dietz {\it et. al.}}",
+   title = {Persistence, amortization and randomization},
+   booktitle = {Proc. of the ACM-SIAM symposium on Discrete algorithms},
+   OPTpages = {78--88},
+   year = {1991},
+}
+
+@inproceedings{teraoka:pcc95,
+   author = "{Teruhiko Teraoka {\it et. al.}}",
+   booktitle={Phoenix Conf. on Computers and Communications},
+   title={{The MP-tree: A data structure for spatio-temporal data}},
+   year={1995},
+   OPTpages={326--333},
+}
+
+@article{lagogiannis:sigmod09,
+   author = "{George Lagogiannis {\it et. al.}}",
+   title = {A time efficient indexing scheme for complex spatiotemporal retrieval},
+   journal = {SIGMOD Record},
+   volume = {38},
+   issue = {3},
+   OPTpages = {11--16},
+   year = {2010},
+}
+
+@inproceedings{kaplan:crc01,
+   author = {Haim Kaplan},
+   title  = {Persistent data structures},
+   booktitle = {Handbook on Data Structures and Applications},
+   OPTpages = {1--27},
+   publisher = {CRC Press},
+   year = {2001},
+}
+
+@book{hwu:ggjade,
+   author = "{Wen-Mei Hwu}",
+   title = {GPU Computing Gems Jade Edition},
+   year = {2011},
+   edition = {1st},
+   publisher = {Morgan Kaufmann Publishers Inc.},
+}
+
+@book{kirk:mp10,
+   author = "{David Kirk {\it et. al.}}",
+   title = {Programming Massively Parallel Processors: A Hands-on Approach},
+   year = {2010},
+   edition = {1st},
+   publisher = {Morgan Kaufmann Publishers Inc.},
+}
+
+@misc{OpenCL,
+   title = {{OpenCL - The open standard for parallel programming of heterogeneous systems}},
+   author = {{Khronos Group}},
+   url = {http://www.khronos.org/opencl/}
+}
+
+@misc{bestcuda,
+   title = {{CUDA C Best Practices Guide, Version 4.0}},
+   author = {{NVIDIA}},
+   url = {http://developer.nvidia.com/object/cuda.html},
+   year={2011],
+}
+
+@inproceedings{he:sigmod08,
+   author = "{Bingsheng He {\it et. al.}}",
+   title = {Relational joins on graphics processors},
+   booktitle = {SIGMOD},
+   year = {2008},
+   OPTpages = {511--524},
+}
+
+@inproceedings{Govindaraju:sigmod04,
+   author = "{Naga Govindaraju {\it et. al.}}",
+   title = {Fast computation of database operations using graphics processors},
+   booktitle = {SIGMOD},
+   year = {2004},
+   OPTpages = {215--226},
+}
+
+@inproceedings{Govindaraju:sigmod06,
+   author = "{Naga Govindaraju {\it et. al.}}",
+   title = {GPUTeraSort: high performance graphics co-processor sorting for large database management},
+   booktitle = {SIGMOD},
+   year = {2006},
+   OPTpages = {325--336},
+}
+
+@inproceedings{Owens07asurvey,
+    author = "{John Owens {\it et. al.}}",
+    title = {A survey of general-purpose computation on graphics hardware},
+    booktitle = {Eurographics, State of the Art Reports},
+    year = {2005}
+}
+
+@article{orenstein:ipl82,
+  author = {Jack Orenstein},
+  title = {Multidimensional Tries used for Associative Searching},
+  journal = {Information Processing Letters},
+  volume = {14},
+  number = {4},
+  OPTpages = {150--157},
+  year = {1982},
+}
+
+@book{breiman:prob,
+   author = {Leo Breiman},
+   title = {Probability (Classics in Applied Math.)},
+   publisher = {SIAM},
+   year = {1992},
+}
+
+@misc{linepicking,
+   title = {Square Line Picking},
+   author = {Weisstein, Eric},
+   url = {http://mathworld.wolfram.com/SquareLinePicking.html}
+}
+
+@article{alagar:jap76,
+   author = {Vangalur Alagar},
+   title  = {The distribution of distance between random points},
+   journal = {Journal of Applied Probability},
+   volume = {13},
+   number = {3},
+   OPTpages = {558--566},
+   year = {1976},
+}
+
+@misc{nc-chisq,
+   title = {Noncentral {$\chi^2$} Distribution, from {MathWorld -- A Wolfram Web Resource}},
+   author = {Weisstein, Eric},
+   url = { http://mathworld.wolfram.com/NoncentralChi-SquaredDistribution.html}
+}
+
+@article{predict_TODS03,
+ author = "{Yufei Tao {\it et. al.}}",
+ title = {Analysis of predictive spatio-temporal queries},
+ journal = {ACM Trans. Database Syst.},
+ volume = {28},
+ number = {4},
+ year = {2003},
+ issn = {0362-5915},
+ OPTpages = {295--336}
+ }
+
+@article{bhatch:ijs96,
+   author = "{Rabi Bhattacharya {\it et. al.}}",
+   title = {Comparisons of Chisquares, Edgeworth Expansions and Bootstrap Approximations to the Distribution of the Frequency Chisquare},
+   journal = {Indian J. of Statistics},
+   volume = {58},
+   number = {1},
+   series = {A},
+   OPTpages = {57--68},
+   year = {1996},
+}
+
+@misc{amd:arch,
+   author = {{AMD}},
+   title = {{Close to Metal (CTM) Technology}},
+   url = {http://ati.amd.com/products/streamprocessor/}
+}
+
+@inproceedings{SIMD-SIGMOD02,
+ author = "{Jingren Zhou {\it et. al.}}",
+ title = {Implementing database operations using SIMD instructions},
+ booktitle = {SIGMOD},
+ year = {2002},
+ OPTpages = {145--156},
+}
+
+@misc{cuda4,
+   title = {{CUDA C Programming Guide, Version 4.0}},
+   author = {{NVIDIA}},
+   url = {http://developer.nvidia.com/object/cuda.html}
+}
+
+@book{matlab:2012,
+   year = {2012},
+   author = {MATLAB},
+   title = {version 7.14.0 (R2012a)},
+   publisher = {The MathWorks Inc.},
+}
+
+@book{johnson94,
+   author="{Norman Johnson {\it et. al.}}",
+   title={ Continuous Univariate Distributions},
+   edition={2nd},
+   volume={1},
+   publisher={John Willey and Sons},
+   year={1994},
+}
+
+@article{Claremont08,
+ author = "{Rakesh Agrawal \textit{et al.}}",
+ title = {The Claremont report on database research},
+ journal = {SIGMOD Record},
+ volume = {37},
+ number = {3},
+ year = {2008},
+ issn = {0163-5808},
+ OPTpages = {9--19}
+ }
+
+@book{harrison03,
+   author="{Terry P. Harrison {\it et. al.}}",
+   title={ The Practice of Supply Chain Management},
+   edition={1st},
+   volume={62},
+   publisher={Springer},
+   year={2003},
+}
+
+@book{Frenkel:api01,
+  author = {Frenkel, Daan and Smit, Berend},
+  title = {Understanding Molecular Simulation: From Algorithms to Applications},
+  edition = {2nd},
+  volume = {1},
+  publisher = {Academic Press, Inc.},
+  year = {2001},
+}

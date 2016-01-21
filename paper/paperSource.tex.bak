@@ -1,8 +1,8 @@
-\documentclass[10pt,journal,final,letterpaper,twocolumn]{IEEEtran}
+\documentclass[10pt,journal,final,letterpaper,twocolumn,conference]{IEEEtran}
 %\documentclass{ssdbm}
 \usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{algorithmic,amsfonts,amssymb,amsmath,calc,calrsfs,cleveref}
-\usepackage{epstopdf}
+\usepackage{epstopdf,filecontents,lipsum}
 %\usepackage{fixltx2e}
 
 \restylefloat{table}
@@ -16,10 +16,7 @@
 
 %\smartqed  % flush right qed marks, e.g. at end of proof
 
-
-
 %----------------------------------------------------------
-
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -32,7 +29,6 @@
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
-
 
 \begin{document}
 
@@ -52,10 +48,8 @@
 
 %\thanks{* These authors contributed equally to this work.}
 \thanks{$\dagger$ Author to whom all correspondence should be sent.}
-\thanks{Vladimir Grupcev and Yi-Cheng Tu are with the Department of Computer
-Science and Engineering, University of South Florida, 4202 E. Fowler
-Ave., ENB 118, Tampa, FL 33620, U.S.A. Emails:
-vgrupcev@mail.usf.edu, ytu@cse.usf.edu}
+\thanks{Iliiazbek Akhmedov and Yi-Cheng Tu are with the Department of Computer Science and Engineering, University of South Florida, 4202 E. Fowler Ave., ENB 118, Tampa, FL 33620, U.S.A. Emails:
+akhmedovi@mail.usf.edu, ytu@cse.usf.edu}
 \thanks{Joseph Fogarty and Sagar Pandit are with the Department of Physics,
 University of South Florida, 4202 E. Fowler Ave., ISA 2019, Tampa,
 FL 33620, U.S.A. Emails: jcfogart@mail.usf.edu, pandit@usf.edu} }
@@ -74,47 +68,13 @@ Modern simulation systems generate big amount of data, which consequently has to
 
 Thankfully, there is a relatively new approach to this problem -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and it's advantages are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filter the data and collect all the needed information. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
 
-In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster, but that might involve loss in data precision. 
-
-
-
-Thanks to the advancement of the modern computer simulation systems
-and state-of-the-art instrumentation, many scientific fields
-generate, and require manipulation of large amounts of data. Known
-scientific data analysis systems, as well as traditional DBMSs,
-follow a pull-based type of architectural design, where the executed
-queries mandate the data needed on their part. This design, while
-suitable for traditional transaction-based workloads where number of
-queries retrieve small parts of data located at various places of
-the database, is ill-fitted for applications involving complex
-analysis on most of the data. Such design involves random I/O,
-considerably affecting the data throughput in the system. All of
-this gives rise of redundant and high I/O traffic in the process of
-scientific data analysis in pull-based type systems. In this paper,
-we design and implement a push-based type system which allows
-high-throughput data analysis in the process of scientific
-discovery. Our design improves on the aforementioned shortcomings in
-two ways: i) it uses a sequential scan-based I/O framework that
-loads the data into the main memory, and then ii) the system pushes
-the loaded data to a number of pre-programmed queries. These queries
-are being executed on the same data stream, with various data
-selections. This way, essentially, the system lowers the unnecessary
-I/O overhead imposed by the randomized, index-based scan and that of
-a multiple data reads if each query were to be fed separately.
-Considering the amount of MS data as well as the number of queries
-being executed, we believe our system provides substantial
-improvement over the current MS data analyzing systems. The
-efficiency of the proposed system is backed by the results of
-extensive experiments using MS generated data. The running times of
-our system are compared to those of the GROMACS system. The
-comparison shows the advantage and the potential of using such
-push-based system for MS system analysis.
+In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster, but that might involve loss in data and some expectations from the type of data, too. In the new approach due to high performance of GPU processing and its nature, custom data structures were not needed in order to make it faster and still keep precision.
 
 \end{abstract}
 
 \begin{IEEEkeywords}
 Push-based system, molecular simulation, scientific databases,
-spatial distance histogram.
+spatial distance histogram, GPU, parallel processing.
 \end{IEEEkeywords}
 %\vspace{-5mm}
 
@@ -138,6 +98,22 @@ small portion of the data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}\label{sc:intro}
+
+In various sciences simulation systems take big place and often times they may be very important for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations generally have the following flow:
+
+\vspace{5mm}
+
+{\small
+\begin{enumerate}
+	\item initial physical properties are given to simulation software as arguments which are interpreted and provided in a language defined by the software
+	\item then it runs for given amount of time that can generally last from milliseconds to months
+	\item finally, the file generated during the simulation is analyzed to extract useful information
+\end{enumerate}
+}
+
+\vspace{3mm}
+
+
 The amount of data generated by scientific applications running on
 advanced computer simulation systems as well as the new improved
 experimental devices is growing rapidly. This big volume of data is
@@ -1117,45 +1093,7 @@ time and knowledge toward completion of the work.
 
 
 \bibliographystyle{IEEEtran}
-\bibliography{push-based-MS}
-\begin{comment}
-\begin{IEEEbiographynophoto}{Vladimir Grupcev}
-received a BS degree in Applied Mathematics \& Computer Science from
-University of Ss. Cyril and Methodius, Macedonia in 2005; Master's
-degree in Mathematics from University of South Florida in 2007. He
-is currently a PhD student in the department of Computer Science \&
-Engineering at the University of South Florida. His area of interest
-includes scientific data management and high performance computing.
-\end{IEEEbiographynophoto}
-\vspace{-10mm}
-\begin{IEEEbiographynophoto}{Yi-Cheng Tu}
-received a Bachelor's degree in horticulture from Beijing
-Agricultural University, China, and MS and PhD degrees in computer
-science from Purdue University (2003; 2007). He is currently an
-assistant professor in the department of Computer Science \&
-Engineering at the University of South Florida. His research is in
-energy-efficient database systems, scientific data management, high
-performance computing and data stream management systems.
-\end{IEEEbiographynophoto}
-\vspace{-10mm}
-\begin{IEEEbiographynophoto}{Sagar Pandit}
-Dr. Sagar Pandit is an Assistant Professor of Physics at the
-University of South Florida. He received his Ph.D. from the
-Department of Physics, University of Pune, in 1999 in the area of
-Dynamical systems. Later, his research shifted to Biological
-Physics, specifically membrane physics. His current research
-interests include  biomembranes, mathematical modeling of complex
-biological and social systems, dynamical systems, and computational
-approaches toward addressing problems in these fields.
-\end{IEEEbiographynophoto}
-\end{comment}
-
-% if you will not have a photo
-%\begin{biographynophoto}{John Doe}
-%Biography text here.
-%\end{biographynophoto}
-
-% insert where needed to balance the two columns on the last page
+\bibliography{references.bib}
 
 \clearpage
 
