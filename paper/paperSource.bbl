@@ -23,7 +23,7 @@
 
 \bibitem{mainPaper}
 {Vladimir Grupcev, Yicheng Tu {\it et. al.}}, ``Push-based system for molecular
-  simulation data analysis.'' \emph{TKDE}, 2015.
+  simulation data analysis.'' 2015.
 
 \bibitem{nature_bigdata08}
 D.~H. et~al., ``Big data: The future of biocuration,'' \emph{Nature}, vol. 455,
@@ -41,11 +41,6 @@ D.~Centola, ``The spread of behavior in an online social network experiment,''
 J.~Bollen, H.~Mao, and X.-J. Zeng, ``Twitter mood predicts the stock market,''
   \emph{Journal of Computational Science}, vol.~2, pp. 1--8, 2011.
 
-\bibitem{tkde_big14}
-X.~Wu, X.~Zhu, G.-Q. Wu, and W.~Ding, ``Data mining with big data,'' \emph{IEEE
-  Transactions on Knowledge and Data Engineering}, vol.~26, no.~1, pp. 97--107,
-  2014.
-
 \bibitem{Frenkel:api01}
 {Daan Frenkel {\it et. al.}}, \emph{Understanding Molecular Simulation: From
   Algorithms to Applications}, 2nd~ed.\hskip 1em plus 0.5em minus 0.4em\relax
@@ -55,6 +50,10 @@ X.~Wu, X.~Zhu, G.-Q. Wu, and W.~Ding, ``Data mining with big data,'' \emph{IEEE
 {David Landau {\it et. al.}}, \emph{A Guide to Monte Carlo Simulations in
   Statistical Physics}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge
   University Press, 2005.
+
+\bibitem{mainArticle}
+{Vladimir Grupcev, Yicheng Tu, Meryem Berrada {\it et. al.}}, ``Dcms: A data
+  analytics and management system for molecular simulation,'' 2014.
 
 \bibitem{Gromacs-online}
 \BIBentryALTinterwordspacing

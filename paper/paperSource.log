@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  20 JAN 2016 23:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  23 JAN 2016 16:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -412,6 +412,28 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 65.
 
 
 ]
+Package epstopdf Info: Source file: <images/sample_snapshot_of_simulation.eps>
+(epstopdf)                    date: 2016-01-23 15:14:14
+(epstopdf)                    size: 1485626 bytes
+(epstopdf)             Output file: <images/sample_snapshot_of_simulation-eps-c
+onverted-to.pdf>
+(epstopdf)                    date: 2016-01-23 15:16:51
+(epstopdf)                    size: 224747 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/sample_snapshot_of_
+simulation-eps-converted-to.pdf images/sample_snapshot_of_simulation.eps>
+(epstopdf)             \includegraphics on input line 182.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=11, 568.1225pt x
+ 364.36125pt>
+File: images/sample_snapshot_of_simulation-eps-converted-to.pdf Graphic file (t
+ype pdf)
+ <use images/sample_snapshot_of_simulation-eps-converted-to.pdf>
+Package pdftex.def Info: images/sample_snapshot_of_simulation-eps-converted-to.
+pdf used on input line 182.
+(pdftex.def)             Requested size: 252.0pt x 161.6204pt.
+
+[2]
 Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    date: 2012-08-20 13:16:04
 (epstopdf)                    size: 495727 bytes
@@ -420,27 +442,23 @@ Package epstopdf Info: Source file: <images/snap-white.eps>
 (epstopdf)                    size: 189331 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/snap-white-eps-conv
 erted-to.pdf images/snap-white.eps>
-(epstopdf)             \includegraphics on input line 244.
+(epstopdf)             \includegraphics on input line 242.
 Package epstopdf Info: Output file is already uptodate.
-
-<images/snap-white-eps-converted-to.pdf, id=11, 921.4425pt x 265.99374pt>
+ <images/snap-white-eps-converted-to.pdf, id=15, 921.4425pt x 265.99374pt>
 File: images/snap-white-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/snap-white-eps-converted-to.pdf>
 Package pdftex.def Info: images/snap-white-eps-converted-to.pdf used on input l
-ine 244.
+ine 242.
 (pdftex.def)             Requested size: 252.0pt x 72.74466pt.
- [2 <./images/snap-white-eps-converted-to.pdf>] [3]
-Overfull \hbox (1.76169pt too wide) in paragraph at lines 536--536
+ [3 <./images/sample_snapshot_of_simulation-eps-converted-to.pdf> <./images/sna
+p-white-eps-converted-to.pdf>]
+[4]
+Overfull \hbox (1.76169pt too wide) in paragraph at lines 534--534
 [][]
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[4]
-Underfull \vbox (badness 1831) has occurred while \output is active []
-
+[5]
 Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    date: 2014-09-09 06:49:48
 (epstopdf)                    size: 484195 bytes
@@ -449,21 +467,21 @@ Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    size: 20573 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/msstructure-eps-con
 verted-to.pdf images/msstructure.eps>
-(epstopdf)             \includegraphics on input line 587.
+(epstopdf)             \includegraphics on input line 585.
 Package epstopdf Info: Output file is already uptodate.
-
-<images/msstructure-eps-converted-to.pdf, id=29, 665.48625pt x 273.02pt>
+ <images/msstructure-eps-converted-to.pdf, id=43, 665.48625pt x 273.02pt>
 File: images/msstructure-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/msstructure-eps-converted-to.pdf>
 Package pdftex.def Info: images/msstructure-eps-converted-to.pdf used on input 
-line 587.
+line 585.
 (pdftex.def)             Requested size: 516.0pt x 211.70496pt.
- [5]
-Underfull \hbox (badness 2556) in paragraph at lines 664--668
+
+Underfull \hbox (badness 2556) in paragraph at lines 662--666
 []\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
  []
 
+[6]
 Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    date: 2012-08-20 13:16:04
 (epstopdf)                    size: 210052 bytes
@@ -472,16 +490,17 @@ Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    size: 4621 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
 ed-to.pdf images/resolve.eps>
-(epstopdf)             \includegraphics on input line 715.
+(epstopdf)             \includegraphics on input line 713.
 Package epstopdf Info: Output file is already uptodate.
-<images/resolve-eps-converted-to.pdf, id=38, 472.76625pt x 185.69376pt>
+ <images/resolve-eps-converted-to.pdf, id=47, 472.76625pt x 185.69376pt>
 File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/resolve-eps-converted-to.pdf>
 Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
- 715.
+ 713.
 (pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
- [6 <./images/msstructure-eps-converted-to.pdf>]
+ [7 <./images/msstructure-eps-converted-to.pdf> <./images/resolve-eps-converted
+-to.pdf>]
 Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    date: 2014-09-15 23:48:36
 (epstopdf)                    size: 185707 bytes
@@ -490,15 +509,15 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 791.
+(epstopdf)             \includegraphics on input line 789.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/system-eps-converted-to.pdf, id=57, 278.03876pt x 204.765pt>
+<images/system-eps-converted-to.pdf, id=72, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-791.
+789.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
@@ -509,68 +528,70 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 818.
+(epstopdf)             \includegraphics on input line 816.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/workload_set_up1-eps-converted-to.pdf, id=58, 605.26125pt x 462.72874pt
+<images/workload_set_up1-eps-converted-to.pdf, id=73, 605.26125pt x 462.72874pt
 >
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 818.
+nput line 816.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
- [7 <./images/resolve-eps-converted-to.pdf> <./images/system-eps-converted-to.p
-df> <./images/workload_set_up1-eps-converted-to.pdf>]
+ [8 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
+rted-to.pdf>]
 
-LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 993.
-
-
-LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 993.
-
-[8]
-
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 101
-7.
+LaTeX Warning: Reference `fg:speedup838K-select-level' on page 9 undefined on i
+nput line 991.
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 101
-7.
+LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 9 undefined on i
+nput line 991.
+
+[9]
+
+LaTeX Warning: Reference `fg:speedup838K' on page 10 undefined on input line 10
+15.
 
 
-LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 1029.
+LaTeX Warning: Reference `fg:speedup8.8M' on page 10 undefined on input line 10
+15.
 
 
-LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 1037.
+LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 10 unde
+fined on input line 1027.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 10 undefi
+ned on input line 1035.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1074--1081
+Underfull \hbox (badness 10000) in paragraph at lines 1072--1079
 
  []
 
-(./paperSource.bbl [9]
+(./paperSource.bbl [10]
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
-) [10] (./paperSource.aux)
+) [11
+
+] (./paperSource.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 5969 strings out of 493089
- 102222 string characters out of 6134842
- 184670 words of memory out of 5000000
- 9342 multiletter control sequences out of 15000+600000
+ 5976 strings out of 493089
+ 102546 string characters out of 6134842
+ 182670 words of memory out of 5000000
+ 9348 multiletter control sequences out of 15000+600000
  50517 words of font info for 113 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,18n,24p,832b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,18n,27p,1444b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
@@ -587,10 +608,10 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (10 pages, 433347 bytes).
+Output written on paperSource.pdf (11 pages, 659621 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
- 100 compressed objects within 1 object stream
+ 153 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

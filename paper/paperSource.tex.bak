@@ -36,7 +36,7 @@
 \begin{document}
 
 % paper title
-\title{Parallelization of Push-based System for Molecular Simulation Data Analysis}
+\title{Parallelization of Push-based System for Molecular Simulation Data Analysis with GPU}
 
 % author names and IEEE memberships
 % note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
@@ -66,123 +66,123 @@ FL 33620, U.S.A. Emails: jcfogart@mail.usf.edu, pandit@usf.edu} }
 
 \begin{abstract}
 
-Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems generally follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on random I/O while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. 
+Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on random I/O while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. 
 
-Thankfully, there is a relatively new approach to this problem -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and it's advantages are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filter the data and collect all the needed information. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
+There is a new approach to this problem presented in the previous paper -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and its primary steps are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filter the data and collect all the needed information which increases efficiency and data throughput. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
 
-In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster, but that might involve loss in data and some expectations from the type of data, too. In the new approach due to high performance of GPU processing and its nature, custom data structures were not needed in order to make it faster and still keep precision.
+In this paper, we propose improved version of Push-based System for Molecular Simulation Data Analysis. Its major difference with the previous design is usage of GPU for the actual processing part of the data flow. Using the same scan-based I/O framework the data is pushed through the network of queries which are processed by GPU, and due to the nature of science simulation data, this gives a big advantage for processing it faster and easier. In the old approach there were some custom data structures such as quad-tree for calculation of histograms to make the processing faster and those involved loss of data and some expectations from the data nature, too. In the new approach due to high performance of GPU processing and its nature, custom data structures were not even needed much though it didn't bear any loss in precision and performance.
 
 \end{abstract}
 
 \begin{IEEEkeywords}
 Push-based system, molecular simulation, scientific databases,
-spatial distance histogram, GPU, parallel processing.
+spatial distance histogram, GPU, parallel processing, CUDA.
 \end{IEEEkeywords}
 %\vspace{-5mm}
 
-\begin{comment}
-Many scientific applications share several features that bring in
-light the shortcomings of the current data analysis systems. First,
-the scientific analysis often involves executing a number of
-analytical queries commonly processed on a large portion, if not all
-of the generated data. Second, many of these fields use the same
-popular, and small number of data analytics primitives as the basic
-blocks on which they build their discovery. And three, the
-scientific data, once stored is never modified. New data only
-appends to the existing dataset, making the data perfect contender
-for streaming.
-
-And while the use of an index-based scan might seem better option to
-a sequential scan, this is the case only when the query accesses
-small portion of the data.
-\end{comment}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}\label{sc:intro}
 
-In various sciences simulation systems take big place and often times they may be very important for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations generally have the following flow:
+In various sciences simulation systems take big place and often times they may be the clue for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations have the following flow:
 
 \vspace{5mm}
 
 {\small
 \begin{enumerate}
-	\item initial physical properties are given to simulation software as arguments which are interpreted and provided in a language defined by the software
-	\item then it runs for given amount of time that can generally last from milliseconds to months
+	\item initial physical properties are given to simulation software as arguments which are interpreted and provided in a language defined by the simulation software
+	\item then it runs for given amount of time that can generally last from milliseconds to months or even more
 	\item finally, the file generated during the simulation is analyzed to extract useful information
 \end{enumerate}
 }
-
 \vspace{3mm}
+The purpose of this paper is primarily focused on the third step, which basically involves the entire simulation data to be processed by the analysis software.
 
+Big data processing is becoming one of the key issues with the amount of data being generated by modern systems. Eventually, this data is required to be processed on the fly, thus, analysis software should be able to handle massive data in a very short period of time. When working with huge volume of data, there are non-trivial issues arise. For example, it can take days and weeks to analyze big enough data sets, because the data cannot be simply loaded into memory, since it can get up to terabytes, thus, it has extra overhead because of widely used random access disk I/O framework to read from disk chunks by chunks. Besides it, analysis of the data can get even more complicated, since going through certain parts of the data once would not be enough, which leads to low throughput and efficiency of loaded data. One such example, the data analysis approach has polynomial complexity just for reading the data in order to come up with result, and since the data can't simply be saved in memory, it raises the overhead of disk I/O, too. Pull-based architectures in data processing engines are inefficient, since having a set of specific queries, in order to compute them all, it is needed to fetch data, filter it, and apply needed formulas. It is inefficient, since for every query the same chunk of data needs to be pulled into the memory at least the number of queries times or more in case of more complex queries.
 
-The amount of data generated by scientific applications running on
-advanced computer simulation systems as well as the new improved
-experimental devices is growing rapidly. This big volume of data is
-imposing a significant stress on the data analysis software. Even
-though the existing data analysis systems are configured to deal
-with large volume of data, they are not optimized for high
-throughput data analysis. Often times, the data is available only
-for certain period of time (e.g., streams) so the analyzing system
-should react to it in a very efficient way. On top of the big amount
-of data, another challenge that is being imposed to the data
-analysis systems is that the data is usually being accessed through
-high-level analytical queries which computation is a lot more
-complex than the computation of simple aggregates. Some of these
-queries are usually the bottleneck of the data analysis systems,
-because they take a lot of time (often many days) to be executed and
-the systems are not designed to handle multiple queries on the same
-data stream at the same time, thus decreasing the overall efficiency
-of the data analysis.
-
-One such example, where fast data analysis is crucial involves
-online social
-media~\cite{nature_bigdata08,nature_bigdata12,science_social10}. The
-social media is known to be used for real-time feedback collection,
-which is usually associated to a particular topic or
-product~\cite{jcs_twitter11}. In order for a system to be able to
-perform analytical examination of the data produced in such
-streaming media, the system should have the capability of fast data
-access. The reason, the millions of data records(tweets) produced
-every second~\cite{tkde_big14}. Moreover, these tweets may have
+As it has already been mentioned in the previous paper \cite{mainPaper}, one of the modern issues of analyzing massive data on the fly is social networks. .
+"In order for a system to be able to perform analytical examination of the data produced in such streaming media, the system should have the capability of fast data access. The reason, the millions of data records(tweets) produced
+every second. Moreover, these tweets may have
 different geographical origin, introducing different languages and
 forms and often times containing unsolicited messages, errors,
 malicious content, etc. Therefore, some low level data uniformity
 and cleaning on top of the data access and management issues should
 be considered and possibly incorporated in the process of analytical
-investigation in order to achieve relevant result.
+investigation in order to achieve relevant result. "\cite{mainPaper, nature_bigdata08,nature_bigdata12,science_social10,jcs_twitter11}
 
-The aforementioned big data imposed issues are also frequently
-present in many other application fields, e.g., scientific data
-analysis. In many scientific and engineering fields, the main
-computational method for analyzing physical/chemical attributes of
-natural systems is the particle simulation. Such simulations, when
-performed in the field of structural and molecular biology, are
-commonly called Molecular Simulations. Molecular simulations (MS)
-(sometimes called Molecular Dynamics (MD) simulations) are computer
-simulations of complex biological, physical or chemical structures.
-These simulations, based on some basic theoretical models are widely
-utilized as a basic research mechanism for studying the behavior of
-the natural systems. The basic units of such systems/simulations are
-natural particles (such as atoms, molecules, stars, etc.) and they
-interact among each other for a certain period of time following
-postulated classical forces. The number of these basic units taking
-part in the simulations is big, usually in the range of hundreds of
-thousands to millions. For instance, Fig.~\ref{fg:snap-white} shows
-a snapshot of a collagen fiber, consisting of $890,000$ particles.
-And oftentimes, the simulations produce datasets consisting of more
-than one snapshot (frame) of the system's current state at various
-time instants. Each of these frames contain all the particles,
-together with all their measurements, such as spatial coordinates,
-mass, charge, velocity, forces, etc. And usually, a big number of
-such frames (in the tens of thousands) are being produced and stored
-in the course of a typical simulation. Quantities measured during
-the simulations are analyzed to test the theoretical
+The primary focus and problem in this paper is scientific data analysis. Particles simulation is one of the most popular methods of analyzing certain chemical reactions, physical processes, or other behavior of different materials.
+Molecular simulations (Molecular Dynamics) are applied in different fields and represent a method of analyzing physical movements of particles, atoms, and molecules in a fixed space with a given period of time, apparently with a possibility of giving initial state for each item that is involved in the process and can affect the system. This system is an N-body simulation. The number of atoms in simulations vary in hundred of thousands, particularly, we may observe two simulation systems of a collagen fiber structure and dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system consisting of 890,000 and 402,400 atoms respectively on Figure \ref{fg:collagen_dipal}. Simulation data represents number of records of physical properties such as mass, charge, velocity, coordinates, and forces for each item aggregated as frames, where each frame represents a snapshot of time, placed with a fixed time interval which may also vary depending on the simulation itself and simulation precision requirement. "Quantities measured during the simulations are analyzed to test the theoretical
 model~\cite{Frenkel:api01,Landau:cup05}. In short, the MS is proven
 and powerful tool for understanding the inner-workings of a
 biological system, by supplying a model description of the
 biophysical and biochemical processes that are being unfold at a
-nanoscopic scale.
+nanoscopic scale." \cite{mainPaper}
+
+Scientist gives the properties to simulation software (for example, Gromacs), runs the simulations, and finally get the output file. The output file must then be analyzed to produce certain results which may help him come up with certain consensus on original theoretical model \cite{Frenkel:api01}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In order to achieve objective discovery and to explain the workings
+of the scientific systems, scientist must analyze the data produced
+by the MS. These analysis oftentimes comprise of computation of very
+complex quantities that show statistical properties of the data.
+Such queries are of great importance to scientist because they are
+the basic assembly blocks for a series of critical quantities needed
+to outline the scientific systems \cite{Frenkel:api01}. The methods
+by which the data is being accessed as well as these queries are
+executed can either increase or decrease the efficiency of an data
+analysis system. The known data analysis systems (e.g., Gromacs
+\cite{Gromacs-online}) uses pull based type design in which the data
+is being fed to the queries only by demand. When a query needs the
+data, it requests it, the data is pulled through the system and
+delivered to the query. This type of design, we believe, introduces
+two types of problematic issues: 1. overhead in I/O traffic by not
+allowing for multiple queries to be executed on the same stream of
+data at the same time, and 2. cpu/data latency incurred when a
+request for the data is sent to the system (the time it takes from a
+request to the time the query can actually use the data).
+
+We believe that by using a push-based type system we can remedy such
+issues. In the push-based design the queries do not request the
+data. Rather, the data is pushed onto the queries automatically and
+is being processed by the active queries. This alleviates the I/O
+traffic overhead as well as the cpu/data latency incurred for each
+query that would have been introduced by a pull-based design. Such a
+system design is especially suitable for many scientific
+applications which share the following features. First, the
+scientific analysis often involves executing a number of analytical
+queries commonly processed on a large portion, if not all of the
+generated data. Second, many of these fields use the same popular,
+and small number of data analytics primitives as the basic blocks on
+which they build their discovery. And three, the scientific data,
+once stored is never modified. New data only appends to the existing
+dataset, making the data perfect contender for streaming.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+In this paper, we describe the idea, design and implementation of
+such a push-based system. We would like to point out that the work
+presented in this paper is an application of such push-based
+strategy that has been previously considered in the database
+community in the works presented in~\cite{DataPath,Volcano,Qpipe},
+as well as the idea of sharing same tuple of data or data scans
+across many queries previously introduced
+in~\cite{Candea,PredictablePerformance,CooperativeScans}.
+
+To summarize, data-intensive applications often require compelling
+amount of storage space and intensive processing capability, but
+also need fast data access and high throughput data analysis.
+Therefore, the need of a system that will be optimized to access
+data fast, with high throughput, as well as efficiently execute the
+analytical queries with a possibility of running multiple queries on
+the same data stream is of a great importance to the scientific
+community.
+
+\begin{figure}
+ \centerline{ \includegraphics[width=1\columnwidth]{images/sample_snapshot_of_simulation.eps} }
+ \caption{ Snapshots of two MS systems: a collagen fiber structure with 890,000 atoms (top) and a dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system with 402,400 atoms (bottom) \cite{mainArticle} }
+ \label{fg:collagen_dipal}
+\end{figure}
 
 In order to achieve objective discovery and to explain the workings
 of the scientific systems, scientist must analyze the data produced
@@ -204,7 +204,6 @@ data at the same time, and 2. cpu/data latency incurred when a
 request for the data is sent to the system (the time it takes from a
 request to the time the query can actually use the data).
 
-
 We believe that by using a push-based type system we can remedy such
 issues. In the push-based design the queries do not request the
 data. Rather, the data is pushed onto the queries automatically and
@@ -220,7 +219,6 @@ and small number of data analytics primitives as the basic blocks on
 which they build their discovery. And three, the scientific data,
 once stored is never modified. New data only appends to the existing
 dataset, making the data perfect contender for streaming.
-
 
 In this paper, we describe the idea, design and implementation of
 such a push-based system. We would like to point out that the work
@@ -1093,7 +1091,7 @@ time and knowledge toward completion of the work.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{IEEEtran}
-\bibliography{references}
+\bibliography{references.bib}
 
 \clearpage
 
