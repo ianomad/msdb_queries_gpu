@@ -46,11 +46,11 @@
 % a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
 % was not built to handle multiple paragraphs
 
-\author{Iliiazbek~Akhmedov, Yi-Cheng~Tu~$\dagger$% <-this % stops a space
+\author{Iliiazbek~Akhmedov, Yi-Cheng~Tu~$\dagger$, Vladimir Grupcev, Joseph Fogarty, Sagar Pandit % <-this % stops a space
 
 %\thanks{* These authors contributed equally to this work.}
 \thanks{$\dagger$ Author to whom all correspondence should be sent.}
-\thanks{Iliiazbek Akhmedov and Yi-Cheng Tu are with the Department of Computer Science and Engineering, University of South Florida, 4202 E. Fowler Ave., ENB 118, Tampa, FL 33620, U.S.A. Emails:
+\thanks{Iliiazbek Akhmedov, Vladimir Grupcev, and Yi-Cheng Tu are with the Department of Computer Science and Engineering, University of South Florida, 4202 E. Fowler Ave., ENB 118, Tampa, FL 33620, U.S.A. Emails:
 akhmedovi@mail.usf.edu, ytu@cse.usf.edu}
 \thanks{Joseph Fogarty and Sagar Pandit are with the Department of Physics,
 University of South Florida, 4202 E. Fowler Ave., ISA 2019, Tampa,
@@ -118,130 +118,15 @@ biological system, by supplying a model description of the
 biophysical and biochemical processes that are being unfold at a
 nanoscopic scale." \cite{mainPaper}
 
-Scientist gives the properties to simulation software (for example, Gromacs), runs the simulations, and finally get the output file. The output file must then be analyzed to produce certain results which may help him come up with certain consensus on original theoretical model that resulted in the molecular simulation system\cite{Frenkel:api01}. Gromacs is simulation software tool that helps scientist to run the actual simulation. It is a molecular dynamics package primarily designed for biomolecular systems such as proteins and lipids. \cite{Gromacs-online}. Besides the fact that it helps to generate the output files for the simulations, apparently it also helps to analyze the data itself, but the original problem is that it is not as optimized as it can be in order to analyze the data. Gromacs follows approach of pull-pased design, which means that for any given query (e.g. total mass or total charge, which are very similar type of 1-body queries without sophisticated selection) it will pull data separately and generate addition overhead wasting disk read I/O in order to come up with the result.
+Scientist gives the properties to simulation software (for example, Gromacs), runs the simulations, and finally get the output file. The output file must then be analyzed to produce certain results which may help him come up with certain consensus on original theoretical model that resulted in the molecular simulation system\cite{Frenkel:api01}. Gromacs is simulation software tool that helps scientist to run the actual simulation. It is a molecular dynamics package primarily designed for biomolecular systems such as proteins and lipids. \cite{Gromacs-online}. Besides the fact that it helps to generate the output files for the simulations, apparently it also helps to analyze the data itself, but the original problem is that it is not as optimized as it can be in order to analyze the data. Gromacs follows approach of pull-pased design, which means that for any given query (e.g. total mass or total charge, which are very similar type of 1-body queries without sophisticated selection) it will pull data separately and generate addition overhead wasting disk read I/O in order to come up with the result just for a single query. As it has been proposed in the previous paper, in order to remedy such issues, the push-based design does exactly the opposite, where instead of loading the data on demand for each query, the queries are batched into a network, then the entire dataset is loaded chunk by chunk pushing it through the network which has its internal relationships and dependencies amonth the queries. In this case, since scientific simulation data is run once with specific physical properties, it is never modified, thus, on continuation, it will only append, which means that the processing can also be run on appended frames. \cite{mainPaper}
+This type of approach has already been revised by other systems \cite {DataPath,Volcano,Qpipe} as of reusing loaded data through queries produced \cite {Candea,PredictablePerformance,CooperativeScans}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In order to achieve objective discovery and to explain the workings
-of the scientific systems, scientist must analyze the data produced
-by the MS. These analysis oftentimes comprise of computation of very
-complex quantities that show statistical properties of the data.
-Such queries are of great importance to scientist because they are
-the basic assembly blocks for a series of critical quantities needed
-to outline the scientific systems \cite{Frenkel:api01}. The methods
-by which the data is being accessed as well as these queries are
-executed can either increase or decrease the efficiency of an data
-analysis system. The known data analysis systems (e.g., Gromacs
-\cite{Gromacs-online}) uses pull based type design in which the data
-is being fed to the queries only by demand. When a query needs the
-data, it requests it, the data is pulled through the system and
-delivered to the query. This type of design, we believe, introduces
-two types of problematic issues: 1. overhead in I/O traffic by not
-allowing for multiple queries to be executed on the same stream of
-data at the same time, and 2. cpu/data latency incurred when a
-request for the data is sent to the system (the time it takes from a
-request to the time the query can actually use the data).
-
-We believe that by using a push-based type system we can remedy such
-issues. In the push-based design the queries do not request the
-data. Rather, the data is pushed onto the queries automatically and
-is being processed by the active queries. This alleviates the I/O
-traffic overhead as well as the cpu/data latency incurred for each
-query that would have been introduced by a pull-based design. Such a
-system design is especially suitable for many scientific
-applications which share the following features. First, the
-scientific analysis often involves executing a number of analytical
-queries commonly processed on a large portion, if not all of the
-generated data. Second, many of these fields use the same popular,
-and small number of data analytics primitives as the basic blocks on
-which they build their discovery. And three, the scientific data,
-once stored is never modified. New data only appends to the existing
-dataset, making the data perfect contender for streaming.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-In this paper, we describe the idea, design and implementation of
-such a push-based system. We would like to point out that the work
-presented in this paper is an application of such push-based
-strategy that has been previously considered in the database
-community in the works presented in~\cite{DataPath,Volcano,Qpipe},
-as well as the idea of sharing same tuple of data or data scans
-across many queries previously introduced
-in~\cite{Candea,PredictablePerformance,CooperativeScans}.
-
-To summarize, data-intensive applications often require compelling
-amount of storage space and intensive processing capability, but
-also need fast data access and high throughput data analysis.
-Therefore, the need of a system that will be optimized to access
-data fast, with high throughput, as well as efficiently execute the
-analytical queries with a possibility of running multiple queries on
-the same data stream is of a great importance to the scientific
-community.
+In this paper, we are incorporating parallelization into the processing part of the proposed design by means of CUDA programming language for GPU. Since storage of the simulation data is very expensive, it might come to the point of analyzing the data on the fly (meaning running the simulation and analyzing it at the same time in a streaming manner), which leads to a problem of optimizing the processing part of the design proposed in the previous paper, because time spent on generating data should be tried to conceal the time spent on the processing part by means of overlapping or simply running it in a quick manner.
 
 \begin{figure}
  \centerline{ \includegraphics[width=1\columnwidth]{images/sample_snapshot_of_simulation.eps} }
  \caption{ Snapshots of two MS systems: a collagen fiber structure with 890,000 atoms (top) and a dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system with 402,400 atoms (bottom) \cite{mainArticle} }
  \label{fg:collagen_dipal}
-\end{figure}
-
-In order to achieve objective discovery and to explain the workings
-of the scientific systems, scientist must analyze the data produced
-by the MS. These analysis oftentimes comprise of computation of very
-complex quantities that show statistical properties of the data.
-Such queries are of great importance to scientist because they are
-the basic assembly blocks for a series of critical quantities needed
-to outline the scientific systems \cite{Frenkel:api01}. The methods
-by which the data is being accessed as well as these queries are
-executed can either increase or decrease the efficiency of an data
-analysis system. The known data analysis systems (e.g., Gromacs
-\cite{Gromacs-online}) uses pull based type design in which the data
-is being fed to the queries only by demand. When a query needs the
-data, it requests it, the data is pulled through the system and
-delivered to the query. This type of design, we believe, introduces
-two types of problematic issues: 1. overhead in I/O traffic by not
-allowing for multiple queries to be executed on the same stream of
-data at the same time, and 2. cpu/data latency incurred when a
-request for the data is sent to the system (the time it takes from a
-request to the time the query can actually use the data).
-
-We believe that by using a push-based type system we can remedy such
-issues. In the push-based design the queries do not request the
-data. Rather, the data is pushed onto the queries automatically and
-is being processed by the active queries. This alleviates the I/O
-traffic overhead as well as the cpu/data latency incurred for each
-query that would have been introduced by a pull-based design. Such a
-system design is especially suitable for many scientific
-applications which share the following features. First, the
-scientific analysis often involves executing a number of analytical
-queries commonly processed on a large portion, if not all of the
-generated data. Second, many of these fields use the same popular,
-and small number of data analytics primitives as the basic blocks on
-which they build their discovery. And three, the scientific data,
-once stored is never modified. New data only appends to the existing
-dataset, making the data perfect contender for streaming.
-
-In this paper, we describe the idea, design and implementation of
-such a push-based system. We would like to point out that the work
-presented in this paper is an application of such push-based
-strategy that has been previously considered in the database
-community in the works presented in~\cite{DataPath,Volcano,Qpipe},
-as well as the idea of sharing same tuple of data or data scans
-across many queries previously introduced
-in~\cite{Candea,PredictablePerformance,CooperativeScans}.
-
-To summarize, data-intensive applications often require compelling
-amount of storage space and intensive processing capability, but
-also need fast data access and high throughput data analysis.
-Therefore, the need of a system that will be optimized to access
-data fast, with high throughput, as well as efficiently execute the
-analytical queries with a possibility of running multiple queries on
-the same data stream is of a great importance to the scientific
-community.
-
-\begin{figure}
- \centerline{ \includegraphics[width=1\columnwidth]{images/snap-white.eps} }
- \caption{A snapshot of simulated collagen fiber structure}
- \label{fg:snap-white}
 \end{figure}
 
 \subsection{Problem Statement}
