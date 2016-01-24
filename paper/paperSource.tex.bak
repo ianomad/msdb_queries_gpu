@@ -118,19 +118,10 @@ biological system, by supplying a model description of the
 biophysical and biochemical processes that are being unfold at a
 nanoscopic scale." \cite{mainPaper}
 
-Scientist gives the properties to simulation software (for example, Gromacs), runs the simulations, and finally get the output file. The output file must then be analyzed to produce certain results which may help him come up with certain consensus on original theoretical model that resulted in the molecular simulation system\cite{Frenkel:api01}. Gromacs is simulation software tool that helps scientist to run the actual simulation. It is a molecular dynamics package primarily designed for biomolecular systems such as proteins and lipids. \cite{Gromacs-online}. Besides the fact that it helps to generate the output files for the simulations, apparently it also helps to analyze the data itself, but the original problem is that it is not as optimized as it can be in order to analyze the data. Gromacs follows approach of pull-pased design, which means that for any given query (e.g. total mass or total charge, which are very similar type of 1-body queries without sophisticated selection) it will pull data separately and generate addition overhead wasting disk read I/O in order to come up with the result just for a single query. As it has been proposed in the previous paper, in order to remedy such issues, the push-based design does exactly the opposite, where instead of loading the data on demand for each query, the queries are batched into a network, then the entire dataset is loaded chunk by chunk pushing it through the network which has its internal relationships and dependencies amonth the queries. In this case, since scientific simulation data is run once with specific physical properties, it is never modified, thus, on continuation, it will only append, which means that the processing can also be run on appended frames. \cite{mainPaper}
+Scientist gives the properties to simulation software (for example, Gromacs), runs the simulations, and finally get the output file. The output file must then be analyzed to produce certain results which may help him come up with certain consensus on original theoretical model that resulted in the molecular simulation system\cite{Frenkel:api01}. Gromacs is simulation software tool that helps scientist to run the actual simulation. It is a molecular dynamics package primarily designed for biomolecular systems such as proteins and lipids. \cite{Gromacs-online}. Besides the fact that it helps to generate the output files for the simulations, apparently it also helps to analyze the data itself, but the original problem is that it is not as optimized as it can be in order to analyze the data. Gromacs follows approach of pull-based design, which means that for any given query (e.g. total mass or total charge, which are very similar type of 1-body queries without sophisticated selection) it will pull data separately and generate addition overhead wasting disk read I/O in order to come up with the result just for a single query. As it has been proposed in the previous paper, in order to remedy such issues, the push-based design does exactly the opposite, where instead of loading the data on demand for each query, the queries are batched into a network, then the entire dataset is loaded chunk by chunk pushing it through the network which has its internal relationships and dependencies amonth the queries. In this case, since scientific simulation data is run once with specific physical properties, it is never modified, thus, on continuation, it will only append, which means that the processing can also be run on appended frames. \cite{mainPaper}
 This type of approach has already been revised by other systems \cite {DataPath,Volcano,Qpipe} as of reusing loaded data through queries produced \cite {Candea,PredictablePerformance,CooperativeScans}.
 
-In this paper, we are incorporating parallelization into the processing part of the proposed design by means of CUDA programming language for GPU. Since the processing part of the design proposed in the previous paper is the part which takes most of the time to analyze the data, it is need
-
-To summarize, data-intensive applications often require compelling
-amount of storage space and intensive processing capability, but
-also need fast data access and high throughput data analysis.
-Therefore, the need of a system that will be optimized to access
-data fast, with high throughput, as well as efficiently execute the
-analytical queries with a possibility of running multiple queries on
-the same data stream is of a great importance to the scientific
-community.
+In this paper, we are incorporating parallelization into the processing part of the proposed design by means of CUDA programming language for GPU. Since storage of the simulation data is very expensive, it might come to the point of analyzing the data on the fly (meaning running the simulation and analyzing it at the same time in a streaming manner), which leads to a problem of optimizing the processing part of the design proposed in the previous paper, because time spent on generating data should be tried to conceal the time spent on the processing part by means of overlapping or simply running it in a quick manner.
 
 \begin{figure}
  \centerline{ \includegraphics[width=1\columnwidth]{images/sample_snapshot_of_simulation.eps} }
@@ -139,41 +130,17 @@ community.
 \end{figure}
 
 \subsection{Problem Statement}
-As mentioned earlier, in order to describe the scientific system,
-scientist must look into/analyze the critical statistical properties
-of the data produced by the simulation. These properties are usually
-computed through series of queries that are being executed on the
-whole, or some selection of the MS data. Most of the systems that
-are widely used today across many scientific fields for analysis of
-the MS data are part of a software systems that also run the
-simulation. Such examples include GROMACS~\cite{GROMACS4},
-VMD~\cite{VMD}, MDAnalysis~\cite{MDAnalysis}, Wordom~\cite{wordom},
-MD-TRACKS~\cite{MDtracks}, SimulaidOne~\cite{Simulaid},
-Charmm~\cite{CHARMM}. Once the simulation is run, the system
-produces a flat file with all the measurements of each particle.
-These systems take each query as a user's input and apply them to
-the data uploaded from these flat files (called trajectories in
-GROMACS). The biggest problem/performance issue that these system
-impose is the fact that for every new query issued by the user, the
-system has to load a significant part of the dataset into main
-memory before executing the query. Such pull-based design involves
-random I/Os that considerably affecting the data throughput in the
-system. And while the use of an index-based scan might seem better
-option to a sequential scan, this is the case only when the query
-accesses small portion of the data. All of this gives rise of
-redundant and high I/O traffic in the process of scientific data
-analysis in pull-based type systems. This adds greatly to the
-overall performance time of the analysis of the MS system. Having in
-mind the volume of data produced by the MS in a single frame (in
-gigabytes), and we add the number of frames simulated (tens of
-thousands) the total volume of data to be analyzed is of huge
-magnitude. So to have to load big chunks of this data from disk to
-the main memory every time a query is being executed degrades the
-overall system's performance greatly. In this paper we design and
-implement a push-based type system which allows high-throughput data
-analysis in the process of scientific discovery.
+Simulation software systems, in general, follow the same methodology of running and storing simulation data. The simulation software system examples are: Gromacs \cite{GROMACS4}, VMD\cite{VMD}, MDAnalysis~\cite{MDAnalysis}, Wordom~\cite{wordom}, MD-TRACKS~\cite{MDtracks}, SimulaidOne~\cite{Simulaid}, Charmm~\cite{CHARMM}. In the type of simulations brought up as examples above, the flow of the data is the following. Once the simulation is run, the output files are contained as trajectory files with descriptors (they contain information about space dimensions, number of atoms and frames, etc.) that can be easily transposed into simple flat files containing the physical properties atom by atom, frame by frame, which are consequently read and processed by the proposed push-based system. Since we have certain amount of queries needed to be run on given simulation data, generating high I/O traffic followed by design of pull-based system is not considerable. The approach proposed in the previous paper is very good in terms of performance in comparison with the original pull-based system\cite{mainPaper}. The problem is still that some of the queries processed by those means are still improvable, especially taking into consideration the fact that in the used previous works for calculation of 2-body functions, which take the biggest time for processing~\cite{ytu:icde09, EDBT12}, we might have some error bounds, which might be unacceptable for certain simulation analysis where sacrifice on loss of data is unbearable. Besides it, although we might have huge performance boost on specific data structure as density map, we still have certain expectation from data nature (such as its uniformity), thus, it makes sense to have desire to simplify the processing and still having pure computation based on any values.
 
-\subsection{Our Approach}
+
+\subsection{Our approach with improvement}
+
+Reading the data from files is a huge overhead, thus, speedup of push-based system in general is pretty significant over pull-based system in our given case. 
+It's been demonstrated in the previous paper with different amount of atoms, frames, and workloads \cite{mainPaper}. Since we have to load the data every time there is a different query versus push-based system loads a chunk of data once, it is very noticable how the framework \cite{mainPaper} contributes to efficiency of analysis of simulation data.
+
+On the other hand, some of the queries may be very slow due to their nature on a sequential type of computation,  especially, 2-body functions. Since the nature of the data that comes with simulation is basically physical properties of atoms, thus, there is a lot of computation that involves independent primitive mathematical operations, which makes it a perfect problem for parallelism.
+
+
 Considering the fact that the running time of the most queries used
 in the scientific world to analyze the MS is minuscule in comparison
 to the loading time of the MS data, it is safe to say that the
