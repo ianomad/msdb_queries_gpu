@@ -141,51 +141,14 @@ Simulation software systems, in general, follow the same methodology of running 
 
 \subsection{Our approach with improvement}
 
-Reading the data from files is a huge overhead, thus, speedup of push-based system in general is pretty significant over pull-based system in our given case. 
-It's been demonstrated in the previous paper with different amount of atoms, frames, and workloads \cite{mainPaper}. Since we have to load the data every time there is a different query versus push-based system loads a chunk of data once, it is very noticable how the framework \cite{mainPaper} contributes to efficiency of analysis of simulation data. You can observe some estimation samples in Figure \ref{fg:sample_estimation_old_paper}
+Reading the data from files is a huge overhead, thus, speedup of push-based system in general is significant over pull-based system in our given case. 
+It's been demonstrated in the previous paper with different amount of atoms, frames, and workloads. Since we have to load the data every time there is a different query versus push-based system loads a chunk of data once, it is quite noticeable how the framework contributes to efficiency of analysis of simulation data. You can observe some estimation samples in Figure \ref{fg:sample_estimation_old_paper}. Even though the memory loading and pushing steps are the key features of the proposed design, nevertheless, having general knowledge about the network of queries, in this paper, we will try to focus on optimizing the actual execution of them.
 
-On the other hand, some of the queries may be very slow due to their nature on a sequential type of computation,  especially, 2-body functions. Since the nature of the data that comes with simulation is basically physical properties of atoms, thus, there is a lot of computation that involves independent primitive mathematical operations, which makes it a perfect problem for parallelism.
+Some of the queries may be very slow due to their nature on a sequential type of computation,  especially, 2-body functions. Since the nature of the data that comes with simulation is basically physical properties of atoms, there is a lot of computation that involves independent primitive mathematical operations, which makes it a perfect problem for parallelism.
 
+Although the original idea of push-based system for molecular simulation data analysis was focused on optimizing throughput and usage of loaded data, there were some extra approaches specifically for 2-body functions. For example, Density Map for Spacial Distance Histogram was used in order to avoid additional memory allocation and latency reduction with proven error bounds. SDH is a quite intensive and computational problem, especially with increasing amount of atoms. 
 
-Considering the fact that the running time of the most queries used
-in the scientific world to analyze the MS is minuscule in comparison
-to the loading time of the MS data, it is safe to say that the
-scientific world would benefit from a system that can remedy the
-aforementioned problem. Our idea is to build a system that would
-load the MS data from hard disk in the main memory only once and
-then execute as many queries as needed/wanted on that data, without
-the need of reloading the same data over and over again. Considering
-the volume of data in a single MS frame as well as the number of
-frames produced during a single simulation, this type of system can
-save a lot of time for MS analysis. The system would contain many,
-most often used queries that can also be run as user's input. These
-queries would be pre-programmed as separate modules in our system,
-but they would be able to take certain attributes, like data
-selection for instance, as user's input. Once the system is run, all
-(or a selection) of these queries would be executed against the MS
-data or certain selection. The system would act as a type of
-push-based system, essentially pushing the loaded data to all the
-queries. Once we have the data in the memory, the reading can loop
-as many times as the queries need it. This is useful for some
-non-streaming functions/queries that cannot be computed in a single
-run of the data. Such one query is the SDH. But we have also come up
-with a way to resolve this in a way, by creating a quad-tree based
-database for this query. This quad-tree (we called Density Map (DM))
-is being populated while the data is being loaded into main memory.
-After the DM is populated, we can compute the SDH with much faster
-algorithm than the brute-force method used everywhere else.
-
-Another improvement that our system provides is the following: by
-thorough observation and analysis we have discovered that many of
-the quantities (functions/queries) that are being computed in order
-to analyze the MS system share some of the same basic parts. In
-order to take advantage of that, our systems precomputes these basic
-parts and has them handy (stored in memory) whenever one of the more
-complex functions needs them. So, for instance, when the total mass
-of the system is needed, our system just pulls the precomputed value
-out and serves the query that needs it immediately. And if more than
-one query uses the same basic part, that translates into time
-saving, however minuscule it might be.
+We believe that having this nature of computational problems, the proposed GPU improved version of push-based system will significantly change in terms of performance by incorporating parallelism with CUDA.
 
 \subsection{Contribution and roadmap of the paper} We have designed
 and implemented a push-based system that can be used as a tool for
