@@ -125,7 +125,7 @@ In this paper, we are incorporating parallelization into the processing part of 
 
 \begin{figure}
  \centerline{ \includegraphics[width=1\columnwidth]{images/sample_snapshot_of_simulation.eps} }
- \caption{ Snapshots of two MS systems: a collagen fiber structure with 890,000 atoms (top) and a dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system with 402,400 atoms (bottom) \cite{mainArticle} }
+ \caption{ Snapshots of two MS systems: a collagen fiber structure with 890,000 atoms (top) and a dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system with 402,400 atoms (bottom) \cite{mainArticle}}
  \label{fg:collagen_dipal}
 \end{figure}
 
@@ -135,7 +135,7 @@ Simulation software systems, in general, follow the same methodology of running 
 
 \begin{figure}
  \centerline{ \includegraphics[width=1\columnwidth]{images/speedup838K-pomalo-za-4-eps-converted-to.pdf} }
- \caption{ Speed up over different levels of atom selection for 838,400 atoms \cite{mainArticle} }
+ \caption{ Speed up over different levels of atom selection for 838,400 atoms \cite{mainPaper}}
  \label{fg:sample_estimation_old_paper}
 \end{figure}
 
@@ -150,14 +150,10 @@ Although the original idea of push-based system for molecular simulation data an
 
 We believe that having this nature of computational problems, the proposed GPU improved version of push-based system will significantly change in terms of performance by incorporating parallelism with CUDA.
 
-\subsection{Contribution and roadmap of the paper} We have designed
-and implemented a push-based system that can be used as a tool for
-analysis of MS systems. We have tested the system on real MS
-datasets. The experimental results evidently show the superiority of
-the proposed system over one of the most widely used MS analysis
-system across many scientific fields, i.e., GROMACS. The efficiency
-improvement ranges anywhere from $3$ to $100$ times improvement (of
-the overall running time) per set of selected queries run on a
+\subsection{Contribution and roadmap of the paper} 
+The proposed improved version of push-based system for molecular simulation data analysis, we believe, gives an opportunity for scientists to run their analysis even faster now. Taking an advantage of GPU devices nature and incorporating parallelism and streaming for different types of queries, we have come up with a good speed up over sequential processing, which already had a good speed up in terms of performance in comparison with original pull-based approach. Since in this paper we don't expect certain form of data, we have come up with a tool that generates mock data for any number of atoms and frames, which can be used for performance tests that were done consequently, too. This mock data has exactly the same information that would come with Gromacs simulation files, and it has exactly the same format as in the previous paper \cite{mainPaper} right before loading it to memory. This improved version has been developed on Amazon Elastic GPU nodes that consequently can be replicated and scaled up becoming more of a streaming processing engine, which can be very effective on costs, since it is always easy to scale up the nodes, shut them down and spin them back up as well as on a simple desktop computer with a GPU device.
+
+The efficiency improvement ranges anywhere from $3$ to $100$ times improvement (of the overall running time) per set of selected queries run on a
 different selection of the MS data. If we take in account the number
 of such queries that the scientist run every day, we believe our
 system would be of great benefit to MS community. In addition to the
