@@ -151,23 +151,8 @@ Although the original idea of push-based system for molecular simulation data an
 We believe that having this nature of computational problems, the proposed GPU improved version of push-based system will significantly change in terms of performance by incorporating parallelism with CUDA.
 
 \subsection{Contribution and roadmap of the paper} 
-The proposed improved version of push-based system for molecular simulation data analysis, we believe, gives an opportunity for scientists to run their analysis even faster now. Taking an advantage of GPU devices nature and incorporating parallelism and streaming for different types of queries, we have come up with a good speed up over sequential processing, which already had a good speed up in terms of performance in comparison with original pull-based approach. Since in this paper we don't expect certain form of data, we have come up with a tool that generates mock data for any number of atoms and frames, which can be used for performance tests that were done consequently, too. This mock data has exactly the same information that would come with Gromacs simulation files, and it has exactly the same format as in the previous paper \cite{mainPaper} right before loading it to memory. This improved version has been developed on Amazon Elastic GPU nodes that consequently can be replicated and scaled up becoming more of a streaming processing engine, which can be very effective on costs, since it is always easy to scale up the nodes, shut them down and spin them back up as well as on a simple desktop computer with a GPU device.
-
-The efficiency improvement ranges anywhere from $3$ to $100$ times improvement (of the overall running time) per set of selected queries run on a
-different selection of the MS data. If we take in account the number
-of such queries that the scientist run every day, we believe our
-system would be of great benefit to MS community. In addition to the
-higher efficiency that our system achieves, we also believe that our
-idea will initiate a new breed of database related, push-based
-systems that could be used to analyze the MS systems in a more
-efficient way. Having a push-based like system, we were also able to
-improve the computation of the more complex quantities. Namely, the
-computation of some such complex quantities involves computation of
-much less complex functions (sub-parts), and many such sub-parts are
-being shared among some of the complex quantities. So, by computing
-these more basic, sub-quantities in advance, we were able to achieve
-however minuscule time gain when computing the more complex queries.
-
+The proposed improved version of push-based system for molecular simulation data analysis, we believe, gives an opportunity for scientists to run their analysis even faster now. Taking an advantage of GPU devices nature and incorporating parallelism and streaming for different types of queries, we have come up with a good speed up over sequential processing, which already had a good speed up in terms of performance in comparison with original pull-based approach. Since in this paper we don't expect certain form of data, we have come up with a tool that generates mock data for any number of atoms and frames, which can be used for performance tests that were done consequently, too. This mock data has exactly the same information that would come with Gromacs simulation files, and it has exactly the same format as in the previous paper \cite{mainPaper} right before loading it to memory. This improved version has been developed on Amazon Elastic GPU \cite{amazonGPU} nodes that consequently can be replicated and scaled up becoming more of a streaming processing engine (which can be very effective on costs, since it is always easy to scale them up, shut them down and spin them back up), as well as on a simple desktop computer with a GPU device.
+In general, major contribution of this paper is the framework of push-based system which was previously estimated with developed query network of popular MS analysis, 
 The major technical contributions presented here are:
 \begin{itemize}
 \item Design the network (tree like) of the most commonly used queries in MS (physics);
