@@ -2,6 +2,7 @@
 %\documentclass{ssdbm}
 \usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{algorithmic,amsfonts,amssymb,amsmath,calc,calrsfs,cleveref}
+\usepackage[justification=centering]{caption}
 %\usepackage{fixltx2e}
 
 \restylefloat{table}
@@ -146,6 +147,19 @@ Although the original idea of push-based system for molecular simulation data an
 
 We believe that having this nature of computational problems, the proposed GPU improved version of push-based system will significantly change in terms of performance by incorporating parallelism with CUDA.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\centering
+\centerline{\includegraphics[width=0.5\columnwidth]{images/kernelatom.eps}}
+\caption{ Example of atom mapping with kernels}
+ \label{fg:kernelatom}
+
+
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Contribution and roadmap of the paper} 
 The proposed improved version of push-based system for molecular simulation data analysis, we believe, gives an opportunity for scientists to run their analysis even faster now. Taking an advantage of GPU devices nature and incorporating parallelism and streaming for different types of queries, we have come up with a good speed up over sequential processing, which already had a good speed up in terms of performance in comparison with original pull-based approach. Since in this paper we don't expect certain form of data, we have come up with a tool that generates mock data for any number of atoms and frames, which can be used for performance tests that were done consequently, too. This mock data has exactly the same information that would come with Gromacs simulation files, and it has exactly the same format as in the previous paper \cite{mainPaper} right before loading it to memory. This improved version has been developed on Amazon Elastic GPU \cite{amazonGPU} nodes that consequently can be replicated and scaled up becoming more of a streaming distributed processing engine (which can be very effective on costs, since it is always easy to scale them up, shut them down and spin them back up), as well as on a simple desktop computer with a GPU device.
 In general, major contribution of this paper is the framework of push-based system with an incorporated parallelism based on CUDA programming language. Besides it, there was developed a tool which generates mockup data of the same format as of the real MS simulations and represent a python script with arguments given as number of frames and atoms.
@@ -235,7 +249,7 @@ SDH & Histogram of all distances \\[0.5ex]
 RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdot \sigma_r \cdot \rho} \end{array}$ \\[0.5ex]
 \hline
 \end{tabular}
-\caption[Table caption text]{Popular analytical queries in MS }
+\caption[Table caption text]{Popular analytical queries in MS\cite{mainPaper} }
 \label{tb:queries}
 \end{minipage} }
 \end{table}

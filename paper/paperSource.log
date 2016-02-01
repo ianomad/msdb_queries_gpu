@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 JAN 2016 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 JAN 2016 20:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -299,51 +299,87 @@ LaTeX Info: Redefining \addtolength on input line 81.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/cleveref/cleveref.sty
 Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
 )
-\@float@every@table=\toks27
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen142
+\captionmargin@=\dimen143
+\captionwidth=\dimen144
+\caption@tempdima=\dimen145
+\caption@indent=\dimen146
+\caption@parindent=\dimen147
+\caption@hangindent=\dimen148
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->\ifx \@captype \@IEEEta
+blestring \footnotesize \bgroup \par \centering \@IEEEtabletopskipstrut {\norma
+lfont \footnotesize #1}\\{\normalfont \footnotesize \scshape #2}\par \addvspace
+ {0.5\baselineskip }\egroup \@IEEEtablecaptionsepspace \else \@IEEEfigurecaptio
+nsepspace \setbox \@tempboxa \hbox {\normalfont \footnotesize {#1.}\nobreakspac
+e \nobreakspace #2}\ifdim \wd \@tempboxa >\hsize \setbox \@tempboxa \hbox {\nor
+malfont \footnotesize {#1.}\nobreakspace \nobreakspace }\parbox [t]{\hsize }{\n
+ormalfont \footnotesize \noindent \unhbox \@tempboxa #2}\else \ifCLASSOPTIONcon
+ference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }
+\else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi 
+\fi .
+\c@ContinuedFloat=\count120
+Package caption Info: float package is loaded.
+Package caption Info: subfigure package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+\@float@every@table=\toks27
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fix-cm.sty
 Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 ))
-\c@qcounter=\count120
-\c@theorem=\count121
-\c@lemma=\count122
-\c@definition=\count123
-\c@remark=\count124
+\c@qcounter=\count121
+\c@theorem=\count122
+\c@lemma=\count123
+\c@definition=\count124
+\c@remark=\count125
 
 (./paperSource.aux)
 \openout1 = `paperSource.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 
 -- Lines per column: 58 (exact).
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count125
-\scratchdimen=\dimen142
+\scratchcounter=\count126
+\scratchdimen=\dimen149
 \scratchbox=\box33
-\nofMPsegments=\count126
-\nofMParguments=\count127
+\nofMPsegments=\count127
+\nofMParguments=\count128
 \everyMPshowfont=\toks28
-\MPscratchCnt=\count128
-\MPscratchDim=\dimen143
-\MPnumerator=\count129
-\makeMPintoPDFobject=\count130
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen150
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
 \everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -393,18 +429,20 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 61.
-LaTeX Font Info:    Try loading font information for U+msa on input line 61.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 62.
+LaTeX Font Info:    Try loading font information for U+msa on input line 62.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 61.
+LaTeX Font Info:    Try loading font information for U+msb on input line 62.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 61.
+LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 62.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/calrsfs/OMSrsfs.fd) [1{/usr/local
@@ -421,7 +459,7 @@ onverted-to.pdf>
 (epstopdf)                    size: 224747 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/sample_snapshot_of_
 simulation-eps-converted-to.pdf images/sample_snapshot_of_simulation.eps>
-(epstopdf)             \includegraphics on input line 123.
+(epstopdf)             \includegraphics on input line 124.
 Package epstopdf Info: Output file is already uptodate.
 
 <images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=11, 568.1225pt x
@@ -430,7 +468,7 @@ File: images/sample_snapshot_of_simulation-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use images/sample_snapshot_of_simulation-eps-converted-to.pdf>
 Package pdftex.def Info: images/sample_snapshot_of_simulation-eps-converted-to.
-pdf used on input line 123.
+pdf used on input line 124.
 (pdftex.def)             Requested size: 252.0pt x 161.6204pt.
 
 [2 <./images/sample_snapshot_of_simulation-eps-converted-to.pdf>]
@@ -443,7 +481,7 @@ ed-to.pdf>
 (epstopdf)                    size: 11464 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/speedup838K-pomalo-
 za-4-eps-converted-to.pdf images/speedup838K-pomalo-za-4.eps>
-(epstopdf)             \includegraphics on input line 133.
+(epstopdf)             \includegraphics on input line 134.
 Package epstopdf Info: Output file is already uptodate.
 
 <images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=21, 403.5075pt x 187.7
@@ -452,17 +490,38 @@ File: images/speedup838K-pomalo-za-4-eps-converted-to.pdf Graphic file (type pd
 f)
  <use images/speedup838K-pomalo-za-4-eps-converted-to.pdf>
 Package pdftex.def Info: images/speedup838K-pomalo-za-4-eps-converted-to.pdf us
-ed on input line 133.
+ed on input line 134.
 (pdftex.def)             Requested size: 252.0pt x 117.2242pt.
- [3 <./images/speedup838K-pomalo-za-4-eps-converted-to.pdf>]
-Overfull \hbox (1.76169pt too wide) in paragraph at lines 240--240
-[][]
+Package epstopdf Info: Source file: <images/kernelatom.eps>
+(epstopdf)                    date: 2016-01-31 20:13:54
+(epstopdf)                    size: 1929502 bytes
+(epstopdf)             Output file: <images/kernelatom-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-31 20:14:04
+(epstopdf)                    size: 24618 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/kernelatom-eps-conv
+erted-to.pdf images/kernelatom.eps>
+(epstopdf)             \includegraphics on input line 154.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/kernelatom-eps-converted-to.pdf, id=22, 343.2825pt x 219.82124pt>
+File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/kernelatom-eps-converted-to.pdf>
+Package pdftex.def Info: images/kernelatom-eps-converted-to.pdf used on input l
+ine 154.
+(pdftex.def)             Requested size: 126.0pt x 80.68185pt.
+ [3 <./images/speedup838K-pomalo-za-4-eps-converted-to.pdf> <./images/kernelato
+m-eps-converted-to.pdf>]
+Overfull \hbox (1.76169pt too wide) in paragraph at lines 254--254
+[][] 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4]
+Underfull \vbox (badness 1460) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    date: 2014-09-09 06:49:48
 (epstopdf)                    size: 484195 bytes
@@ -471,20 +530,18 @@ Package epstopdf Info: Source file: <images/msstructure.eps>
 (epstopdf)                    size: 20573 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/msstructure-eps-con
 verted-to.pdf images/msstructure.eps>
-(epstopdf)             \includegraphics on input line 291.
+(epstopdf)             \includegraphics on input line 305.
 Package epstopdf Info: Output file is already uptodate.
- <images/msstructure-eps-converted-to.pdf, id=37, 665.48625pt x 273.02pt>
+
+<images/msstructure-eps-converted-to.pdf, id=46, 665.48625pt x 273.02pt>
 File: images/msstructure-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/msstructure-eps-converted-to.pdf>
 Package pdftex.def Info: images/msstructure-eps-converted-to.pdf used on input 
-line 291.
+line 305.
 (pdftex.def)             Requested size: 516.0pt x 211.70496pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [5]
-Underfull \hbox (badness 2556) in paragraph at lines 368--372
+Underfull \hbox (badness 2556) in paragraph at lines 382--386
 []\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
  []
 
@@ -496,17 +553,16 @@ Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    size: 4621 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
 ed-to.pdf images/resolve.eps>
-(epstopdf)             \includegraphics on input line 419.
+(epstopdf)             \includegraphics on input line 433.
 Package epstopdf Info: Output file is already uptodate.
-<images/resolve-eps-converted-to.pdf, id=47, 472.76625pt x 185.69376pt>
+<images/resolve-eps-converted-to.pdf, id=56, 472.76625pt x 185.69376pt>
 File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/resolve-eps-converted-to.pdf>
 Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
- 419.
+ 433.
 (pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
- [6 <./images/msstructure-eps-converted-to.pdf> <./images/resolve-eps-converted
--to.pdf>]
+ [6 <./images/msstructure-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    date: 2014-09-15 23:48:36
 (epstopdf)                    size: 185707 bytes
@@ -515,15 +571,15 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 495.
+(epstopdf)             \includegraphics on input line 509.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/system-eps-converted-to.pdf, id=71, 278.03876pt x 204.765pt>
+<images/system-eps-converted-to.pdf, id=75, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-495.
+509.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
@@ -534,45 +590,51 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 522.
+(epstopdf)             \includegraphics on input line 536.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/workload_set_up1-eps-converted-to.pdf, id=72, 605.26125pt x 462.72874pt
+<images/workload_set_up1-eps-converted-to.pdf, id=76, 605.26125pt x 462.72874pt
 >
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 522.
+nput line 536.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
- [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
-rted-to.pdf>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./images/resolve-eps-converted-to.pdf> <./images/system-eps-converted-to.p
+df> <./images/workload_set_up1-eps-converted-to.pdf>]
 
 LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 697.
+nput line 711.
 
 
 LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 697.
+nput line 711.
 
 [8]
 
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 721
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 735
 .
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 721
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 735
 .
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 733.
+ined on input line 747.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 741.
+ed on input line 755.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 778--785
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 792--799
 
  []
 
@@ -580,21 +642,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 778--785
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
-) [10
-
-] (./paperSource.aux)
+) [10] (./paperSource.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 5976 strings out of 493089
- 102616 string characters out of 6134842
- 183670 words of memory out of 5000000
- 9348 multiletter control sequences out of 15000+600000
+ 6988 strings out of 493089
+ 121316 string characters out of 6134842
+ 197981 words of memory out of 5000000
+ 10353 multiletter control sequences out of 15000+600000
  50517 words of font info for 113 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,18n,27p,1971b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,18n,40p,1971b,368s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
@@ -611,10 +671,10 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (10 pages, 475728 bytes).
+Output written on paperSource.pdf (10 pages, 497484 bytes).
 PDF statistics:
- 153 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
+ 162 PDF objects out of 1000 (max. 8388607)
+ 112 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
