@@ -51,10 +51,6 @@ J.~Bollen, H.~Mao, and X.-J. Zeng, ``Twitter mood predicts the stock market,''
   Statistical Physics}.\hskip 1em plus 0.5em minus 0.4em\relax Cambridge
   University Press, 2005.
 
-\bibitem{mainArticle}
-{Vladimir Grupcev, Yicheng Tu, Meryem Berrada {\it et. al.}}, ``Dcms: A data
-  analytics and management system for molecular simulation,'' 2014.
-
 \bibitem{Gromacs-online}
 \BIBentryALTinterwordspacing
 {Gromacs group}, ``{GROMACS - Online Reference}.'' [Online]. Available:
@@ -90,6 +86,10 @@ J.~Bollen, H.~Mao, and X.-J. Zeng, ``Twitter mood predicts the stock market,''
 {Marcin Zukowski and Sandor Heman and Niels Nes and Peter Boncz}, ``Cooperative
   scans: Dynamic bandwidth sharing in dbms,'' \emph{VLDB}, pp. 723--734, 2007.
 
+\bibitem{mainArticle}
+{Vladimir Grupcev, Yicheng Tu, Meryem Berrada {\it et. al.}}, ``Dcms: A data
+  analytics and management system for molecular simulation,'' 2014.
+
 \bibitem{GROMACS4}
 B.~Hess, C.~Kutzner, D.~van~der Spoel, and E.~Lindahl, ``{GROMACS 4: Algorithms
   for Highly Efficient, Load-Balanced, and Scalable Molecular Simulation},''
@@ -124,9 +124,43 @@ M.~Mezei, ``Simulaid: a simulation facilitator and analysis program,''
 {B. R. Brooks {\it et. al.}}, ``Charmm: the biomolecular simulation program,''
   \emph{Journal of Computational Chemistry}, vol.~30, pp. 1545--1614, 2009.
 
+\bibitem{ytu:icde09}
+{Yicheng Tu {\it et. al.}}, ``Computing distance histograms efficiently in
+  scientific databases,'' in \emph{ICDE}, 2009.
+
+\bibitem{EDBT12}
+{Anand Kumar {\it et. al.}}, ``Distance histogram computation based on
+  spatiotemporal uniformity in scientific data.'' in \emph{EDBT}, March 2012.
+
+\bibitem{amazonGPU}
+
+
 \bibitem{DataStreamManagement}
 L.~Golab and T.~Ozsu, \emph{{Data Stream Management}}.\hskip 1em plus 0.5em
   minus 0.4em\relax Morgan And Claypool, 2010.
+
+\bibitem{borealis}
+{Daniel J. Abadi, Yanif Ahmad, Magdalena Balazinska {\it et. al.}}, ``The
+  design of the borealis stream processing engine,'' 2005.
+
+\bibitem{medusa}
+B.~L.~{\it et. al.}. Moo-Ryong~Ra, ``{Medusa: A Programming Framework for
+  Crowd-Sensing Applications},'' 2012.
+
+\bibitem{aurora}
+\BIBentryALTinterwordspacing
+{Apache}, ``{Aurora Framework}.'' [Online]. Available:
+  \url{http://aurora.apache.org/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{PeriScope}
+J.~M. Patel, ``{The Role of Declarative Querying in Bioinformatics},''
+  \emph{OMICS: A Journal of Integrative Biology}, vol.~7, no.~1, pp. 89--91,
+  2003.
+
+\bibitem{SciDB}
+{P. Cudre-Mauroux {\it et. al.}}, ``A demonstration of scidb: A
+  science-oriented dbms,'' \emph{VLDB}, vol.~2, pp. 1534--1537, 2009.
 
 \bibitem{SDSS_SIGMOD02}
 A.~S. Szalay, J.~Gray, A.~Thakar, P.~Z. Kunszt, T.~Malik, J.~Raddick,
@@ -139,43 +173,13 @@ M.~Arya, W.~F. Cody, C.~Faloutsos, J.~Richardson, and A.~Toya, ``{QBISM:
   Extending a DBMS to Support 3D Medical Images},'' in \emph{ICDE}, 1994, pp.
   314--325.
 
-\bibitem{BDBMS_CIDR07}
-M.~Y. Eltabakh, M.~Ouzzani, and W.~G. Aref, ``{BDBMS - A Database Management
-  System for Biological Data},'' in \emph{Proceedings of the 3rd Biennial
-  Conference on Innovative Data Systems Resarch (CIDR)}, 2007, pp. 196--206.
+\bibitem{hadoop}
+S.~R. R.~C. Konstantin~Shvachko, Hairong~Kuang, ``{The Hadoop Distributed File
+  System},'' 2010.
 
-\bibitem{PeriScope}
-J.~M. Patel, ``{The Role of Declarative Querying in Bioinformatics},''
-  \emph{OMICS: A Journal of Integrative Biology}, vol.~7, no.~1, pp. 89--91,
-  2003.
-
-\bibitem{NewArch-VLDB07}
-M.~Stonebraker, S.~Madden, D.~J. Abadi, S.~Harizopoulos, N.~Hachem, and
-  P.~Helland, ``{The End of an Architectural Era (It's Time for a Complete
-  Rewrite)},'' in \emph{VLDB}, 2007, pp. 1150--1160.
-
-\bibitem{ROI-CIDR07}
-B.~Howe, D.~Maier, and L.~Bright, ``{Smoothing the ROI Curve for Scientific
-  Data Management Applications},'' in \emph{CIDR}, 2007, pp. 185--195.
-
-\bibitem{SciDB-SIGMOD10}
-P.~G. Brown, ``Overview of scidb: large scale array storage, processing and
-  analysis,'' in \emph{SIGMOD Conference}, 2010, pp. 963--968.
-
-\bibitem{SciDB}
-{P. Cudre-Mauroux {\it et. al.}}, ``A demonstration of scidb: A
-  science-oriented dbms,'' \emph{VLDB}, vol.~2, pp. 1534--1537, 2009.
-
-\bibitem{Sci_SIGMODR05}
-J.~Gray, D.~Liu, M.~Nieto-Santisteban, A.~Szalay, D.~DeWitt, and G.~Heber,
-  ``{Scientific Data Management in the Coming Decade},'' \emph{SIGMOD Record},
-  vol.~34, no.~4, pp. 34--41, December 2005.
-
-\bibitem{BioSimGrid}
-M.~H. Ng, S.~Johnston, B.~Wu, S.~E. Murdock, K.~Tai, H.~Fangohr, S.~J. Cox,
-  J.~W. Essex, M.~S.~P. Sansom, and P.~Jeffreys, ``{BioSimGrid: Grid-enabled
-  Biomolecular Simulation Data Storage and Analysis},'' \emph{Future Generation
-  Computer Systems}, vol.~22, no.~6, pp. 657--664, June 2006.
+\bibitem{hadoopgpu}
+A.~S.~{\it et. al.}. RadhaKishan~Yadav, Robin Singh~Bhadoria, ``Gpu-accelerated
+  large scale analytics using mapreduce model,'' 2015.
 
 \bibitem{SimDB}
 M.~Feig, M.~Abdullah, L.~Johnsson, and B.~M. Pettitt, ``{Large Scale
@@ -195,14 +199,6 @@ J.~L. Stark and F.~Murtagh, \emph{{Astronomical Image and Data
 \bibitem{ChemShift_BCB98}
 D.~S. Wishart and A.~M. Nip, ``{Protein Chemical Shift Analysis: A Practical
   Guide},'' \emph{Biochemical and Cell Biology}, vol.~76, pp. 153--163, 1998.
-
-\bibitem{ytu:icde09}
-{Yicheng Tu {\it et. al.}}, ``Computing distance histograms efficiently in
-  scientific databases,'' in \emph{ICDE}, 2009.
-
-\bibitem{EDBT12}
-{Anand Kumar {\it et. al.}}, ``Distance histogram computation based on
-  spatiotemporal uniformity in scientific data.'' in \emph{EDBT}, March 2012.
 
 \bibitem{orenstein:ipl82}
 J.~Orenstein, ``Multidimensional tries used for associative searching,''

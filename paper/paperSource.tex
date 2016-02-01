@@ -14,11 +14,7 @@
 \newcounter{qcounter}
 
 %\smartqed  % flush right qed marks, e.g. at end of proof
-
-
-
 %----------------------------------------------------------
-
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -134,7 +130,7 @@ Simulation software systems, in general, follow the same methodology of running 
 
 
 \begin{figure}
- \centerline{ \includegraphics[width=1\columnwidth]{images/speedup838K-pomalo-za-4-eps-converted-to.pdf} }
+ \centerline{ \includegraphics[width=1\columnwidth]{images/speedup838K-pomalo-za-4.eps} }
  \caption{ Speed up over different levels of atom selection for 838,400 atoms \cite{mainPaper}}
  \label{fg:sample_estimation_old_paper}
 \end{figure}
@@ -156,101 +152,20 @@ In general, major contribution of this paper is the framework of push-based syst
 
 The structure of the framework which will be described later is developed in such a way that one can easily add new queries based on their complexity or modify existing ones adding appropriate selections and filters.
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\vspace{3mm}
 \section{Related Work}\label{sc:relatedwork}
-The idea of data streaming has been broadly used in many fields. The
-main usage however is aimed at processing live data generated
-online. There is an ocean of references for data stream management,
-but we believe the presentation in~\cite{DataStreamManagement}
-encapsulates the majority of the ideas, problems and solutions. In
-the past decade, however, the database community started to follow
-the data stream idea to process stored data. Processes can take
-advantage of the streaming data at any time the data is being pushed
-through the system. This gives rise to push-based type design for
-data management systems. The idea of such push-based design was
-previously considered in projects such as DataPath~\cite{DataPath},
-Volcano~\cite{Volcano} and QPipe~\cite{Qpipe} among others. These
-works show ideas in which the data-driven dataflow is compared to
-the demand-driven dataflow showing the need for the later. They also
-talk about maximizing the data and work sharing among queries at
-runtime. Essentially, we incorporate such ideas in our design of the
-push-based system.
+\vspace{3mm}
 
-On the other side, the scientific community has steadily progressed
-from processing massive data files towards employing database
-systems for the storage, acquisition, and analysis of large-scale
-scientific data~\cite{SDSS_SIGMOD02,QBISM_ICDE94}. The widely used
-and popular relational database systems are conventionally designed
-and optimized to better manage the data produced by the business
-type applications. But such conventional database systems (DBMS) are
-not well equipped to deal with the type and quantity of scientific
-data, such as the data produced by the molecular simulations. In the
-recent past, the DBMS community has made some attempts into the
-design and construction of database systems optimized for handling
-scientific data. Such examples include the BDBMS
-project~\cite{BDBMS_CIDR07} that deals with annotation and
-provenance of the sequence data in biosciences. and the PeriScope
-project~\cite{PeriScope} is designed to efficiently handle
-declarative queries against bio sequences. On top of the
-aforementioned examples, there are also ideas for new DBMS
-frameworks aimed at the management of scientific
-data~\cite{NewArch-VLDB07,ROI-CIDR07,SciDB-SIGMOD10}. One of those
-systems is the SciDB~\cite{SciDB-SIGMOD10,SciDB} and it is closest
-to the idea presented in this paper. SciDB is data management and
-analytics system that is primarily used is in application domains
-involving very big scale array data. This system, like the one
-presented in this paper is designed around a multi-dimensional array
-data-model and it uses arrays to store the data. SciDB stores
-petabytes of data on a number of machines and runs its queries on
-those machines. It is made for high performance, high-availability,
-fault tolerance, and scalability. However, to the best of our
-knowledge, it too follows the pull based design where its queries
-demand the data they need. As seen earlier in this paper, this type
-of design can impose I/O overhead and decrease the data throughput
-when doing the analysis. Aside the mentioned issue, the design and
-build of such DBMS optimized for scientific data management come
-with a additional challenges. Such challenges as well as their
-probable resolution are outlined in~\cite{Sci_SIGMODR05}. Recently,
-there have been some efforts aimed at designing and building MS data
-managements systems on top of relational databases. Such efforts are
-presented through projects like BioSimGrid~\cite{BioSimGrid} and
-SimDB~\cite{SimDB} that were developed especially for molecular
-simulations. However, to the best of our knowledge, such systems
-still lack the efficiency needed for MS data management as well as
-efficient query processing strategies.
+Push-based system for MS data analysis is primarily proposing an idea of pushing chunks of data through a network of queries. Essentially, this has also been proposed, as mentioned already, by other frameworks \cite{DataPath,Volcano,Qpipe}. In other words, the major point is to use common data loaded into memory for execution of concurrent queries, which is supposed to eliminate I/O overhead predominantly. The architecture and explanation of DSMS (Data Stream Management System) versus DBMS is well explained in one of the lectures of Morgan and Claypool \cite{DataStreamManagement}. It is very important to capture the differences and specialties of DSMS in network architecture, stream models and windows, scheduling, load balancing, approximation, data expiration, etc.
 
-Generally, the data produced in the process of molecular simulation
-is being stored in large, plain files with no structure whatsoever.
-Queries, which are implemented in a stand alone programs within
-simulation/analysis systems, are executed onto such files producing
-the quantities that scientist use to analyze the molecular system.
-Such simulation and/or analysis packages include: Gromacs, VMD,
-MDAnalysis, Wordom, MD-TRACKS, SimulaidOne, Charmm among the others.
-But to the best of our knowledge, all of these systems work on a
-similar basis: they take a user defined query and execute it onto
-the MS simulated data. In order for the query to be executed, the
-data has to be loaded into the main memory. Then the result is
-either produced onto the display or written to a file. When the next
-user query comes, the system again loads significant part of the
-dataset into the main memory and executes the query. We believe that
-there is a room for improvement of such systems, given the fact that
-many of the user defined queries executed during system's analysis
-are fairly static. In other words, there is a number of queries that
-a user would always want to execute on a given simulation data.
-Furthermore, the selections of MS data onto which such queries might
-be executed, are also fairly constant (i.e., oftentimes the user
-selects the same group of atoms (e.g., all hydrogen atoms) to
-calculate given quantity, like center of mass for instance). So, by
-precoding many such queries and running them automatically once the
-system has loaded the data into memory, we believe we can save a lot
-of time that otherwise would have been spent in loading the same
-data into main memory anytime a query is executed. On top of the
-automated query execution, our system can take user's query as input
-as well. With this, we believe our system is an improvement over the
-MS analysis systems that are used today.
+Since dealing with data is very delicate in this kind of engines, there are couple of features and requirements that this architecture is applicable to, in order to avoid inappropriate understanding or application of this approach in systems that were covered in the lectures\cite{DataStreamManagement}. The data is volatile and not persistent anymore because of obvious sizes of data.  Since we are pulling the data as little times as possible taking into consideration that MS data is only appended and not modified, the access is sequential rather than random. There are concepts of framing and windowing, and memory is limited in streaming engine, while in DBMS secondary storage is considered to be unlimited. Obviously, because of all of these features or requirements to data, the streaming engine frameworks have some limitations like going back into the history of data, since it is volatile. In fact, this has also been tried by Borealis Streaming Engine \cite{borealis}. On top of the fact that it is a streaming engine, as it was built based on Medusa\cite{medusa} and Aurora\cite{aurora}, it proposes distributed processing at this point having some features to handle errors and look back in the history. In our case, it is primarily a single data source, since it is based on the simulation, though in the future the simulation software systems might introduce distributed computing, too. It is also important to mention such projects as PeriScope\cite{PeriScope}, SciDB\cite{SciDB}, and other\cite{SDSS_SIGMOD02,QBISM_ICDE94}, since they target scientific data, which is a lot more different, than usual industry customer oriented data.
 
+This version of Push-based System of MS data analysis is primarily about taking an advantage of GPU processing of the data. Hadoop is a well-known and well-used framework by many companies nowadays\cite{hadoop}. Its purpose is an ability to store and serve large scale data across clusters in a timely fashion. Since usage of GPU of massive data (not only related to graphics processing) is a relatively new concept, there is also an improved version of Hadoop MapReduce Framework with GPU\cite{hadoopgpu}. Having an ability to scale it up in a distributed computing environment is probably one of the best approaches, but again it might be a bigger overhead in terms of costs, since keeping all nodes up and still being able to solve specific problem sets with hardware stack of a lower capacity raise a will to explore more. Having a specific software for simulation like Gromacs, apparently there is also a possibility of taking an advantage of GPUs. For example, Gromacs allows to optimize simulation and query tools by adding configurations based on GPU device located on the processing computer. Unfortunately, even with this feature, Gromacs doesn't follow push-based approach which means that improvement with GPU with pull data per query makes it negligible.
+
+Gromacs generate output files with physical properties description for each atom in each frame. Modern CPUs do great job in terms of caching and computing, but obviously in this particular problem massive monolithic computation is needed, thus, GPU devices are perfect candidates for such a problem. To be more exact, for example, a single kernel in a GPU device could be dedicated to a single atom (this relationship might change depending on the query, but this is to understand the scale and relationship of multiprocessors), and since we have scientific data of MS, the data is appended, which means that we will only move forward and not take an advantage of caching on chunks high level (though we might take an advantage of GPU caching features particularly in processing phase) having multiple workloads per chunk. Just to make it more clear, workloads in this particular case represent transactions based on number of clients. For example, if we were to serve it all in a streaming fashion, 100 clients might demand concurrent queries with different slight selection properties and expect their results, each workload might be dedicated to each client if not aggregated. Thus, the performance of GPU is certainly increasing based on workload too, which might benefit considerably.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

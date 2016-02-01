@@ -26,61 +26,66 @@ I was expecting a `,' or a `}'---line 590 of file references.bib.bib
  :   volume    = {32},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-A bad cross reference---entry "NewArch-VLDB07"
-refers to entry "DBLP:conf/vldb/2007", which doesn't exist
-A bad cross reference---entry "ROI-CIDR07"
-refers to entry "DBLP:conf/cidr/2007", which doesn't exist
-Warning--I didn't find a database entry for "DBLP:conf/vldb/2007"
-Warning--I didn't find a database entry for "DBLP:conf/cidr/2007"
+I was expecting a `,' or a `}'---line 708 of file references.bib.bib
+ :   
+ :   title={{Amazon GPU Instances}},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in mainPaper
 Warning--empty journal in mainArticle
 Warning--empty year in MDAnalysis
+Warning--all relevant fields are empty in amazonGPU
+Warning--empty journal in borealis
+Too many commas in name 1 of "Konstantin Shvachko, Hairong Kuang, Sanjay Radia, Robert Chansler" for entry hadoop
+while executing---line 2419 of file IEEEtran.bst
+Warning--empty journal in hadoop
+Warning--empty journal in hadoopgpu
 Name 1 in "M. Bamdad, S. Alavi, B. Najafi, and E. Keshavarzi" has a comma at the end for entry bamdad06
 while executing---line 2419 of file IEEEtran.bst
 
 Done.
 You've used 41 entries,
             4039 wiz_defined-function locations,
-            1064 strings with 13733 characters,
-and the built_in function-call counts, 29055 in all, are:
-= -- 2357
-> -- 609
-< -- 253
-+ -- 362
-- -- 99
-* -- 1313
-:= -- 4381
-add.period$ -- 82
+            1041 strings with 13026 characters,
+and the built_in function-call counts, 25150 in all, are:
+= -- 2046
+> -- 467
+< -- 201
++ -- 279
+- -- 75
+* -- 1096
+:= -- 3928
+add.period$ -- 80
 call.type$ -- 41
-change.case$ -- 38
-chr.to.int$ -- 585
-cite$ -- 44
-duplicate$ -- 2140
-empty$ -- 2396
-format.name$ -- 117
-if$ -- 6766
+change.case$ -- 37
+chr.to.int$ -- 459
+cite$ -- 48
+duplicate$ -- 1920
+empty$ -- 2120
+format.name$ -- 88
+if$ -- 5788
 int.to.chr$ -- 0
 int.to.str$ -- 41
-missing$ -- 340
-newline$ -- 148
-num.names$ -- 41
-pop$ -- 775
+missing$ -- 304
+newline$ -- 150
+num.names$ -- 40
+pop$ -- 716
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2319
+skip$ -- 2019
 stack$ -- 0
-substring$ -- 1413
-swap$ -- 1714
-text.length$ -- 58
+substring$ -- 1118
+swap$ -- 1450
+text.length$ -- 48
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 41
-warning$ -- 3
-while$ -- 126
+warning$ -- 7
+while$ -- 107
 width$ -- 43
-write$ -- 402
+write$ -- 385
 (There were 7 error messages)
