@@ -31,6 +31,11 @@ I was expecting a `,' or a `}'---line 708 of file references.bib.bib
  :   title={{Amazon GPU Instances}},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 744 of file references.bib.bib
+ :   
+ :   title = {Computing Spatial Distance Histograms for Large Scientific Datasets On-the-Fly},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -43,49 +48,51 @@ Too many commas in name 1 of "Konstantin Shvachko, Hairong Kuang, Sanjay Radia, 
 while executing---line 2419 of file IEEEtran.bst
 Warning--empty journal in hadoop
 Warning--empty journal in hadoopgpu
-Name 1 in "M. Bamdad, S. Alavi, B. Najafi, and E. Keshavarzi" has a comma at the end for entry bamdad06
-while executing---line 2419 of file IEEEtran.bst
+Warning--empty author in sdhgpu
+Warning--empty title in sdhgpu
+Warning--empty journal in sdhgpu
+Warning--empty year in sdhgpu
 
 Done.
-You've used 41 entries,
+You've used 38 entries,
             4039 wiz_defined-function locations,
-            1041 strings with 13026 characters,
-and the built_in function-call counts, 25150 in all, are:
-= -- 2046
-> -- 467
-< -- 201
-+ -- 279
-- -- 75
-* -- 1096
-:= -- 3928
-add.period$ -- 80
-call.type$ -- 41
-change.case$ -- 37
-chr.to.int$ -- 459
-cite$ -- 48
-duplicate$ -- 1920
-empty$ -- 2120
-format.name$ -- 88
-if$ -- 5788
+            1011 strings with 12361 characters,
+and the built_in function-call counts, 22444 in all, are:
+= -- 1793
+> -- 409
+< -- 178
++ -- 248
+- -- 65
+* -- 979
+:= -- 3517
+add.period$ -- 72
+call.type$ -- 38
+change.case$ -- 34
+chr.to.int$ -- 414
+cite$ -- 49
+duplicate$ -- 1724
+empty$ -- 1919
+format.name$ -- 74
+if$ -- 5146
 int.to.chr$ -- 0
-int.to.str$ -- 41
-missing$ -- 304
-newline$ -- 150
-num.names$ -- 40
-pop$ -- 716
+int.to.str$ -- 38
+missing$ -- 274
+newline$ -- 141
+num.names$ -- 36
+pop$ -- 664
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 2019
+skip$ -- 1790
 stack$ -- 0
-substring$ -- 1118
-swap$ -- 1450
-text.length$ -- 48
+substring$ -- 992
+swap$ -- 1268
+text.length$ -- 40
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 41
-warning$ -- 7
-while$ -- 107
-width$ -- 43
-write$ -- 385
+type$ -- 38
+warning$ -- 11
+while$ -- 95
+width$ -- 40
+write$ -- 350
 (There were 7 error messages)

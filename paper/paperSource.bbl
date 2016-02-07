@@ -181,24 +181,8 @@ S.~R. R.~C. Konstantin~Shvachko, Hairong~Kuang, ``{The Hadoop Distributed File
 A.~S.~{\it et. al.}. RadhaKishan~Yadav, Robin Singh~Bhadoria, ``Gpu-accelerated
   large scale analytics using mapreduce model,'' 2015.
 
-\bibitem{SimDB}
-M.~Feig, M.~Abdullah, L.~Johnsson, and B.~M. Pettitt, ``{Large Scale
-  Distributed Data Repository: Design of a Molecular Dynamics Trajectory
-  Database},'' \emph{Future Generation Computer Systems}, vol.~16, no.~1, pp.
-  101--110, January 1999.
+\bibitem{sdhgpu}
 
-\bibitem{bamdad06}
-B.~N. M.~Bamdad, S.~Alavi and E.~Keshavarzi, ``{A new expression for radial
-  distribution function and infinite shear modulus of lennard-jones fluids},''
-  \emph{Chemical Physics}, vol. 325, no. 2-3, p. 554–562, June 2006.
-
-\bibitem{AstroAnalysis02}
-J.~L. Stark and F.~Murtagh, \emph{{Astronomical Image and Data
-  Analysis}}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 2002.
-
-\bibitem{ChemShift_BCB98}
-D.~S. Wishart and A.~M. Nip, ``{Protein Chemical Shift Analysis: A Practical
-  Guide},'' \emph{Biochemical and Cell Biology}, vol.~76, pp. 153--163, 1998.
 
 \bibitem{orenstein:ipl82}
 J.~Orenstein, ``Multidimensional tries used for associative searching,''

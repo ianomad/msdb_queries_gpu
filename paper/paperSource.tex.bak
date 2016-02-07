@@ -151,7 +151,6 @@ We believe that having this nature of computational problems, the proposed GPU i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}
 \centering
-\rule{1cm}{1cm}
 \centerline{\includegraphics[width=0.5\columnwidth]{images/kernelatom.eps}}
 \caption{ Example of atom mapping with kernels}
  \label{fg:kernelatom}
@@ -184,29 +183,13 @@ Gromacs generate output files with physical properties description for each atom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\vspace{3mm}
 \section{Network of Queries}\label{sc:querynetwork}
+\vspace{3mm}
 
-\textbf{\emph{MS Queries}}. In order to study some important
-statistical features of an MS system, scientist need to ``extract''
-various statistical quantities out of the data produced by the
-simulation. To achieve this, queries are executed against the data.
-Most of the queries used in the analysis of MS systems are
-analytical in nature. Essentially, these analytical queries are
-mathematical functions that translate a selection of atoms (atoms'
-measurements) to a scalar, vector, a matrix, or a data
-cube~\cite{SimDB}. Once the simulation is done, the analysis carried
-out will depend on the structure being studied as well as the
-features of the system that need exploring. In other words, not all
-system's quantities need to be computed every time the system is
-being analyzed. Some of the more popular queries, including density
-(atom counts), first-order statistics (mean), second-order
-statistics (variance), and histograms among others, can be seen in
-Table~\ref{tb:queries}. The queries shown in this table are the ones
-that we have also incorporated in our system. Just to clarify some
-of the notation in Table~\ref{tb:queries}: we assume that the MS
-system comprises of $n$ particles and $r_i$, $m_i$, $c_i$ and $q_i$
-denote coordinates (vector form), mass, charge, and number of
-electrons of a particle $i$, respectively.
+Having generated big amount of data in large files, now scientists need to get useful information out of it by means of analysis utilities. Often times, the queries that need to be run over the data look like selection and some kind of accumulation, if it is not more complicated. To be more exact, in this section we will try to summarize common set of queries we will be improving. 
+
+In previous work, there has already been developed a network of queries widely used by scientists for MS systems. In Table~\ref{tb:queries} you may observe the common set of queries that has been developed. Basically, these are the queries that need to be improved with our new approach of parallelism. Just to mention, $n$, $r_i$, $m_i$, $c_i$ and $q_i$ denote number of particles, coordinates (vector form), mass, charge, and number of electrons of a particle $i$.
 
 \begin{table}[h]
 \resizebox{\columnwidth}{!}{\begin{minipage}{\columnwidth}
@@ -255,75 +238,23 @@ RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdo
 \end{minipage} }
 \end{table}
 
-There are two types of queries/functions among the ones used to
-analyze an MS system. The first type are one-body functions. Such
-functions usually are algebraic functions~\cite{SDSS_SIGMOD02} and
-only involve quantities(attributes) from a single atom at any given
-time in the process of computation. Each atom (atom's attributes) is
-being processed a constant number of times, thus the total running
-time of such functions/queries is $O(n)$. This type of functions is
-very suitable for the idea of push-based system, or an online system
-in which the data is being read once and acted upon. In other words,
-in a single run of the incoming data, all such queries will produce
-useful final results. Except the SDH and the RDF (i.e., the last two
-in the table), all other queries shown in Table~\ref{tb:queries}
-fall into this category of one-body functions. Most of these
-functions are defined on a single frame of the MS data. Only the
-autocorrelation functions are defined on two distinct frames.
+In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
 
-The second type of functions are multi-body functions and are
-holistic in nature. The computation of such functions involve more
-than one atom's attributes and cannot produce final result in a
-single run of the MS data (i.e., if traditional methods are used for
-their computation). Such queries include the Radial Distribution
-Function (RDF)~\cite{bamdad06, Frenkel:api01, AstroAnalysis02} as
-well as some quantities associated with chemical
-shifts~\cite{ChemShift_BCB98}. Generally, such functions are
-computed through histograms. For instance, the RDF is obtained from
-a histogram of all pairwise atom distances (this is the Spatial
-Distance Histogram or SDH). The traditional, straightforward (often
-the brute-force) way of computing these holistic functions is a very
-time consuming process. On top of that, these methods cannot produce
-the final result in a single run of the MS data, making such
-functions unsuitable for our idea of a push-based system. However,
-in our previous work, we have designed a data structure together
-with an algorithm that opens up the possibility for such queries to
-be executed in a push-based type environment. Further details on
-this are given in Section~\ref{sc:system}.
+\emph{\textbf{One body functions}} such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough, and taking into consideration the fact that we are going with push-based system, it is done at the same time for all of them. 
 
-Fig.~\ref{fg:querynetwork} represents an idea to show how such query
-processing system can be improved. The idea behind it is that some
-of the queries share same sub-routines. Having all the queries made
-as separate modules, this sub-routines can be computed once the data
-is being pushed through the system and then be used anytime a more
-complex query needs it. Having in mind the amount of data in a
-single frame that the queries (sub-routines as well) need to go
-through, and the fact that in a single MS there are thousands of
-frames, we believe this can be immense improvement in terms of total
-running time.
+\emph{\textbf{Multiple body functions}} such as SDH and RDF (Spacial Distance Histogram and Radial Distribution function) require computation of distances pairwise across all the particles. This is generally combination of two across N data: 	$C\binom{N}{2}$. These are the most expensive queries, thus, it is important to focus on their implementation taking advantage of GPU nature and its processing power. SDH is a very expensive computation, and we have used some of the existing work of ours\cite{sdhgpu} to incorporate in this design.
 
-\begin{figure*}
- \centerline{ \includegraphics[width=1\textwidth]{images/msstructure.eps} }
- \caption{MS Modules Structure}
- \label{fg:querynetwork}
-\end{figure*}
+The might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more details in further sections.
 
 
-\section{Building the system}\label{sc:system}
+\vspace{3mm}
+\section{The system design}\label{sc:system}
+\vspace{3mm}
 
-\subsection{MS Data retrieval and in memory organization}
+The proposed design has a pretty straightforward structure which is going to be explained in this section. Shortly, the system starts with original input files (or data) and gets consumed in a sequential manner by simple disk IO framework into random access memory by chunks, then, chunk gets uploaded to GPU device and processed, at some point, the results that need to be shown to the user are transported from GPU (where they initially get accumulated) to the main memory, and then might get written as well to some other output files.
 
-A typical MS system generates and stores the data in a number of
-trajectory files, usually including multiple frames (snapshots of
-the simulated system taken at certain time intervals). Such MS
-generated data oftentimes goes through a simple lossless compression
-and, depending on the simulation software it may be stored in a
-binary format. Such trajectory file format is one of most often used
-MS file format (e.g., GROMACS, PDB). But such format is
-unrecognizable to our system. So our system has to do three things
-before it starts executing the queries: 1) Read the MS data from a
-trajectory file, 2) Translate the MS data to a form recognizable to
-our system, and 3) Load the data to memory.
+\subsection{Data flow}
+Since the size of the data in the problem is huge, organization of the data flow is crucial in our case. As mentioned before, original data is retrieved from simulation software output files and in our case it is Gromacs Software's formatted trajectory files. Tool for decompressing those files to a flat format has been developed in the previous work\cite{mainPaper}.
 
 \emph{\textbf{Data read - transform.}} As mentioned above, in order
 for our system to be able to read the MS generated data, the data
