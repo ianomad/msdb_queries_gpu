@@ -251,66 +251,27 @@ The might be some dependencies and preliminary computation possibilities. For ex
 \section{The system design}\label{sc:system}
 \vspace{3mm}
 
-The proposed design has a pretty straightforward structure which is going to be explained in this section. Shortly, the system starts with original input files (or data) and gets consumed in a sequential manner by simple disk IO framework into random access memory by chunks, then, chunk gets uploaded to GPU device and processed, at some point, the results that need to be shown to the user are transported from GPU (where they initially get accumulated) to the main memory, and then might get written as well to some other output files.
+The proposed design has a pretty straightforward structure which is going to be explained in this section. Shortly, the system starts with original input files (or data) and gets consumed in a sequential manner by simple disk IO framework into random access memory by chunks, then, chunk gets uploaded to GPU device and processed. At some point, the results that need to be shown to the user are transported from global memory of GPU (where they initially get accumulated) to the main memory, and then might get written as well to an output file. General data flow map is represented in Figure  \ref{fg:data-flow}.
 
-\subsection{Data flow}
-Since the size of the data in the problem is huge, organization of the data flow is crucial in our case. As mentioned before, original data is retrieved from simulation software output files and in our case it is Gromacs Software's formatted trajectory files. Tool for decompressing those files to a flat format has been developed in the previous work\cite{mainPaper}.
+\begin{figure}
+ \centerline{ \includegraphics[width=0.65\columnwidth]{images/memory-organization.eps} }
+ \caption{Data flow in the improved design of push-based system for MS analysis}
+ \label{fg:data-flow}
+\end{figure}
 
-\emph{\textbf{Data read - transform.}} As mentioned above, in order
-for our system to be able to read the MS generated data, the data
-needs to be transformed. The reason for this is following: the MS
-data is stored in multiple files and possibly in different formats
-as well. One such file holds the global data (identifying the system
-and the simulation). Another file holds each frame's data. The frame
-data contain general information about the frame, but the main part
-is a sequential list of each atom's info, including atom's mass,
-position, charge, number of electrons, velocities, forces, etc.
-Another file (topology file) holds the molecule/residue info,
-essentially identifying what atom belongs to which molecule.
+\subsection{Data input}
+Since the size of the data in the problem is huge, organization of the data flow is crucial. As mentioned before, original data is retrieved from simulation software output files and in our case it is Gromacs Software's trajectory files\footnote{The file types, their structure, and their decompression has been well explained in the previous paper in section "Data orgranization in main memory"}. For a simulation, there can be several files of different format and usually they are also compressed without any loss of information. Tool for decompressing those files to a flat format for each frame and atom has been developed in the previous work\cite{mainPaper}. 
 
-So, in order to extract the data from these files, we have created a
-sort of "extractor/transformer" of the attributes needed for the
-execution of the queries in our system. This transformer,
-essentially, is a separate piece of code that does three things: 1)
-it reads the MS generated data that the MS system stores in one of
-the often used MS file format (e.g., GROMACS); 2) it translates the
-data into a format that our system can read (taking only the
-information our system needs); and 3) it stores the data in a file
-that has basic structure to it. So, in the end, the data transformer
-produces a data file that our system takes as input. This code
-serves as a connection between an MS system (e.g., GROMACS) and our
-system. With this, our system can essentially be used as an add-on
-to GROMACS or other simulation systems and help improve the
-efficiency of the data analysis.
+In order to experiment with different input cases, the input files have been generated with a tool that we have built in Python language. Thus, we are able to generate mock data files with any number of frames and atoms, and the values are random and can be adjusted with needs of the experiment (for example, for cases when we want to analyze bucket widths in a limited space, the coordinates are generated in range of $0 - 1$, etc.). As it has already been mentioned earlier, we don't expect the data to be distributed with a certain behavior, the importance of having this kind of tool to generate mock data is having a variety of random data sets that could reveal any issues related to values provided to the program, on top of that, having the actual file written and then being read has been a part of the experiments to have more realistic use case. In the future, the same script for generating the mock data could be used for regression and performance tests in a distributed implementation of this design as a single source.
+
+\subsection{Data flow architecture}
+
+MS data roughly can be represented as a list of atoms with physical properties aggregated as frames. Thus, we consider a single frame as a chunk which will be loaded into the memory\footnote{Memory in this design might be interpreted differently, since we have a separate device memory on GPUs, but it will be explained better later} and pushed through our network of query. In this case, it is very convenient, because there are almost no dependencies between frames, rather than list of atoms in the same frame, which potentially again could create additional disk I/O overhead.
+
+Having defined the chunk, we load it from flat format file to RAM. A single 
 
 
-\textbf{\emph{Data organization in main memory.}}\footnote{This
-paragraph talks only about the data organization used by one-body
-queries. For two-body queries (e.g., SDH), the data organization is
-discussed later on.} Once the data is in a format our system can
-read, the data is being loaded into the main memory one frame at a
-time. The organization of the in-memory particle's data is in the
-form of a simple, two dimensional array where a single row
-represents an atom in the system with all its attributes (e.g.,
-coordinates, mass, charge, residue info, etc.). We also keep (in a
-one dimensional array) crucial system's information for each frame,
-like temperature, energy, pressure, etc. We have used such
-structures because they are very suitable for simulating a
-push-based type of system: a simple sequential read of the array
-gives that on-line type of data stream. So, as the system reads the
-array, it pushes the data onto the query-modules. As mentioned
-earlier, the one-body (algebraic) queries will produce a final
-result at the end of the first sequential read. However, the
-two-body (holistic) functions, like SDH and RDF, cannot do this in a
-single read of the data.\footnote{However, we have previously
-deigned and created a data structure and an algorithm that can take
-the advantage of a single data read and produce final results for
-SDH computation~\cite{ytu:icde09,EDBT12}. We have incorporate this
-into our system presented in this paper.} Therefore, each frame's
-data array can be continuously read (in a loop manner) as many times
-as a query needs it.
 \subsection{Query modules}
-
 As mentioned earlier, there are two types of functions/queries used
 for analysis of MS systems: algebraic or one-body, and holistic or
 two-body queries (these in general can be multi-body, but in this

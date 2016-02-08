@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  6 FEB 2016 23:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  7 FEB 2016 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -540,7 +540,7 @@ Package pdftex.def Info: images/memory-organization-eps-converted-to.pdf used o
 n input line 257.
 (pdftex.def)             Requested size: 163.79846pt x 232.17824pt.
  [5 <./images/memory-organization-eps-converted-to.pdf>]
-Underfull \hbox (badness 2556) in paragraph at lines 320--324
+Underfull \hbox (badness 2556) in paragraph at lines 275--279
 []\OT1/ptm/m/n/10 As men-tioned ear-lier, there are two types of func-
  []
 
@@ -552,14 +552,14 @@ Package epstopdf Info: Source file: <images/resolve.eps>
 (epstopdf)                    size: 4621 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/resolve-eps-convert
 ed-to.pdf images/resolve.eps>
-(epstopdf)             \includegraphics on input line 371.
+(epstopdf)             \includegraphics on input line 326.
 Package epstopdf Info: Output file is already uptodate.
 <images/resolve-eps-converted-to.pdf, id=64, 472.76625pt x 185.69376pt>
 File: images/resolve-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/resolve-eps-converted-to.pdf>
 Package pdftex.def Info: images/resolve-eps-converted-to.pdf used on input line
- 371.
+ 326.
 (pdftex.def)             Requested size: 163.79846pt x 64.33643pt.
  [6 <./images/resolve-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/system.eps>
@@ -570,14 +570,14 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 447.
+(epstopdf)             \includegraphics on input line 402.
 Package epstopdf Info: Output file is already uptodate.
  <images/system-eps-converted-to.pdf, id=73, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-447.
+402.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
@@ -588,7 +588,7 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 474.
+(epstopdf)             \includegraphics on input line 429.
 Package epstopdf Info: Output file is already uptodate.
 
 <images/workload_set_up1-eps-converted-to.pdf, id=74, 605.26125pt x 462.72874pt
@@ -596,36 +596,36 @@ Package epstopdf Info: Output file is already uptodate.
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 474.
+nput line 429.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
  [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
 rted-to.pdf>]
 
 LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 649.
+nput line 604.
 
 
 LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 649.
+nput line 604.
 
 
-LaTeX Warning: Reference `fg:speedup838K' on page 8 undefined on input line 673
+LaTeX Warning: Reference `fg:speedup838K' on page 8 undefined on input line 628
 .
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 8 undefined on input line 673
+LaTeX Warning: Reference `fg:speedup8.8M' on page 8 undefined on input line 628
 .
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 8 undef
-ined on input line 685.
+ined on input line 640.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 8 undefin
-ed on input line 693.
+ed on input line 648.
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 730--737
+Underfull \hbox (badness 10000) in paragraph at lines 685--692
 
  []
 
@@ -660,7 +660,7 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (10 pages, 498448 bytes).
+Output written on paperSource.pdf (10 pages, 498251 bytes).
 PDF statistics:
  155 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
