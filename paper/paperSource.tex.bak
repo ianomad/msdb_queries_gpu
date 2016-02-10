@@ -275,26 +275,10 @@ Having defined the chunk, we load it from flat format file to RAM. A single atom
 
 Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
 
-\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such functions called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}.
+\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such functions called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
-As mentioned earlier, there are two types of functions/queries used
-for analysis of MS systems: algebraic or one-body, and holistic or
-two-body queries (these in general can be multi-body, but in this
-paper we only deal with a two-body functions).
-
-\subsubsection{One-body queries} Most of the query modules in
-Table~\ref{tb:queries} (except the SDH and RDF) are not that
-involved, only containing computations of fairly simple, one-body
-functions. These queries were coded as separate modules in our
-system. Each of these modules take few attributes as input (e.g.,
-atom selection, frames selection(for the autocorrelation functions),
-number of atoms, etc.). The system pushes the data as it becomes
-available onto these modules. The queries are being executed on the
-selection and are put in a ``ready'' mode, awaiting the next frame's
-data. First, the more basic queries, like total mass, are being
-computed. The results of such queries are temporary stored (in main
-memory) and are available for use anytime a more complex query needs
-them.
+\emph{\textbf{One-body queries kernel}}.
+Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure\ref{fg:reduction} nicely represents general idea of the data mapping, where each cell of the vector is a thread of exe. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of spacial prefetch, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage.
 
 \subsubsection{Two-body queries} In general, queries involving two-body functions are a
 bit more complex and cannot provide the final result in a single
@@ -328,11 +312,9 @@ well as the number of particles in each cell. We name the afore
 describe tree the Density-Map tree (DM-tree).
 
 \begin{figure}
- \centerline{ \includegraphics[width=0.65\columnwidth]{images/resolve.eps} }
- \caption{Computing minimum (i.e., length of solid lines) and
- maximum distance (i.e., length of dashed lines) range between two
-cells}
- \label{fg:resolve}
+ \centerline{ \includegraphics[width=0.65\columnwidth]{images/reduction} }
+ \caption{Array reduction using coalesced memory access\cite{gpureduction}}
+ \label{fg:reduction}
 \end{figure}
 
 \emph{\textbf{The algorithm.}} The essential part of the DM-SDH

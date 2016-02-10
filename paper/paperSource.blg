@@ -36,6 +36,11 @@ I was expecting a `,' or a `}'---line 744 of file references.bib.bib
  :   title = {Computing Spatial Distance Histograms for Large Scientific Datasets On-the-Fly},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 750 of file references.bib.bib
+ :   
+ :   title = {Optimizing Parallel Reduction in CUDA},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -52,47 +57,51 @@ Warning--empty author in sdhgpu
 Warning--empty title in sdhgpu
 Warning--empty journal in sdhgpu
 Warning--empty year in sdhgpu
+Warning--empty author in gpureduction
+Warning--empty title in gpureduction
+Warning--empty journal in gpureduction
+Warning--empty year in gpureduction
 
 Done.
-You've used 38 entries,
+You've used 39 entries,
             4039 wiz_defined-function locations,
-            1011 strings with 12361 characters,
-and the built_in function-call counts, 22444 in all, are:
-= -- 1793
-> -- 409
+            1012 strings with 12373 characters,
+and the built_in function-call counts, 22631 in all, are:
+= -- 1796
+> -- 410
 < -- 178
-+ -- 248
++ -- 249
 - -- 65
-* -- 979
-:= -- 3517
+* -- 992
+:= -- 3540
 add.period$ -- 72
-call.type$ -- 38
+call.type$ -- 39
 change.case$ -- 34
 chr.to.int$ -- 414
-cite$ -- 49
-duplicate$ -- 1724
-empty$ -- 1919
+cite$ -- 54
+duplicate$ -- 1748
+empty$ -- 1944
 format.name$ -- 74
-if$ -- 5146
+if$ -- 5182
 int.to.chr$ -- 0
-int.to.str$ -- 38
-missing$ -- 274
-newline$ -- 141
+int.to.str$ -- 39
+missing$ -- 278
+newline$ -- 144
 num.names$ -- 36
-pop$ -- 664
+pop$ -- 683
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1790
+skip$ -- 1803
 stack$ -- 0
 substring$ -- 992
-swap$ -- 1268
+swap$ -- 1273
 text.length$ -- 40
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 38
-warning$ -- 11
+type$ -- 39
+warning$ -- 15
 while$ -- 95
-width$ -- 40
-write$ -- 350
-(There were 7 error messages)
+width$ -- 41
+write$ -- 354
+(There were 8 error messages)
