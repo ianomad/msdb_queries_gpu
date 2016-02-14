@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  9 FEB 2016 22:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  13 FEB 2016 17:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,13 +543,20 @@ n input line 257.
 <images/reduction.png, id=64, 228.855pt x 168.63pt>
 File: images/reduction.png Graphic file (type png)
  <use images/reduction.png>
-Package pdftex.def Info: images/reduction.png used on input line 316.
+Package pdftex.def Info: images/reduction.png used on input line 287.
 (pdftex.def)             Requested size: 163.79846pt x 120.69818pt.
 
+<images/overallarchitecture.png, id=66, 334.24875pt x 532.99126pt>
+File: images/overallarchitecture.png Graphic file (type png)
 
-LaTeX Warning: Reference `fg:resolve' on page 6 undefined on input line 324.
+<use images/overallarchitecture.png>
+Package pdftex.def Info: images/overallarchitecture.png used on input line 293.
 
-[6 <./images/reduction.png>]
+(pdftex.def)             Requested size: 163.79846pt x 261.20053pt.
+ [6 <./images/reduction.png>]
+
+LaTeX Warning: Reference `fg:resolve' on page 7 undefined on input line 306.
+
 Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    date: 2014-09-15 23:48:36
 (epstopdf)                    size: 185707 bytes
@@ -558,16 +565,16 @@ Package epstopdf Info: Source file: <images/system.eps>
 (epstopdf)                    size: 10782 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/system-eps-converte
 d-to.pdf images/system.eps>
-(epstopdf)             \includegraphics on input line 390.
+(epstopdf)             \includegraphics on input line 372.
 Package epstopdf Info: Output file is already uptodate.
-
-<images/system-eps-converted-to.pdf, id=70, 278.03876pt x 204.765pt>
+<images/system-eps-converted-to.pdf, id=71, 278.03876pt x 204.765pt>
 File: images/system-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/system-eps-converted-to.pdf>
 Package pdftex.def Info: images/system-eps-converted-to.pdf used on input line 
-390.
+372.
 (pdftex.def)             Requested size: 201.60077pt x 148.47424pt.
+ [7 <./images/overallarchitecture.png> <./images/system-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/workload_set_up1.eps>
 (epstopdf)                    date: 2014-10-18 22:41:26
 (epstopdf)                    size: 617458 bytes
@@ -577,60 +584,56 @@ df>
 (epstopdf)                    size: 11015 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
 s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 417.
+(epstopdf)             \includegraphics on input line 399.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/workload_set_up1-eps-converted-to.pdf, id=71, 605.26125pt x 462.72874pt
+<images/workload_set_up1-eps-converted-to.pdf, id=85, 605.26125pt x 462.72874pt
 >
 File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
  <use images/workload_set_up1-eps-converted-to.pdf>
 Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 417.
+nput line 399.
 (pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
- [7 <./images/system-eps-converted-to.pdf> <./images/workload_set_up1-eps-conve
-rted-to.pdf>]
+ [8 <./images/workload_set_up1-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `fg:speedup838K-select-level' on page 8 undefined on i
-nput line 592.
+LaTeX Warning: Reference `fg:speedup838K-select-level' on page 9 undefined on i
+nput line 574.
 
 
-LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 8 undefined on i
-nput line 592.
+LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 9 undefined on i
+nput line 574.
 
-[8]
 
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 616
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 598
 .
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 616
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 598
 .
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 628.
+ined on input line 610.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 636.
+ed on input line 618.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 673--680
+Underfull \hbox (badness 10000) in paragraph at lines 655--662
 
  []
 
-(./paperSource.bbl [9]) [10
-
-] (./paperSource.aux)
+[9] (./paperSource.bbl) [10] (./paperSource.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6988 strings out of 493089
- 121283 string characters out of 6134842
+ 6995 strings out of 493089
+ 121498 string characters out of 6134842
  196981 words of memory out of 5000000
- 10352 multiletter control sequences out of 15000+600000
+ 10358 multiletter control sequences out of 15000+600000
  50517 words of font info for 113 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,18n,40p,1971b,368s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -650,10 +653,10 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (10 pages, 515016 bytes).
+Output written on paperSource.pdf (10 pages, 534945 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
+ 154 PDF objects out of 1000 (max. 8388607)
  104 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

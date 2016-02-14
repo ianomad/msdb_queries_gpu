@@ -275,47 +275,30 @@ Having defined the chunk, we load it from flat format file to RAM. A single atom
 
 Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
 
-\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such functions called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
+\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
 \emph{\textbf{One-body queries kernel}}.
-Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure\ref{fg:reduction} nicely represents general idea of the data mapping, where each cell of the vector is a thread of exe. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of spacial prefetch, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage.
+Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} nicely represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
 
-\subsubsection{Two-body queries} In general, queries involving two-body functions are a
-bit more complex and cannot provide the final result in a single
-data read if a straightforward method is used for their computation.
-However, in the proposed system we have incorporated a data
-structure and an algorithm for the SDH (also RDF) from our previous
-work that is suitable for push-based type of system. In this
-subsection we give a brief description of the data structure (DM)
-and the algorithm (DM-SDH) designed in~\cite{ytu:icde09, EDBT12} and
-implemented in the system proposed in this paper. For more detailed
-information, please refer to our previously published work on this
-topic~\cite{ytu:icde09, EDBT12}
-
-\emph{\textbf{The data structure.}} The simulation data space is
-represented by a conceptual data structure we named Density Map
-(DM). The density map splits the simulation space into a grid of
-equal size regions (or cells). The cells are cubes in 3D and squares
-in 2D\footnote{In this paper, we focus only on the 2D data to
-elaborate and illustrate the proposed ideas.} Resolution of a
-density map is the reciprocal of the cell size in that density map.
-In order to generate higher resolution density map, we split each
-cell of the current resolution's grid into four smaller cells of
-equal size. This design allows us to use a region
-quad-tree~\cite{orenstein:ipl82} to organize density maps of the
-same data but with different resolutions. So, essentially, a node in
-the quad-tree represents a single cell from the DM. Therefore, a
-density map of a certain resolution basically is the set of all
-nodes of one level of the tree. Each of the tree nodes records the
-cell's location in the density map (coordinates of corner points) as
-well as the number of particles in each cell. We name the afore
-describe tree the Density-Map tree (DM-tree).
+\emph{\textbf{Two-body queries kernel}}.
+SDH (or RDF) is the algorithm that requires special treatment in our design. The point, as mentioned earlier, is that this function requires more than one iteration of the given set of atoms, but rather all combinations of pairs in a given frame, thus, it is not linear complexity. An implementation of this type of query might be very non-intuitive because of the nature of GPUs. Another issue is that since to take an advantage on this type of computation, before writing an implementation for it, a user must have a good understanding of GPU architecture which makes the system less user-friendly. At this point, it is more important to achieve good performance improvement results and then take care of ease of system extensions. As we already mentioned, GPU threads execute in parallel and consume certain amount of work followed by best try of all hardware capacities utilization, but, unfortunately, it is also important to take care of equal workload for every thread independently, so, that utilization is kept high. For this reason, we've come up with a solution that should increase performance of the computation which will be described later.
 
 \begin{figure}
  \centerline{ \includegraphics[width=0.65\columnwidth]{images/reduction} }
- \caption{Array reduction using coalesced memory access\cite{gpureduction}}
+ \caption{Array reduction example\cite{gpureduction}}
  \label{fg:reduction}
 \end{figure}
+
+\begin{figure}
+ \centerline{ \includegraphics[width=0.65\columnwidth]{images/overallarchitecture} }
+ \caption{Overall system architecture}
+ \label{fg:overallarchitecture}
+\end{figure}
+
+
+\emph{\textbf{Architecture overview.}}
+This section is to emphasize general architecture of the system and summarize the work flow as well as the data flow. In total, we have flat files with ready flat values for each atom aggregated in frames coming into the program as data input using common disk I/O framework of an operating system. Then, once we have loaded a frame (which is considered to be a chunk of the entire data set) onto RAM of our machine, we copy over the entire frame onto the GPU device global memory. It is important that, at this point, we never write any values to simulation files or any other data related to simulation, thus, we don't have to care about any synchronization of incoming data. After this, we have two predefined kernel functions (which were explained before), where first kernel stands for one-body queries, and the second one is for two-body query SDH. Just for architecture clearance and possible future improvements, two kernels are executed in two different streams\footnote{In CUDA stream is another abstract layer of organizing execution threads. They are not guaranteed to be executed at the same time or after each other, GPU scheduling architecture is completely different from CPU having a warp to be single scheduling unit at maximum of 32 threads at a time} (You can see them on Figure\ref{fg:overallarchitecture}). In each kernel we apply certain heuristics to improve memory access using such architecture features of GPU as shared memory and blocking of kernel threads.
+
 
 \emph{\textbf{The algorithm.}} The essential part of the DM-SDH
 algorithm is a procedure named {\sc ResolveTwoCells}. The input to
