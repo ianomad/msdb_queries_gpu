@@ -300,38 +300,8 @@ SDH (or RDF) is the algorithm that requires special treatment in our design. The
 This section is to emphasize general architecture of the system and summarize the work flow as well as the data flow. In total, we have flat files with ready flat values for each atom aggregated in frames coming into the program as data input using common disk I/O framework of an operating system. Then, once we have loaded a frame (which is considered to be a chunk of the entire data set) onto RAM of our machine, we copy over the entire frame onto the GPU device global memory. It is important that, at this point, we never write any values to simulation files or any other data related to simulation, thus, we don't have to care about any synchronization of incoming data. After this, we have two predefined kernel functions (which were explained before), where first kernel stands for one-body queries, and the second one is for two-body query SDH. Just for architecture clearance and possible future improvements, two kernels are executed in two different streams\footnote{In CUDA stream is another abstract layer of organizing execution threads. They are not guaranteed to be executed at the same time or after each other, GPU scheduling architecture is completely different from CPU having a warp to be single scheduling unit at maximum of 32 threads at a time} (You can see them on Figure\ref{fg:overallarchitecture}). In each kernel we apply certain heuristics to improve memory access using such architecture features of GPU as shared memory and blocking of kernel threads.
 
 
-\emph{\textbf{The algorithm.}} The essential part of the DM-SDH
-algorithm is a procedure named {\sc ResolveTwoCells}. The input to
-this procedure are two cells from the density map (e.g., $A$ and $B$
-in Fig.~\ref{fg:resolve}). It computes, in constant time, the
-minimum and maximum distance between the two cells. A pair of cells
-is ~\emph{resolvable} if both the min and max distance between them
-fall into the same SDH bucket $i$. If that is the case, the distance
-count of that bucket is being increase by $n_{A}n_{B}$ ($n_{A}$ and
-$n_{B}$ are the number of particles in cell $A$ and $B$,
-respectively). Otherwise, the cells are non-resolvable and we
-either:
-\begin{itemize}
-\item[(1)] Go to the next density map with higher resolution and resolve all children of $A$
-with those of $B$, or
-\item[(2)] If leaf-level has been reached: compute every distance between particles of $A$ and $B$ and update the
-histogram accordingly.
-\end{itemize}
-
-In order to generate the complete SDH, the {\sc ResolveTwoCells}
-procedure is executed for all pairs of cells for a given density map
-$DM_k$ and the algorithm would recursively call the procedure
-(action (1) above) until leaf-level has been reached (action (2)
-above).
-
-On top of the aforementioned DM-SDH algorithm, we have also
-incorporated two approximate SDH algorithms (ADM-SDH), introduced
-and described in \cite{EDBT12}, and \cite{TKDE12}. These approximate
-algorithms are substantially faster than the the brute-force
-algorithm and also than the DM-SDH algorithm as they take advantage
-of some heuristic. For more details on the ADM-SDH algorithms please
-see the aforementioned work.
-
+\emph{\textbf{GPU grid and block sizes.}} As it has already been mentioned, utilization of hardware on GPU device is important, because it is the key to performance improvement, and the higher utilization is, the bigger improvement is.
+The approach we came up with is 1 execution thread per atom. For CUDA version 2.0 maximum number of threads per block is 1024. Blocks are 3 dimensional entities in a 3 dimensional grid. The less abstract unit is, the less overhead we have in communication between them, thus, we try to utilize smallest units more. For example, for 1000,000 atoms, we would allocate 1024 threads per block as a static hard coded value, since we usually have always more than 1024 atoms in simulations. One dimension of grid can take up to 64,000 blocks, thus, if N is bigger than $1024 * 64,000$, than the rest would be allocated to $grid.y$ and $grid.z$ respectively. We have not considered numbers bigger than GPU can allocate, which could be explored in future work. It is important to understand that even though there are abstract entities of grids and blocks, it is not real hardware capacities, but they can affect scheduling and performance consequently. Decision to go with atom to thread execution is because it is pretty convenient to keep high utilization of hardware and still not lose idea if we are about to incorporate more functions, which makes the system more user-friendly, though later on as a plugin we could add data loaded and transformer between RAM and GPU global memory, because there are a lot of custom ways to aggregate data and take an advantage of coalesced memory access.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
