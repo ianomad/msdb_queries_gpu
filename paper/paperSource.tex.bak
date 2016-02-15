@@ -301,17 +301,23 @@ This section is to emphasize general architecture of the system and summarize th
 
 
 \emph{\textbf{GPU grid and block sizes.}} As it has already been mentioned, utilization of hardware on GPU device is important, because it is the key to performance improvement, and the higher utilization is, the bigger improvement is.
-The approach we came up with is 1 execution thread per atom. For CUDA version 2.0 maximum number of threads per block is 1024. Blocks are 3 dimensional entities in a 3 dimensional grid. The less abstract unit is, the less overhead we have in communication between them, thus, we try to utilize smallest units more. For example, for 1000,000 atoms, we would allocate 1024 threads per block as a static hard coded value, since we usually have always more than 1024 atoms in simulations. One dimension of grid can take up to 64,000 blocks, thus, if N is bigger than $1024 * 64,000$, than the rest would be allocated to $grid.y$ and $grid.z$ respectively. We have not considered numbers bigger than GPU can allocate, which could be explored in future work. It is important to understand that even though there are abstract entities of grids and blocks, it is not real hardware capacities, but they can affect scheduling and performance consequently. Decision to go with atom to thread execution is because it is pretty convenient to keep high utilization of hardware and still not lose idea if we are about to incorporate more functions, which makes the system more user-friendly, though later on as a plugin we could add data loaded and transformer between RAM and GPU global memory, because there are a lot of custom ways to aggregate data and take an advantage of coalesced memory access.
+The approach we came up with is 1 execution thread per atom. For CUDA version 2.0 maximum number of threads per block is 1024. Blocks are 3 dimensional entities in a 3 dimensional grid. The less abstract unit is, the less overhead we have in communication between them, thus, we try to utilize smallest units more. For example, for 1000,000 atoms, we would allocate 1024 threads per block as a static hard coded value, since we usually have always more than 1024 atoms in simulations. One dimension of grid can take up to 64,000 blocks, thus, if N is bigger than $1024 * 64,000$, than the rest would be allocated to $grid.y$ and $grid.z$ respectively. We have not considered numbers bigger than GPU can allocate, which could be explored in future work. It is important to understand that even though there are abstract entities of grids and blocks, it is not real hardware capacities, but they can affect scheduling and performance consequently. Decision to go with atom to thread execution is because it is pretty convenient to keep high utilization of hardware and still not lose idea if we are about to incorporate more functions, which makes the system more user-friendly, though later on as a plugin we left some room to add data transformer between RAM and GPU global memory, because there are a lot of custom ways to aggregate data and take an advantage of coalesced memory access.
+
+\begin{figure}
+ \centerline{ \includegraphics[width=1.0\columnwidth]{images/threadload} }
+ \caption{SDH thread loading}
+ \label{fg:threadload}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Working of the system}
+\subsection{Computation work flow}
 
-In this subsection we give a brief overview of how the system works
-at runtime. Please note that the first, preliminary part is only
-executed once, i.e., the data transformation from MS data files to a
-file that our system can read.
+Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Besides it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
+\subsubsection{One-body kernel} Every thread of execution in one-body query writes into shared memory, before accumulating the data into global memory result in order to avoid massive read and write blocking conflicts which will eliminate any kind of performance advantages. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (e.g. generic CUDA function atomicAdd).
+We run the first stream with one-body queries and wait till it gets finished. The reason is that we expect certain behavior from shared memory from each of the streams, thus, just to make sure that they don't overlap, we run them separately. Meanwhile, while the computation is running, there is a possibility to use a third stream to load another chunk of data, too. First stream and kernel execute simple vector reduction type of computation accumulating all the needed data and keep in the GPU.
+
 
 Here are the steps taken through out the analysis:
 \begin{itemize}
@@ -335,33 +341,6 @@ of sub-queries)
 \item[(7)] Output results
 \item[(8)] Go to step 2 and load the next frame (if needed).
 \end{itemize}
-
-Fig.~\ref{fg:system} depicts the flow of the system.
-
-\begin{figure}
- \centerline{ \includegraphics[width=.8\columnwidth]{images/system.eps} }
- \caption{Push-based system flow}
- \label{fg:system}
-\end{figure}
-
-Step 2, loading the data into main memory is different for SDH query
-compared to the one for the one-body queries. The reason for that,
-as mentioned earlier, is the different data structure used to store
-the data in memory. While we use double array to store the data for
-the one-body queries, we use quad-tree like data structure to store
-the data needed to compute the SDH. The loading to the double array
-is straightforward. However, to load the quad-tree structure, we
-need to use some of the info from the data itself. Namely, the
-coordinates of the atoms are used to determine in which tree node an
-atom belongs. That way we build the so called density map (DM),
-i.e., the different regions with a certain number of atoms in them
-(including all the atom's attributes). So basically, to solve the
-SDH problem in a push-based manner, we convert the problem into
-populating a data structure in push-based manner. This data
-structure will then be used as an input to our DM-SDH algorithm
-that, although not completely in ``on-the-fly" way, is a great
-improvement over the naive methods used in much of today's MS
-analysis systems (i.e., GROMACS, PDB, CHARMM, etc.).
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
