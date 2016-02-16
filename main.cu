@@ -86,6 +86,7 @@ int main(int argc, char *argv[]) {
             }
 
             atomCount = 0;
+            heads++;
             continue;
         }
 
@@ -110,7 +111,6 @@ int main(int argc, char *argv[]) {
         atomsList[atomCount].z = rand() % 100;
 
         atomCount++;
-        heads++;
     }
 
     printf("\n\n\nHeads: %d\n", heads);
