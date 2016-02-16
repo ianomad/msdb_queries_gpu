@@ -70,8 +70,6 @@ int main(int argc, char *argv[]) {
         lineStream >> token;
 
         if(token.compare("HEAD") == 0) {
-            //skip the header
-            std::cout << line << std::endl;
             heads++;
 
             if(heads > 0 && atomCount > 0) {
