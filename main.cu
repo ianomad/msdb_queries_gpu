@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
             heads++;
 
             if(heads > 0 && atomCount > 0) {
-                std::cout << "Frame #" << heads << " processing. " << std::endl;
+                std::cout << "**********************Frame #" << heads << "*****************" << std::endl;
                 std::cout << atomCount << " atoms read." << std::endl;
                 run_single_kernel(atomsCnt, atomsList, workload);
             }
