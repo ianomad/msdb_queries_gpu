@@ -189,9 +189,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
     cudaMalloc((void**)&g_s_atomsCnt, sizeof(int));
     cudaMalloc((void**)&d_histogram, num_buckets * sizeof(bucket));
 
-    cudaMemcpy(g_s_res, res, sizeof(query_results), cudaMemcpyHostToDevice);
     cudaMemcpy(g_s_atomsCnt, &atomsCnt, sizeof(int), cudaMemcpyHostToDevice);
-    cudaMemcpy(d_histogram, histogram, num_buckets * sizeof(bucket), cudaMemcpyHostToDevice);
     cudaMemcpy(g_s_atom_list, atomList, sizeof(atom) * atomsCnt, cudaMemcpyHostToDevice);
 
     
@@ -235,6 +233,9 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
         for(i = 0; i < num_buckets; i++) {
             histogram[i].d_cnt = 0;
         }
+
+        cudaMemcpy(g_s_res, res, sizeof(query_results), cudaMemcpyHostToDevice);
+        cudaMemcpy(d_histogram, histogram, num_buckets * sizeof(bucket), cudaMemcpyHostToDevice);
 
         /**
         * KERNEL CALLS
