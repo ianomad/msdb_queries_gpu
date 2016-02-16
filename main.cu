@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     std::string fileName = argv[2];
 
     int workload = 1;
-    if(argc < 3) {
+    if(argc > 3) {
         workload = atoi(argv[3]);
     }
     
