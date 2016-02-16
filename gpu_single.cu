@@ -267,7 +267,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
     printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
     printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
-    //output_histogram(histogram, num_buckets);
+    output_histogram(histogram, num_buckets);
 
 
     /**
