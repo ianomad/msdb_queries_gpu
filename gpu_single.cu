@@ -159,7 +159,7 @@ void output_histogram(bucket* hist, int num_buckets){
 }
 
 
-void run_single_kernel(int atomsCnt, atom* atomList) {
+void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
 
     printf("---------GPU-SINGLE-KERNEL---------\n");
 
@@ -170,22 +170,6 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
 
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
-    
-    //set default empty values to remove some garbage inside
-    res->mass = 0;
-    res->charge = 0;
-    res->max_x = 0;
-    res->max_y = 0;
-    res->max_z = 0;
-    res->inertiaX = 0;
-    res->inertiaY = 0;
-    res->inertiaZ = 0;
-    res->depoleMoment = 0;
-
-    int i;
-    for(i = 0; i < num_buckets; i++) {
-        histogram[i].d_cnt = 0;
-    }
 
     struct timezone i_dunno;
     struct timeval start_time;
@@ -236,20 +220,39 @@ void run_single_kernel(int atomsCnt, atom* atomList) {
     //int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
-    /**
-    * KERNEL CALLS
-    */
-    //mass and charge
-    //----------------------------------1 BODY KERNEL---------------------------------------------------
-    int smem1 = sizeof(float) * block_size.x * 2; //this is not really used for now
-    gpu_one_body_functions_kernel<<<grid_size, block_size, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
+    int i, w;
+    for(w = 0; w < workload; w++) {
 
-    //----------------------------------2 BODY KERNEL---------------------------------------------------
-    int smem2 = num_buckets * sizeof(unsigned long long) + block_size.x * sizeof(atom);
-    gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
-    
-    cudaStreamSynchronize(streamComp1);
-    cudaStreamSynchronize(streamComp2);
+        //set default empty values to remove some garbage inside
+        res->mass = 0;
+        res->charge = 0;
+        res->max_x = 0;
+        res->max_y = 0;
+        res->max_z = 0;
+        res->inertiaX = 0;
+        res->inertiaY = 0;
+        res->inertiaZ = 0;
+        res->depoleMoment = 0;
+
+        for(i = 0; i < num_buckets; i++) {
+            histogram[i].d_cnt = 0;
+        }
+
+        /**
+        * KERNEL CALLS
+        */
+        //mass and charge
+        //----------------------------------1 BODY KERNEL---------------------------------------------------
+        int smem1 = sizeof(float) * block_size.x * 2; //this is not really used for now
+        gpu_one_body_functions_kernel<<<grid_size, block_size, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
+
+        //----------------------------------2 BODY KERNEL---------------------------------------------------
+        int smem2 = num_buckets * sizeof(unsigned long long) + block_size.x * sizeof(atom);
+        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
+        
+        cudaStreamSynchronize(streamComp1);
+        cudaStreamSynchronize(streamComp2);
+    }
 
     /**
     * DATA COPY TO HOST

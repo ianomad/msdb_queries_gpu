@@ -42,8 +42,6 @@ int main(int argc, char *argv[]) {
     if(argc > 3) {
         workload = atoi(argv[3]);
     }
-    
-    printf("workload: %d\n", workload);
 
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
@@ -81,7 +79,7 @@ int main(int argc, char *argv[]) {
             std::cout << atomCount << " atoms read in previous frame." << std::endl;
 
             if(atomCount > 0) {
-                run_single_kernel(atomsCnt, atomsList);
+                run_single_kernel(atomsCnt, atomsList, workload);
             }
             
             // check for error
