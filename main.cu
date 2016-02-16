@@ -37,6 +37,14 @@ int main(int argc, char *argv[]) {
     * Read name of the file
     */
     std::string fileName = argv[2];
+
+    int workload = 1;
+    if(argc < 3) {
+        workload = atoi(argv[3]);
+    }
+    
+    printf("workload: %d\n", workload);
+
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 

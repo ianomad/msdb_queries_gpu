@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 FEB 2016 15:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  15 FEB 2016 16:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -561,65 +561,50 @@ File: images/threadload.png Graphic file (type png)
 Package pdftex.def Info: images/threadload.png used on input line 307.
 (pdftex.def)             Requested size: 252.0pt x 128.126pt.
  [7 <./images/overallarchitecture.png> <./images/threadload.png>]
-Package epstopdf Info: Source file: <images/workload_set_up1.eps>
-(epstopdf)                    date: 2014-10-18 22:41:26
-(epstopdf)                    size: 617458 bytes
-(epstopdf)             Output file: <images/workload_set_up1-eps-converted-to.p
-df>
-(epstopdf)                    date: 2016-01-16 15:01:15
-(epstopdf)                    size: 11015 bytes
-(epstopdf)             Command: <repstopdf --outfile=images/workload_set_up1-ep
-s-converted-to.pdf images/workload_set_up1.eps>
-(epstopdf)             \includegraphics on input line 348.
-Package epstopdf Info: Output file is already uptodate.
 
-<images/workload_set_up1-eps-converted-to.pdf, id=78, 605.26125pt x 462.72874pt
->
-File: images/workload_set_up1-eps-converted-to.pdf Graphic file (type pdf)
- <use images/workload_set_up1-eps-converted-to.pdf>
-Package pdftex.def Info: images/workload_set_up1-eps-converted-to.pdf used on i
-nput line 348.
-(pdftex.def)             Requested size: 249.48138pt x 190.72969pt.
- [8 <./images/workload_set_up1-eps-converted-to.pdf>]
+LaTeX Warning: Reference `fg:workload_set_up' on page 8 undefined on input line
+ 387.
+
+[8]
 
 LaTeX Warning: Reference `fg:speedup838K-select-level' on page 9 undefined on i
-nput line 523.
+nput line 505.
 
 
 LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 9 undefined on i
-nput line 523.
+nput line 505.
 
 
-LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 547
+LaTeX Warning: Reference `fg:speedup838K' on page 9 undefined on input line 529
 .
 
 
-LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 547
+LaTeX Warning: Reference `fg:speedup8.8M' on page 9 undefined on input line 529
 .
 
 
 LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 9 undef
-ined on input line 559.
+ined on input line 541.
 
 
 LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 9 undefin
-ed on input line 567.
+ed on input line 549.
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 604--611
+
+Underfull \hbox (badness 10000) in paragraph at lines 586--593
 
  []
 
-(./paperSource.bbl) [10] (./paperSource.aux)
+(./paperSource.bbl [9]) [10] (./paperSource.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6994 strings out of 493089
- 121446 string characters out of 6134842
+ 6988 strings out of 493089
+ 121206 string characters out of 6134842
  196981 words of memory out of 5000000
- 10357 multiletter control sequences out of 15000+600000
+ 10352 multiletter control sequences out of 15000+600000
  50517 words of font info for 113 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,18n,40p,1971b,368s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -639,10 +624,10 @@ f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
 ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
 urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on paperSource.pdf (10 pages, 528560 bytes).
+Output written on paperSource.pdf (10 pages, 520114 bytes).
 PDF statistics:
- 146 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
+ 136 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
