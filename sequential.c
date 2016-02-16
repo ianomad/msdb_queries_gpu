@@ -53,6 +53,12 @@ int main(int argc, char *argv[]) {
     * Read name of the file
     */
     std::string fileName = argv[2];
+
+    int workload = 1;
+    if(argc > 3) {
+        workload = atoi(argv[3]);
+    }
+
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 
@@ -73,10 +79,7 @@ int main(int argc, char *argv[]) {
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
 
-    while(!stream.eof()) {
-        //read line from file
-        std::getline(stream, line);
-
+    while(std::getline(stream, line)) {
         std::stringstream lineStream(line);
         
         lineStream >> token;
@@ -85,11 +88,9 @@ int main(int argc, char *argv[]) {
 
             std::cout << line << std::endl;
 
-            heads++;
-            std::cout << "Frame #" << heads << " processing. " << std::endl;
-            std::cout << atomCount << " atoms read in previous frame." << std::endl;
-
             if(atomCount > 0) {
+                std::cout << "**********************Frame #" << heads << "*****************" << std::endl;
+                std::cout << atomCount << " atoms read." << std::endl;
                 //here we run sequential
                 //fix the time
                 gettimeofday(&start_time, &i_dunno);
@@ -105,38 +106,39 @@ int main(int argc, char *argv[]) {
                 res->inertiaZ = 0;
                 res->depoleMoment = 0;
 
-                int i, j;
+                int i, j, w;
                 for(i = 0; i < num_buckets; i++) {
                     histogram[i].d_cnt = 0;
                 }
 
-                //one body
-                for(i = 0; i < atomsCnt; i++) {
-                    res->mass += atomsList[i].mass;
-                    res->charge += atomsList[i].charge;
-                    res->inertiaX += atomsList[i].mass * atomsList[i].x;
-                    res->inertiaY += atomsList[i].mass * atomsList[i].y;
-                    res->inertiaZ += atomsList[i].mass * atomsList[i].z;
-                    res->depoleMoment += atomsList[i].charge * atomsList[i].z;
-                }
+                for(w = 0; w < workload; w++) {
+                    //one body
+                    for(i = 0; i < atomsCnt; i++) {
+                        res->mass += atomsList[i].mass;
+                        res->charge += atomsList[i].charge;
+                        res->inertiaX += atomsList[i].mass * atomsList[i].x;
+                        res->inertiaY += atomsList[i].mass * atomsList[i].y;
+                        res->inertiaZ += atomsList[i].mass * atomsList[i].z;
+                        res->depoleMoment += atomsList[i].charge * atomsList[i].z;
+                    }
 
-                //two body
-                for(i = 0; i < atomsCnt; i++) {
-                    float x1 = atomsList[i].x;
-                    float y1 = atomsList[i].y;
-                    float z1 = atomsList[i].z;
+                    //two body
+                    for(i = 0; i < atomsCnt; i++) {
+                        float x1 = atomsList[i].x;
+                        float y1 = atomsList[i].y;
+                        float z1 = atomsList[i].z;
 
-                    for(j = i; j < atomsCnt; j++) {
-                        float x2 = atomsList[j].x;
-                        float y2 = atomsList[j].y;
-                        float z2 = atomsList[j].z;
-                        
-                        double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
-                        int h_pos = (int) (dist / PDH_res);
-                        histogram[h_pos].d_cnt++;
+                        for(j = i; j < atomsCnt; j++) {
+                            float x2 = atomsList[j].x;
+                            float y2 = atomsList[j].y;
+                            float z2 = atomsList[j].z;
+                            
+                            double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
+                            int h_pos = (int) (dist / PDH_res);
+                            histogram[h_pos].d_cnt++;
+                        }
                     }
                 }
-
 
                 float elapsed = time_calc(start_time);
                 printf("%-40s %.3f\n", "Count: ", (float)atomsCnt);
@@ -147,9 +149,10 @@ int main(int argc, char *argv[]) {
                 printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
                 printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
                 printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
-                output_histogram(histogram, num_buckets);
+                //output_histogram(histogram, num_buckets);
             }
 
+            heads++;
             atomCount = 0;
             continue;
         }

@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
         lineStream >> token;
 
         if(token.compare("HEAD") == 0) {
-            if(heads > 0 && atomCount > 0) {
+            if(atomCount > 0) {
                 std::cout << "**********************Frame #" << heads << "*****************" << std::endl;
                 std::cout << atomCount << " atoms read." << std::endl;
                 run_single_kernel(atomsCnt, atomsList, workload);
@@ -112,24 +112,18 @@ int main(int argc, char *argv[]) {
         atomCount++;
     }
 
-    printf("\n\n\nHeads: %d\n", heads);
-    printf("Atom Count: %d\n", atomCount);
+    //printf("\n\n\nHeads: %d\n", heads);
+    //printf("Atom Count: %d\n", atomCount);
     
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
-    printf("Before err! ");
-
     // check for error
     cudaError_t error = cudaGetLastError();
-    if(error != cudaSuccess)
-    {
-        // print the CUDA error message and exit
+    if(error != cudaSuccess) {
         printf("CUDA error: %s\n", cudaGetErrorString(error));
         exit(-1);
     }
-
-    printf("After err! ");
 
 	return 0;
 }
