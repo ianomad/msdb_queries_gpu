@@ -65,20 +65,18 @@ int main(int argc, char *argv[]) {
     while(!stream.eof()) {
         //read line from file
         std::getline(stream, line);
-
         std::stringstream lineStream(line);
         
         lineStream >> token;
+
         if(token.compare("HEAD") == 0) {
             //skip the header
-
             std::cout << line << std::endl;
-
             heads++;
-            std::cout << "Frame #" << heads << " processing. " << std::endl;
-            std::cout << atomCount << " atoms read in previous frame." << std::endl;
 
-            if(atomCount > 0) {
+            if(heads > 0 && atomCount > 0) {
+                std::cout << "Frame #" << heads << " processing. " << std::endl;
+                std::cout << atomCount << " atoms read in previous frame." << std::endl;
                 run_single_kernel(atomsCnt, atomsList, workload);
             }
             
@@ -123,8 +121,6 @@ int main(int argc, char *argv[]) {
     
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
-
-    // run_single_kernel(atoms_cnt, workload);
 
     // check for error
     cudaError_t error = cudaGetLastError();
