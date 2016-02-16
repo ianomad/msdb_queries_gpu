@@ -161,8 +161,6 @@ void output_histogram(bucket* hist, int num_buckets){
 
 void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
 
-    printf("---------GPU-SINGLE-KERNEL---------\n");
-
     int BOX_SIZE = 175;
     int PDH_res = 1;
 
@@ -214,7 +212,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
         grid_size.y = atomsCnt / (block_size.x * maxGridX);
     }
 
-    printf("grid_size.x/y: %d/%d\n", grid_size.x, grid_size.y);
+    printf("Grid Sizes: [%d, %d] \n", grid_size.x, grid_size.y);
 
     //int blockSize = 1024;
     //int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
@@ -268,7 +266,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
     printf("%-40s %.3f\n", "Inertia Z Axis: ", res->inertiaZ);
     printf("%-40s %.3f\n", "Depole Moment Z Axis: ", res->depoleMoment);
     printf("%-40s %.3fmillis\n", "Running time: ", elapsed);
-    output_histogram(histogram, num_buckets);
+    //output_histogram(histogram, num_buckets);
 
 
     /**
