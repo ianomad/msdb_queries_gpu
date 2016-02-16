@@ -119,18 +119,18 @@ int main(int argc, char *argv[]) {
     float elapsed = time_calc(start_time);
     printf("%-40s %.3fmillis\n", "Total Running time: ", elapsed);
 
-    printf("Before err! ");
+    // printf("Before err! ");
     
-    // check for error
-    cudaError_t error = cudaGetLastError();
-    if(error != cudaSuccess)
-    {
-        // print the CUDA error message and exit
-        printf("CUDA error: %s\n", cudaGetErrorString(error));
-        exit(-1);
-    }
+    // // check for error
+    // cudaError_t error = cudaGetLastError();
+    // if(error != cudaSuccess)
+    // {
+    //     // print the CUDA error message and exit
+    //     printf("CUDA error: %s\n", cudaGetErrorString(error));
+    //     exit(-1);
+    // }
 
-    printf("After err! ");
+    // printf("After err! ");
 
 	return 0;
 }
