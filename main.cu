@@ -62,9 +62,8 @@ int main(int argc, char *argv[]) {
 
     gettimeofday(&start_time, &i_dunno);
 
-    while(!stream.eof()) {
+    while(std::getline(stream, line)) {
         //read line from file
-        std::getline(stream, line);
         std::stringstream lineStream(line);
         
         lineStream >> token;
