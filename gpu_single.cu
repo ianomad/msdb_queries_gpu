@@ -7,7 +7,7 @@
 __global__
 void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query_results* g_s_res) {
 
-    extern __shared__ int sdata[];
+    extern __shared__ float sdata[];
     
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
     long index_y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -20,13 +20,6 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
         return;
     }
 
-    //for some reason shared memory is becoming slower
-    // //shared memory structure:
-
-    // //first mass
-    // sdata[tid] = g_s_atom_list[i].mass;
-    // //second charge
-    // sdata[blockDim.x + tid] = g_s_atom_list[i].charge;
 
     // while(i < *g_s_atomsCnt) {
     //     sdata[tid] += g_s_atom_list[i].mass;
@@ -37,20 +30,41 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
     //     __syncthreads();
     // }
 
-    // atomicAdd(&g_s_res->mass, sdata[tid]);
-    // atomicAdd(&g_s_res->charge, sdata[blockDim.x + tid]);
+    float* shared_result = &sdata[0];
 
-    //current atom instance
     atom atomInstance = g_s_atom_list[i];
 
-    atomicAdd(&g_s_res->mass, atomInstance.mass);
-    atomicAdd(&g_s_res->charge, atomInstance.charge);
+    atomicAdd(&shared_result[0], atomInstance.mass);
+    atomicAdd(&shared_result[1], atomInstance.charge);
+    atomicAdd(&shared_result[2], atomInstance.mass * x);
+    atomicAdd(&shared_result[3], atomInstance.mass * y);
+    atomicAdd(&shared_result[4], atomInstance.mass * z);
+    atomicAdd(&shared_result[5], atomInstance.charge * atomInstance.z);
 
-    atomicAdd(&g_s_res->inertiaX, atomInstance.mass * atomInstance.x);
-    atomicAdd(&g_s_res->inertiaY, atomInstance.mass * atomInstance.y);
-    atomicAdd(&g_s_res->inertiaZ, atomInstance.mass * atomInstance.z);
+    __syncthreads();
 
-    atomicAdd(&g_s_res->depoleMoment, atomInstance.charge * atomInstance.z); //Depole on z
+    if(threadIdx.x == 0) {
+        atomicAdd(&g_s_res->mass, shared_result[0]);
+        atomicAdd(&g_s_res->charge, shared_result[1]);
+
+        atomicAdd(&g_s_res->inertiaX, shared_result[2]);
+        atomicAdd(&g_s_res->inertiaY, shared_result[3]);
+        atomicAdd(&g_s_res->inertiaZ, shared_result[4]);
+
+        atomicAdd(&g_s_res->depoleMoment, shared_result[5]);
+    }
+
+    // //current atom instance
+    // atom atomInstance = g_s_atom_list[i];
+
+    // atomicAdd(&g_s_res->mass, atomInstance.mass);
+    // atomicAdd(&g_s_res->charge, atomInstance.charge);
+
+    // atomicAdd(&g_s_res->inertiaX, atomInstance.mass * atomInstance.x);
+    // atomicAdd(&g_s_res->inertiaY, atomInstance.mass * atomInstance.y);
+    // atomicAdd(&g_s_res->inertiaZ, atomInstance.mass * atomInstance.z);
+
+    // atomicAdd(&g_s_res->depoleMoment, atomInstance.charge * atomInstance.z); //Depole on z
 }
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
@@ -242,7 +256,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
         */
         //mass and charge
         //----------------------------------1 BODY KERNEL---------------------------------------------------
-        int smem1 = sizeof(float) * block_size.x * 2; //this is not really used for now
+        int smem1 = sizeof(float) * block_size.x * 10; //this is not really used for now
         gpu_one_body_functions_kernel<<<grid_size, block_size, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
 
         //----------------------------------2 BODY KERNEL---------------------------------------------------
