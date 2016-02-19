@@ -332,16 +332,54 @@ For SDH we the following strategy
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Experimental results}\label{sc:experiments}
+\section{Experiments Results}\label{sc:experiments}
 
-The system was implemented in C++ programming language and tested on
-real molecular simulation data sets. The experiments were carried
-out on an Apple MacPro machine with 8GB of physical memory and two
-Quad-Core Intel Xeon 3GHz processors. The MacPro was running OS X
-Mavericks $10.9.3$ operating system. We have compared the results
-obtained by our system to those obtained by running the analysis
-through GROMACS (v. $4.5.7$). Both systems were analyzing the same
-data sets.
+The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
+
+\emph{\textbf{Hardware stack.}}
+There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory. RAM on the node that we were running has 16GB. The server allocated from Amazon has the following CPU parameters:
+
+\begin{center}
+  \begin{tabular}{ l | l }
+    \hline
+Architecture & x86\_64 \\ \hline
+CPU op-mode(s) & 32-bit, 64-bit \\ \hline
+Byte Order & Little Endian \\ \hline
+CPU(s) & 8 \\ \hline
+On-line CPU(s) list & 0-7 \\ \hline
+Thread(s) per core & 2 \\ \hline
+Core(s) per socket & 4 \\ \hline
+CPU family & 6 \\ \hline
+Model & 45 \\ \hline
+Model name & Intel Xeon E5-2670 2.60GHz \\ \hline
+Stepping & 7 \\ \hline
+CPU MHz & 2593.814 \\ \hline
+L1d cache & 32K \\ \hline
+L1i cache & 32K \\ \hline
+L2 cache & 256K \\ \hline
+L3 cache & 20480K \\ \hline
+NUMA node0 CPU(s) & 0-7 \\ 
+    \hline
+  \end{tabular}
+\end{center}
+
+
+Consequently, we also have GPU device with the following parameters:
+
+\begin{center}
+  \begin{tabular}{ l | l }
+    \hline
+Name & Grid 34C K520 \\ \hline
+Memory & 4095Mib \\ \hline
+Total Nvidia CUDA Cores & 1536 \\ \hline
+
+
+
+
+    \hline
+  \end{tabular}
+\end{center}
+
 
 \emph{\textbf{Data sets.}} In our experiments, six data sets from
 different simulations were used. All simulations were done on a
