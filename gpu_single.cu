@@ -36,9 +36,9 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
 
     atomicAdd(&shared_result[0], atomInstance.mass);
     atomicAdd(&shared_result[1], atomInstance.charge);
-    atomicAdd(&shared_result[2], atomInstance.mass * x);
-    atomicAdd(&shared_result[3], atomInstance.mass * y);
-    atomicAdd(&shared_result[4], atomInstance.mass * z);
+    atomicAdd(&shared_result[2], atomInstance.mass * atomInstance.x);
+    atomicAdd(&shared_result[3], atomInstance.mass * atomInstance.y);
+    atomicAdd(&shared_result[4], atomInstance.mass * atomInstance.z);
     atomicAdd(&shared_result[5], atomInstance.charge * atomInstance.z);
 
     __syncthreads();
