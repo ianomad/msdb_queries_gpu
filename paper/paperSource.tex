@@ -375,35 +375,11 @@ Total GPUs & 2 GK104 GPUs \\
   \end{tabular}
 \end{center}
 
+\emph{\textbf{Data sets.}} As it has already been mentioned, we have developed a small python script that generated data sets that are used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generate a file with appropriate number of atoms/frames and format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simulations, but workloads are a bit trickier. First of all, they give us a bit better understanding of the average value, which might vary on different circumstances related to OS, secondly, once this system is integrated into a distributed system, we can imagine that each frame could be processed by a separate node keeping the values inside of the appropriate memory (global or RAM) and generate responses based on the clients selections requests. This possibility will be elaborated in more details in Future Work section.
 
-\emph{\textbf{Data sets.}} In our experiments, six data sets from
-different simulations were used. All simulations were done on a
-POPC~\footnote{POPC is a chemical compound composed of a
-diacylglycerol and phospholipid. Its full name is
-1-palmitoyl-2-oleoyl-sn-glycero-3-phosphocholine and it is one of
-the most important lipids in bio-physical molecular simulation.}
-lipid bilayer, but were all set to produce data of different sizes
-(i.e., different number of particles in the simulation). Namely, we
-have tested the system on simulations with $52,400$; $209,600$;
-$838,400$; $2.5M$; $4.4M$; and $8.8M$ atoms. Also, since the
-simulations were run separately, they produced six different MS
-systems with distinct characteristics (distinct structure, atom's
-positioning, etc.). From all of the generated data sets we have
-randomly selected sets of $10$, $100$, and $1000$ consecutive frames
-for the purpose of our experiments. This gave us $18$ different
-datasets on which we tested our system.
+\emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores.
 
-\emph{\textbf{Query work load.}} Two types of query workload were
-used: 1) one involving one-body queries only 2) one including
-two-body queries (SDH and RDF) as well. The reason for this is that
-GROMACS, the system we used to compare our system to, only has a
-naive method of solving the RDF (SDH) problem (like almost all MS
-analysis systems). In our system we have incorporated SDH (RDF)
-algorithms that are far more superior to the naive method, and
-comparing the systems like that would not have been fair (we
-believe).
-
-\emph{\textbf{One-body queries only.}} The following set of one-body
+The following set of one-body
 queries were included in the test workload: mean square displacement
 (msd), radius of gyration, dipole moment, center of mass, velocity
 autocorrelation, electron density, mass density, and charge density.
@@ -420,10 +396,27 @@ have $12 x 6 x 3 x 6 = 1,296$ different workload setups to test the
 system on. Fig.~\ref{fg:workload_set_up} shows the organization of
 the workload setup.
 
+\begin{figure}
+ \centerline{ \includegraphics[width=1.0\columnwidth]{images/chart_1000}}
+ \caption{Speedup for 1000 atoms}
+ \label{fg:chart_1000}
+\end{figure}
+
+\begin{figure}
+ \centerline{\includegraphics[width=1.0\columnwidth]{images/chart_10000}}
+ \caption{Speedup for 10000 atoms}
+ \label{fg:chart_10000}
+\end{figure}
+
+\begin{figure}
+ \centerline{\includegraphics[width=1.0\columnwidth]{images/chart_max}}
+ \caption{Speedup for larger number of atoms}
+ \label{fg:chart_max}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Benchmark}
-
 Through extensive collaboration with a research group from the
 Physics department at USF, we have come up with a benchmark that can
 be used for testing the efficiency of an analysis system for
@@ -490,42 +483,6 @@ Workload size parameters:
 By changing these parameters, we can produce a versatile testing
 benchmark for MS analysis systems.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{comment}
-
-\begin{figure}
- \centerline{ \includegraphics[width=columnwidth]{images/speedup10frames52K.eps} }
- \caption{Showing speedup for different workload}
- \label{fg:results2-10frames}
-\end{figure}
-
-\begin{figure}
- \centerline{ \includegraphics[width=columnwidth]{images/speedup100frames52K.eps} }
- \caption{Showing speedup for different workload}
- \label{fg:results2-100frames}
-\end{figure}
-
-\begin{figure}
- \centerline{ \includegraphics[width=columnwidth]{images/speedup10frames209K.eps} }
- \caption{Showing speedup for different workload}
- \label{fg:results3-10frames}
-\end{figure}
-
-\begin{figure}
- \centerline{ \includegraphics[width=columnwidth]{images/speedup100frames209K.eps} }
- \caption{Showing speedup for different workload}
- \label{fg:results3-100frames}
-\end{figure}
-
-\end{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-
-
-%\begin{figure}
-% \centerline{ \includegraphics[width=.8\columnwidth]{images/speedup10frames4.2M.eps} }
-% \caption{Showing speedup for different workload}
-% \label{fg:results5-10frames}
-%\end{figure}
 
 \subsection{Results} We have run extensive experiments over all the
 different setups of workload mentioned previously in this section.

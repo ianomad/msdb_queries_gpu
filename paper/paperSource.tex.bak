@@ -340,75 +340,47 @@ The framework has been developed in a programming language CUDA, and the sequent
 There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory. RAM on the node that we were running has 16GB. The server allocated from Amazon has the following CPU parameters:
 
 \begin{center}
-  \begin{tabular}{ l | l }
-    \hline
-Architecture & x86\_64 \\ \hline
-CPU op-mode(s) & 32-bit, 64-bit \\ \hline
-Byte Order & Little Endian \\ \hline
-CPU(s) & 8 \\ \hline
-On-line CPU(s) list & 0-7 \\ \hline
-Thread(s) per core & 2 \\ \hline
-Core(s) per socket & 4 \\ \hline
-CPU family & 6 \\ \hline
-Model & 45 \\ \hline
-Model name & Intel Xeon E5-2670 2.60GHz \\ \hline
-Stepping & 7 \\ \hline
-CPU MHz & 2593.814 \\ \hline
-L1d cache & 32K \\ \hline
-L1i cache & 32K \\ \hline
-L2 cache & 256K \\ \hline
-L3 cache & 20480K \\ \hline
+  \begin{tabular}{ l  l }
+     
+Architecture & x86\_64 \\  
+CPU op-mode(s) & 32-bit, 64-bit \\  
+Byte Order & Little Endian \\  
+CPU(s) & 8 \\  
+On-line CPU(s) list & 0-7 \\  
+Thread(s) per core & 2 \\  
+Core(s) per socket & 4 \\  
+CPU family & 6 \\  
+Model & 45 \\  
+Model name & Intel Xeon E5-2670 2.60GHz \\  
+Stepping & 7 \\  
+CPU MHz & 2593.814 \\  
+L1d cache & 32K \\  
+L1i cache & 32K \\  
+L2 cache & 256K \\  
+L3 cache & 20480K \\  
 NUMA node0 CPU(s) & 0-7 \\ 
-    \hline
+     
   \end{tabular}
 \end{center}
 
-
-Consequently, we also have GPU device with the following parameters:
+The same CPU has been used for sequential as well as for improved GPU version during experiments with benchmarks. Just to mentioned, CPU in improved version is used in-between memory loading from file and uploading it to GPU, printing the results to the user, which is not big load. Consequently, we also have GPU device with the following parameters:
 
 \begin{center}
-  \begin{tabular}{ l | l }
-    \hline
-Name & Grid 34C K520 \\ \hline
-Memory & 4095Mib \\ \hline
-Total Nvidia CUDA Cores & 1536 \\ \hline
-
-
-
-
-    \hline
+  \begin{tabular}{ l l }
+Name & Grid 34C K520 \\
+Memory & 4095Mib \\ 
+Total Nvidia CUDA Cores & 1536 \\ 
+Memory Size & 8 GB GDDR5 (4 GB/GPU) \\
+Total GPUs & 2 GK104 GPUs \\
   \end{tabular}
 \end{center}
 
+\emph{\textbf{Data sets.}} As it has already been mentioned, we have developed a small python script that generated data sets that used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generated a file with appropriate number of atoms/frames and appropriate format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simul
 
-\emph{\textbf{Data sets.}} In our experiments, six data sets from
-different simulations were used. All simulations were done on a
-POPC~\footnote{POPC is a chemical compound composed of a
-diacylglycerol and phospholipid. Its full name is
-1-palmitoyl-2-oleoyl-sn-glycero-3-phosphocholine and it is one of
-the most important lipids in bio-physical molecular simulation.}
-lipid bilayer, but were all set to produce data of different sizes
-(i.e., different number of particles in the simulation). Namely, we
-have tested the system on simulations with $52,400$; $209,600$;
-$838,400$; $2.5M$; $4.4M$; and $8.8M$ atoms. Also, since the
-simulations were run separately, they produced six different MS
-systems with distinct characteristics (distinct structure, atom's
-positioning, etc.). From all of the generated data sets we have
-randomly selected sets of $10$, $100$, and $1000$ consecutive frames
-for the purpose of our experiments. This gave us $18$ different
-datasets on which we tested our system.
+\emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree with proximity based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity. 
 
-\emph{\textbf{Query work load.}} Two types of query workload were
-used: 1) one involving one-body queries only 2) one including
-two-body queries (SDH and RDF) as well. The reason for this is that
-GROMACS, the system we used to compare our system to, only has a
-naive method of solving the RDF (SDH) problem (like almost all MS
-analysis systems). In our system we have incorporated SDH (RDF)
-algorithms that are far more superior to the naive method, and
-comparing the systems like that would not have been fair (we
-believe).
 
-\emph{\textbf{One-body queries only.}} The following set of one-body
+The following set of one-body
 queries were included in the test workload: mean square displacement
 (msd), radius of gyration, dipole moment, center of mass, velocity
 autocorrelation, electron density, mass density, and charge density.
@@ -424,6 +396,24 @@ essentially just magnifying the workload intensity. In total, we
 have $12 x 6 x 3 x 6 = 1,296$ different workload setups to test the
 system on. Fig.~\ref{fg:workload_set_up} shows the organization of
 the workload setup.
+
+\begin{figure}
+ \centerline{ \includegraphics[width=1.0\columnwidth]{images/chart_1000}}
+ \caption{Speedup for 1000 atoms}
+ \label{fg:chart_1000}
+\end{figure}
+
+\begin{figure}
+ \centerline{\includegraphics[width=1.0\columnwidth]{images/chart_10000}}
+ \caption{Speedup for 10000 atoms}
+ \label{fg:chart_10000}
+\end{figure}
+
+\begin{figure}
+ \centerline{\includegraphics[width=1.0\columnwidth]{images/chart_max}}
+ \caption{Speedup for larger number of atoms}
+ \label{fg:chart_max}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
