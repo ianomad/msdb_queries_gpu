@@ -377,24 +377,13 @@ Total GPUs & 2 GK104 GPUs \\
 
 \emph{\textbf{Data sets.}} As it has already been mentioned, we have developed a small python script that generated data sets that are used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generate a file with appropriate number of atoms/frames and format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simulations, but workloads are a bit trickier. First of all, they give us a bit better understanding of the average value, which might vary on different circumstances related to OS, secondly, once this system is integrated into a distributed system, we can imagine that each frame could be processed by a separate node keeping the values inside of the appropriate memory (global or RAM) and generate responses based on the clients selections requests. This possibility will be elaborated in more details in Future Work section.
 
-\emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores.
+\emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores. More improvements can be done for acceleration of this approach, but in the system we have not gone too far with data converter module, because initial framework has to be simple and user friendly.
 
-The following set of one-body
-queries were included in the test workload: mean square displacement
-(msd), radius of gyration, dipole moment, center of mass, velocity
-autocorrelation, electron density, mass density, and charge density.
-This set of queries were pointed to us, by a group in the physics
-field with extensive MS background, as one of the most commonly used
-in the field of collagen bilayer MS system analysis. A workload
-group contains all $8$ queries executed on one of the $12$
-selections, making $12$ groups. Such groups are executed on six
-different size data sets, with $10$, $100$ and $1000$ frames. This
-workload is then repeated $5$ more times, by executing each of the
-queries in the groups $5$, $10$, $25$, $50$, and $100$ times,
-essentially just magnifying the workload intensity. In total, we
-have $12 x 6 x 3 x 6 = 1,296$ different workload setups to test the
-system on. Fig.~\ref{fg:workload_set_up} shows the organization of
-the workload setup.
+\subsection{Results}
+Results are nicely represented, in general, on Figures \ref{fg:chart_1000}, \ref{fg:chart_10000} \ref{fg:chart_max}. You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is the following. There is a small overhead we have to consider before computing part. In order to let GPU process the data, we have to transfer the data to Global Memory, and upon finish we have to load the results back to RAM. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
+
+\emph{\textbf{10000 atoms.}}
+As you can see, speedup bumps up to almost 30 with 10000 atoms (Figure \ref{fg:chart_10000}). Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too.
 
 \begin{figure}
  \centerline{ \includegraphics[width=1.0\columnwidth]{images/chart_1000}}
@@ -413,142 +402,6 @@ the workload setup.
  \caption{Speedup for larger number of atoms}
  \label{fg:chart_max}
 \end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Benchmark}
-Through extensive collaboration with a research group from the
-Physics department at USF, we have come up with a benchmark that can
-be used for testing the efficiency of an analysis system for
-molecular simulations. The benchmark consist of three essential
-parts: 1. Simulation data produced by an MS, 2. Queries that are to
-be executed onto that data in order to produce some information of
-interest, and 3.Benchmark parameters that control the size of the
-benchmark.
-
-
-\subsubsection{Benchmark Data}
-The data used in the benchmark was real molecular simulation data,
-produced through the GROMACS MS system. The initial, pre-simulation
-data file consisted of $200$ POPC and $12000$ solvent molecules, or
-$12200$ molecules in total. This type of system was used because it
-is sufficiently diverse, containing enough distinct POPC and solvent
-molecules (e.g., each POPC molecule includes approximately $52$
-different atoms) and yet simple enough to be easily transformed into
-another system of different size. By using the $genconf$ function in
-GROMACS, we produced pre-simulation files of different sizes
-(essentially by changing the system's size (box)). $Six$ different
-sized pre-simulation files were created. A molecular simulation was
-then run on these $6$ files, each producing an MS system of certain
-size (volume/number of particles). All of the simulations were set
-up to produce $1000$ frames (snapshots in time of the systems), each
-frame containing the same number of particles as the base one. The
-produced files contained: $52,400$; $209,600$; $838,400$; $2.5M$;
-$4.4M$; and $8.8M$ atoms per frame. So, for example, the file with
-$52,000$ atoms holds $52,000,000$ records in total ($1000$ frames,
-each containing $52,000$ records). As mentioned earlier, this
-simulation data comes mostly in binary formats and in trajectory
-files having a lot of unneeded overhead. Therefore, it was
-transformed to a data arrays files containing only crucial
-information of the particles and the system. The size of the files
-ranged from $135MB$ for $52,000$ atoms to $24GB$ for $8.8$ million
-atoms (this is for data with $100$ frames).
-
-%Fig.~\ref{fg:dataformat} represents the organization/structure of
-%these files.
-
-\subsubsection{Benchmark Queries}
-The queries selected to be included in this benchmark were derived
-through a thorough observation of the way an MS system is being
-analyzed. They were found to be the base of the analysis of many MS
-systems. In other words, no mater how small or big the analysis was,
-these queries were included in that analysis. As mentioned earlier,
-they are of two types: one-body (and algebraic) and two-boy (and
-holistic). Table~\ref{tb:queries} shows these queries.
-
-
-\subsubsection{Benchmark Parameters} There are several parameters
-that can be used to control the overall size of the system. We divide the parameters into two groups:\\
-Data size parameters:
-\begin{itemize}
-\item[-]Select different sized dataset
-\item[-]Number of frames
-\item[-]Data selection (within the selected dataset) onto which the queries are being executed
-\end{itemize}
-Workload size parameters:
-\begin{itemize}
-\item[-]Number of queries to be executed
-\item[-]Number of times each query is executed
-\end{itemize}
-By changing these parameters, we can produce a versatile testing
-benchmark for MS analysis systems.
-
-
-\subsection{Results} We have run extensive experiments over all the
-different setups of workload mentioned previously in this section.
-However, in this paper we present only the workload setups of $4$
-data size sets: $838,400$, $2.5M$, $4.2M$, and $8.8M$ atoms because
-we believe they convey enough information about the efficiency of
-our system compared to that of the Gromacs system. The running times
-of our push-based system were compared to those of the Gromacs
-system. The first set of figures, namely
-Figures~\ref{fg:speedup838K-select-level}-\ref{fg:speedup8.8M-select-level},
-represent the speedup that our system obtains over the Gromacs
-system with various atoms selection levels. We define the selection
-levels based on the number of comparisons we have to make in order
-to extract the needed group(selection) of atoms. For example, if we
-want to do analysis on all molecules containing oxygen, or hydrogen,
-or carbon we would go over each molecule and compare its components
-to the selection list. The bigger the selection list, the higher the
-select level in our system. For better visualization, we note three
-different selection levels: high (at least $10$ comparisons made),
-medium (between $1$ and $10$ comparisons made), and low select level
-(with one or less comparisons made). As seen in the figures, for
-high selection level, the speedup is smaller compared to that
-achieved in low select levels. The reason for this, we believe is in
-that the amount of time our system spends extracting the atoms group
-increases with the level of selection. Even though our system still
-shows considerable speedup over Gromacs in high level selections, we
-do believe there is room for improvement in our system and that is
-our immediate future work we are planning on doing. These figures
-also show the relation of the speedup to the workload intensity,
-i.e., the higher the workload intensity the higher the speedup.
-
-The connection between the workload intensity and the speedup is
-better represented in the next set of figures,
-Figures~\ref{fg:speedup838K}-\ref{fg:speedup8.8M}. They show the
-speedup our system achieves over the Gromacs system on a varying
-workload intensity. Each of those figures show the speedup with
-different dataset sizes (e.g., $838,000$, $2,567,600$ atoms, etc.),
-including $10$, $100$, and $1000$ data frames. The speedup is
-calculated simply as a ratio between the running time of our system
-on a certain set of workload and that of the Gromacs system on the
-same workload. These figures show that the speedup over varying
-workload intensity achieved by our system ranges anywhere from about
-$10$ to $1000$ times, depending on the size of the dataset, number
-of frames and the selection of the atoms.
-
-Figure~\ref{fg:speedup-average-over-all-workload}, shows the speedup
-our system achieves over all workload intensity (average workload
-intensity) with varying dataset sizes. It is clear that, again our
-system has better performance than the Gromacs system. The speedup
-presented in this set of figures ranges anywhere from about $15$ to
-$650$ times.
-
-
-The last figure, Figure~\ref{fg:speedup-average-workload-select},
-shows the speedup our system achieves over all workload intensity
-and all select levels with varying dataset sizes. This figure, in a
-way, summarizes the previous two sets of figures, bringing together
-the workload and the different selections through the average. It is
-clear that, again our system has better performance than the Gromacs
-system. The speedup ranges anywhere from $50$ to $250$.
-
-All four sets of figures show that such push-based design has clear
-advantages over the pull-based type of design incorporated in the
-Gromacs system.
-
-
 
 \section{Conclusions and Future Work}\label{sc:conclusion}
 The objective of our work is to design and implement improved data
@@ -581,17 +434,6 @@ of improving the algorithmic part, but it can also be in the
 direction of improving the data presentation/organization we have
 used in the system.\\
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\noindent{\bf Acknowledgements:} The project described was supported
-by an Award (R01GM086707) from the National Institute Of General
-Medical Sciences (NIGMS) at the National Institutes of Health (NIH).
-The authors would like to thank Anand Kumar who has contributed his
-time and knowledge toward completion of the work.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{IEEEtran}

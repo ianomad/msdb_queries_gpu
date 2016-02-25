@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 FEB 2016 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 FEB 2016 22:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -560,98 +560,67 @@ File: images/threadload.png Graphic file (type png)
 <use images/threadload.png>
 Package pdftex.def Info: images/threadload.png used on input line 307.
 (pdftex.def)             Requested size: 252.0pt x 128.126pt.
- [7 <./images/overallarchitecture.png> <./images/threadload.png>]
-
-LaTeX Warning: Reference `fg:workload_set_up' on page 8 undefined on input line
- 396.
-
-<images/chart_1000.png, id=78, 602.25pt x 372.39125pt>
+ [7 <./images/overallarchitecture.png> <./images/threadload.png>] [8] <images/c
+hart_1000.png, id=81, 602.25pt x 372.39125pt>
 File: images/chart_1000.png Graphic file (type png)
 
 <use images/chart_1000.png>
-Package pdftex.def Info: images/chart_1000.png used on input line 400.
+Package pdftex.def Info: images/chart_1000.png used on input line 389.
 (pdftex.def)             Requested size: 252.0pt x 155.81798pt.
 
-<images/chart_10000.png, id=79, 438.63875pt x 271.0125pt>
+<images/chart_10000.png, id=82, 438.63875pt x 271.0125pt>
 File: images/chart_10000.png Graphic file (type png)
 
 <use images/chart_10000.png>
-Package pdftex.def Info: images/chart_10000.png used on input line 406.
+Package pdftex.def Info: images/chart_10000.png used on input line 395.
 (pdftex.def)             Requested size: 252.0pt x 155.69864pt.
 
-<images/chart_max.png, id=80, 553.06625pt x 370.38374pt>
+<images/chart_max.png, id=83, 553.06625pt x 370.38374pt>
 File: images/chart_max.png Graphic file (type png)
 
 <use images/chart_max.png>
-Package pdftex.def Info: images/chart_max.png used on input line 412.
+Package pdftex.def Info: images/chart_max.png used on input line 401.
 (pdftex.def)             Requested size: 252.0pt x 168.76222pt.
- [8]
 
-LaTeX Warning: Reference `fg:speedup838K-select-level' on page 9 undefined on i
-nput line 495.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-LaTeX Warning: Reference `fg:speedup8.8M-select-level' on page 9 undefined on i
-nput line 495.
-
-[9 <./images/chart_1000.png> <./images/chart_10000.png> <./images/chart_max.png
->]
-
-LaTeX Warning: Reference `fg:speedup838K' on page 10 undefined on input line 51
-9.
-
-
-LaTeX Warning: Reference `fg:speedup8.8M' on page 10 undefined on input line 51
-9.
-
-
-LaTeX Warning: Reference `fg:speedup-average-over-all-workload' on page 10 unde
-fined on input line 531.
-
-
-LaTeX Warning: Reference `fg:speedup-average-workload-select' on page 10 undefi
-ned on input line 539.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 576--583
+Underfull \hbox (badness 10000) in paragraph at lines 429--436
 
  []
 
-(./paperSource.bbl [10]) [11
+(./paperSource.bbl [9 <./images/chart_1000.png> <./images/chart_10000.png> <./i
+mages/chart_max.png>]) [10
 
-] (./paperSource.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./paperSource.aux) ) 
 Here is how much of TeX's memory you used:
- 7010 strings out of 493089
- 121680 string characters out of 6134842
+ 7002 strings out of 493089
+ 121490 string characters out of 6134842
  196981 words of memory out of 5000000
- 10371 multiletter control sequences out of 15000+600000
- 50517 words of font info for 113 fonts, out of 8000000 for 9000
+ 10364 multiletter control sequences out of 15000+600000
+ 49410 words of font info for 112 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,18n,40p,1971b,368s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fon
-ts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
-urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on paperSource.pdf (11 pages, 558676 bytes).
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base
+/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex
+10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/
+cmex7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
+sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
+r/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
+local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/f
+onts/type1/urw/times/utmri8a.pfb>
+Output written on paperSource.pdf (10 pages, 550573 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 93 compressed objects within 1 object stream
+ 142 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
