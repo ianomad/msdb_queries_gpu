@@ -405,17 +405,10 @@ Fortunately, scientific data is much bigger than above examples. You can see ave
  \label{fg:chart_max}
 \end{figure}
 
+It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. It is because we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+
 \section{Conclusions and Future Work}\label{sc:conclusion}
-
-The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts (Figure \ref{fg:chart_1000)}
-
-One direction of our future work will be to further improve our
-push-based design. Through the extensive experiments we have learned
-that our design can be improved when the atom selection clause
-involves many conditions. This improvement may be in the direction
-of improving the algorithmic part, but it can also be in the
-direction of improving the data presentation/organization we have
-used in the system.\\
+The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts (Figure \ref{fg:chart_1000}, \ref{fg:chart_max}), the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
