@@ -278,7 +278,7 @@ Since we assume that our framework should be easily used by a scientist doing MS
 \emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
 \emph{\textbf{One-body queries kernel}}.
-Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} nicely represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
+Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
 
 \emph{\textbf{Two-body queries kernel}}.
 SDH (or RDF) is the algorithm that requires special treatment in our design. The point, as mentioned earlier, is that this function requires more than one iteration of the given set of atoms, but rather all combinations of pairs in a given frame, thus, it is not linear complexity. An implementation of this type of query might be very non-intuitive because of the nature of GPUs. Another issue is that since to take an advantage on this type of computation, before writing an implementation for it, a user must have a good understanding of GPU architecture which makes the system less user-friendly. At this point, it is more important to achieve good performance improvement results and then take care of ease of system extensions. As we already mentioned, GPU threads execute in parallel and consume certain amount of work followed by best try of all hardware capacities utilization, but, unfortunately, it is also important to take care of equal workload for every thread independently, so, that utilization is kept high. For this reason, we've come up with a solution that should increase performance of the computation which will be described later.
@@ -380,7 +380,7 @@ Total GPUs & 2 GK104 GPUs \\
 \emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores. More improvements can be done for acceleration of this approach, but in the system we have not gone too far with data converter module, because initial framework has to be simple and user friendly.
 
 \subsection{Results}
-Results are nicely represented, in general, on Figures \ref{fg:chart_1000}, \ref{fg:chart_10000} \ref{fg:chart_max}. You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is the following. There is a small overhead we have to consider before computing part. In order to let GPU process the data, we have to transfer the data to Global Memory, and upon finish we have to load the results back to RAM. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
+Results are represented, in general, on Figures \ref{fg:chart_1000}, \ref{fg:chart_10000} \ref{fg:chart_max}. You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
 
 \emph{\textbf{10000 atoms.}}
 As you can see, speedup bumps up to almost 30 with 10000 atoms (Figure \ref{fg:chart_10000}). Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too.
@@ -397,42 +397,18 @@ As you can see, speedup bumps up to almost 30 with 10000 atoms (Figure \ref{fg:c
  \label{fg:chart_10000}
 \end{figure}
 
+Fortunately, scientific data is much bigger than above examples. You can see average speedup for bigger number of atoms on Figure \ref{fg:chart_max}. The speedup gets upto 70 times which could save huge amount of time for scientists. These results are not the best, as it has been already mentioned earlier, since we have not modified general structure of memory being transferred to Global Memory not taking advantage of coalesced memory access to make it easily extendable. 
+
 \begin{figure}
  \centerline{\includegraphics[width=1.0\columnwidth]{images/chart_max}}
  \caption{Speedup for larger number of atoms}
  \label{fg:chart_max}
 \end{figure}
 
-\section{Conclusions and Future Work}\label{sc:conclusion}
-The objective of our work is to design and implement improved data
-analysis system that can be used in the field of molecular
-simulation system's analysis. In this paper, we introduce the idea
-for such system. We build our system on a push-based type design,
-where data from data arrays is being pushed onto available queries
-in the system. These queries are being executed on the pushed data
-and produce intermediate / final result that would be used as part
-of the data analysis. We are able to achieve an improvement over
-existing, pull-based type designs because of the I/O overhead such
-designs introduce when dealing with large volumes of scientific
-data. Also, our queries are able to be executed on the same stream
-of data, making it suitable solution for streaming circumstances. We
-designed a benchmark that can be used to test data analysis systems.
-This benchmark comprises of three parts: 1)benchmark data,
-2)benchmark queries, and 3) benchmark parameters. We use this
-benchmark to compare our system to one of the most frequently used
-MS analysis systems, Gromacs. The efficiency and speedup achieved by
-our system is supported by extensive experiments and their results.
-The results show that our push-based design achieves up to about
-$1000$ times speedup in comparison to a pull-based design, i.e.,
-Gromacs.
+It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. It is because we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
 
-One direction of our future work will be to further improve our
-push-based design. Through the extensive experiments we have learned
-that our design can be improved when the atom selection clause
-involves many conditions. This improvement may be in the direction
-of improving the algorithmic part, but it can also be in the
-direction of improving the data presentation/organization we have
-used in the system.\\
+\section{Conclusions and Future Work}\label{sc:conclusion}
+The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts (Figure \ref{fg:chart_1000}, \ref{fg:chart_max}), the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
