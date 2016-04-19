@@ -1,0 +1,6 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Problem Statement}{3}{section.1.1}
+\contentsline {section}{\numberline {1.2}Our approach with improvement}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Contribution and roadmap of the paper}{5}{section.1.3}
+\contentsline {chapter}{\numberline {2}Related Work}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Network of Queries}{7}{section.2.1}

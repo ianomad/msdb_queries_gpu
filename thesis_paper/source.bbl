@@ -1,0 +1,82 @@
+\begin{thebibliography}{10}
+
+\bibitem{mainPaper}
+{Vladimir Grupcev, Yicheng Tu {\it et. al.}}
+\newblock Push-based system for molecular simulation data analysis.
+\newblock 2015.
+
+\bibitem{nature_bigdata08}
+Doug~Howe et~al.
+\newblock Big data: The future of biocuration.
+\newblock {\em Nature}, 455:47--50, 2008.
+
+\bibitem{nature_bigdata12}
+B.~Huberman.
+\newblock Sociology of science: Big data deserve a bigger audience.
+\newblock {\em Nature}, 482:308, 2012.
+
+\bibitem{science_social10}
+D.~Centola.
+\newblock The spread of behavior in an online social network experiment.
+\newblock {\em Science}, 329:1194--1197, 2010.
+
+\bibitem{jcs_twitter11}
+Johan Bollen, Huina Mao, and Xiao-Jun Zeng.
+\newblock Twitter mood predicts the stock market.
+\newblock {\em Journal of Computational Science}, 2:1--8, 2011.
+
+\bibitem{Frenkel:api01}
+{Daan Frenkel {\it et. al.}}
+\newblock {\em Understanding Molecular Simulation: From Algorithms to
+  Applications}, volume~1.
+\newblock Academic Press, Inc., 2nd edition, 2001.
+
+\bibitem{Landau:cup05}
+{David Landau {\it et. al.}}
+\newblock {\em A Guide to Monte Carlo Simulations in Statistical Physics}.
+\newblock Cambridge University Press, 2005.
+
+\bibitem{Gromacs-online}
+{Gromacs group}.
+\newblock {GROMACS - Online Reference}.
+
+\bibitem{DataPath}
+{Subi Arumugam and Alin Dobra and Christopher Jermaine and Niketan Pansare and
+  Luis Perez}.
+\newblock The datapath system: A data-centric analytical procesing engine for
+  large data warehouses.
+\newblock {\em SIGMOD}, 1:519--530, 2010.
+
+\bibitem{Volcano}
+{Goetz Graefe}.
+\newblock Volcano - an extensible and parallel query evaluation system.
+\newblock {\em TKDE}, 6:120--135, 1994.
+
+\bibitem{Qpipe}
+{Stavros Harizopoulos and Vladislav Shkapenyuk and Anastassia Ailamaki}.
+\newblock Qpipe: A simultaneously pipelined relational query engine.
+\newblock {\em SIGMOD}, pages 383--394, 2005.
+
+\bibitem{Candea}
+{Gorge Candea and Neoklis Polyzotis and Radek Vingralek}.
+\newblock A scalable, predictable join operator fo highly concurrent data
+  warehouses.
+\newblock {\em VLDB}, pages 277--288, 2009.
+
+\bibitem{PredictablePerformance}
+{P Unterbrunner and G Giannikis and G Alonso and D Fauser and D Kossmann}.
+\newblock Predictable performance for unpredictable workloads.
+\newblock {\em VLDB}, 2:706--717, 2009.
+
+\bibitem{CooperativeScans}
+{Marcin Zukowski and Sandor Heman and Niels Nes and Peter Boncz}.
+\newblock Cooperative scans: Dynamic bandwidth sharing in dbms.
+\newblock {\em VLDB}, pages 723--734, 2007.
+
+\bibitem{mainArticle}
+{Vladimir Grupcev, Yicheng Tu, Meryem Berrada {\it et. al.}}
+\newblock Dcms: A data analytics and management system for molecular
+  simulation.
+\newblock 2014.
+
+\end{thebibliography}

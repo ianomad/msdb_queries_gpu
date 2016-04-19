@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: source.aux
+The style file: unsrt.bst
+Database file #1: references.bib.bib
+I was expecting a `,' or a `}'---line 210 of file references.bib.bib
+ : 
+ : @inproceedings{he:sigmod08,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 358 of file references.bib.bib
+ : @book{Frenkel:api01
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 367 of file references.bib.bib
+ : @book{Landau:cup05
+ :                   ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 590 of file references.bib.bib
+ :   
+ :   volume    = {32},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 708 of file references.bib.bib
+ :   
+ :   title={{Amazon GPU Instances}},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 744 of file references.bib.bib
+ :   
+ :   title = {Computing Spatial Distance Histograms for Large Scientific Datasets On-the-Fly},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 750 of file references.bib.bib
+ :   
+ :   title = {Optimizing Parallel Reduction in CUDA},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty journal in mainPaper
+Warning--empty journal in mainArticle
+You've used 15 entries,
+            1791 wiz_defined-function locations,
+            535 strings with 5530 characters,
+and the built_in function-call counts, 3017 in all, are:
+= -- 282
+> -- 67
+< -- 4
++ -- 32
+- -- 17
+* -- 146
+:= -- 467
+add.period$ -- 44
+call.type$ -- 15
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 158
+empty$ -- 325
+format.name$ -- 17
+if$ -- 704
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 16
+newline$ -- 77
+num.names$ -- 15
+pop$ -- 43
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 83
+stack$ -- 0
+substring$ -- 207
+swap$ -- 41
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 28
+width$ -- 17
+write$ -- 159
+(There were 7 error messages)
