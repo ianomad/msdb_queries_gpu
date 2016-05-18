@@ -18,6 +18,7 @@
 \providecommand\HyField@AuxAddToCoFields[2]{}
 \citation{mainPaper}
 \citation{mainPaper,nature_bigdata08,nature_bigdata12,science_social10,jcs_twitter11}
+\citation{fbStats}
 \@writefile{toc}{\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -45,14 +46,28 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Problem Statement}{3}{section.1.1}}
 \citation{mainPaper}
 \citation{mainPaper}
-\citation{mainPaper}
-\citation{amazonGPU}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces  Speed up over different levels of atom selection for 838,400 atoms \cite  {mainPaper}\relax }}{4}{figure.caption.3}}
 \newlabel{fg:sample_estimation_old_paper}{{1.2}{4}{Speed up over different levels of atom selection for 838,400 atoms \cite {mainPaper}\relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Our approach with improvement}{4}{section.1.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces  Example of atom mapping with kernels\relax }}{5}{figure.caption.4}}
-\newlabel{fg:kernelatom}{{1.3}{5}{Example of atom mapping with kernels\relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Contribution and roadmap of the paper}{5}{section.1.3}}
+\citation{mainPaper}
+\citation{mainPaper}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces  Example of atom mapping with kernels\relax }}{6}{figure.caption.4}}
+\newlabel{fg:kernelatom}{{1.3}{6}{Example of atom mapping with kernels\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Contribution and roadmap of the paper}{6}{section.1.3}}
+\citation{mainPaper}
+\citation{amazonGPU}
+\citation{PeriScope}
+\citation{SciDB}
+\citation{borealis}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Related Work}{9}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sc:relatedwork}{{2}{9}{Related Work}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Scientific software}{9}{section.2.1}}
+\citation{hadoop}
+\citation{hadoopgpu}
+\citation{spark}
+\citation{flink}
 \citation{DataPath,Volcano,Qpipe}
 \citation{DataStreamManagement}
 \citation{DataStreamManagement}
@@ -62,33 +77,98 @@
 \citation{PeriScope}
 \citation{SciDB}
 \citation{SDSS_SIGMOD02,QBISM_ICDE94}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Stream processing}{10}{section.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Big Data Frameworks}{10}{section.2.3}}
 \citation{hadoop}
 \citation{hadoopgpu}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Related Work}{6}{chapter.2}}
+\citation{mainPaper}
+\citation{mainPaper}
+\citation{sdhgpu}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Network of Queries}{12}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{sc:relatedwork}{{2}{6}{Related Work}{chapter.2}{}}
+\newlabel{sc:querynetwork}{{3}{12}{Network of Queries}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}One body functions}{12}{section.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Multiple body functions}{12}{section.3.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {3.1}{\ignorespaces Table caption text}}{13}{table.caption.5}}
+\newlabel{tb:queries}{{3.1}{13}{Table caption text}{table.caption.5}{}}
 \citation{mainPaper}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}The system design}{14}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sc:system}{{4}{14}{The system design}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Data input}{14}{section.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Data flow in the improved design of push-based system for MS analysis\relax }}{15}{figure.caption.6}}
+\newlabel{fg:data-flow}{{4.1}{15}{Data flow in the improved design of push-based system for MS analysis\relax }{figure.caption.6}{}}
+\citation{gpureduction}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Data flow architecture}{16}{section.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Network of queries organization}{16}{section.4.3}}
+\citation{gpureduction}
+\citation{gpureduction}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Array reduction example\cite  {gpureduction}\relax }}{18}{figure.caption.7}}
+\newlabel{fg:reduction}{{4.2}{18}{Array reduction example\cite {gpureduction}\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Overall system architecture\relax }}{19}{figure.caption.8}}
+\newlabel{fg:overallarchitecture}{{4.3}{19}{Overall system architecture\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces SDH thread loading\relax }}{19}{figure.caption.9}}
+\newlabel{fg:threadload}{{4.4}{19}{SDH thread loading\relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}One-body kernel}{20}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Two-body kernel}{20}{subsection.4.3.2}}
 \citation{mainPaper}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Network of Queries}{7}{section.2.1}}
-\newlabel{sc:querynetwork}{{2.1}{7}{Network of Queries}{section.2.1}{}}
-\citation{sdhgpu}
-\bibstyle{unsrt}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Experiments Results}{21}{chapter.5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sc:experiments}{{5}{21}{Experiments Results}{chapter.5}{}}
+\citation{mainPaper}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Results}{22}{section.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Speedup for 1000 atoms\relax }}{23}{figure.caption.10}}
+\newlabel{fg:chart_1000}{{5.1}{23}{Speedup for 1000 atoms\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Speedup for 10000 atoms\relax }}{23}{figure.caption.11}}
+\newlabel{fg:chart_10000}{{5.2}{23}{Speedup for 10000 atoms\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Speedup for larger number of atoms\relax }}{24}{figure.caption.12}}
+\newlabel{fg:chart_max}{{5.3}{24}{Speedup for larger number of atoms\relax }{figure.caption.12}{}}
+\bibstyle{IEEEtran}
 \bibdata{references.bib}
-\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces Table caption text}}{8}{table.caption.5}}
-\newlabel{tb:queries}{{2.1}{8}{Table caption text}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Conclusions and Future Work}{25}{chapter.6}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{sc:conclusion}{{6}{25}{Conclusions and Future Work}{chapter.6}{}}
 \bibcite{mainPaper}{1}
 \bibcite{nature_bigdata08}{2}
 \bibcite{nature_bigdata12}{3}
 \bibcite{science_social10}{4}
 \bibcite{jcs_twitter11}{5}
-\bibcite{Frenkel:api01}{6}
-\bibcite{Landau:cup05}{7}
-\bibcite{Gromacs-online}{8}
-\bibcite{DataPath}{9}
-\bibcite{Volcano}{10}
-\bibcite{Qpipe}{11}
-\bibcite{Candea}{12}
-\bibcite{PredictablePerformance}{13}
-\bibcite{CooperativeScans}{14}
-\bibcite{mainArticle}{15}
+\bibcite{fbStats}{6}
+\bibcite{Frenkel:api01}{7}
+\bibcite{Landau:cup05}{8}
+\bibcite{Gromacs-online}{9}
+\bibcite{DataPath}{10}
+\bibcite{Volcano}{11}
+\bibcite{Qpipe}{12}
+\bibcite{Candea}{13}
+\bibcite{PredictablePerformance}{14}
+\bibcite{CooperativeScans}{15}
+\bibcite{mainArticle}{16}
+\bibcite{GROMACS4}{17}
+\bibcite{VMD}{18}
+\bibcite{MDAnalysis}{19}
+\bibcite{wordom}{20}
+\bibcite{MDtracks}{21}
+\bibcite{Simulaid}{22}
+\bibcite{CHARMM}{23}
+\bibcite{ytu:icde09}{24}
+\bibcite{EDBT12}{25}
+\bibcite{amazonGPU}{26}
+\bibcite{PeriScope}{27}
+\bibcite{SciDB}{28}
+\bibcite{borealis}{29}
+\bibcite{hadoop}{30}
+\bibcite{hadoopgpu}{31}
+\bibcite{spark}{32}
+\bibcite{flink}{33}
+\bibcite{DataStreamManagement}{34}
+\bibcite{medusa}{35}
+\bibcite{aurora}{36}
+\bibcite{SDSS_SIGMOD02}{37}
+\bibcite{QBISM_ICDE94}{38}
+\bibcite{sdhgpu}{39}
+\bibcite{gpureduction}{40}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  19 APR 2016 12:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  17 MAY 2016 20:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -681,25 +681,25 @@ Package geometry Warning: Over-specification in `v'-direction.
 (./source.aux)
 \openout1 = `source.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 38.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-LaTeX Info: Redefining \microtypecontext on input line 37.
+LaTeX Info: Redefining \microtypecontext on input line 38.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -744,12 +744,12 @@ e
 \makeMPintoPDFobject=\count135
 \everyMPtoPDFconversion=\toks32
 ) ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 37.
+LaTeX Info: Redefining \selectfont on input line 38.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 37.
+Package hyperref Info: Link coloring ON on input line 38.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -759,9 +759,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count136
 )
-LaTeX Info: Redefining \ref on input line 37.
-LaTeX Info: Redefining \pageref on input line 37.
-LaTeX Info: Redefining \nameref on input line 37.
+LaTeX Info: Redefining \ref on input line 38.
+LaTeX Info: Redefining \pageref on input line 38.
+LaTeX Info: Redefining \nameref on input line 38.
 
 (./source.out) (./source.out)
 \@outlinefile=\write3
@@ -802,7 +802,7 @@ LaTeX Info: Redefining \nameref on input line 37.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for T1+phv on input line 48.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 49.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
@@ -810,13 +810,13 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 91.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 92.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 91.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
@@ -853,7 +853,7 @@ LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10.95> not available
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 103.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 104.
  [2
 
 
@@ -861,9 +861,9 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 124.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 125.
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
 |\T1/ptm/b/n/17.28 Contents|
  []
 
@@ -902,13 +902,13 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 2.
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.135 \end{abstract}
+l.136 \end{abstract}
                      [1
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--140
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
  |[]\T1/ptm/b/n/17.28 Introduction|
  []
 
@@ -916,193 +916,204 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.163 
+l.164 
        [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.174 
+l.175 
        [2]
 Package epstopdf Info: Source file: <images/sample_snapshot_of_simulation.eps>
-(epstopdf)                    date: 2016-01-23 18:14:14
+(epstopdf)                    date: 2016-01-23 15:14:14
 (epstopdf)                    size: 1485626 bytes
 (epstopdf)             Output file: <images/sample_snapshot_of_simulation-eps-c
 onverted-to.pdf>
-(epstopdf)                    date: 2016-01-23 18:16:51
+(epstopdf)                    date: 2016-01-23 15:16:51
 (epstopdf)                    size: 224747 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/sample_snapshot_of_
 simulation-eps-converted-to.pdf images/sample_snapshot_of_simulation.eps>
-(epstopdf)             \includegraphics on input line 178.
+(epstopdf)             \includegraphics on input line 179.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=89, 568.1225pt x
- 364.36125pt>
+<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=161, 568.1225pt 
+x 364.36125pt>
 File: images/sample_snapshot_of_simulation-eps-converted-to.pdf Graphic file (t
 ype pdf)
  <use images/sample_snapshot_of_simulation-eps-converted-to.pdf>
 Package pdftex.def Info: images/sample_snapshot_of_simulation-eps-converted-to.
-pdf used on input line 178.
+pdf used on input line 179.
 (pdftex.def)             Requested size: 241.84843pt x 155.11pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 184.
-
-
-LaTeX Warning: Citation `GROMACS4' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `VMD' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `MDAnalysis' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `wordom' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `MDtracks' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `Simulaid' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `CHARMM' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `ytu:icde09' on page 3 undefined on input line 185.
-
-
-LaTeX Warning: Citation `EDBT12' on page 3 undefined on input line 185.
-
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 185.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.186 
+l.187 
        [3 <./images/sample_snapshot_of_simulation-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <images/speedup838K-pomalo-za-4.eps>
-(epstopdf)                    date: 2015-03-21 23:47:20
+(epstopdf)                    date: 2015-03-21 20:47:20
 (epstopdf)                    size: 296803 bytes
 (epstopdf)             Output file: <images/speedup838K-pomalo-za-4-eps-convert
 ed-to.pdf>
-(epstopdf)                    date: 2016-01-16 18:01:16
+(epstopdf)                    date: 2016-01-16 15:01:16
 (epstopdf)                    size: 11464 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/speedup838K-pomalo-
 za-4-eps-converted-to.pdf images/speedup838K-pomalo-za-4.eps>
-(epstopdf)             \includegraphics on input line 188.
+(epstopdf)             \includegraphics on input line 189.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=106, 403.5075pt x 187.
+<images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=196, 403.5075pt x 187.
 70125pt>
 File: images/speedup838K-pomalo-za-4-eps-converted-to.pdf Graphic file (type pd
 f)
  <use images/speedup838K-pomalo-za-4-eps-converted-to.pdf>
 Package pdftex.def Info: images/speedup838K-pomalo-za-4-eps-converted-to.pdf us
-ed on input line 188.
+ed on input line 189.
 (pdftex.def)             Requested size: 241.84843pt x 112.50133pt.
-Package epstopdf Info: Source file: <images/kernelatom.eps>
-(epstopdf)                    date: 2016-01-31 23:13:54
-(epstopdf)                    size: 1929502 bytes
-(epstopdf)             Output file: <images/kernelatom-eps-converted-to.pdf>
-(epstopdf)                    date: 2016-01-31 23:14:04
-(epstopdf)                    size: 24618 bytes
-(epstopdf)             Command: <repstopdf --outfile=images/kernelatom-eps-conv
-erted-to.pdf images/kernelatom.eps>
-(epstopdf)             \includegraphics on input line 208.
-Package epstopdf Info: Output file is already uptodate.
-
-<images/kernelatom-eps-converted-to.pdf, id=110, 343.2825pt x 219.82124pt>
-File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
-
-<use images/kernelatom-eps-converted-to.pdf>
-Package pdftex.def Info: images/kernelatom-eps-converted-to.pdf used on input l
-ine 208.
-(pdftex.def)             Requested size: 241.84843pt x 154.86665pt.
-
-
-LaTeX Warning: Citation `amazonGPU' on page 4 undefined on input line 218.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.220 
-       [4 <./images/speedup838K-pomalo-za-4-eps-converted-to.pdf>] [5 <./images
-/kernelatom-eps-converted-to.pdf>]
+l.199 
+       [4 <./images/speedup838K-pomalo-za-4-eps-converted-to.pdf>] [5]
+Package epstopdf Info: Source file: <images/kernelatom.eps>
+(epstopdf)                    date: 2016-01-31 20:13:54
+(epstopdf)                    size: 1929502 bytes
+(epstopdf)             Output file: <images/kernelatom-eps-converted-to.pdf>
+(epstopdf)                    date: 2016-01-31 20:14:04
+(epstopdf)                    size: 24618 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/kernelatom-eps-conv
+erted-to.pdf images/kernelatom.eps>
+(epstopdf)             \includegraphics on input line 215.
+Package epstopdf Info: Output file is already uptodate.
+
+<images/kernelatom-eps-converted-to.pdf, id=218, 343.2825pt x 219.82124pt>
+File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
+
+<use images/kernelatom-eps-converted-to.pdf>
+Package pdftex.def Info: images/kernelatom-eps-converted-to.pdf used on input l
+ine 215.
+(pdftex.def)             Requested size: 241.84843pt x 154.86665pt.
+ [6 <./images/kernelatom-eps-converted-to.pdf>] [7] [8]
 Chapter 2.
+[9
 
-LaTeX Warning: Citation `DataStreamManagement' on page 6 undefined on input lin
-e 228.
-
-
-LaTeX Warning: Citation `DataStreamManagement' on page 6 undefined on input lin
-e 230.
-
-
-LaTeX Warning: Citation `borealis' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `medusa' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `aurora' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `PeriScope' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `SciDB' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `SDSS_SIGMOD02' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `QBISM_ICDE94' on page 6 undefined on input line 230.
-
-
-LaTeX Warning: Citation `hadoop' on page 6 undefined on input line 232.
-
-
-LaTeX Warning: Citation `hadoopgpu' on page 6 undefined on input line 232.
-
-[6
-
-]
+] [10] [11]
+Chapter 3.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 292.
-[7]
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 324.
+[12
 
-LaTeX Warning: Citation `sdhgpu' on page 8 undefined on input line 294.
+] [13]
+Chapter 4.
+Package epstopdf Info: Source file: <images/memory-organization.eps>
+(epstopdf)                    date: 2016-02-06 23:37:44
+(epstopdf)                    size: 2109506 bytes
+(epstopdf)             Output file: <images/memory-organization-eps-converted-t
+o.pdf>
+(epstopdf)                    date: 2016-02-06 23:38:31
+(epstopdf)                    size: 20575 bytes
+(epstopdf)             Command: <repstopdf --outfile=images/memory-organization
+-eps-converted-to.pdf images/memory-organization.eps>
+(epstopdf)             \includegraphics on input line 339.
+Package epstopdf Info: Output file is already uptodate.
 
-(./source.bbl [8] [9
+<images/memory-organization-eps-converted-to.pdf, id=315, 334.24875pt x 473.77p
+t>
+File: images/memory-organization-eps-converted-to.pdf Graphic file (type pdf)
+ <use images/memory-organization-eps-converted-to.pdf>
+Package pdftex.def Info: images/memory-organization-eps-converted-to.pdf used o
+n input line 339.
+(pdftex.def)             Requested size: 314.40001pt x 445.66917pt.
+ [14
 
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 302.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 302.
+] [15 <./images/memory-organization-eps-converted-to.pdf>] [16]
+<images/reduction.png, id=349, 228.855pt x 168.63pt>
+File: images/reduction.png Graphic file (type png)
+
+<use images/reduction.png>
+Package pdftex.def Info: images/reduction.png used on input line 369.
+(pdftex.def)             Requested size: 314.40001pt x 231.67268pt.
+
+<images/overallarchitecture.png, id=353, 334.24875pt x 532.99126pt>
+File: images/overallarchitecture.png Graphic file (type png)
+
+<use images/overallarchitecture.png>
+Package pdftex.def Info: images/overallarchitecture.png used on input line 375.
+
+(pdftex.def)             Requested size: 314.40001pt x 501.37784pt.
+ [17]
+<images/threadload.png, id=364, 416.55624pt x 211.79124pt>
+File: images/threadload.png Graphic file (type png)
+
+<use images/threadload.png>
+Package pdftex.def Info: images/threadload.png used on input line 389.
+(pdftex.def)             Requested size: 241.84843pt x 122.96504pt.
+ [18 <./images/reduction.png>] [19 <./images/overallarchitecture.png> <./images
+/threadload.png>]
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 400.
+ [20]
+Chapter 5.
+[21
+
+] [22] <images/chart_1000.png, id=400, 602.25pt x 372.39125pt>
+File: images/chart_1000.png Graphic file (type png)
+
+<use images/chart_1000.png>
+Package pdftex.def Info: images/chart_1000.png used on input line 471.
+(pdftex.def)             Requested size: 241.84843pt x 149.5448pt.
+
+<images/chart_10000.png, id=401, 438.63875pt x 271.0125pt>
+File: images/chart_10000.png Graphic file (type png)
+
+<use images/chart_10000.png>
+Package pdftex.def Info: images/chart_10000.png used on input line 477.
+(pdftex.def)             Requested size: 241.84843pt x 149.4295pt.
+
+<images/chart_max.png, id=403, 553.06625pt x 370.38374pt>
+File: images/chart_max.png Graphic file (type png)
+
+<use images/chart_max.png>
+Package pdftex.def Info: images/chart_max.png used on input line 485.
+(pdftex.def)             Requested size: 241.84843pt x 161.96336pt.
+ [23 <./images/chart_1000.png> <./images/chart_10000.png>] [24 <./images/chart_
+max.png>]
+Chapter 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
+
+ []
+
+(./source.bbl [25
+
+] [26
+
+] [27])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 499.
+ [28]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 499.
  (./source.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 302.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 302.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 499.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 499.
 Package rerunfilecheck Info: File `source.out' has not changed.
-(rerunfilecheck)             Checksum: 05D4166883368B091BD030241727F1B9;379.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 302.
+(rerunfilecheck)             Checksum: 188B4851EC3DB0147F9A9EBA918A8E57;1263.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 499.
  ) 
 Here is how much of TeX's memory you used:
- 12475 strings out of 493089
- 198164 string characters out of 6134842
- 347591 words of memory out of 5000000
- 15576 multiletter control sequences out of 15000+600000
- 41671 words of font info for 143 fonts, out of 8000000 for 9000
+ 12715 strings out of 493089
+ 201657 string characters out of 6134842
+ 345591 words of memory out of 5000000
+ 15681 multiletter control sequences out of 15000+600000
+ 59278 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,19n,44p,1980b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,19n,44p,2489b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local
@@ -1119,10 +1130,10 @@ t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on source.pdf (15 pages, 437106 bytes).
+Output written on source.pdf (33 pages, 585569 bytes).
 PDF statistics:
- 241 PDF objects out of 1000 (max. 8388607)
- 196 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 17472 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 523 PDF objects out of 1000 (max. 8388607)
+ 441 compressed objects within 5 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 26323 words of extra memory for PDF output out of 29859 (max. 10000000)
 
