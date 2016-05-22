@@ -28,11 +28,16 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 left=20mm,right=20mm,
 bindingoffset=0mm, top=15mm,bottom=35mm}
 
-\linespread{1.5}
+\linespread{2}
 
-\titleformat{\chapter}
-{\normalfont\LARGE\bfseries}{\thechapter.}{1em}{}
 
+\titleformat{\chapter}[display]
+        {\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
+        
+\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\renewcommand{\listtablename}{LIST OF TABLES}
+\renewcommand{\abstractname}{ABSTRACT}
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
 
 \begin{document}
@@ -122,10 +127,20 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \clearpage
 \restoregeometry
 
+\linespread{1}
+
 \tableofcontents
 
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\addcontentsline{toc}{chapter}{\listtablename} 
+\listoftables
+
+\linespread{2}
 \clearpage
 
+\addcontentsline{toc}{chapter}{\abstractname} 
 \begin{abstract}
 \justify
 \hspace{3em} Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on traditional disk random I/O framework while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. Besides it, indexing will also cause delay during write operations and since most of the queries work with the entire data sets, indexing loses its point.
@@ -177,7 +192,7 @@ In this paper, we are incorporating parallelization into the processing part of 
 
 \begin{figure}
  \centerline{ \includegraphics[width=0.5\columnwidth]{images/sample_snapshot_of_simulation.eps} }
- \caption{ Snapshots of two MS systems: a collagen fiber structure with 890,000 atoms (top) and a dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system with 402,400 atoms (bottom) \cite{mainArticle}}
+ \caption{ Snapshots of two MS systems with 890,000 atoms with 402,400 atoms}
  \label{fg:collagen_dipal}
 \end{figure}
 
@@ -187,7 +202,7 @@ Simulation software systems, in general, follow the same methodology of running 
 
 \begin{figure}
  \centerline{ \includegraphics[width=0.5\columnwidth]{images/speedup838K-pomalo-za-4.eps} }
- \caption{ Speed up over different levels of atom selection for 838,400 atoms \cite{mainPaper}}
+ \caption{ Speed up over different levels of atom selection for 838,400 atoms}
  \label{fg:sample_estimation_old_paper}
 \end{figure}
 
@@ -250,11 +265,13 @@ Push-based System for molecular simulation data analysis with its improved GPU f
 First of all, this system is a tool for scientific computation and in this case particularly for molecular simulation data analysis. PeriScope is a project and initiative by University of Michigan which is a system that will optimize data management for scientific explorations. Relational Database Management Systems were created to optimize business applications and it was revolutionary. Those couldn't be built without these systems with abstract languages like SQL, since it manipulates and automatically takes use of indexes, etc. PeriScope is a project that tries to come up with same approach against scientific data and computation with respectively larger scale.\cite{PeriScope} It is kind of difficult to compare our proposed system with PeriScope, but the original motivation is very similar: optimize scientific computation. PeriScope is a larger project directed towards more abstract solution like RDBMs that would work for any type of data. Another existing tool for scientific data and optimized processing is SciDB. It was created to make scientific data storage and querying better and faster. It is very similar to traditional RDBMS systems in terms of querying language and represent data storage in tables, but states to be faster than Postgres in 2 orders of magnitude. Some of the main features is distributed processing with atomicity and durability (the latter is quite difficult for large scale data), while the disadvantages are no-overwriting (only append mode), single value columns only (no arrays, etc), where records are like simple tuples with join function on querying multiple tables \cite{SciDB}. One of the major differences between Push-based Molecular simulation data analysis tool and the projects above is that our proposed design doesn't do anything with storing the data, because we are mainly concentrating it as a side plugin for processing and querying data in an optimized way, while the actual data generation and storage will be done with the actual simulation software.
 
 \section{Stream processing}
-Another major modern issue is live data streaming and live processing, which is also possible with our system. Basically, streaming function is a big challenge and need nowadays, because such networks as Twitter and Facebook are able to keep track of live trends and events, including people's reaction and feedback that have to be reflected real time for tremendous amount of users across the globe. Borealis Stream Processing Software is a tool being developed by MIT, Brown, and Brandeis Universities. It's primary goal is a distributed stream processing and based on Medusa and Aurora. Some of the major functions of the software are highly available distributed large streams processing live, dynamic and highly-scalable with possibility of changing queries live and dynamic vision of query results. \cite{borealis} There is also a similar need in scientific world, since being able to keep track of results in real time might be crucial to be able to make certain explorations.
+Another major modern issue is live data streaming and live processing, which is also possible with our system. Basically, streaming function is a big challenge and need nowadays, because such networks as Twitter and Facebook are able to keep track of live trends and events, including people's reaction and feedback that have to be reflected real time for tremendous amount of users across the globe. Borealis Stream Processing Software is a tool being developed by MIT, Brown, and Brandeis Universities. It's primary goal is a distributed stream processing and based on Medusa and Aurora. Some of the major functions of the software are highly available distributed large streams processing live, dynamic and highly-scalable with possibility of changing queries live and dynamic vision of query results. \cite{borealis} There is also a similar need in scientific world, since being able to keep track of results in real time might be crucial to be able to make certain explorations. 
+
+As a plugin for optimizing computation of scientific queries against large data sets being produced, Push-based System for Molecular Simulation Data Analysis with GPU improvement should be able to handle data streams as well, in order to get real time results and saving up on time, instead of pulling everything from files later on.
 
 \section{Big Data Frameworks}
 
-We are potentially dealing with data that could easily get up to terabytes and petabytes in sizes, and it will be fair to apply term of big data. Nowadays there are bunch of frameworks that try to solve this problem. Some of these frameworks are Hadoop \cite{hadoop}, Hadoop with GPU extension \cite{hadoopgpu}, Spark \cite{spark}, Flink \cite{flink} (this is more of a big data stream processing framework). The mentioned tools help dealing with big data giving an ability to process them in batches on clusters using underlying HDFS (Highly Distributed File System), and normally go along with other utilities that help to apply MapReduce concept.
+We are potentially dealing with data that could easily get up to terabytes and petabytes in sizes, and it will be fair to apply term of big data. Traditional software tools are not able to process Big Data apparently because of huge data sets, thus, special frameworks were developed to handle them. Nowadays there are bunch of frameworks that try to solve this problem. Some of these frameworks are Hadoop \cite{hadoop}, Hadoop with GPU extension \cite{hadoopgpu}, Spark \cite{spark}, Flink \cite{flink} (this is more of a big data stream processing framework) and other ones that are possibly just custom modifications and distributions of these. The mentioned tools help dealing with big data giving an ability to process them in batches on clusters using underlying HDFS (Highly Distributed File System), and normally go along with other utilities that help to apply MapReduce concept. The relationship between our system and this concept along with its implementations is in data sets sizes. Even though we are not using or introducing any non-traditional file systems, in certain scale and problems it could be required, too. In fact, the frameworks listed above could even be used for our problem on top of our system, because, as we discuss in section \ref{sc:conclusion}, it could be extended to a distributed system for analyzing independent frames in parallel. 
 
 Push-based system for MS data analysis is primarily proposing an idea of pushing chunks of data through a network of queries. Essentially, this has also been proposed, as mentioned already, by other frameworks \cite{DataPath,Volcano,Qpipe}. In other words, the major point is to use common data loaded into memory for execution of concurrent queries, which is supposed to eliminate I/O overhead predominantly. The architecture and explanation of DSMS (Data Stream Management System) versus DBMS is well explained in one of the lectures of Morgan and Claypool \cite{DataStreamManagement}. It is very important to capture the differences and specialties of DSMS in network architecture, stream models and windows, scheduling, load balancing, approximation, data expiration, etc, because of the fact that data flow design is the key that required all of those changes to common designs.
 
@@ -272,12 +289,17 @@ In previous work, there has already been developed a network of queries widely u
 
 
 \begin{table}[h]
-\resizebox{\columnwidth}{!}{\begin{minipage}{\columnwidth}
+\centering
+\resizebox{\columnwidth}{!}
+{
+\begin{minipage}{\columnwidth}
+\centering
 \renewcommand*{\arraystretch}{1.5}
 \tabcolsep=0.12cm
 \begin{tabular}{|c| c|}
 \hline %inserts horizontal line
-Function Name & Equation/Description \\[0.5ex] \hline
+Function Name & Equation/Description \\[0.5ex] 
+\hline
 Moment of Inertia & $\begin{array} {lcl} I & = & \sum\limits_{i=1}^n m_ir_i \end{array}$ \\[0.5ex]
 \hline
 Moment of Inertia on z axis & $\begin{array} {lcl} I_z & = & \sum\limits_{i=1}^n m_ir_{zi} \end{array}$ \\[0.5ex]
@@ -313,9 +335,12 @@ SDH & Histogram of all distances \\[0.5ex]
 RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdot \sigma_r \cdot \rho} \end{array}$ \\[0.5ex]
 \hline
 \end{tabular}
-\caption[Table caption text]{Popular analytical queries in MS\cite{mainPaper} }
+\caption[Popular analytical queries in MS]{Popular analytical queries in MS }
 \label{tb:queries}
-\end{minipage} }
+
+\end{minipage}
+
+}
 \end{table}
 
 In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
@@ -367,7 +392,7 @@ SDH (or RDF) is the algorithm that requires special treatment in our design. The
 
 \begin{figure}
  \centerline{ \includegraphics[width=0.65\columnwidth]{images/reduction} }
- \caption{Array reduction example\cite{gpureduction}}
+ \caption{GPU array reduction algorithm sample representation}
  \label{fg:reduction}
 \end{figure}
 
