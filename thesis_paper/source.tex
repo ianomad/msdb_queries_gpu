@@ -30,7 +30,6 @@ bindingoffset=0mm, top=15mm,bottom=35mm}
 
 \linespread{2}
 
-
 \titleformat{\chapter}[display]
         {\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
         
@@ -38,6 +37,38 @@ bindingoffset=0mm, top=15mm,bottom=35mm}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
 \renewcommand{\listtablename}{LIST OF TABLES}
 \renewcommand{\abstractname}{ABSTRACT}
+
+% Make chapter titles uppercase is a pain.
+% The internal chapter macros must be redefined.
+\makeatletter
+\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
+                    \thispagestyle{plain}%
+                    \global\@topnum\z@
+                    \@afterindentfalse
+                    \secdef\@chapter\@schapter}
+\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                       \if@mainmatter
+                         \refstepcounter{chapter}%
+                         \typeout{\@chapapp\space\thechapter.}%
+                         \addcontentsline{toc}{chapter}%
+                         {\protect\numberline{\thechapter}\texorpdfstring{\MakeUppercase{#1}}{#1}}%
+                       \else
+                       \addcontentsline{toc}{chapter}{\texorpdfstring{\MakeUppercase{#1}}{#1}}%
+                       \fi
+                    \else
+                    \addcontentsline{toc}{chapter}{\texorpdfstring{\MakeUppercase{#1}}{#1}}%
+                    \fi
+                    \chaptermark{#1}%
+                    \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                    \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                    \if@twocolumn
+                      \@topnewpage[\@makechapterhead{#2}]%
+                    \else
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                    \fi}
+\makeatother
+
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
 
 \begin{document}
@@ -273,19 +304,23 @@ As a plugin for optimizing computation of scientific queries against large data 
 
 We are potentially dealing with data that could easily get up to terabytes and petabytes in sizes, and it will be fair to apply term of big data. Traditional software tools are not able to process Big Data apparently because of huge data sets, thus, special frameworks were developed to handle them. Nowadays there are bunch of frameworks that try to solve this problem. Some of these frameworks are Hadoop \cite{hadoop}, Hadoop with GPU extension \cite{hadoopgpu}, Spark \cite{spark}, Flink \cite{flink} (this is more of a big data stream processing framework) and other ones that are possibly just custom modifications and distributions of these. The mentioned tools help dealing with big data giving an ability to process them in batches on clusters using underlying HDFS (Highly Distributed File System), and normally go along with other utilities that help to apply MapReduce concept. The relationship between our system and this concept along with its implementations is in data sets sizes. Even though we are not using or introducing any non-traditional file systems, in certain scale and problems it could be required, too. In fact, the frameworks listed above could even be used for our problem on top of our system, because, as we discuss in section \ref{sc:conclusion}, it could be extended to a distributed system for analyzing independent frames in parallel. 
 
+\section{GPU and Big Data Processing}
+GPU is becoming more popular being used by not only graphics processing, but machine learning, deep learning, search algorithms, sorting, and so on. Having an ability to optimize in tremendous speedups it is being involved in video classifications, natural language processing. Particularly about distributed processing and GPU applications along with it, there has been made some overview and research on what is the current state for common solutions in industry. "There were a lot of custom GPU-Hadoop frameworks after the launch of Mars project. These include C-MR, SteamMR, GPMR, Grex, Panda, Shredder and many others. However, most of these frameworks are no longer supported and were developed for some particular scientific projects. Therefore, a Monte Carlo simulation framework can be hardly applied for a bioinformatics project (say) based on the other algorithms. Moreover, processor technologies are evolving very rapidly. Many new revolutionary architectures have been developed for Sony PlayStation 4, Mali GPU by ARM, Adapteva Multicore Microprocessor etc. Both Mali GPU and Adapteva will be compatible with OpenCL. Xeon Phi co-processor works with OpenCL too, which was launched by INTEL. It has an x86-like architecture and is a 60 core co-processor that supports the PCI Express standard. It consumes just 300watts of energy and provides by giving a performance of 1 TFLOPS in double precision. Tianhe-2 which is the most powerful supercomputer till date implements this co-processor. Though, it is very difficult determine which Processor Computing framework architecture will more robust and high
+performance." \cite{hadoopgpu}
+
 Push-based system for MS data analysis is primarily proposing an idea of pushing chunks of data through a network of queries. Essentially, this has also been proposed, as mentioned already, by other frameworks \cite{DataPath,Volcano,Qpipe}. In other words, the major point is to use common data loaded into memory for execution of concurrent queries, which is supposed to eliminate I/O overhead predominantly. The architecture and explanation of DSMS (Data Stream Management System) versus DBMS is well explained in one of the lectures of Morgan and Claypool \cite{DataStreamManagement}. It is very important to capture the differences and specialties of DSMS in network architecture, stream models and windows, scheduling, load balancing, approximation, data expiration, etc, because of the fact that data flow design is the key that required all of those changes to common designs.
 
-Since dealing with data is very delicate in this kind of engines, there are couple of features and requirements that this architecture is applicable to, in order to avoid inappropriate understanding or application of this approach in systems that were covered in the lectures\cite{DataStreamManagement}. The data is volatile and not persistent anymore because of obvious sizes of data.  Since we are pulling the data as little times as possible taking into consideration that MS data is only appended and not modified, the access is sequential rather than random. There are concepts of framing and windowing, and memory is limited in streaming engine, while in DBMS secondary storage is considered to be unlimited. Obviously, because of all of these features or requirements to data, the streaming engine frameworks have some limitations like going back into the history of data, since it is volatile. In fact, this has also been tried by Borealis Streaming Engine \cite{borealis}. On top of the fact that it is a streaming engine, as it was built based on Medusa\cite{medusa} and Aurora\cite{aurora}, it proposes distributed processing at this point having some features to handle errors and look back in the history. In our case, it is primarily a single data source, since it is based on the simulation, though in the future the simulation software systems might introduce distributed computing, too. It is also important to mention such projects as PeriScope\cite{PeriScope}, SciDB\cite{SciDB}, and other\cite{SDSS_SIGMOD02,QBISM_ICDE94}, since they target scientific data, which is a lot more different, than usual industry customer oriented data.
+Since dealing with data is very delicate in this kind of engines, there are couple of features and requirements that this architecture is applicable to, in order to avoid inappropriate understanding or application of this approach in systems that were covered in the lectures\cite{DataStreamManagement}. The data is volatile and not persistent anymore because of obvious sizes of data.  Since we are pulling the data as little times as possible taking into consideration that MS data is only appended and not modified, the access is sequential rather than random. There are concepts of framing and windowing, and memory is limited in streaming engine, while in DBMS secondary storage is considered to be unlimited. Obviously, because of all of these features or requirements to data, the streaming engine frameworks have some limitations like going back into the history of data, since it is volatile. In fact, this has also been tried by Borealis Streaming Engine \cite{borealis}. On top of the fact that it is a streaming engine, as it was built based on Medusa\cite{medusa} and Aurora\cite{aurora}, it proposes distributed processing at this point having some features to handle errors and look back in the history. In our case, it is primarily a single data source, since it is based on the simulation, though in the future the simulation software systems might introduce distributed computing, too. 
 
 This version of Push-based System of MS data analysis is primarily about taking an advantage of GPU processing of the data. Hadoop is a well-known and well-used framework by many companies nowadays\cite{hadoop}. Its purpose is an ability to store and serve large scale data across clusters in a timely fashion. Since usage of GPU of massive data (not only related to graphics processing) is a relatively new concept, there is also an improved version of Hadoop MapReduce Framework with GPU\cite{hadoopgpu}. Having an ability to scale it up in a distributed computing environment is probably one of the best approaches, but again it might be a bigger overhead in terms of costs, since keeping all nodes up and still being able to solve specific problem sets with hardware stack of a lower capacity raise a will to explore more. Having a specific software for simulation like Gromacs, apparently there is also a possibility of taking an advantage of GPUs. For example, Gromacs allows to optimize simulation and query tools by adding configurations based on GPU device located on the processing computer. Unfortunately, even with this feature, Gromacs doesn't follow push-based approach which means that improvement with GPU with pull data per query makes it negligible.
 
 Gromacs generate output files with physical properties description for each atom in each frame. Modern CPUs do great job in terms of caching and computing, but obviously in this particular problem massive monolithic computation is needed, thus, GPU devices are perfect candidates for such a problem following SIMD type of computation. To be more exact, for example, a single kernel in a GPU device could be dedicated to a single atom (this relationship might change depending on the query, but this is to understand the scale and relationship of multiprocessors), and since we have scientific data of MS, the data is appended, which means that we will only move forward and not take an advantage of caching on chunks high level (though we might take an advantage of GPU caching features particularly in processing phase) having multiple workloads per chunk. Just to make it more clear, workloads in this particular case represent transactions based on number of clients. For example, if we were to serve it all in a streaming fashion, 100 clients might demand concurrent queries with different slight selection properties and expect their results, each workload might be dedicated to each client if not aggregated. Thus, the performance of GPU is certainly increasing based on workload too, which might benefit considerably.
 
 
-\chapter{Network of Queries}\label{sc:querynetwork}
-Having generated big amount of data in large files, now scientists need to get useful information out of it by means of analysis utilities. Often times, the queries that need to be run over the data look like selection and some kind of accumulation, if it is not more complicated. To be more exact, in this section we will try to summarize common set of queries we will be improving. 
+\chapter{Benchmark scientific queries}\label{sc:querynetwork}
+Having generated big amount of data in large files, now scientists need to get useful information out of it by means of analysis utilities. Often times, the queries that need to be run over the data look like selection and some kind of accumulation, if it is not more complicated. To be more exact, in this section we will try to summarize common set of queries that were already introduced in the previous work of Push-Based System for Molecular Simulation Data Analysis \cite{mainPaper}. 
 
-In previous work, there has already been developed a network of queries widely used by scientists for MS systems. In Table~\ref{tb:queries} you may observe the common set of queries that has been developed. Basically, these are the queries that need to be improved with our new approach of parallelism. Just to mention, $n$, $r_i$, $m_i$, $c_i$ and $q_i$ denote number of particles, coordinates (vector form), mass, charge, and number of electrons of a particle $i$.
+In previous work, there has already been developed a network of queries widely used by scientists for MS systems. In Table~\ref{tb:queries} you may observe the common set of queries that has been developed. Basically, these are the queries that need to be improved with our new approach of parallelism. Respectively, $n$, $r_i$, $m_i$, $c_i$ and $q_i$ denote number of particles, coordinates (vector form), mass, charge, and number of electrons of a particle $i$.
 
 
 \begin{table}[h]
@@ -343,15 +378,19 @@ RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdo
 }
 \end{table}
 
-In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
+The queries that we consider are related to computations limited within one frame of a molecular simulation. In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
 
 \section{One body functions}
-\emph{\textbf{One body functions}} such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough, and taking into consideration the fact that we are going with push-based system, it is done at the same time for all of them. 
+\emph{\textbf{One body functions}} such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough, and taking into consideration the fact that we are going with push-based system, it is done at the same time for all of them.
+
+As you can see in the given table, most of them are basically based on primitive summation or other basic mathematical operations, in our experiments in further sections we will be running result on single precision values or to be more explicit we use float type in C programming language.
 
 \section{Multiple body functions}
 \emph{\textbf{Multiple body functions}} such as SDH and RDF (Spacial Distance Histogram and Radial Distribution function) require computation of distances pairwise across all the particles. This is generally combination of two across N data: 	$C\binom{N}{2}$. These are the most expensive queries, thus, it is important to focus on their implementation taking advantage of GPU nature and its processing power. SDH is a very expensive computation, and we have used some of the existing work of ours\cite{sdhgpu} to incorporate in this design.
 
-The might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more details in further sections.
+For computation of histogram it is not enough to visit every value for each atom once, since we have to do pairwise computations, thus it increases complexity of the problem not only computation-wise, but memory-wise as well, which is a bigger concern in our case, since the overhead will be huge and non-linearly relative to the size of data. For this purpose we have come up with a way to optimize the way we use references to memory for each atom, so that we minimize overhead of pulling data all the way from DRAM (GPU).
+
+There might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more details in further sections.
 
 
 \vspace{3mm}
@@ -369,20 +408,21 @@ The proposed design has a pretty straightforward structure which is going to be 
 \section{Data input}
 Since the size of the data in the problem is huge, organization of the data flow is crucial. As mentioned before, original data is retrieved from simulation software output files and in our case it is Gromacs Software's trajectory files\footnote{The file types, their structure, and their decompression has been well explained in the previous paper in section "Data orgranization in main memory"}. For a simulation, there can be several files of different format and usually they are also compressed without any loss of information. Tool for decompressing those files to a flat format for each frame and atom has been developed in the previous work\cite{mainPaper}. 
 
-In order to experiment with different input cases, the input files have been generated with a tool that we have built in Python language. Thus, we are able to generate mock data files with any number of frames and atoms, and the values are random and can be adjusted with needs of the experiment (for example, for cases when we want to analyze bucket widths in a limited space, the coordinates are generated in range of $0 - 1$, etc.). As it has already been mentioned earlier, we don't expect the data to be distributed with a certain behavior, the importance of having this kind of tool to generate mock data is having a variety of random data sets that could reveal any issues related to values provided to the program, on top of that, having the actual file written and then being read has been a part of the experiments to have more realistic use case. In the future, the same script for generating the mock data could be used for regression and performance tests in a distributed implementation of this design as a single source.
+In order to experiment with different input cases, the input files have been generated with a tool that we have built in Python language. Thus, we are able to generate mock data files with any number of frames and atoms, and the values are random and can be adjusted with needs of the experiment (for example, for cases when we want to analyze bucket widths in a limited space, the coordinates are generated in range of $0 - 1$, etc.). As it has already been mentioned earlier, we don't expect the data to be distributed with a certain behavior, the importance of having this kind of tool to generate mock data is having a variety of random data sets that could reveal any issues related to values provided to the program, on top of that, having the actual file written and then being read has been a part of the experiments to have more realistic use case. In the future, the same script for generating the mock data could be used for regression and performance tests in a distributed implementation of this design as a single source. Potentially input can be technically anything including simple IO sockets that could simply the way the system communicates with other components (f.e. over network) which would also contribute to expanding it to distributed cluster processing (though we believe that it would require additional components such as scheduler or job queues, etc.). To be more exact, the input format of the data and the data represents nothing but a simple array of tuples where each element represents certain descriptor of the given atom in the current frame. We believe that this simple approach makes it a good generalization of solution which would be user friendly for any scientist that wants to run any custom analysis on his data sets.
 
 \section{Data flow architecture}
 
-MS data roughly can be represented as a list of atoms with physical properties aggregated as frames. Thus, we consider a single frame as a chunk which will be loaded into the memory\footnote{Memory in this design might be interpreted differently, since we have a separate device memory on GPUs, but it will be explained better later} and pushed through our network of query. In this case, it is very convenient, because there are almost no dependencies between frames, rather than list of atoms in the same frame, which potentially again could create additional disk I/O overhead.
+MS data roughly can be represented as a list of atoms with physical properties aggregated as frames. Thus, we consider a single frame as a chunk which will be loaded into the memory\footnote{Memory in this design might be interpreted differently, since we have a separate device memory on GPUs, but it will be explained better later} and pushed through our network of queries. In this case, it is very convenient, because there are almost no dependencies between frames, rather than list of atoms in the same frame, which potentially again could create additional disk I/O overhead.
 
 Having defined the chunk, we load it from flat format file to RAM. A single atom data structure has all the attributes such as charge, mass, velocity, type of atom, coordinates, and so on. In other words, we have an array of atoms, and most of the attributes (in case of data structure, it is a class field), are simply primitive floats or doubles depending on precision requirements. Next, the same chunk of data with the same structure is loaded onto GPU global memory. GPU devices, in general, have about 4-5 types of memory, and global memory is the biggest and slowest. Consequently, depending on algorithm or query we load parts of data chunk to another types of memory called shared memory. It depends on the actual query, because the same part of chunk can be loaded and unloaded in regards with shared memory several times, especially with SDH.
 
+To summarize, the data goes through several levels of memory hierarchy in our system. Coming as an input from either streaming tool, flat file (our case), or other type of input (f.e. socket) which is either disk memory or RAM it goes to RAM of our system process. After it is loaded to RAM, we continue further and load it to Global Memory of GPU, meanwhile while it is loading the given chunk of data to GPU Global Memory (which happens asynchronously), we as well load the next chunk of data to RAM. In this case, it helps us avoid minor overhead of transferring data between CPU to GPU. Further, we take use of different types of memories in GPU to optimize different queries which will be described in further sections.
 
 \section{Network of queries organization}
 
 Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
 
-\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
+\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SMs (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Abstract dimensions given by CUDA are not real entities of physical GPU memory and its organization, but it is just a very convenient way of organizing data and tasks to help GPU scheduler pick and execute the instructions. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
 \emph{\textbf{One-body queries kernel}}.
 Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
@@ -441,48 +481,60 @@ For SDH we the following strategy
 
 \chapter{Experiments Results}\label{sc:experiments}
 
-The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
+The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed in C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
 
+
+\begin{table}[h!]
+	\renewcommand*{\arraystretch}{1.5}
+	\tabcolsep=0.12cm
+  \centering
+  \label{tab:cpu_hardware}
+  \begin{tabular}{| l | r |}
+   \hline
+Architecture & x86\_64 \\  \hline
+CPU op-mode(s) & 32-bit, 64-bit \\   \hline
+Byte Order & Little Endian \\   \hline
+CPU(s) & 8 \\   \hline
+On-line CPU(s) list & 0-7 \\   \hline
+Thread(s) per core & 2 \\   \hline
+Core(s) per socket & 4 \\   \hline
+CPU family & 6 \\   \hline
+Model & 45 \\   \hline
+Model name & Intel Xeon E5-2670 2.60GHz \\   \hline
+Stepping & 7 \\   \hline
+CPU MHz & 2593.814 \\  \hline  
+L1d cache & 32K \\   \hline
+L1i cache & 32K \\   \hline
+L2 cache & 256K \\   \hline
+L3 cache & 20480K \\   \hline
+NUMA node0 CPU(s) & 0-7 \\  \hline
+  \end{tabular}
+    \caption{Hardware stack for CPU version of Push-based system benchmark}
+\end{table}
 \emph{\textbf{Hardware stack.}}
 There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory. RAM on the node that we were running has 16GB. The server allocated from Amazon has the following CPU parameters:
 
-\begin{center}
-  \begin{tabular}{ l  l }
-     
-Architecture & x86\_64 \\  
-CPU op-mode(s) & 32-bit, 64-bit \\  
-Byte Order & Little Endian \\  
-CPU(s) & 8 \\  
-On-line CPU(s) list & 0-7 \\  
-Thread(s) per core & 2 \\  
-Core(s) per socket & 4 \\  
-CPU family & 6 \\  
-Model & 45 \\  
-Model name & Intel Xeon E5-2670 2.60GHz \\  
-Stepping & 7 \\  
-CPU MHz & 2593.814 \\  
-L1d cache & 32K \\  
-L1i cache & 32K \\  
-L2 cache & 256K \\  
-L3 cache & 20480K \\  
-NUMA node0 CPU(s) & 0-7 \\ 
-     
-  \end{tabular}
-\end{center}
-
 The same CPU has been used for sequential as well as for improved GPU version during experiments with benchmarks. Just to mentioned, CPU in improved version is used in-between memory loading from file and uploading it to GPU, printing the results to the user, which is not big load. Consequently, we also have GPU device with the following parameters:
 
-\begin{center}
-  \begin{tabular}{ l l }
-Name & Grid 34C K520 \\
-Memory & 4095Mib \\ 
-Total Nvidia CUDA Cores & 1536 \\ 
-Memory Size & 8 GB GDDR5 (4 GB/GPU) \\
-Total GPUs & 2 GK104 GPUs \\
-  \end{tabular}
-\end{center}
 
 \emph{\textbf{Data sets.}} As it has already been mentioned, we have developed a small python script that generated data sets that are used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generate a file with appropriate number of atoms/frames and format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simulations, but workloads are a bit trickier. First of all, they give us a bit better understanding of the average value, which might vary on different circumstances related to OS, secondly, once this system is integrated into a distributed system, we can imagine that each frame could be processed by a separate node keeping the values inside of the appropriate memory (global or RAM) and generate responses based on the clients selections requests. This possibility will be elaborated in more details in Future Work section.
+
+
+\begin{table}[h!]
+	\renewcommand*{\arraystretch}{1.5}
+	\tabcolsep=0.12cm
+  \centering
+  \label{tab:gpu_hardware}
+  \begin{tabular}{| l | r |}
+   \hline
+	Name & Grid 34C K520 \\ \hline
+	Memory & 4095Mib \\ \hline
+	Total Nvidia CUDA Cores & 1536 \\ \hline
+	Memory Size & 8 GB GDDR5 (4 GB/GPU) \\ \hline
+	Total GPUs & 2 GK104 GPUs \\ \hline
+  \end{tabular}
+    \caption{Hardware stack for GPU version of Push-based system}
+\end{table}
 
 \emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores. More improvements can be done for acceleration of this approach, but in the system we have not gone too far with data converter module, because initial framework has to be simple and user friendly.
 
