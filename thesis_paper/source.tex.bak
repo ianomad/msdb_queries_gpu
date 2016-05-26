@@ -8,9 +8,17 @@
 \usepackage{ragged2e}
 \usepackage{titlesec}
 \usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
-\usepackage{algorithmic,amsfonts,amssymb,amsmath,calc,calrsfs,cleveref}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsfonts,amssymb,calc,calrsfs,cleveref}
 \usepackage[justification=centering]{caption}
 \usepackage{url}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 \usepackage[
 breaklinks=true,colorlinks=true,
@@ -416,13 +424,13 @@ MS data roughly can be represented as a list of atoms with physical properties a
 
 Having defined the chunk, we load it from flat format file to RAM. A single atom data structure has all the attributes such as charge, mass, velocity, type of atom, coordinates, and so on. In other words, we have an array of atoms, and most of the attributes (in case of data structure, it is a class field), are simply primitive floats or doubles depending on precision requirements. Next, the same chunk of data with the same structure is loaded onto GPU global memory. GPU devices, in general, have about 4-5 types of memory, and global memory is the biggest and slowest. Consequently, depending on algorithm or query we load parts of data chunk to another types of memory called shared memory. It depends on the actual query, because the same part of chunk can be loaded and unloaded in regards with shared memory several times, especially with SDH.
 
-To summarize, the data goes through several levels of memory hierarchy in our system: coming as an input from either streaming tool (in
+To summarize, the data goes through several levels of memory hierarchy in our system. Coming as an input from either streaming tool, flat file (our case), or other type of input (f.e. socket) which is either disk memory or RAM it goes to RAM of our system process. After it is loaded to RAM, we continue further and load it to Global Memory of GPU, meanwhile while it is loading the given chunk of data to GPU Global Memory (which happens asynchronously), we as well load the next chunk of data to RAM. In this case, it helps us avoid minor overhead of transferring data between CPU to GPU. Further, we take use of different types of memories in GPU to optimize different queries which will be described in further sections.
 
 \section{Network of queries organization}
 
 Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
 
-\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SM (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
+\emph{\textbf{GPU execution}}. From hardware standpoint, it is important to understand that every GPU device consists of SMs (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Abstract dimensions given by CUDA are not real entities of physical GPU memory and its organization, but it is just a very convenient way of organizing data and tasks to help GPU scheduler pick and execute the instructions. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
 \emph{\textbf{One-body queries kernel}}.
 Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
@@ -462,7 +470,63 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 \ section{Computation work flow}
 
 Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Besides it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
-\subsection{One-body kernel} Every thread of execution in one-body query writes into shared memory, before accumulating the data into global memory result in order to avoid massive read and write blocking conflicts which will eliminate any kind of performance advantages. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (e.g. generic CUDA function atomicAdd). We run the first stream with one-body queries and wait till it gets finished. The reason is that we expect certain behavior from shared memory from each of the streams, thus, just to make sure that they don't overlap, we run them separately. While the computation is running, there is a possibility to use a third stream to load another chunk of data, too. First stream and kernel execute simple vector reduction type of computation accumulating all the needed data and keep it in the GPU.
+\subsection{One-body kernel} 
+
+As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand.
+
+\subsubsection{One-body functions implementation in CPU version}
+
+
+\vspace{1cm}
+
+\begin{algorithm}
+\caption{One body functions implementation in CPU version}
+\label{alg:onebodycpu}
+\begin{algorithmic}[1]
+\Procedure{OneBodyFuncsCalc}{atoms, atomsCount}
+\State \Comment{ $atoms$ is vector of atoms}
+\State \Comment{ $atomsCount$ is number of atoms in the frame}
+
+\State $\textit{results} \gets \textit{default initial results value}$
+
+\BState \emph{top}:
+\State $\textit{i} \gets \textit{0}$
+
+\While{$i\not=atomsCount$} \Comment{Loop through all the atoms}
+
+\State{$\textit{currentAtom} \gets \textit{atoms[i]}$}
+\State{$\textit{calcTotalMass(results, currentAtom)}$}
+\State{$\textit{calcTotalCharge(results, currentAtom)}$}
+\State{$\textit{calcInertiaX(results, currentAtom)}$}
+\State{$\textit{calcInertiaY(results, currentAtom)}$}
+\State{$\textit{calcInertiaZ(results, currentAtom)}$}
+\State{$\textit{calcDepoleMoment(results, currentAtom)}$}
+
+\State{$\textit{//Here we are adding any other one-body functions}$}
+
+%increment
+
+\State $\textit{i} \gets \textit{i + 1}$ \Comment{Increment i}
+
+\EndWhile
+
+\State \textbf{return} $results$ \Comment{Return result for the frame}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\vspace{1cm}
+
+
+Basically being given a vector of atoms in CPU version implementation (the one that we use for speedup benchmark) we loop through every atom and accumulate all the needed information to RAM. An algorithm pseudocode \ref{alg:onebodycpu} describes everything in steps.
+
+
+\subsubsection{One-body functions implementation in GPU version}
+
+Every thread of execution in one-body query writes into shared memory, before accumulating the data into global memory result in order to avoid massive read and write blocking conflicts which will eliminate any kind of performance advantages. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (e.g. generic CUDA function atomicAdd). We run the first stream with one-body queries and wait till it gets finished. The reason is that we expect certain behavior from shared memory from each of the streams, thus, just to make sure that they don't overlap, we run them separately. While the computation is running, there is a possibility to use a third stream to load another chunk of data, too. First stream and kernel execute simple vector reduction type of computation accumulating all the needed data and keep it in the GPU.
+
+
+
 \subsection{Two-body kernel} Once the first kernel is finished we run the two-body kernel with its own stream. As it has already been mentioned, the biggest workload is in this kernel, because it has higher complexity. In this particular case it is $O(n^2)$. GPU streaming multiprocessors are very powerful for straightforward primitive independent calculations, and each core is much weaker than a moden CPU which has a whole bunch of L caches with some prediction behavior systems for code divergence. As you can see on Figure \ref{fg:threadload}, unbalanced thread load assumes for GPU kernel to check every time if the target atom can interact with other atom and if it has to wait till other threads finish their jobs. Thus, we had to come up with a strategy of making equally balanced thread jobs and distribute them among the threads leaving atom to thread mapping as is. 
 
 For SDH we the following strategy

@@ -18,7 +18,9 @@
 \contentsline {section}{\numberline {4.2}Data flow architecture}{21}{section.4.2}
 \contentsline {section}{\numberline {4.3}Network of queries organization}{22}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}One-body kernel}{27}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Two-body kernel}{27}{subsection.4.3.2}
-\contentsline {chapter}{\numberline {5}\MakeUppercase {Experiments Results}}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Results}{31}{section.5.1}
-\contentsline {chapter}{\numberline {6}\MakeUppercase {Conclusions and Future Work}}{34}{chapter.6}
+\contentsline {subsubsection}{One-body functions implementation in CPU version}{27}{subsubsection*.12}
+\contentsline {subsubsection}{One-body functions implementation in GPU version}{28}{subsubsection*.13}
+\contentsline {subsection}{\numberline {4.3.2}Two-body kernel}{28}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}\MakeUppercase {Experiments Results}}{30}{chapter.5}
+\contentsline {section}{\numberline {5.1}Results}{32}{section.5.1}
+\contentsline {chapter}{\numberline {6}\MakeUppercase {Conclusions and Future Work}}{35}{chapter.6}
