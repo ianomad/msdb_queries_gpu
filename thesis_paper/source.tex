@@ -594,8 +594,6 @@ As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in th
 \end{algorithmic}
 \end{algorithm}
 
-\vspace{1cm}
-
 \subsection{Two-body functions implementation}
 
 Since one of the physical queries is RDF which has underlying SDH calculation, we will describe our approach with SDH for CPU and GPU versions.
@@ -643,6 +641,67 @@ For SDH we the following strategy
 \item[5.] Synchronize with other threads in the block (not in the entire grid)
 \item[6.] If it is the first thread in block, add all bucket counts from shared memory into global memory
 \end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%      SDH GPU      %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+\caption{Kernel function implementation for SDH in GPU}
+\label{alg:sdhgpu}
+\begin{algorithmic}[1]
+\Procedure{gpusdhkernel}{atomsCount, pdhRes, histogram, atoms, numOfBuckets}
+\State \Comment{ $atoms$ is vector of atoms kept in global gpu memory}
+\State \Comment{ $atomsCount$ is number of atoms in the frame kept in global gpu memory}
+\State \Comment{ $histogram$ is buckets with counters for the SDH}
+\State \Comment{ $pdhRes$ is resolution of histogram}
+\State \Comment{ $numOfBuckets$ is number of buckets}
+
+\BState \emph{top}:
+
+\State $\textit{smem} \gets \textit{allocate shared memory in each GPU block for fast write access of histogram buckets}$
+
+\State $\textit{sharedHisto} \gets \textit{pointer to the head of smem}$
+\State $\textit{sharedAtoms} \gets \textit{pointer to the tail of sharedHisto}$
+
+\State
+\State $\textit{indexX} \gets \textit{blockIdsx.x * blockDim.x + threadIdx.x}$ 
+\State \Comment{Identify position of the kernel in the grid scale for coordinate X}
+\State $\textit{indexY} \gets \textit{blockIdsx.y * blockDim.y + threadIdx.y}$ 
+\State \Comment{Identify position of the kernel in the grid scale for coordinate Y}
+
+\State $\textit{gridWidth} \gets \textit{gridDim.x * blockDim.x}$
+\State \Comment{Calculate grid size in kernel units}
+\State $\textit{index} \gets \textit{indexY * gridWidth + indexX}$
+\State \Comment{Finally get the index of current atom mapped to this kernel}
+
+\If {$\textit{threadIdx.x} = 0$}
+
+\State $\textit{sharedHisto} \gets \textit{Set all values to 0}$
+
+\State $\textit{start} \gets \textit{index}$
+\State $\textit{k} \gets \textit{0}$
+\State $\textit{i} \gets \textit{index}$
+\For {$i < start + blockDim.x$ and $i < atomsCount$}
+	
+	\State $\textit{sharedAtoms[k]} \gets \textit{atoms[i]}$
+	\Comment{Load local atoms into shared memory}
+	
+	\State $\textit{k} \gets \textit{k + 1}$
+	\State $\textit{i} \gets \textit{i + 1}$
+\EndFor
+
+\EndIf
+
+
+
+\State
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
