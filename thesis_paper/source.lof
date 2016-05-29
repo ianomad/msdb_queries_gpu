@@ -9,8 +9,9 @@
 \contentsline {figure}{\numberline {4.2}{\ignorespaces GPU array reduction algorithm sample representation\relax }}{24}{figure.caption.9}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Overall system architecture\relax }}{25}{figure.caption.10}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces SDH thread loading\relax }}{26}{figure.caption.11}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Representation of example of shared memory usage\relax }}{31}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Speedup for 1000 atoms\relax }}{36}{figure.caption.18}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Speedup for 10000 atoms\relax }}{36}{figure.caption.19}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Speedup for larger number of atoms\relax }}{36}{figure.caption.20}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Speedup for 1000 atoms\relax }}{37}{figure.caption.19}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Speedup for 10000 atoms\relax }}{37}{figure.caption.20}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Speedup for larger number of atoms\relax }}{37}{figure.caption.21}
 \addvspace {10\p@ }
