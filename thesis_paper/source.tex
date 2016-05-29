@@ -467,18 +467,14 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\ section{Computation work flow}
+\section{Computation work flow}
 
 Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Besides it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
-\subsection{One-body kernel} 
 
-As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand.
 
-\subsubsection{One-body functions implementation in CPU version}
+\subsection{One-body functions implementation} 
 
-Basically being given a vector of atoms in CPU version implementation (the one that we use for speedup benchmark) we loop through every atom and accumulate all the needed information to RAM. Once we have the result for one-body functions, we take it out for further usage, it can as well be used for further calculations where there are dependencies on such things as total mass, total charge, etc.
-
-\vspace{1cm}
+As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand which is what we tried to explain further.
 
 \begin{algorithm}
 \caption{One body functions implementation in CPU version}
@@ -492,10 +488,11 @@ Basically being given a vector of atoms in CPU version implementation (the one t
 
 \BState \emph{top}:
 \State $\textit{i} \gets \textit{0}$
-
+\State
 \While{$i\not=atomsCount$} \Comment{Loop through all the atoms}
 
 \State{$\textit{currentAtom} \gets \textit{atoms[i]}$}
+\State
 \State{$\textit{calcTotalMass(results, currentAtom)}$}
 \State{$\textit{calcTotalCharge(results, currentAtom)}$}
 \State{$\textit{calcInertiaX(results, currentAtom)}$}
@@ -503,17 +500,18 @@ Basically being given a vector of atoms in CPU version implementation (the one t
 \State{$\textit{calcInertiaZ(results, currentAtom)}$}
 \State{$\textit{calcDepoleMoment(results, currentAtom)}$}
 
-\State{$\textit{//Here we are adding any other one-body functions}$}
+\State{$\textit{// Here we are adding any other one-body functions}$}
 
-%increment
-
+\State
 \State $\textit{i} \gets \textit{i + 1}$ \Comment{Increment i}
 
 \EndWhile
 
+\State
 \State \textbf{return} $results$ \Comment{Return result for the frame}
 \EndProcedure
 
+\State
 \Procedure{calcTotalMass}{results, currentAtom} \Comment{Implementation of total mass function}
 	\State $results \gets \textit{results.totalmass + currentAtom.mass}$ 
 \EndProcedure
@@ -523,19 +521,117 @@ Basically being given a vector of atoms in CPU version implementation (the one t
 \end{algorithmic}
 \end{algorithm}
 
-\vspace{1cm}
+\subsubsection{One-body functions implementation in CPU version}
 
+Basically being given a vector of atoms in CPU version implementation (the one that we use for speedup benchmark) we loop through every atom and accumulate all the needed information to RAM. Once we have the result for one-body functions, we take it out for further usage, it can as well be used for further calculations where there are dependencies on such things as total mass, total charge, etc.
 
-On Algorithm Pseudocode~\ref{alg:onebodycpu} you can see more detailed explanation of CPU version approach for calculating one-body functions.
-
+We have provided Pseudocode \ref{alg:onebodycpu} of the implementation of one body functions for CPU, which has detailed step-by-step description of the CPU sequential version of push-based system for calculating one-body functions.
 
 \subsubsection{One-body functions implementation in GPU version}
 
-Every thread of execution in one-body query writes into shared memory, before accumulating the data into global memory result in order to avoid massive read and write blocking conflicts which will eliminate any kind of performance advantages. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (e.g. generic CUDA function atomicAdd). We run the first stream with one-body queries and wait till it gets finished. The reason is that we expect certain behavior from shared memory from each of the streams, thus, just to make sure that they don't overlap, we run them separately. While the computation is running, there is a possibility to use a third stream to load another chunk of data, too. First stream and kernel execute simple vector reduction type of computation accumulating all the needed data and keep it in the GPU.
+The approach in GPU version of one-body computation code is a lot different, because there are two major changes: the way we deal with the data in memory and mapping of GPU thread kernels to atoms. Both of these approaches drastically change the way we perceive the solution implementation. Basically in the kernel function we assume we've pre-loaded all the needed atoms for current calculations (loading into memory and higher level parts will be described in later sections).
+
+As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in the thread kernel function it starts with allocation of memory in the block. To be more explicit, every block has its own level of memory called shared memory. To understand the importance of shared memory, it is on-chip memory which can get latency roughly 100x lower than global memory. Further down, we calculate the current index of the atom we need to work with, and this computation takes two lines of code, because we have a grid-based dimensions that have to be flattened back to one-dimension array indexing which was explained in previous sections. Once we are setup, we start accumulating results into the shared memory atomically, because threads within same block might have race condition on write operation. This is one of the reasons why we are doing it locally, because it would also take much more time and overhead to have locks in global memory that would increase race conditions and locking times. After all, we synchronize all threads to make sure that all the records from atoms have been collected to appropriate local results in shared memory. Finally, we collect all the results from blocks' shared memory into global memory in which case it will be much faster, because number of block is not that big. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (we use native CUDA function atomicAdd which guarantees atomicity). 
+
+\vspace{1cm}
+
+\begin{algorithm}
+\caption{Kernel function implementation for one-body queries in GPU}
+\label{alg:onebodygpu}
+\begin{algorithmic}[1]
+\Procedure{gpuonebodyfunctionskernel}{atomsCount, atoms, results}
+\State \Comment{ $atoms$ is vector of atoms kept in global gpu memory}
+\State \Comment{ $atomsCount$ is number of atoms in the frame kept in global gpu memory}
+\State \Comment{ $results$ is number of atoms in the frame kept in global gpu memory}
+
+\BState \emph{top}:
+
+\State $\textit{sdata} \gets \textit{allocate shared memory in each GPU block for fast write access}$ 
+\State \Comment{We will use this further to accumulate data across blocks}
+
+\State $\textit{indexX} \gets \textit{blockIdsx.x * blockDim.x + threadIdx.x}$ 
+\State \Comment{Identify position of the kernel in the grid scale for coordinate X}
+\State $\textit{indexY} \gets \textit{blockIdsx.y * blockDim.y + threadIdx.y}$ 
+\State \Comment{Identify position of the kernel in the grid scale for coordinate Y}
+
+\State $\textit{gridWidth} \gets \textit{gridDim.x * blockDim.x}$
+\State \Comment{Calculate grid size in kernel units}
+\State $\textit{i} \gets \textit{indexY * gridWidth + indexX}$
+\State \Comment{Finally get the index of current atom mapped to this kernel}
+
+\State $\textit{sharedResult} \gets \textit{pointer to shared memory head (in this case declared element size as float)}$
+
+\State $\textit{currentAtom} \gets \textit{atoms[i]}$
+\State 
+\State $\textit{atomicAdd(\&sharedResult[0], currentAtom.mass);}$
+\State 
+\State $\textit{atomicAdd(\&sharedResult[1], currentAtom.charge);}$
+\State $\textit{atomicAdd(\&sharedResult[2], currentAtom.mass * currentAtom.x);}$
+\State $\textit{atomicAdd(\&sharedResult[3], currentAtom.mass * currentAtom.y);}$
+\State $\textit{atomicAdd(\&sharedResult[3], currentAtom.mass * currentAtom.z);}$
+\State $\textit{// other function steps...}$
+
+\State
+
+\State$\textit{// make sure all kernel threads get here and wait for each other}$
+\State $\textit{\_\_syncthreads();}$
+
+\State
+\State $\textit{// Here we will starting collecting information from each block which will be done by first thread of each block}$
+\If {$\textit{threadIdx.x} = 0$}
+\State  $\textit{atomicAdd(\&results->mass, sharedResult[0]);}$ \Comment{All atomicAdd functions here are GPU atomic}
+\State  $\textit{atomicAdd(\&results->charge, sharedResult[1]);}$
+\State  $\textit{atomicAdd(\&results->inertiaX, sharedResult[2]);}$
+\State  $\textit{atomicAdd(\&results->inertiaY, sharedResult[3]);}$
+\State  $\textit{atomicAdd(\&results->inertiaZ, sharedResult[4]);}$
+\State  $\textit{// other functions to accumulate from block shared memory...}$
+\EndIf
+
+\State
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+
+\vspace{1cm}
+
+\subsection{Two-body functions implementation}
+
+Since one of the physical queries is RDF which has underlying SDH calculation, we will describe our approach with SDH for CPU and GPU versions.
+
+\subsubsection{Two-body functions implementation in CPU Version}
+
+Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them, though results don't change a lot for sequential computation.
+
+\begin{algorithm}
+\caption{SDH in CPU version}
+\label{alg:sdhcpu}
+\begin{algorithmic}[1]
+\Procedure{SDHCPU}{atoms, atomsCount, histogram}
+
+\State $\textit{i} \gets 0$
+\While{i < atomsCount}
+
+\State $\textit{j} \gets i + 1$
+\While{j < atomsCount}
+\State $\textit{dist} \gets calcDistance(atoms[i], atoms[j])$
+\State $\textit{Save dist in histogram bucket}$
+\State
+\State $\textit{j} \gets j + 1$
+\EndWhile
+
+\State $\textit{i} \gets i + 1$
+\EndWhile
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
 
 
 
-\subsection{Two-body kernel} Once the first kernel is finished we run the two-body kernel with its own stream. As it has already been mentioned, the biggest workload is in this kernel, because it has higher complexity. In this particular case it is $O(n^2)$. GPU streaming multiprocessors are very powerful for straightforward primitive independent calculations, and each core is much weaker than a moden CPU which has a whole bunch of L caches with some prediction behavior systems for code divergence. As you can see on Figure \ref{fg:threadload}, unbalanced thread load assumes for GPU kernel to check every time if the target atom can interact with other atom and if it has to wait till other threads finish their jobs. Thus, we had to come up with a strategy of making equally balanced thread jobs and distribute them among the threads leaving atom to thread mapping as is. 
+\subsubsection{Two-body functions implementation in GPU Version} Once the first kernel is finished we run the two-body kernel with its own stream. As it has already been mentioned, the biggest workload is in this kernel, because it has higher complexity. In this particular case it is $O(n^2)$. GPU streaming multiprocessors are very powerful for straightforward primitive independent calculations, and each core is much weaker than a moden CPU which has a whole bunch of L caches with some prediction behavior systems for code divergence. As you can see on Figure \ref{fg:threadload}, unbalanced thread load assumes for GPU kernel to check every time if the target atom can interact with other atom and if it has to wait till other threads finish their jobs. Thus, we had to come up with a strategy of making equally balanced thread jobs and distribute them among the threads leaving atom to thread mapping as is. 
 
 For SDH we the following strategy
 

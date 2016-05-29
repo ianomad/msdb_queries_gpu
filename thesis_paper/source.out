@@ -17,8 +17,9 @@
 \BOOKMARK [1][-]{section.4.1}{Data input}{chapter.4}% 17
 \BOOKMARK [1][-]{section.4.2}{Data flow architecture}{chapter.4}% 18
 \BOOKMARK [1][-]{section.4.3}{Network of queries organization}{chapter.4}% 19
-\BOOKMARK [2][-]{subsection.4.3.1}{One-body kernel}{section.4.3}% 20
-\BOOKMARK [2][-]{subsection.4.3.2}{Two-body kernel}{section.4.3}% 21
-\BOOKMARK [0][-]{chapter.5}{Experiments Results}{}% 22
-\BOOKMARK [1][-]{section.5.1}{Results}{chapter.5}% 23
-\BOOKMARK [0][-]{chapter.6}{Conclusions and Future Work}{}% 24
+\BOOKMARK [1][-]{section.4.4}{Computation work flow}{chapter.4}% 20
+\BOOKMARK [2][-]{subsection.4.4.1}{One-body functions implementation}{section.4.4}% 21
+\BOOKMARK [2][-]{subsection.4.4.2}{Two-body functions implementation}{section.4.4}% 22
+\BOOKMARK [0][-]{chapter.5}{Experiments Results}{}% 23
+\BOOKMARK [1][-]{section.5.1}{Results}{chapter.5}% 24
+\BOOKMARK [0][-]{chapter.6}{Conclusions and Future Work}{}% 25
