@@ -10,7 +10,6 @@
 \usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{amsmath}
 \usepackage{algorithm}
-\usepackage{algorithmicx}
 \usepackage{algpseudocode}
 \usepackage{amsfonts,amssymb,calc,calrsfs,cleveref}
 \usepackage[justification=centering]{caption}
@@ -602,6 +601,8 @@ Since one of the physical queries is RDF which has underlying SDH calculation, w
 
 Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them, though results don't change a lot for sequential computation.
 
+\vspace{1cm}
+
 \begin{algorithm}
 \caption{SDH in CPU version}
 \label{alg:sdhcpu}
@@ -640,15 +641,19 @@ Here are the main steps of the algorithm:
 \item[2.] Load all block related atoms to shared memory
 \item[3.] Go pairwise with atoms for SDH in a equal balance manner
 \item[4.] Synchronize threads
-\item[5.] Get everything block shared memory to global memory
+\item[5.] Get everything for results from shared memory to global memory
 \end{itemize}
+
 
 \begin{figure}
  \centerline{ \includegraphics[width=0.5\columnwidth]{images/sharedMem}}
- \caption{representation Example  of shared memory usage}
+ \caption{Representation of example of shared memory usage}
  \label{fg:sharedMem}
 \end{figure}
 
+As we already mentioned, the main purpose of our proposal is the system that allows integration of GPU into push-based system, thus, we didn't go with too sophisticated and optimized implementations for each query that we benchmark, assuming that user's wouldn't do it and having more or less realistic speedup results. Figure \ref{fg:sharedMem} shows swimlanes as execution thread for blocks. Every row is an execution block for an atom, where first element is the mapped atom. First of all, you can observe that we can clearly see that the execution threads are almost equally balanced (exceptions on odd number of atoms) which means that there is no code divergence and low utilization of kernels (no awaiting redundant threads). In this particular example, we have block size 5 with total number of atoms to be 15 (of course, these are just simple examples, realistically it would be millions). Every swimlane (bordered with black) represent within block execution. Secondly, colored numbers are the atoms that we loaded into shared memory. Of course, this is a small improvement, and we can happily add improvement of adding more shared memory and loading as it moves synchronizing threads in the future.
+
+\vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%      SDH GPU      %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -657,36 +662,25 @@ Here are the main steps of the algorithm:
 \label{alg:sdhgpu}
 \begin{algorithmic}[1]
 \Procedure{gpusdhkernel}{atomsCount, pdhRes, histogram, atoms, numOfBuckets}
-\State \Comment{ $atoms$ is vector of atoms kept in global gpu memory}
-\State \Comment{ $atomsCount$ is number of atoms in the frame kept in global gpu memory}
-\State \Comment{ $histogram$ is buckets with counters for the SDH}
-\State \Comment{ $pdhRes$ is resolution of histogram}
-\State \Comment{ $numOfBuckets$ is number of buckets}
 
-\BState \emph{top}:
-
-\State $\textit{smem} \gets \textit{allocate shared memory in each GPU block for fast write access of histogram buckets}$
+\State $\textit{smem} \gets \textit{pointer to head of SM}$
 
 \State $\textit{sharedHisto} \gets \textit{pointer to the head of smem}$
 \State $\textit{sharedAtoms} \gets \textit{pointer to the tail of sharedHisto}$
-\State $\textit{indexX and indexY} \gets \textit{calculate from grid sizes}$ 
-\State $\textit{index} \gets \textit{get atom mapped to this kernel}$
-\State \Comment{Finally get the index of current atom mapped to this kernel}
+\State $\textit{index} \gets \textit{calculate index of kernel mapped to this atom}$
 
+\State
 \If {$\textit{threadIdx.x} = 0$}
 
 \State $\textit{sharedHisto} \gets \textit{Set all values to 0}$
-
-\State $\textit{start} \gets \textit{index}$
-\State $\textit{k} \gets \textit{0}$
-\State $\textit{i} \gets \textit{index}$
+\State $\textit{start} \gets \textit{index, }
+			 \textit{i} \gets \textit{index, }
+			 \textit{k} \gets \textit{0,}$
+			 
 \For {$i < start + blockDim.x$ and $i < atomsCount$}
-	
 	\State $\textit{sharedAtoms[k]} \gets \textit{atoms[i]}$
 	\Comment{Load local atoms into shared memory}
-	
-	\State $\textit{k} \gets \textit{k + 1}$
-	\State $\textit{i} \gets \textit{i + 1}$
+	\State $\textit{i} \gets \textit{i + 1, } \textit{k} \gets \textit{k + 1}$
 \EndFor
 
 \EndIf
@@ -695,12 +689,10 @@ Here are the main steps of the algorithm:
 \State $\textit{\_\_syncthreads()}$
 \State $\textit{threadLoad} = \textit{(atomsCount + 1) / 2}$
 \State $\textit{start} \gets \textit{i+1}$
-\State $\textit{end} \gets \textit{i + threadLoad}$
+\State $\textit{end} \gets \textit{i + threadLoad, }
+\textit{increment end by one if it is odd and total count is even}$
 
-\State $\textit{end} \gets \textit{increment by one if it is odd and total count is even}$
-
-\State $\textit{bi} \gets \textit{blockDim.x * blockIdx.x}$
-\State $\textit{ei} \gets \textit{bi + blockDim.x}$
+\State $\textit{bi} \gets \textit{blockDim.x * blockIdx.x, } \textit{ei} \gets \textit{bi + blockDim.x}$
 
 \State $\textit{ind1} \gets \textit{threadIdx.x}$
 
@@ -718,8 +710,8 @@ Here are the main steps of the algorithm:
 \EndIf
 
 \State $\textit{calc distance and atomically write to local histogram}$
-
 \EndFor
+
 \State
 \State $\textit{synchronize all threads}$
 \State $\textit{gather all histogram from shared into global memory}$
@@ -728,6 +720,55 @@ Here are the main steps of the algorithm:
 \end{algorithmic}
 \end{algorithm}
 
+
+
+\subsection{Data flow implementation in CPU}
+
+As we have described in earlier sections, our CPU is primarily used for data flow management, triggering of GPU functions, data structure changes, and GPU computation stream manipulations.
+
+\vspace{1cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%      CPU FLOW %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{algorithm}
+\caption{Main algorithm in CPU for managing data and pushing to GPU}
+\label{alg:cpuflow}
+\begin{algorithmic}[1]
+\Procedure{runsinglekernel}{atomsCount, atoms, workload}
+
+\State $\textit{stream1} \gets \textit{create CUDA stream with cudaStreamCreate}$
+\State $\textit{stream2} \gets \textit{create CUDA stream with cudaStreamCreate}$
+\State
+\State $\textit{gpuResults} \gets \textit{allocate gpu global memory}$
+\State $\textit{gpuAtoms} \gets \textit{allocate gpu global memory}$
+\State $\textit{gpuHistogram} \gets \textit{allocate gpu global memory}$
+\State
+\State $\textit{gpuAtoms} \gets \textit{copy atoms from CPU to GPU with cudaMemcpy}$
+
+\State $\textit{gridSize} \gets \textit{compute grid size depending on atom count}$
+
+\State
+
+\For {$workload$}
+
+\State $\textit{gpukernel1(stream1, sharedMemorySize, gpuAtoms, ...)}$
+\Comment{One body queries kernel}
+\State $\textit{gpukernel2(stream2, sharedMemorySize, gpuAtoms, ...)}$
+\Comment{Two body queries kernel}
+
+\State
+\State $\textit{cudaStreamSynchronize(stream1)}$
+\State $\textit{cudaStreamSynchronize(stream2)}$
+
+\EndFor
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\vspace{1cm}
+
+In the Pseudocode \ref{alg:cpuflow} you can see rough logic of our CPU mapping function that primarily allocates all the memory in GPU, triggers kernel function and manipulates streams. This is a prototype which definitely is not the last version, because we can as well avoid overhead of copying data into shared memory while synchronously it will be computing data already contained there. The main steps here are the following. we create to instances of CUDA streams that are again abstract data types that are scheduled by GPU in a special way. We as well allocate memory in GPU for atoms list, histogram results and common results for one-body queries (in this case it is a data structure with fields that represent some accumulated result). Once we are setup with memory management on GPU, we trigger kernel calls one by one each running on a separate CUDA stream. We don't expect them to run really concurrently, because our two kernels are quite heavily loaded, though streaming can definitely be use for memory management optimization.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
