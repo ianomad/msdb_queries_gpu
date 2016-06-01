@@ -14,6 +14,8 @@
 \usepackage{amsfonts,amssymb,calc,calrsfs,cleveref}
 \usepackage[justification=centering]{caption}
 \usepackage{url}
+\usepackage{subfigure}
+\usepackage{cleveref}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -819,11 +821,18 @@ The above Pseudocode \ref{alg:cpuflowfuture} shows what memory concurrent could 
 The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed in C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
 
 
+
+\section{Hardware stack}
+
+There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory, Of course, things like PCI bus and all the transportation are important as well, but for speedup benchmarks against CPU vs GPU those stay the same for both sides. RAM on the node that we were running has 16GBs. 
+
+\subsection{CPU}
+We have summarized main CPU parameters for CPU version and it is described in Table \ref{tb:cpuhardware}. As you may notice, it is a regular server node CPU with 2.60GHz and 3 levels of L cache.
+
 \begin{table}[h!]
 	\renewcommand*{\arraystretch}{1.5}
 	\tabcolsep=0.12cm
-  \centering
-  \label{tab:cpu_hardware}
+	\centering
   \begin{tabular}{| l | r |}
    \hline
 Architecture & x86\_64 \\  \hline
@@ -845,21 +854,17 @@ L3 cache & 20480K \\   \hline
 NUMA node0 CPU(s) & 0-7 \\  \hline
   \end{tabular}
     \caption{Hardware stack for CPU version of Push-based system benchmark}
+      \label{tb:cpuhardware}
 \end{table}
-\emph{\textbf{Hardware stack.}}
-There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory. RAM on the node that we were running has 16GB. The server allocated from Amazon has the following CPU parameters:
 
-The same CPU has been used for sequential as well as for improved GPU version during experiments with benchmarks. Just to mentioned, CPU in improved version is used in-between memory loading from file and uploading it to GPU, printing the results to the user, which is not big load. Consequently, we also have GPU device with the following parameters:
+\subsection{GPU}
 
-
-\emph{\textbf{Data sets.}} As it has already been mentioned, we have developed a small python script that generated data sets that are used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generate a file with appropriate number of atoms/frames and format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simulations, but workloads are a bit trickier. First of all, they give us a bit better understanding of the average value, which might vary on different circumstances related to OS, secondly, once this system is integrated into a distributed system, we can imagine that each frame could be processed by a separate node keeping the values inside of the appropriate memory (global or RAM) and generate responses based on the clients selections requests. This possibility will be elaborated in more details in Future Work section.
-
+The same CPU has been used for sequential as well as for improved GPU version during experiments with benchmarks. So, for CPU in GPU improved version refer to the same Table \ref{tb:cpuhardware}. For recall, CPU in improved version is used in-between memory loading from file and uploading it to GPU, printing the results to the user, which is not big load. Consequently, we also have GPU device. Hardware summary for GPU device is described in Table \ref{tb:gpuhardware}
 
 \begin{table}[h!]
 	\renewcommand*{\arraystretch}{1.5}
 	\tabcolsep=0.12cm
   \centering
-  \label{tab:gpu_hardware}
   \begin{tabular}{| l | r |}
    \hline
 	Name & Grid 34C K520 \\ \hline
@@ -869,26 +874,110 @@ The same CPU has been used for sequential as well as for improved GPU version du
 	Total GPUs & 2 GK104 GPUs \\ \hline
   \end{tabular}
     \caption{Hardware stack for GPU version of Push-based system}
+    	  \label{tb:gpuhardware}
 \end{table}
+\section{Data Sets}
+
+As it has already been mentioned, we have developed a small python script that generated data sets that are used for the experiments. It accepts two numbers as arguments (number of atoms and frames respectively) and generate a file with appropriate number of atoms/frames and format. We have generated number of mock data sets in range of $1K-8M$ atoms with $10, 100, 1000$ frames each. For each data set we run workloads with the values: $1, 5, 25, 50, 100$ . Number of atoms and frames are obviously up to the scientist and depend on simulations, but workloads are a bit trickier. First of all, they give us a bit better understanding of the average value, which might vary on different circumstances related to OS, secondly, once this system is integrated into a distributed system, we can imagine that each frame could be processed by a separate node keeping the values inside of the appropriate memory (global or RAM) and generate responses based on the clients selections requests. This possibility will be elaborated in more details in Future Work section.
+
+
 
 \emph{\textbf{SDH implementation.}} Even though implementation of SDH can be different, in the previous paper the algorithm in the previous paper was based on quad tree data structure with data proximity approach based on data uniformity\cite{mainPaper}, but in our experiments we follow special CUDA based approach which perfectly fits the nature of GPU devices with the given memory hierarchy, and the number of computations are equal to brute force, consequently, there is no expectation on data uniformity, thus, the problem solution complexity is still the same with the worst case of $O(N^2)$, but processed in parallel by GPU cores. More improvements can be done for acceleration of this approach, but in the system we have not gone too far with data converter module, because initial framework has to be simple and user friendly.
 
 \section{Results}
-Results are represented, in general, on Figures \ref{fg:chart_1000}, \ref{fg:chart_10000} \ref{fg:chart_max}. You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
 
-\emph{\textbf{10000 atoms.}}
-As you can see, speedup bumps up to almost 30 with 10000 atoms (Figure \ref{fg:chart_10000}). Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too.
+We have run number of experiments with different number of atoms and frames. Results vary as we choose different data sets, but we can see some tendency towards growth and, fortunately, it is very positive for our improved version of push-based system.
 
-\begin{figure}
- \centerline{ \includegraphics[width=0.5\columnwidth]{images/chart_1000}}
- \caption{Speedup for 1000 atoms}
- \label{fg:chart_1000}
+\subsection{Experiment results for 1000 atoms}
+
+Even though we assume that majority of our cases involve huge amount of atoms (starting from hundred thousands), we still ran experiments on smaller amount of atoms to see difference in speedup relatively with the data set sizes. You can observe summary in Figures \ref{fg:exp_1000_10}, \ref{fg:exp_1000_100}, \ref{fg:exp_1000_1000}, \ref{fg:speedup_1000}. There is a minor threshold, where CPU version is faster, where workload is less than 20 on Figure \ref{fg:exp_1000_10}, but it is changed with growth of workload. That presumably is the minor overhead of loading data from CPU to GPU and number of kernels versus computation work actually needs to be done. Once there is more load on computation, strongly GPU accelerates and becomes faster.
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_1000_10}
+    \caption{Time for 1000 atoms and 10 frames}
+    \label{fg:exp_1000_10}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_1000_100}
+    \caption{Time for 1000 atoms and 100 frames}
+     \label{fg:exp_1000_100}
+  \end{minipage}
+\hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_1000_1000}
+    \caption{Time for 1000 atoms and 1000 frames}
+     \label{fg:exp_1000_1000}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/speedup_1000}
+    \caption{Speedup for 1000 atoms}
+     \label{fg:speedup_1000}
+  \end{minipage}
 \end{figure}
 
-\begin{figure}
- \centerline{\includegraphics[width=0.5\columnwidth]{images/chart_10000}}
- \caption{Speedup for 10000 atoms}
- \label{fg:chart_10000}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment results for 10,000 atoms}
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_10000_10}
+    \caption{Time for 10000 atoms and 10 frames}
+    \label{fg:exp_10000_10}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_10000_100}
+    \caption{Time for 10000 atoms and 100 frames}
+     \label{fg:exp_10000_100}
+  \end{minipage}
+\hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_10000_1000}
+    \caption{Time for 10000 atoms and 1000 frames}
+     \label{fg:exp_10000_1000}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/speedup_10000}
+    \caption{Speedup for 10000 atoms}
+     \label{fg:speedup_10000}
+  \end{minipage}
+\end{figure}
+
+You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
+
+As you can see, speedup bumps up to almost 30 with 10000 atoms (Figure \ref{fg:chart_10000}). Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too.
+
+\subsection{Experiment results for 100,000 atoms}
+
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_100000_10}
+    \caption{Time for 100,000 atoms and 10 frames}
+    \label{fg:exp_100000_10}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/exp_100000_100}
+    \caption{Time for 100,000 atoms and 100 frames}
+     \label{fg:exp_100000_100}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{images/speedup_100000}
+    \caption{Speedup for 100,000 atoms}
+     \label{fg:speedup_100000}
+  \end{minipage}
 \end{figure}
 
 Fortunately, scientific data is much bigger than above examples. You can see average speedup for bigger number of atoms on Figure \ref{fg:chart_max}. The speedup gets upto 70 times which could save huge amount of time for scientists. These results are not the best, as it has been already mentioned earlier, since we have not modified general structure of memory being transferred to Global Memory not taking advantage of coalesced memory access to make it easily extendable. 
