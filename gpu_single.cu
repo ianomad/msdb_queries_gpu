@@ -75,6 +75,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     unsigned long long* shared_histo = smem;
     atom* sharedAtoms = (atom*) &shared_histo[num_buckets];
+    atom* sharedAtoms1 = (atom*) &sharedAtoms[blockDim.x];
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
     long index_y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -101,6 +102,16 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         for(i = start; i < start + blockDim.x && i < PDH_acnt; i++, k++) {
             sharedAtoms[k] = at_list[i];
         }
+
+        k = 0;
+        for(i = start; i < start + blockDim.x * 2 && i < PDH_acnt; i++, k++) {
+
+            if(i < start + blockDim.x) {
+                sharedAtoms1[k] = sharedAtoms[k];
+            } else {
+                sharedAtoms1[k] = at_list[i];    
+            }
+        }
     }
 
     __syncthreads();
@@ -116,8 +127,8 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         end++;
     }
 
-    int bi = blockDim.x * blockIdx.x;   // block start
-    int ei = bi + blockDim.x;           // block end
+    int bi = blockDim.x * blockIdx.x;   // shared block start
+    int ei = bi + blockDim.x * 2;           // shared block end
 
     int ind1 = threadIdx.x;             // in this block from sharedAtoms
     int ind2;
@@ -132,16 +143,31 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double z1 = sharedAtoms[ind1].z;
 
         double x2, y2, z2;
-        
-        if(bi <= ind2 && ind2 < ei) {
-            x2 = sharedAtoms[ind2 - bi].x;
-            y2 = sharedAtoms[ind2 - bi].y;
-            z2 = sharedAtoms[ind2 - bi].z;
-        } else {
-            x2 = at_list[ind2].x;
-            y2 = at_list[ind2].y;
-            z2 = at_list[ind2].z;
+
+        __syncthreads();
+
+        if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei) { //not finding in shared memory
+            bi += blockDim.x * 2;
+            ei += blockDim.x * 2;
+            for(i = bi - blockDim.x; i < ei; i++, k++) {
+                
+                if(i < bi) {
+                    sharedAtoms1[k] = sharedAtoms1[k + blockDim.x];
+                } else {
+                    sharedAtoms1[k] = at_list[i % PDH_acnt];
+                }
+            }
         }
+
+        x2 = sharedAtoms1[ind2 - bi].x;
+        y2 = sharedAtoms1[ind2 - bi].y;
+        z2 = sharedAtoms1[ind2 - bi].z;
+
+        __syncthreads();
+        
+        // x2 = at_list[ind2].x;
+        // y2 = at_list[ind2].y;
+        // z2 = at_list[ind2].z;
 
         double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
         int h_pos = (int) (dist / PDH_res);
@@ -260,7 +286,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
         gpu_one_body_functions_kernel<<<grid_size, block_size, smem1, streamComp1 >>>(g_s_atomsCnt, g_s_atom_list, g_s_res);
 
         //----------------------------------2 BODY KERNEL---------------------------------------------------
-        int smem2 = num_buckets * sizeof(unsigned long long) + block_size.x * sizeof(atom);
+        int smem2 = num_buckets * sizeof(unsigned long long) + 3 * block_size.x * sizeof(atom);
         gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
         
         cudaStreamSynchronize(streamComp1);
