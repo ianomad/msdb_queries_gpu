@@ -11,6 +11,10 @@ typedef struct atom {
     float mass;
 } atom;
 
+typedef struct coordinates {
+    float x, y, z; //coordinates
+} coordinates;
+
 typedef struct query_results {
 	
 	float mass;
