@@ -144,8 +144,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         double x2, y2, z2;
 
-        __syncthreads();
-
         if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei)) { //not finding in shared memory
             bi += blockDim.x;
             ei += blockDim.x;
@@ -164,19 +162,17 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         }
 
         __syncthreads();
-        //ind2 = j % PDH_acnt;
 
-        x2 = sharedAtoms1[ind2 - bi].x;
-        y2 = sharedAtoms1[ind2 - bi].y;
-        z2 = sharedAtoms1[ind2 - bi].z;
+        int load = 0;
+        while(load < blockDim.x) {
+            x2 = sharedAtoms1[ind2 - bi].x;
+            y2 = sharedAtoms1[ind2 - bi].y;
+            z2 = sharedAtoms1[ind2 - bi].z;
 
-        // x2 = at_list[ind2].x;
-        // y2 = at_list[ind2].y;
-        // z2 = at_list[ind2].z;
-
-        double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
-        int h_pos = (int) (dist / PDH_res);
-        atomicAdd(&shared_histo[h_pos], 1);
+            double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
+            int h_pos = (int) (dist / PDH_res);
+            atomicAdd(&shared_histo[h_pos], 1);
+        }
     }
 
     __syncthreads();
