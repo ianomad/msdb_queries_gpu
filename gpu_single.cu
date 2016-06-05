@@ -146,7 +146,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         __syncthreads();
 
-        if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei) { //not finding in shared memory
+        if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei)) { //not finding in shared memory
             bi += blockDim.x * 2;
             ei += blockDim.x * 2;
             for(i = bi - blockDim.x; i < ei; i++, k++) {
@@ -164,7 +164,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         z2 = sharedAtoms1[ind2 - bi].z;
 
         __syncthreads();
-        
+
         // x2 = at_list[ind2].x;
         // y2 = at_list[ind2].y;
         // z2 = at_list[ind2].z;
