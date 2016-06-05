@@ -109,9 +109,9 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         // load one more block
         for(; i < start + blockDim.x * 2; i++, k++) {
-            sharedAtoms1[k].x = at_list[i % PDH_res].x;
-            sharedAtoms1[k].y = at_list[i % PDH_res].y;
-            sharedAtoms1[k].z = at_list[i % PDH_res].z;
+            sharedAtoms1[k].x = at_list[i % PDH_acnt].x;
+            sharedAtoms1[k].y = at_list[i % PDH_acnt].y;
+            sharedAtoms1[k].z = at_list[i % PDH_acnt].z;
         }
     }
 
