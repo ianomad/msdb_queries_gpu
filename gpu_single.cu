@@ -71,114 +71,114 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
 __global__
 void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double PDH_res) {
 
-    extern __shared__ unsigned long long smem[];
+    // extern __shared__ unsigned long long smem[];
 
-    unsigned long long* shared_histo = smem;
-    atom* sharedAtoms = (atom*) &shared_histo[num_buckets];
-    atom* sharedAtoms1 = (atom*) &sharedAtoms[blockDim.x];
+    // unsigned long long* shared_histo = smem;
+    // atom* sharedAtoms = (atom*) &shared_histo[num_buckets];
+    // atom* sharedAtoms1 = (atom*) &sharedAtoms[blockDim.x];
 
-    long index_x = blockIdx.x * blockDim.x + threadIdx.x;
-    long index_y = blockIdx.y * blockDim.y + threadIdx.y;
+    // long index_x = blockIdx.x * blockDim.x + threadIdx.x;
+    // long index_y = blockIdx.y * blockDim.y + threadIdx.y;
 
-    // map the two 2D indices to a single linear, 1D index
-    long grid_width = gridDim.x * blockDim.x;
-    long index = index_y * grid_width + index_x;
+    // // map the two 2D indices to a single linear, 1D index
+    // long grid_width = gridDim.x * blockDim.x;
+    // long index = index_y * grid_width + index_x;
 
-    long i = index;
+    // long i = index;
 
-    //check the bound
-    if(i >= PDH_acnt) {
-        return;
-    }
+    // //check the bound
+    // if(i >= PDH_acnt) {
+    //     return;
+    // }
 
-    //for every first thread of the block
-    if(threadIdx.x == 0) {
-        for(i = 0; i < num_buckets; i++) {
-            shared_histo[i] = 0;
-        }
+    // //for every first thread of the block
+    // if(threadIdx.x == 0) {
+    //     for(i = 0; i < num_buckets; i++) {
+    //         shared_histo[i] = 0;
+    //     }
 
-        int start = index;
-        int k = 0;
-        for(i = start; i < start + blockDim.x && i < PDH_acnt; i++, k++) {
-            sharedAtoms[k] = at_list[i];
-            sharedAtoms1[k] = sharedAtoms[k];
-        }
+    //     int start = index;
+    //     int k = 0;
+    //     for(i = start; i < start + blockDim.x && i < PDH_acnt; i++, k++) {
+    //         sharedAtoms[k] = at_list[i];
+    //         sharedAtoms1[k] = sharedAtoms[k];
+    //     }
 
-        // load one more block
-        for(; i < start + blockDim.x * 2; i++, k++) {
-            sharedAtoms1[k] = at_list[i % PDH_acnt];
-        }
-    }
+    //     // load one more block
+    //     for(; i < start + blockDim.x * 2; i++, k++) {
+    //         sharedAtoms1[k] = at_list[i % PDH_acnt];
+    //     }
+    // }
 
-    __syncthreads();
+    // __syncthreads();
 
-    i = index;
+    // i = index;
     
-    int threadLoad = (PDH_acnt + 1) / 2;
+    // int threadLoad = (PDH_acnt + 1) / 2;
 
-    int start = i + 1;
-    int end = i + threadLoad;
+    // int start = i + 1;
+    // int end = i + threadLoad;
 
-    if(PDH_acnt % 2 == 0 && i < PDH_acnt / 2) {
-        end++;
-    }
+    // if(PDH_acnt % 2 == 0 && i < PDH_acnt / 2) {
+    //     end++;
+    // }
 
-    int bi = blockDim.x * blockIdx.x;   // shared block start
-    int ei = bi + blockDim.x * 2;           // shared block end
+    // int bi = blockDim.x * blockIdx.x;   // shared block start
+    // int ei = bi + blockDim.x * 2;           // shared block end
 
-    int ind1 = threadIdx.x;             // in this block from sharedAtoms
-    int ind2;
+    // int ind1 = threadIdx.x;             // in this block from sharedAtoms
+    // int ind2;
 
-    int j;
-    int k = 0;
-    for(j = start; j < end; j++) {
+    // int j;
+    // int k = 0;
+    // for(j = start; j < end; j++) {
 
-        ind2 = j % PDH_acnt;
+    //     ind2 = j % PDH_acnt;
 
-        double x1 = sharedAtoms[ind1].x;
-        double y1 = sharedAtoms[ind1].y;
-        double z1 = sharedAtoms[ind1].z;
+    //     double x1 = sharedAtoms[ind1].x;
+    //     double y1 = sharedAtoms[ind1].y;
+    //     double z1 = sharedAtoms[ind1].z;
 
-        double x2, y2, z2;
+    //     double x2, y2, z2;
 
-        __syncthreads();
+    //     __syncthreads();
 
-        if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei)) { //not finding in shared memory
-            bi += blockDim.x * 2;
-            ei += blockDim.x * 2;
-            k = 0;
-            for(i = bi - blockDim.x; i < ei; i++, k++) {
+    //     if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei)) { //not finding in shared memory
+    //         bi += blockDim.x * 2;
+    //         ei += blockDim.x * 2;
+    //         k = 0;
+    //         for(i = bi - blockDim.x; i < ei; i++, k++) {
                 
-                if(i < bi) {
-                    sharedAtoms1[k] = sharedAtoms1[k + blockDim.x];
-                } else {
-                    sharedAtoms1[k] = at_list[i % PDH_acnt];
-                }
-            }
-        }
+    //             if(i < bi) {
+    //                 sharedAtoms1[k] = sharedAtoms1[k + blockDim.x];
+    //             } else {
+    //                 sharedAtoms1[k] = at_list[i % PDH_acnt];
+    //             }
+    //         }
+    //     }
 
-        x2 = sharedAtoms1[ind2 - bi].x;
-        y2 = sharedAtoms1[ind2 - bi].y;
-        z2 = sharedAtoms1[ind2 - bi].z;
+    //     x2 = sharedAtoms1[ind2 - bi].x;
+    //     y2 = sharedAtoms1[ind2 - bi].y;
+    //     z2 = sharedAtoms1[ind2 - bi].z;
 
-        __syncthreads();
+    //     __syncthreads();
 
-        // x2 = at_list[ind2].x;
-        // y2 = at_list[ind2].y;
-        // z2 = at_list[ind2].z;
+    //     // x2 = at_list[ind2].x;
+    //     // y2 = at_list[ind2].y;
+    //     // z2 = at_list[ind2].z;
 
-        double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
-        int h_pos = (int) (dist / PDH_res);
-        atomicAdd(&shared_histo[h_pos], 1);
-    }
+    //     double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
+    //     int h_pos = (int) (dist / PDH_res);
+    //     atomicAdd(&shared_histo[h_pos], 1);
+    // }
 
-    __syncthreads();
+    // __syncthreads();
 
-    if(threadIdx.x == 0) {
-        for(i = 0; i < num_buckets; i++) {
-            atomicAdd(&hist[i].d_cnt, shared_histo[i]);
-        }
-    }
+    // if(threadIdx.x == 0) {
+    //     for(i = 0; i < num_buckets; i++) {
+    //         atomicAdd(&hist[i].d_cnt, shared_histo[i]);
+    //     }
+    // }
 }
 
 void output_histogram(bucket* hist, int num_buckets){
