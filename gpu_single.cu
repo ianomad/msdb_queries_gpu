@@ -152,9 +152,9 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             bi += blockDim.x;
             ei += blockDim.x;
             k = 0;
-            for(i = bi - blockDim.x; i < ei; i++, k++) {
+            for(i = bi; i < ei; i++, k++) {
                 
-                if(i < bi) {
+                if(i < bi + blockDim.x) {
                     sharedAtoms1[k].x = sharedAtoms1[k + blockDim.x].x;
                     sharedAtoms1[k].y = sharedAtoms1[k + blockDim.x].y;
                     sharedAtoms1[k].z = sharedAtoms1[k + blockDim.x].z;
