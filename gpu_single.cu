@@ -75,7 +75,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     unsigned long long* shared_histo = smem;
     coordinates* sharedAtoms = (coordinates*) &shared_histo[num_buckets];
-    coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x * 3];
+    coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
     long index_y = blockIdx.y * blockDim.y + threadIdx.y;
