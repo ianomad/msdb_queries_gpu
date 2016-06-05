@@ -166,11 +166,11 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             }
         }
 
+        __syncthreads();
+        
         x2 = sharedAtoms1[ind2 - bi].x;
         y2 = sharedAtoms1[ind2 - bi].y;
         z2 = sharedAtoms1[ind2 - bi].z;
-
-        __syncthreads();
 
         // x2 = at_list[ind2].x;
         // y2 = at_list[ind2].y;
