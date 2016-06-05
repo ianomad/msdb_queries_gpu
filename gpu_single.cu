@@ -138,8 +138,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     int k = 0;
     for(j = start; j < end; j++) {
 
-        ind2 = j % PDH_acnt;
-
         double x1 = sharedAtoms[ind1].x;
         double y1 = sharedAtoms[ind1].y;
         double z1 = sharedAtoms[ind1].z;
@@ -153,7 +151,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             ei += blockDim.x;
             k = 0;
             for(i = bi; i < ei; i++, k++) {
-                
                 if(i < bi + blockDim.x) {
                     sharedAtoms1[k].x = sharedAtoms1[k + blockDim.x].x;
                     sharedAtoms1[k].y = sharedAtoms1[k + blockDim.x].y;
@@ -167,7 +164,8 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         }
 
         __syncthreads();
-        
+        //ind2 = j % PDH_acnt;
+
         x2 = sharedAtoms1[ind2 - bi].x;
         y2 = sharedAtoms1[ind2 - bi].y;
         z2 = sharedAtoms1[ind2 - bi].z;
