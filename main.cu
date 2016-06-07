@@ -112,9 +112,9 @@ int main(int argc, char *argv[]) {
         lineStream >> atomsList[atomCount].charge;
         lineStream >> atomsList[atomCount].mass;
 
-        atomsList[atomCount].x = (((float)rand() % 100) / 100.0f) * space;
-        atomsList[atomCount].y = (((float)rand() % 100) / 100.0f) * space;
-        atomsList[atomCount].z = (((float)rand() % 100) / 100.0f) * space;
+        atomsList[atomCount].x = ((rand() % 100) / 100.0f) * space;
+        atomsList[atomCount].y = ((rand() % 100) / 100.0f) * space;
+        atomsList[atomCount].z = ((rand() % 100) / 100.0f) * space;
 
         atomCount++;
     }
