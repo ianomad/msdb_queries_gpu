@@ -69,7 +69,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
 __global__
-void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double PDH_res) {
+void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double bucket_width) {
 
     extern __shared__ unsigned long long smem[];
 
@@ -170,7 +170,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             z2 = sharedAtoms1[ind2 - bi].z;
 
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
-            int h_pos = (int) (dist / PDH_res);
+            int h_pos = (int) (dist / bucket_width);
             atomicAdd(&shared_histo[h_pos], 1);
             load++;
             j++;
@@ -186,7 +186,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     }
 }
 
-void output_histogram(bucket* hist, int num_buckets){
+void output_histogram(bucket* hist, int num_buckets) {
     int i; 
     unsigned long long total_cnt = 0;
     for(i = 0; i < num_buckets; i++) {
@@ -202,12 +202,9 @@ void output_histogram(bucket* hist, int num_buckets){
 }
 
 
-void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
+void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_width, float space) {
 
-    int BOX_SIZE = 175;
-    int PDH_res = 1;
-
-    int num_buckets = BOX_SIZE + 1;
+    int num_buckets = space / bucket_width + 1;
 
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
@@ -292,7 +289,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload) {
         int smem2 = num_buckets * sizeof(unsigned long long) + 3 * block_size.x * sizeof(coordinates);
         printf("SMEM size: %d\n", smem2);
         printf("Float size: %d\n", sizeof(coordinates));
-        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, PDH_res);
+        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width);
         
         cudaStreamSynchronize(streamComp1);
         cudaStreamSynchronize(streamComp2);

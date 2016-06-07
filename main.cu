@@ -43,6 +43,13 @@ int main(int argc, char *argv[]) {
         workload = atoi(argv[3]);
     }
 
+    float bucket_width, space;
+    if(argc < 6) {
+        printf("Usage: ./main atomCount file workload bucket-width space-width\n");
+        bucket_width = atof(argv[4]);
+        space = atof(argv[5]);
+    }
+
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
 
@@ -72,7 +79,7 @@ int main(int argc, char *argv[]) {
             if(atomCount > 0) {
                 std::cout << "**********************Frame #" << heads << "*****************" << std::endl;
                 std::cout << atomCount << " atoms read." << std::endl;
-                run_single_kernel(atomsCnt, atomsList, workload);
+                run_single_kernel(atomsCnt, atomsList, workload, bucket_width, space);
             }
             
             // check for error
@@ -105,9 +112,9 @@ int main(int argc, char *argv[]) {
         lineStream >> atomsList[atomCount].charge;
         lineStream >> atomsList[atomCount].mass;
 
-        atomsList[atomCount].x = rand() % 100;
-        atomsList[atomCount].y = rand() % 100;
-        atomsList[atomCount].z = rand() % 100;
+        atomsList[atomCount].x = (((float)rand() % 100) / 100.0f) * space;
+        atomsList[atomCount].y = (((float)rand() % 100) / 100.0f) * space;
+        atomsList[atomCount].z = (((float)rand() % 100) / 100.0f) * space;
 
         atomCount++;
     }
