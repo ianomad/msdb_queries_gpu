@@ -46,9 +46,11 @@ int main(int argc, char *argv[]) {
     float bucket_width, space;
     if(argc < 6) {
         printf("Usage: ./main atomCount file workload bucket-width space-width\n");
-        bucket_width = atof(argv[4]);
-        space = atof(argv[5]);
+        exit(1);
     }
+
+    bucket_width = atof(argv[4]);
+    space = atof(argv[5]);
 
     std::ifstream stream(fileName.c_str());
     std::cout << "Reading file: " << fileName << std::endl;
