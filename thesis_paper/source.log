@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  4 JUN 2016 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  8 JUN 2016 23:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -694,7 +694,11 @@ Package geometry Warning: Over-specification in `h'-direction.
 Package geometry Warning: Over-specification in `v'-direction.
     `height' (845.04684pt) is ignored.
 
-(./source.aux)
+(./source.aux
+
+LaTeX Warning: Label `tb:gpuprofile100000' multiply defined.
+
+)
 \openout1 = `source.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
@@ -912,17 +916,17 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 5.
 \openout4 = `source.toc'.
 
  [5]
-(./source.lof)
+(./source.lof [6
+
+])
 \tf@lof=\write5
 \openout5 = `source.lof'.
 
- [6
-
-] (./source.lot)
+ [7] (./source.lot)
 \tf@lot=\write6
 \openout6 = `source.lot'.
 
- [7
+ [8
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
  been already used, duplicate ignored
@@ -969,7 +973,7 @@ simulation-eps-converted-to.pdf images/sample_snapshot_of_simulation.eps>
 (epstopdf)             \includegraphics on input line 234.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=300, 568.1225pt 
+<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=318, 568.1225pt 
 x 364.36125pt>
 File: images/sample_snapshot_of_simulation-eps-converted-to.pdf Graphic file (t
 ype pdf)
@@ -995,7 +999,7 @@ za-4-eps-converted-to.pdf images/speedup838K-pomalo-za-4.eps>
 (epstopdf)             \includegraphics on input line 244.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=330, 403.5075pt x 187.
+<images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=348, 403.5075pt x 187.
 70125pt>
 File: images/speedup838K-pomalo-za-4-eps-converted-to.pdf Graphic file (type pd
 f)
@@ -1026,7 +1030,7 @@ Package epstopdf Info: Source file: <images/kernelatom.eps>
 erted-to.pdf images/kernelatom.eps>
 (epstopdf)             \includegraphics on input line 270.
 Package epstopdf Info: Output file is already uptodate.
- <images/kernelatom-eps-converted-to.pdf, id=349, 343.2825pt x 219.82124pt>
+ <images/kernelatom-eps-converted-to.pdf, id=366, 343.2825pt x 219.82124pt>
 File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/kernelatom-eps-converted-to.pdf>
@@ -1038,7 +1042,13 @@ been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.283 
-       [7] [8 <./images/kernelatom-eps-converted-to.pdf>] [9] [10]
+       [7]pdfTeX warning (ext4): destination with the same identifier (name{pag
+e.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.287 \item[3.]
+                Data conversion - this module comes as a part of the code in...
+[8 <./images/kernelatom-eps-converted-to.pdf>] [9] [10]
 Chapter 2.
 [11
 
@@ -1065,7 +1075,7 @@ o.pdf>
 (epstopdf)             \includegraphics on input line 412.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/memory-organization-eps-converted-to.pdf, id=453, 334.24875pt x 473.77p
+<images/memory-organization-eps-converted-to.pdf, id=470, 334.24875pt x 473.77p
 t>
 File: images/memory-organization-eps-converted-to.pdf Graphic file (type pdf)
  <use images/memory-organization-eps-converted-to.pdf>
@@ -1075,14 +1085,14 @@ n input line 412.
  [19
 
 ] [20 <./images/memory-organization-eps-converted-to.pdf>] [21] [22]
-<images/reduction.png, id=490, 228.855pt x 168.63pt>
+<images/reduction.png, id=506, 228.855pt x 168.63pt>
 File: images/reduction.png Graphic file (type png)
 
 <use images/reduction.png>
 Package pdftex.def Info: images/reduction.png used on input line 443.
 (pdftex.def)             Requested size: 314.40001pt x 231.67268pt.
 
-<images/overallarchitecture.png, id=492, 334.24875pt x 532.99126pt>
+<images/overallarchitecture.png, id=508, 334.24875pt x 532.99126pt>
 File: images/overallarchitecture.png Graphic file (type png)
 
 <use images/overallarchitecture.png>
@@ -1091,7 +1101,7 @@ Package pdftex.def Info: images/overallarchitecture.png used on input line 449.
 (pdftex.def)             Requested size: 314.40001pt x 501.37784pt.
  [23] [24 <./images/reduction.png>]
 [25 <./images/overallarchitecture.png>]
-<images/threadload.png, id=512, 416.55624pt x 211.79124pt>
+<images/threadload.png, id=528, 416.55624pt x 211.79124pt>
 File: images/threadload.png Graphic file (type png)
 
 <use images/threadload.png>
@@ -1334,7 +1344,7 @@ e{ALG@line.13}) has been already used, duplicate ignored
                    \relax 
 l.630 \EndProcedure
                     [30]
-<images/sharedMem.png, id=589, 438.63875pt x 369.38pt>
+<images/sharedMem.png, id=605, 438.63875pt x 369.38pt>
 File: images/sharedMem.png Graphic file (type png)
 
 <use images/sharedMem.png>
@@ -1743,28 +1753,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [35
 
-] [36] [37] <images/exp_1000_10.png, id=635, 504.88625pt x 312.16624pt>
+] [36] [37] <images/exp_1000_10.png, id=651, 504.88625pt x 312.16624pt>
 File: images/exp_1000_10.png Graphic file (type png)
 
 <use images/exp_1000_10.png>
 Package pdftex.def Info: images/exp_1000_10.png used on input line 900.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_1000_100.png, id=636, 504.88625pt x 312.16624pt>
+<images/exp_1000_100.png, id=652, 504.88625pt x 312.16624pt>
 File: images/exp_1000_100.png Graphic file (type png)
 
 <use images/exp_1000_100.png>
 Package pdftex.def Info: images/exp_1000_100.png used on input line 906.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_1000_1000.png, id=637, 504.88625pt x 312.16624pt>
+<images/exp_1000_1000.png, id=653, 504.88625pt x 312.16624pt>
 File: images/exp_1000_1000.png Graphic file (type png)
 
 <use images/exp_1000_1000.png>
 Package pdftex.def Info: images/exp_1000_1000.png used on input line 912.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_1000.png, id=638, 602.25pt x 372.39125pt>
+<images/speedup_1000.png, id=654, 602.25pt x 372.39125pt>
 File: images/speedup_1000.png Graphic file (type png)
 
 <use images/speedup_1000.png>
@@ -1776,28 +1786,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [38 <./images/exp_1000_10.png> <./images/exp_1000_100.png> <./images/exp_1000_1
 000.png> <./images/speedup_1000.png>]
-<images/exp_10000_10.png, id=648, 504.88625pt x 312.16624pt>
+<images/exp_10000_10.png, id=664, 504.88625pt x 312.16624pt>
 File: images/exp_10000_10.png Graphic file (type png)
 
 <use images/exp_10000_10.png>
 Package pdftex.def Info: images/exp_10000_10.png used on input line 973.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_10000_100.png, id=649, 504.88625pt x 312.16624pt>
+<images/exp_10000_100.png, id=665, 504.88625pt x 312.16624pt>
 File: images/exp_10000_100.png Graphic file (type png)
 
 <use images/exp_10000_100.png>
 Package pdftex.def Info: images/exp_10000_100.png used on input line 979.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_10000_1000.png, id=650, 504.88625pt x 312.16624pt>
+<images/exp_10000_1000.png, id=666, 504.88625pt x 312.16624pt>
 File: images/exp_10000_1000.png Graphic file (type png)
 
 <use images/exp_10000_1000.png>
 Package pdftex.def Info: images/exp_10000_1000.png used on input line 985.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_10000.png, id=651, 602.25pt x 372.39125pt>
+<images/speedup_10000.png, id=667, 602.25pt x 372.39125pt>
 File: images/speedup_10000.png Graphic file (type png)
 
 <use images/speedup_10000.png>
@@ -1812,21 +1822,21 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [39] [40 <./images/exp_10000_10.png> <./images/exp_10000_100.png> <./images/exp
 _10000_1000.png> <./images/speedup_10000.png>]
-<images/exp_100000_10.png, id=667, 504.88625pt x 312.16624pt>
+<images/exp_100000_10.png, id=683, 504.88625pt x 312.16624pt>
 File: images/exp_100000_10.png Graphic file (type png)
 
 <use images/exp_100000_10.png>
 Package pdftex.def Info: images/exp_100000_10.png used on input line 1052.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_100000_100.png, id=668, 504.88625pt x 312.16624pt>
+<images/exp_100000_100.png, id=684, 504.88625pt x 312.16624pt>
 File: images/exp_100000_100.png Graphic file (type png)
 
 <use images/exp_100000_100.png>
 Package pdftex.def Info: images/exp_100000_100.png used on input line 1058.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_100000.png, id=669, 602.25pt x 372.39125pt>
+<images/speedup_100000.png, id=685, 602.25pt x 372.39125pt>
 File: images/speedup_100000.png Graphic file (type png)
 
 <use images/speedup_100000.png>
@@ -1840,40 +1850,58 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [41 <./images/exp_100000_10.png> <./images/exp_100000_100.png> <./images/speedu
-p_100000.png>] <images/chart_max.png, id=679, 553.06625pt x 370.38374pt>
-File: images/chart_max.png Graphic file (type png)
+p_100000.png>] <images/improved_sdh.png, id=695, 285.065pt x 263.98625pt>
+File: images/improved_sdh.png Graphic file (type png)
 
-<use images/chart_max.png>
-Package pdftex.def Info: images/chart_max.png used on input line 1119.
-(pdftex.def)             Requested size: 338.58632pt x 226.74757pt.
- [42] [43 <./images/chart_max.png>]
+<use images/improved_sdh.png>
+Package pdftex.def Info: images/improved_sdh.png used on input line 1118.
+(pdftex.def)             Requested size: 145.11053pt x 134.37743pt.
+ [42 <./images/improved_sdh.png>]
+<images/sdhvsimproved.png, id=703, 602.25pt x 372.39125pt>
+File: images/sdhvsimproved.png Graphic file (type png)
+
+<use images/sdhvsimproved.png>
+Package pdftex.def Info: images/sdhvsimproved.png used on input line 1169.
+(pdftex.def)             Requested size: 241.84843pt x 149.5448pt.
+ [43 <./images/sdhvsimproved.png>]
+<images/overall_speedup.png, id=710, 602.25pt x 372.39125pt>
+File: images/overall_speedup.png Graphic file (type png)
+
+<use images/overall_speedup.png>
+Package pdftex.def Info: images/overall_speedup.png used on input line 1183.
+(pdftex.def)             Requested size: 386.95897pt x 239.27852pt.
+ [44 <./images/overall_speedup.png>]
 Chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1127--1128
+Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
 
  []
 
-(./source.bbl [44
+(./source.bbl [45
 
-] [45
+] [46
 
-] [46] [47])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1132.
- [48]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1132.
+] [47] [48])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1196.
+ [49]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1196.
  (./source.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1132.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1132.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1196.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1196.
 
 Package rerunfilecheck Info: File `source.out' has not changed.
-(rerunfilecheck)             Checksum: 57BFE6F7970C5AFC88142A498DDFF0AA;2243.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1132.
+(rerunfilecheck)             Checksum: E86DCDD373D525B8DE977B66D206A3DB;2324.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1196.
  ) 
 Here is how much of TeX's memory you used:
- 13354 strings out of 493089
- 211637 string characters out of 6134842
+ 13374 strings out of 493089
+ 212090 string characters out of 6134842
  351268 words of memory out of 5000000
- 16192 multiletter control sequences out of 15000+600000
+ 16204 multiletter control sequences out of 15000+600000
  63935 words of font info for 200 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,19n,42p,2489b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1893,10 +1921,10 @@ t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on source.pdf (57 pages, 732281 bytes).
+Output written on source.pdf (59 pages, 762347 bytes).
 PDF statistics:
- 820 PDF objects out of 1000 (max. 8388607)
- 696 compressed objects within 7 object streams
- 203 named destinations out of 1000 (max. 500000)
- 30581 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 849 PDF objects out of 1000 (max. 8388607)
+ 718 compressed objects within 8 object streams
+ 209 named destinations out of 1000 (max. 500000)
+ 30599 words of extra memory for PDF output out of 35830 (max. 10000000)
 

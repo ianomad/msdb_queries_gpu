@@ -22,5 +22,7 @@
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Time for 100,000 atoms and 10 frames\relax }}{41}{figure.caption.25}
 \contentsline {figure}{\numberline {5.10}{\ignorespaces Time for 100,000 atoms and 100 frames\relax }}{41}{figure.caption.25}
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Speedup for 100,000 atoms\relax }}{41}{figure.caption.25}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Speedup for larger number of atoms\relax }}{43}{figure.caption.28}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces New approach of using shared memory\relax }}{42}{figure.caption.28}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Comparison of GPU SDH with GPU SDH Improved\relax }}{43}{figure.caption.31}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Speedup for larger number of atoms\relax }}{44}{figure.caption.32}
 \addvspace {10\p@ }
