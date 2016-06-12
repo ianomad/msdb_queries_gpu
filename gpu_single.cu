@@ -132,14 +132,14 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     }
 
     int sharedAtoms1Offset = blockDim.x * blockIdx.x + 1;
-    
+
     int ind1 = threadIdx.x;
     int ind2;
 
     __syncthreads();
 
     int k = 0;
-    for(ind2 = start; ind2 < end; ind2 += blockDim.x) {
+    for(ind2 = start; ind2 < end;) {
 
         double x1 = sharedAtoms[ind1].x;
         double y1 = sharedAtoms[ind1].y;
