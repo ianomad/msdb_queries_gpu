@@ -145,7 +145,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         double x2, y2, z2;
 
-        if(threadIdx.x == 0 && !(bi <= ind2 && ind2 < ei)) { //not finding in shared memory
+        if(threadIdx.x == 0) { //not finding in shared memory
             bi += blockDim.x;
             ei += blockDim.x;
             k = 0;
