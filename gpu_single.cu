@@ -69,12 +69,13 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
 __global__
-void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double bucket_width) {
+void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double bucket_width,
+    bool histogram_in_sm) {
 
     extern __shared__ unsigned long long smem[];
 
     unsigned long long* shared_histo = smem;
-    coordinates* sharedAtoms = (coordinates*) &shared_histo[num_buckets];
+    coordinates* sharedAtoms = histogram_in_sm ? (coordinates*) &shared_histo[num_buckets] : smem;
     coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
@@ -93,7 +94,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     //for every first thread of the block
     if(threadIdx.x == 0) {
-        for(i = 0; i < num_buckets; i++) {
+        for(i = 0; i < num_buckets && histogram_in_sm; i++) {
             shared_histo[i] = 0;
         }
 
@@ -171,7 +172,14 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
-            atomicAdd(&shared_histo[h_pos], 1);
+
+
+            if(histogram_in_sm) {
+                atomicAdd(&shared_histo[h_pos], 1);
+            } else {
+                atomicAdd(&hist[h_pos].d_cnt, 1);
+            }
+
             load++;
             j++;
         }
@@ -179,7 +187,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     __syncthreads();
 
-    if(threadIdx.x == 0) {
+    if(threadIdx.x == 0 && histogram_in_sm) {
         for(i = 0; i < num_buckets; i++) {
             atomicAdd(&hist[i].d_cnt, shared_histo[i]);
         }
@@ -287,12 +295,21 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
 
         //----------------------------------2 BODY KERNEL---------------------------------------------------
         int smem2 = num_buckets * sizeof(unsigned long long) + 3 * block_size.x * sizeof(coordinates);
+        bool histogram_in_sm = true;
+        if(smem2 > 63000) {
+            printf("Not able to allocate SM for SDH\n");
+            smem2 = 3 * block_size.x * sizeof(coordinates);
+            histogram_in_sm = false;
+        }
+
         printf("SMEM size: %d\n", smem2);
         printf("Size of coordinates: %d\n", sizeof(coordinates));
         printf("Size of coordinates array: %d\n", 3 * block_size.x * sizeof(coordinates));
         printf("Size of bucket: %d\n", sizeof(unsigned long long));
         printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
-        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width);
+
+
+        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width, histogram_in_sm);
         
         cudaStreamSynchronize(streamComp1);
         cudaStreamSynchronize(streamComp2);
