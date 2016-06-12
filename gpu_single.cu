@@ -133,8 +133,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     int sharedAtoms1Offset = blockDim.x * blockIdx.x + 1;
 
-    int ind1 = threadIdx.x;             // in this block from sharedAtoms
-    int ind2;
+    int ind1 = threadIdx.x;
 
     int j;
     int k = 0;
@@ -145,24 +144,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double z1 = sharedAtoms[ind1].z;
 
         double x2, y2, z2;
-
-        if(threadIdx.x == 0) { //not finding in shared memory
-            sharedAtoms1Offset += blockDim.x;
-            k = 0;
-            for(i = sharedAtoms1Offset; i < sharedAtoms1Offset + blockDim.x * 2; i++, k++) {
-                if(i < sharedAtoms1Offset + blockDim.x) {
-                    sharedAtoms1[k].x = sharedAtoms1[k + blockDim.x].x;
-                    sharedAtoms1[k].y = sharedAtoms1[k + blockDim.x].y;
-                    sharedAtoms1[k].z = sharedAtoms1[k + blockDim.x].z;
-                } else {
-                    sharedAtoms1[k].x = at_list[i % PDH_acnt].x;
-                    sharedAtoms1[k].y = at_list[i % PDH_acnt].y;
-                    sharedAtoms1[k].z = at_list[i % PDH_acnt].z;
-                }
-            }
-        }
-
-        __syncthreads();
 
         int load = 0;
         while(load < blockDim.x && j < end) {
@@ -183,6 +164,27 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             load++;
             j++;
         }
+
+        __syncthreads();
+
+
+        if(threadIdx.x == 0) { //not finding in shared memory
+            sharedAtoms1Offset = j + 1;
+            k = 0;
+            for(i = sharedAtoms1Offset; i < sharedAtoms1Offset + blockDim.x * 2; i++, k++) {
+                if(i < sharedAtoms1Offset + blockDim.x) {
+                    sharedAtoms1[k].x = sharedAtoms1[k + blockDim.x].x;
+                    sharedAtoms1[k].y = sharedAtoms1[k + blockDim.x].y;
+                    sharedAtoms1[k].z = sharedAtoms1[k + blockDim.x].z;
+                } else {
+                    sharedAtoms1[k].x = at_list[i % PDH_acnt].x;
+                    sharedAtoms1[k].y = at_list[i % PDH_acnt].y;
+                    sharedAtoms1[k].z = at_list[i % PDH_acnt].z;
+                }
+            }
+        }
+
+        __syncthreads();
     }
 
     __syncthreads();
