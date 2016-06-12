@@ -288,7 +288,10 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
         //----------------------------------2 BODY KERNEL---------------------------------------------------
         int smem2 = num_buckets * sizeof(unsigned long long) + 3 * block_size.x * sizeof(coordinates);
         printf("SMEM size: %d\n", smem2);
-        printf("Float size: %d\n", sizeof(coordinates));
+        printf("Size of coordinates: %d\n", sizeof(coordinates));
+        printf("Size of coordinates array: %d\n", 3 * block_size.x * sizeof(coordinates));
+        printf("Size of bucket: %d\n", sizeof(unsigned long long));
+        printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
         gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width);
         
         cudaStreamSynchronize(streamComp1);

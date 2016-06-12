@@ -1175,9 +1175,13 @@ As you may have noticed, even though we increased utilization of shared memory, 
 This is a sample improvement which proves that a little more elaboration on a particular query can bring much better results which could end up saving scientists days and months of time of computation.
 
 
+\subsection{SDH resolution performance impact}
+
+
+
 \subsection{Overall performance}
 
-It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. It is because we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. One of possible reasons could the fact that we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
 
 \begin{figure}
  \centerline{\includegraphics[width=0.8\columnwidth]{images/overall_speedup}}

@@ -1175,15 +1175,21 @@ As you may have noticed, even though we increased utilization of shared memory, 
 This is a sample improvement which proves that a little more elaboration on a particular query can bring much better results which could end up saving scientists days and months of time of computation.
 
 
+\subsection{SDH resolution performance impact}
+
+
+
 \subsection{Overall performance}
 
-It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. It is because we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. One of possible reasons could the fact that we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
 
 \begin{figure}
- \centerline{\includegraphics[width=0.7\columnwidth]{images/chart_max}}
+ \centerline{\includegraphics[width=0.8\columnwidth]{images/overall_speedup}}
  \caption{Speedup for larger number of atoms}
  \label{fg:chart_max}
 \end{figure}
+
+With improved version of SDH speedup gets up to more than 75 times (Figure \ref{fg:chart_max}). We believe that these numbers could get even better depending on queries and elaboration of improvement of particular cases.
 
 \chapter{Conclusions and Future Work}\label{sc:conclusion}
 The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts, the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
