@@ -137,7 +137,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     int j;
     int k = 0;
-    for(j = start; j < end; j += blockDim.x) {
+    for(j = start; j < end + blockDim.x; j += blockDim.x) {
 
         double x1 = sharedAtoms[ind1].x;
         double y1 = sharedAtoms[ind1].y;
