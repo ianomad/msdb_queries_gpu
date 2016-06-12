@@ -100,10 +100,10 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         int start = index;
         int k = 0;
-        for(i = start; i < start + blockDim.x && i < PDH_acnt; i++, k++) {
-            sharedAtoms[k].x = at_list[i].x;
-            sharedAtoms[k].y = at_list[i].y;
-            sharedAtoms[k].z = at_list[i].z;
+        for(i = start; i < start + blockDim.x; i++, k++) {
+            sharedAtoms[k].x = at_list[i % PDH_acnt].x;
+            sharedAtoms[k].y = at_list[i % PDH_acnt].y;
+            sharedAtoms[k].z = at_list[i % PDH_acnt].z;
 
             sharedAtoms1[k] = sharedAtoms[k];
         }
@@ -307,7 +307,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
         printf("Size of coordinates array: %d\n", 3 * block_size.x * sizeof(coordinates));
         printf("Size of bucket: %d\n", sizeof(unsigned long long));
         printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
-        
+
         cudaStreamSynchronize(streamComp1);
 
         gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width, histogram_in_sm);
