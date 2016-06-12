@@ -105,14 +105,16 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             sharedAtoms[k].y = at_list[i % PDH_acnt].y;
             sharedAtoms[k].z = at_list[i % PDH_acnt].z;
 
-            sharedAtoms1[k] = sharedAtoms[k];
+            if(k > 0) {
+                sharedAtoms1[k - 1] = sharedAtoms[k];
+            }
         }
 
         // load one more block
-        for(; i < start + blockDim.x * 2; i++, k++) {
-            sharedAtoms1[k].x = at_list[i % PDH_acnt].x;
-            sharedAtoms1[k].y = at_list[i % PDH_acnt].y;
-            sharedAtoms1[k].z = at_list[i % PDH_acnt].z;
+        for(; i < start + blockDim.x * 2 + 1; i++, k++) {
+            sharedAtoms1[k - 1].x = at_list[i % PDH_acnt].x;
+            sharedAtoms1[k - 1].y = at_list[i % PDH_acnt].y;
+            sharedAtoms1[k - 1].z = at_list[i % PDH_acnt].z;
         }
     }
 
@@ -129,8 +131,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         end++;
     }
 
-    int bi = blockDim.x * blockIdx.x;   // shared block start
-    int ei = bi + blockDim.x * 2;           // shared block end
+    int sharedAtoms1Offset = blockDim.x * blockIdx.x + 1;
 
     int ind1 = threadIdx.x;             // in this block from sharedAtoms
     int ind2;
@@ -146,11 +147,10 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double x2, y2, z2;
 
         if(threadIdx.x == 0) { //not finding in shared memory
-            bi += blockDim.x;
-            ei += blockDim.x;
+            sharedAtoms1Offset += blockDim.x;
             k = 0;
-            for(i = bi; i < ei; i++, k++) {
-                if(i < bi + blockDim.x) {
+            for(i = sharedAtoms1Offset; i < sharedAtoms1Offset + blockDim.x * 2; i++, k++) {
+                if(i < sharedAtoms1Offset + blockDim.x) {
                     sharedAtoms1[k].x = sharedAtoms1[k + blockDim.x].x;
                     sharedAtoms1[k].y = sharedAtoms1[k + blockDim.x].y;
                     sharedAtoms1[k].z = sharedAtoms1[k + blockDim.x].z;
@@ -166,9 +166,9 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         int load = 0;
         while(load < blockDim.x && j < end) {
-            x2 = sharedAtoms1[ind2 - bi].x;
-            y2 = sharedAtoms1[ind2 - bi].y;
-            z2 = sharedAtoms1[ind2 - bi].z;
+            x2 = sharedAtoms1[j - sharedAtoms1Offset].x;
+            y2 = sharedAtoms1[j - sharedAtoms1Offset].y;
+            z2 = sharedAtoms1[j - sharedAtoms1Offset].z;
 
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
