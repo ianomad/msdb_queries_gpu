@@ -204,7 +204,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     if(threadIdx.x == 0 && histogram_in_sm) {
         for(i = 0; i < num_buckets; i++) {
-            atomicAdd(&hist[i].d_cnt, 1);//shared_histo[i]);
+            atomicAdd(&hist[i].d_cnt, shared_histo[i]);
         }
     }
 }
@@ -279,6 +279,14 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
     //int gridSize = ceil(atomsCnt / (float)blockSize) + 1;
     //int stripe = 1024 / ;
 
+
+    // check for error
+    cudaError_t error = cudaGetLastError();
+    if(error != cudaSuccess) {
+        printf("CUDA error: %s\n", cudaGetErrorString(error));
+        exit(-1);
+    }
+    
     int i, w;
     for(w = 0; w < workload; w++) {
 
