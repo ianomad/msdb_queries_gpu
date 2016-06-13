@@ -215,8 +215,8 @@ void output_histogram(bucket* hist, int num_buckets) {
 
 
 void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_width, float space) {
-
-    int num_buckets = (int) ((space * space * 3.0f) / bucket_width) + 1;
+    
+    int num_buckets = (int) (sqrt(space * space * 3) / bucket_width) + 1;
 
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
@@ -311,7 +311,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
         printf("Size of coordinates array: %d\n", 3 * block_size.x * sizeof(coordinates));
         printf("Number of buckets: %d\n", num_buckets);
         printf("Bucket width: %f\n", bucket_width);
-        printf("Bucket space: %f\n", space);
+        printf("Box size: %f\n", space);
         printf("Size of bucket: %d\n", sizeof(unsigned long long));
         printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
 
