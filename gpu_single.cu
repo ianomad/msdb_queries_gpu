@@ -183,7 +183,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
             if(histogram_in_sm) {
 
-                if(threadIdx.x == 1023) {
+                if(blockIdx.x == 6 && threadIdx.x == 1023) {
                     printf("%d\n", h_pos);
                 }
 
