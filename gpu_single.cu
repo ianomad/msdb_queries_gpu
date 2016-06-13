@@ -204,7 +204,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     if(threadIdx.x == 0 && histogram_in_sm) {
         for(i = 0; i < num_buckets; i++) {
-            atomicAdd(&hist[i].d_cnt, shared_histo[i]);
+            atomicAdd(&hist[i].d_cnt, 1);//shared_histo[i]);
         }
     }
 }
