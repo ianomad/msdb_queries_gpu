@@ -75,7 +75,14 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     extern __shared__ unsigned long long smem[];
 
     unsigned long long* shared_histo = smem;
-    coordinates* sharedAtoms = histogram_in_sm ? (coordinates*) &shared_histo[num_buckets] : (coordinates*)smem;
+
+    coordinates* sharedAtoms;
+    if(histogram_in_sm) {
+        sharedAtoms = (coordinates*) &shared_histo[num_buckets];
+    } else {
+        sharedAtoms = (coordinates*) &smem[0];
+    }
+
     coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
@@ -155,12 +162,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
-
-            if(h_pos < 0) {
-                h_pos = 0;
-            } else if(h_pos > num_buckets){
-                h_pos = 0;
-            } 
 
             if(histogram_in_sm) {
                 atomicAdd(&shared_histo[h_pos % num_buckets], 1);
