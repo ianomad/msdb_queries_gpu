@@ -78,6 +78,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     coordinates* sharedAtoms;
     if(histogram_in_sm) {
+        printf("inside of histogram_in_sm=true");
         sharedAtoms = (coordinates*) &shared_histo[num_buckets];
     } else {
         sharedAtoms = (coordinates*) &smem[0];
