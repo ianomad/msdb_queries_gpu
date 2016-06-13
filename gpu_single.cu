@@ -216,7 +216,7 @@ void output_histogram(bucket* hist, int num_buckets) {
 
 void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_width, float space) {
 
-    int num_buckets = space / bucket_width + 1;
+    int num_buckets = (int) (space * space * 3 / bucket_width) + 1;
 
     query_results* res = (query_results*) malloc(sizeof(query_results));
     bucket* histogram = (bucket *)malloc(sizeof(bucket) * num_buckets); 
