@@ -121,6 +121,13 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             shared_histo[i] = 0;
         }
 
+        ///////////////////////////////////
+        if(blockIdx.x == 0 && threadIdx.x == 0) {
+            printf("step1...\n");
+        }
+        __syncthreads();
+        ///////////////////////////////////
+
         int start = index;
         int k = 0;
         for(i = start; i < start + blockDim.x; i++, k++) {
@@ -210,6 +217,13 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         __syncthreads();
     }
+
+    ///////////////////////////////////
+    if(blockIdx.x == 0 && threadIdx.x == 0) {
+        printf("step1...\n");
+    }
+    __syncthreads();
+    ///////////////////////////////////
 
     __syncthreads();
 
