@@ -149,19 +149,19 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         int load = 0;
         while(load < blockDim.x && ind2 < end) {
-            x2 = sharedAtoms1[ind2 - sharedAtoms1Offset].x;
-            y2 = sharedAtoms1[ind2 - sharedAtoms1Offset].y;
-            z2 = sharedAtoms1[ind2 - sharedAtoms1Offset].z;
+            // x2 = sharedAtoms1[ind2 - sharedAtoms1Offset].x;
+            // y2 = sharedAtoms1[ind2 - sharedAtoms1Offset].y;
+            // z2 = sharedAtoms1[ind2 - sharedAtoms1Offset].z;
 
-            double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
-            int h_pos = (int) (dist / bucket_width);
+            // double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
+            // int h_pos = (int) (dist / bucket_width);
 
 
-            if(histogram_in_sm) {
-                atomicAdd(&shared_histo[h_pos], 1);
-            } else {
-                atomicAdd(&hist[h_pos].d_cnt, 1);
-            }
+            // if(histogram_in_sm) {
+            //     atomicAdd(&shared_histo[h_pos], 1);
+            // } else {
+            //     atomicAdd(&hist[h_pos].d_cnt, 1);
+            // }
 
             load++;
             ind2++;
