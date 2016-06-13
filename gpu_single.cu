@@ -151,7 +151,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double x2, y2, z2;
 
         if(threadIdx.x == 1023 && blockIdx.x == 2) {
-            printf("sharedAtoms1Offset: %d\n", sharedAtoms1Offset);
+            printf("sharedAtoms1Offset: %d, ind2: %d\n", sharedAtoms1Offset, ind2);
         }
 
         int load = 0;
