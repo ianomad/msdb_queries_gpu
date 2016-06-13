@@ -78,7 +78,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     coordinates* sharedAtoms;
     if(histogram_in_sm) {
-        printf("inside of histogram_in_sm=true");
         sharedAtoms = (coordinates*) &shared_histo[num_buckets];
     } else {
         sharedAtoms = (coordinates*) &smem[0];
@@ -165,7 +164,10 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             int h_pos = (int) (dist / bucket_width);
 
             if(histogram_in_sm) {
-                atomicAdd(&shared_histo[h_pos % num_buckets], 1);
+
+                printf("%d\n", h_pos);
+
+                atomicAdd(&shared_histo[h_pos], 1);
             } else {
                 atomicAdd(&hist[h_pos % num_buckets].d_cnt, 1);
             }
