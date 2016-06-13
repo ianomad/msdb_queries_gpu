@@ -156,11 +156,17 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
 
-            // if(histogram_in_sm) {
-            //     atomicAdd(&shared_histo[h_pos % num_buckets], 1);
-            // } else {
-            //     atomicAdd(&hist[h_pos % num_buckets].d_cnt, 1);
-            // }
+            if(h_pos < 0) {
+                h_pos = 0;
+            } else if(h_pos > num_buckets){
+                h_pos = 0;
+            } 
+
+            if(histogram_in_sm) {
+                atomicAdd(&shared_histo[h_pos % num_buckets], 1);
+            } else {
+                atomicAdd(&hist[h_pos % num_buckets].d_cnt, 1);
+            }
 
             load++;
             ind2++;
