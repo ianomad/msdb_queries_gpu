@@ -165,7 +165,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
             if(histogram_in_sm) {
 
-                if(threadIdx.x == 0) {
+                if(h_pos < 0 || h_pos >= num_buckets) {
                     printf("%d\n", h_pos);
                 }
                 
