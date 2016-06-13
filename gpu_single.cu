@@ -69,7 +69,7 @@ void gpu_one_body_functions_kernel(int* g_s_atomsCnt, atom* g_s_atom_list, query
 
 //2 body functions (SDH or POINT DISTANCE HISTOGRAM)
 __global__
-void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, double bucket_width,
+void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, int num_buckets, float bucket_width,
     int histogram_in_sm) {
 
     extern __shared__ unsigned long long smem[];
@@ -236,7 +236,7 @@ void output_histogram(bucket* hist, int num_buckets) {
 }
 
 
-void run_single_kernel(int atomsCnt, atom* atomList, int workload, double bucket_width, float space) {
+void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_width, float space) {
 
     int num_buckets = (int) (sqrt(space * space * 3) / bucket_width) + 2;
 
