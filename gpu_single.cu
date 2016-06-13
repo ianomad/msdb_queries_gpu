@@ -76,13 +76,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     unsigned long long* shared_histo = smem;
 
-    coordinates* sharedAtoms;
-    if(histogram_in_sm) {
-        sharedAtoms = (coordinates*) &shared_histo[num_buckets];
-    } else {
-        sharedAtoms = (coordinates*) &smem[0];
-    }
-
+    coordinates* sharedAtoms = (coordinates*) &shared_histo[histogram_in_sm];
     coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
@@ -305,7 +299,7 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
 
         //----------------------------------2 BODY KERNEL---------------------------------------------------
         int smem2 = num_buckets * sizeof(unsigned long long) + 3 * block_size.x * sizeof(coordinates);
-        bool histogram_in_sm = 1;
+        int histogram_in_sm = num_buckets;
         if(smem2 > 63000) {
             printf("Not able to allocate SM for SDH\n");
             smem2 = 3 * block_size.x * sizeof(coordinates);
