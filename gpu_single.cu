@@ -74,10 +74,25 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     extern __shared__ unsigned long long smem[];
 
+    ///////////////////////////////////
+    if(blockIdx.x == 0 && threadIdx.x == 0) {
+        printf("step1...\n");
+    }
+    __syncthreads();
+    ///////////////////////////////////
+
     unsigned long long* shared_histo = smem;
 
     coordinates* sharedAtoms = (coordinates*) &shared_histo[histogram_in_sm];
     coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
+
+
+    ///////////////////////////////////
+    if(blockIdx.x == 0 && threadIdx.x == 0) {
+        printf("step1...\n");
+    }
+    __syncthreads();
+    ///////////////////////////////////
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
     long index_y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -93,14 +108,17 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         return;
     }
 
+    ///////////////////////////////////
+    if(blockIdx.x == 0 && threadIdx.x == 0) {
+        printf("step1...\n");
+    }
+    __syncthreads();
+    ///////////////////////////////////
+
     //for every first thread of the block
     if(threadIdx.x == 0) {
         for(i = 0; i < num_buckets && histogram_in_sm; i++) {
             shared_histo[i] = 0;
-        }
-
-        if(blockIdx.x == 0 && threadIdx.x == 0) {
-            printf("here we are...\n");
         }
 
         int start = index;
