@@ -118,6 +118,8 @@ int main(int argc, char *argv[]) {
         atomsList[atomCount].y = ((rand() % 100) / 100.0f) * space;
         atomsList[atomCount].z = ((rand() % 100) / 100.0f) * space;
 
+        printf("%f %f %f\n", atomsList[atomCount].x, atomsList[atomCount].y, atomsList[atomCount].z);
+
         atomCount++;
     }
 
