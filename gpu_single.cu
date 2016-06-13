@@ -74,8 +74,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     extern __shared__ unsigned long long smem[];
 
-    printf("%d\n", num_buckets);
-
     unsigned long long* shared_histo = smem;
 
     coordinates* sharedAtoms = (coordinates*) &shared_histo[histogram_in_sm];
@@ -319,8 +317,8 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
 
         cudaStreamSynchronize(streamComp1);
 
-        gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width, histogram_in_sm);
-        cudaStreamSynchronize(streamComp2);
+        //gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width, histogram_in_sm);
+        //cudaStreamSynchronize(streamComp2);
     }
 
     /**
