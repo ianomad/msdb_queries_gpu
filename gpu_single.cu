@@ -310,7 +310,8 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
         printf("Size of coordinates: %d\n", sizeof(coordinates));
         printf("Size of coordinates array: %d\n", 3 * block_size.x * sizeof(coordinates));
         printf("Number of buckets: %d\n", num_buckets);
-        printf("Bucket width: %d\n", bucket_width);
+        printf("Bucket width: %f\n", bucket_width);
+        printf("Bucket space: %f\n", space);
         printf("Size of bucket: %d\n", sizeof(unsigned long long));
         printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
 
