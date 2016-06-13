@@ -142,7 +142,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     __syncthreads();
 
     int k = 0;
-    for(ind2 = start; ind2 < end + blockDim.x;) {
+    for(ind2 = start; ind2 < end || (threadIdx.x == 0 && ind2 < end + blockDim.x * 2);) {
 
         double x1 = sharedAtoms[ind1].x;
         double y1 = sharedAtoms[ind1].y;
@@ -177,7 +177,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         __syncthreads();
 
 
-        if(threadIdx.x + 1 == blockDim.x) { //not finding in shared memory
+        if(threadIdx.x == 0) { //not finding in shared memory
             k = 0;
             sharedAtoms1Offset += blockDim.x;
             for(i = sharedAtoms1Offset; i < sharedAtoms1Offset + blockDim.x * 2; i++, k++) {
