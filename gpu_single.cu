@@ -157,11 +157,11 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             int h_pos = (int) (dist / bucket_width);
 
 
-            // if(histogram_in_sm) {
-            //     atomicAdd(&shared_histo[h_pos], 1);
-            // } else {
-            //     atomicAdd(&hist[h_pos].d_cnt, 1);
-            // }
+            if(histogram_in_sm) {
+                atomicAdd(&shared_histo[h_pos], 1);
+            } else {
+                atomicAdd(&hist[h_pos].d_cnt, 1);
+            }
 
             load++;
             ind2++;
