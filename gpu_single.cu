@@ -74,6 +74,8 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     extern __shared__ unsigned long long smem[];
 
+    printf("%d\n", num_buckets);
+
     unsigned long long* shared_histo = smem;
 
     coordinates* sharedAtoms = (coordinates*) &shared_histo[histogram_in_sm];
