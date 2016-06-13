@@ -129,7 +129,9 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             sharedAtoms[k].z = at_list[i % PDH_acnt].z;
 
             if(k > 0) {
-                sharedAtoms1[k - 1] = sharedAtoms[k];
+                sharedAtoms1[k - 1].x = sharedAtoms[k].x;
+                sharedAtoms1[k - 1].y = sharedAtoms[k].y;
+                sharedAtoms1[k - 1].z = sharedAtoms[k].z;
             }
         }
 
