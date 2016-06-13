@@ -74,25 +74,10 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     extern __shared__ unsigned long long smem[];
 
-    ///////////////////////////////////
-    if(blockIdx.x == 0 && threadIdx.x == 0) {
-        printf("step1...\n");
-    }
-    __syncthreads();
-    ///////////////////////////////////
-
     unsigned long long* shared_histo = smem;
 
     coordinates* sharedAtoms = (coordinates*) &shared_histo[histogram_in_sm];
     coordinates* sharedAtoms1 = (coordinates*) &sharedAtoms[blockDim.x];
-
-
-    ///////////////////////////////////
-    if(blockIdx.x == 0 && threadIdx.x == 0) {
-        printf("step1...\n");
-    }
-    __syncthreads();
-    ///////////////////////////////////
 
     long index_x = blockIdx.x * blockDim.x + threadIdx.x;
     long index_y = blockIdx.y * blockDim.y + threadIdx.y;
@@ -107,13 +92,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     if(i >= PDH_acnt) {
         return;
     }
-
-    ///////////////////////////////////
-    if(blockIdx.x == 0 && threadIdx.x == 0) {
-        printf("step1...\n");
-    }
-    __syncthreads();
-    ///////////////////////////////////
 
     //for every first thread of the block
     if(threadIdx.x == 0) {
@@ -156,7 +134,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         end++;
     }
 
-    int sharedAtoms1Offset = blockDim.x * blockIdx.x + 1;
+    int sharedAtoms1Offset = blockIdx.x * blockDim.x  + 1;
 
     int ind1 = threadIdx.x;
     int ind2;
@@ -174,9 +152,10 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         int load = 0;
         while(load < blockDim.x && ind2 < end) {
-            x2 = sharedAtoms1[ind2 - sharedAtoms1Offset].x;
-            y2 = sharedAtoms1[ind2 - sharedAtoms1Offset].y;
-            z2 = sharedAtoms1[ind2 - sharedAtoms1Offset].z;
+
+            x2 = sharedAtoms[ind1].x;//sharedAtoms1[ind2 - sharedAtoms1Offset].x;
+            y2 = sharedAtoms[ind1].x;//sharedAtoms1[ind2 - sharedAtoms1Offset].y;
+            z2 = sharedAtoms[ind1].x;//sharedAtoms1[ind2 - sharedAtoms1Offset].z;
 
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
