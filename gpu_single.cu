@@ -179,24 +179,11 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
 
-
-
-            ///////////////////////////////////
-            if(blockIdx.x == 0 && threadIdx.x == 0) {
-                printf("step A...\n");
-            }
-            ///////////////////////////////////
             if(histogram_in_sm) {
                 atomicAdd(&shared_histo[h_pos], 1);
             } else {
-                atomicAdd(&hist[h_pos % num_buckets].d_cnt, 1);
+                atomicAdd(&hist[h_pos].d_cnt, 1);
             }
-
-            ///////////////////////////////////
-            if(blockIdx.x == 0 && threadIdx.x == 0) {
-                printf("step B...\n");
-            }
-            ///////////////////////////////////
 
             load++;
             ind2++;
@@ -350,9 +337,8 @@ void run_single_kernel(int atomsCnt, atom* atomList, int workload, float bucket_
         printf("Size of bucket: %d\n", sizeof(unsigned long long));
         printf("Size of bucket array: %d\n", num_buckets * sizeof(unsigned long long));
 
-        cudaStreamSynchronize(streamComp1);
-
         gpu_two_body_functions_kernel<<<grid_size, block_size, smem2, streamComp2 >>>(g_s_atom_list, atomsCnt, d_histogram, num_buckets, bucket_width, histogram_in_sm);
+        cudaStreamSynchronize(streamComp1);
         cudaStreamSynchronize(streamComp2);
     }
 
