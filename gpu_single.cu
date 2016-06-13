@@ -142,7 +142,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
     __syncthreads();
 
     int k = 0;
-    for(ind2 = start; ind2 < end;) {
+    for(ind2 = start; ind2 < end + blockDim.x;) {
 
         double x1 = sharedAtoms[ind1].x;
         double y1 = sharedAtoms[ind1].y;
@@ -151,7 +151,7 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
         double x2, y2, z2;
 
         if(threadIdx.x == 1023 && blockIdx.x == 2) {
-            printf("sharedAtoms1Offset: %d, ind2: %d\n", sharedAtoms1Offset, ind2);
+            printf("sharedAtoms1Offset: %d, ind2: %d, end: %d\n", sharedAtoms1Offset, ind2, end);
         }
 
         int load = 0;
