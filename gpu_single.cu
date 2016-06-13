@@ -161,14 +161,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
     __syncthreads();
 
-
-    ///////////////////////////////////
-    if(blockIdx.x == 0 && threadIdx.x == 0) {
-        printf("step2...\n");
-    }
-    __syncthreads();
-    ///////////////////////////////////
-
     int k = 0;
     for(ind2 = start; ind2 < end;) {
 
@@ -187,11 +179,24 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
             double dist = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2));
             int h_pos = (int) (dist / bucket_width);
 
+
+
+            ///////////////////////////////////
+            if(blockIdx.x == 0 && threadIdx.x == 0) {
+                printf("step A...\n");
+            }
+            ///////////////////////////////////
             if(histogram_in_sm) {
                 atomicAdd(&shared_histo[h_pos], 1);
             } else {
                 atomicAdd(&hist[h_pos % num_buckets].d_cnt, 1);
             }
+
+            ///////////////////////////////////
+            if(blockIdx.x == 0 && threadIdx.x == 0) {
+                printf("step B...\n");
+            }
+            ///////////////////////////////////
 
             load++;
             ind2++;
@@ -218,13 +223,6 @@ void gpu_two_body_functions_kernel(atom* at_list, int PDH_acnt, bucket* hist, in
 
         __syncthreads();
     }
-
-    ///////////////////////////////////
-    if(blockIdx.x == 0 && threadIdx.x == 0) {
-        printf("step1...\n");
-    }
-    __syncthreads();
-    ///////////////////////////////////
 
     __syncthreads();
 
