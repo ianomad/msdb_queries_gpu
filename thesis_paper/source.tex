@@ -37,10 +37,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 left=20mm,right=20mm,
 bindingoffset=0mm, top=15mm,bottom=35mm}
 
-\linespread{2}
-
-\titleformat{\chapter}[display]
-        {\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
+\titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
         
 \renewcommand{\contentsname}{CONTENTS}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
@@ -78,76 +75,65 @@ bindingoffset=0mm, top=15mm,bottom=35mm}
                     \fi}
 \makeatother
 
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-
 \begin{document}
-
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-%   TITLEPAGE
-%
-%   due to variety of titlepage schemes it is probably better to make titlepage manually
-%
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
+{
 \thispagestyle{empty}
 
-{%%%
-\sffamily
+\linespread{1}\selectfont
 \centering
+\vspace*{5\baselineskip}
+Parallelization of Push-based System for 
 
-{\Large 
-Parallelization of Push-based System for Molecular Simulation Data Analysis with GPU
-}
+\vspace*{1\baselineskip}
 
-\vspace{1.5cm}
+Molecular Simulation Data Analysis with GPU 
+\vspace*{3\baselineskip}
 
-{
-by
-}
-\vspace{.5cm}
+%{ by }
+\vspace*{3\baselineskip}
 
-{ 
-Iliiazbek Akhmedov
-}
+{ Iliiazbek Akhmedov }
 
-\vspace{3.5cm}
+\vspace*{5\baselineskip}
 
-A thesis submitted in partial fulfillment
+A thesis submitted in partial fulfillment 
 
-of the requirements for the degree of
+of the requirements for the degree of 
 
-Master of Science in Computer Science
+Master of Science in Computer Science 
 
-Department of Computer Science and Engineering
-
-College of Engineering
+Department of Computer Science and Engineering College of Engineering 
 
 University of South Florida
 
-\vspace{3.5cm}
+\vspace*{3\baselineskip}
 Major Professor:  Yicheng Tu, Ph.D.
-\vspace{\fill}
 
-
+\vspace*{2\baselineskip}
 \vspace{.5cm}
 Date of Approval:
 
 N/A
-\vspace{\fill}
 
+\vspace*{3\baselineskip}
+Keywords: data processing, cuda optimization, big data,
+
+streaming
+
+\vspace*{1\baselineskip}
 Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
-%%%
-}%%%
+}
 
 \clearpage
-
-\newgeometry{left=20mm,right=20mm,top=35mm,bottom=35mm}
-
 \pagestyle{plain}
 \centering
 
+\vspace*{5\baselineskip}
+\linespread{2}\selectfont
 \textbf{DEDICATION}
-\vspace{0.5cm}
+
+\vspace*{1\baselineskip}
 
 \begin{flushleft}
 \hspace{3em} I dedicate my thesis work to my family who have always been supporting me throughout my life. I also dedicate it to my closest friends who have shared my passion and encouraged me to explore and try my ideas in life.
@@ -157,8 +143,15 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
 \pagestyle{plain}
 \centering
+
+\linespread{1}\selectfont
+\vspace*{5\baselineskip}
+
 \textbf{ACKNOWLEDGMENTS}
-\vspace{0.5cm}
+
+\vspace*{1\baselineskip}
+
+\linespread{2}\selectfont
 
 \begin{flushleft}
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
@@ -167,20 +160,25 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \clearpage
 \restoregeometry
 
-\linespread{1}
-
+\linespread{1}\selectfont
 \tableofcontents
 
+\linespread{2}\selectfont
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
 \addcontentsline{toc}{chapter}{\listtablename} 
 \listoftables
 
-\linespread{2}
-\clearpage
+\linespread{1}\selectfont
+\vspace*{5\baselineskip}
 
 \addcontentsline{toc}{chapter}{\abstractname} 
+
+\vspace*{1\baselineskip}
+
+\linespread{2}\selectfont
+
 \begin{abstract}
 \justify
 \hspace{3em} Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on traditional disk random I/O framework while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. Besides it, indexing will also cause delay during write operations and since most of the queries work with the entire data sets, indexing loses its point.

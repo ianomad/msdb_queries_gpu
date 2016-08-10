@@ -37,10 +37,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 left=20mm,right=20mm,
 bindingoffset=0mm, top=15mm,bottom=35mm}
 
-\linespread{2}
-
-\titleformat{\chapter}[display]
-        {\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
+\titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
         
 \renewcommand{\contentsname}{CONTENTS}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
@@ -78,73 +75,54 @@ bindingoffset=0mm, top=15mm,bottom=35mm}
                     \fi}
 \makeatother
 
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-
 \begin{document}
-
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-%   TITLEPAGE
-%
-%   due to variety of titlepage schemes it is probably better to make titlepage manually
-%
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
+{
 \thispagestyle{empty}
 
-{%%%
-\sffamily
+\linespread{1}\selectfont
 \centering
+\vspace*{5\baselineskip}
+Parallelization of Push-based System for Molecular Simulation Data Analysis with GPU 
+\vspace*{3\baselineskip}
 
-{\Large 
-Parallelization of Push-based System for Molecular Simulation Data Analysis with GPU
-}
+%{ by }
+\vspace*{3\baselineskip}
 
-\vspace{1.5cm}
+{ Iliiazbek Akhmedov }
 
-{
-by
-}
-\vspace{.5cm}
+\vspace*{5\baselineskip}
 
-{ 
-Iliiazbek Akhmedov
-}
+A thesis submitted in partial fulfillment 
 
-\vspace{3.5cm}
+of the requirements for the degree of 
 
-A thesis submitted in partial fulfillment
+Master of Science in Computer Science 
 
-of the requirements for the degree of
-
-Master of Science in Computer Science
-
-Department of Computer Science and Engineering
-
-College of Engineering
+Department of Computer Science and Engineering College of Engineering 
 
 University of South Florida
 
-\vspace{3.5cm}
+\vspace*{3\baselineskip}
 Major Professor:  Yicheng Tu, Ph.D.
-\vspace{\fill}
 
-
+\vspace*{2\baselineskip}
 \vspace{.5cm}
 Date of Approval:
 
 N/A
 \vspace{\fill}
 
+\vspace*{3\baselineskip}
+Keywords: Molecular simulationGPU computation
 Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
-%%%
 }%%%
 
 \clearpage
-
-\newgeometry{left=20mm,right=20mm,top=35mm,bottom=35mm}
-
 \pagestyle{plain}
 \centering
+
+\linespread{2}\selectfont
 
 \textbf{DEDICATION}
 \vspace{0.5cm}
@@ -167,10 +145,10 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \clearpage
 \restoregeometry
 
-\linespread{1}
-
+\linespread{1}\selectfont
 \tableofcontents
 
+\linespread{2}\selectfont
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
