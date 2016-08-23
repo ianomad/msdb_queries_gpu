@@ -37,10 +37,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 left=20mm,right=20mm,
 bindingoffset=0mm, top=15mm,bottom=35mm}
 
-\linespread{2}
-
-\titleformat{\chapter}[display]
-        {\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
+\titleformat{\chapter}[display]{\normalfont\Large\bfseries\centering}{\chaptertitlename\ \thechapter}{0pt}{\Large\uppercase}
         
 \renewcommand{\contentsname}{CONTENTS}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
@@ -78,76 +75,65 @@ bindingoffset=0mm, top=15mm,bottom=35mm}
                     \fi}
 \makeatother
 
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-
 \begin{document}
-
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
-%   TITLEPAGE
-%
-%   due to variety of titlepage schemes it is probably better to make titlepage manually
-%
-%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
+{
 \thispagestyle{empty}
 
-{%%%
-\sffamily
+\linespread{1}\selectfont
 \centering
+\vspace*{5\baselineskip}
+Parallelization of Push-based System for 
 
-{\Large 
-Parallelization of Push-based System for Molecular Simulation Data Analysis with GPU
-}
+\vspace*{1\baselineskip}
 
-\vspace{1.5cm}
+Molecular Simulation Data Analysis with GPU 
+\vspace*{3\baselineskip}
 
-{
-by
-}
-\vspace{.5cm}
+%{ by }
+\vspace*{3\baselineskip}
 
-{ 
-Iliiazbek Akhmedov
-}
+{ Iliiazbek Akhmedov }
 
-\vspace{3.5cm}
+\vspace*{5\baselineskip}
 
-A thesis submitted in partial fulfillment
+A thesis submitted in partial fulfillment 
 
-of the requirements for the degree of
+of the requirements for the degree of 
 
-Master of Science in Computer Science
+Master of Science in Computer Science 
 
-Department of Computer Science and Engineering
-
-College of Engineering
+Department of Computer Science and Engineering College of Engineering 
 
 University of South Florida
 
-\vspace{3.5cm}
+\vspace*{3\baselineskip}
 Major Professor:  Yicheng Tu, Ph.D.
-\vspace{\fill}
 
-
+\vspace*{2\baselineskip}
 \vspace{.5cm}
 Date of Approval:
 
 N/A
-\vspace{\fill}
 
+\vspace*{3\baselineskip}
+Keywords: data processing, cuda optimization, big data,
+
+streaming
+
+\vspace*{1\baselineskip}
 Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
-%%%
-}%%%
+}
 
 \clearpage
-
-\newgeometry{left=20mm,right=20mm,top=35mm,bottom=35mm}
-
 \pagestyle{plain}
 \centering
 
+\vspace*{5\baselineskip}
+\linespread{2}\selectfont
 \textbf{DEDICATION}
-\vspace{0.5cm}
+
+\vspace*{1\baselineskip}
 
 \begin{flushleft}
 \hspace{3em} I dedicate my thesis work to my family who have always been supporting me throughout my life. I also dedicate it to my closest friends who have shared my passion and encouraged me to explore and try my ideas in life.
@@ -157,8 +143,15 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
 \pagestyle{plain}
 \centering
+
+\linespread{1}\selectfont
+\vspace*{5\baselineskip}
+
 \textbf{ACKNOWLEDGMENTS}
-\vspace{0.5cm}
+
+\vspace*{1\baselineskip}
+
+\linespread{2}\selectfont
 
 \begin{flushleft}
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
@@ -167,20 +160,25 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \clearpage
 \restoregeometry
 
-\linespread{1}
-
+\linespread{1}\selectfont
 \tableofcontents
 
+\linespread{2}\selectfont
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
 \addcontentsline{toc}{chapter}{\listtablename} 
 \listoftables
 
-\linespread{2}
-\clearpage
+\linespread{1}\selectfont
+\vspace*{5\baselineskip}
 
 \addcontentsline{toc}{chapter}{\abstractname} 
+
+\vspace*{1\baselineskip}
+
+\linespread{2}\selectfont
+
 \begin{abstract}
 \justify
 \hspace{3em} Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on traditional disk random I/O framework while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. Besides it, indexing will also cause delay during write operations and since most of the queries work with the entire data sets, indexing loses its point.
@@ -193,7 +191,13 @@ In this paper, we propose improved version of Push-based System for Molecular Si
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
 %%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%---%%%
 
+\linespread{1}\selectfont
+\vspace*{5\baselineskip}
+
 \chapter{Introduction}
+\vspace*{1\baselineskip}
+
+\linespread{2}\selectfont
 
 \justify
 In various sciences simulation systems take big place and often times they may be the clue for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations have the following flow:
@@ -1110,18 +1114,86 @@ Fortunately, scientific data is much bigger than above examples. You can see ave
 
 Finally, for 100,000 atoms the warps launched for execution seems to be growing reasonable along with number of atoms (Table \ref{tb:gpuprofile100000}), while on the other hand usage of shared load for SDH computation is extremely high.
 
-\subsection{Overall performance}
+\subsection{Advanced SDH implementation}
 
-
-It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. It is because we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+We implemented more advanced version of SDH algorithm taking better use of shared memory just to demonstrate what improvement and speedup could be achieved if we focus on particular query implementation.
 
 \begin{figure}
- \centerline{\includegraphics[width=0.7\columnwidth]{images/chart_max}}
+ \centerline{ \includegraphics[width=0.3\columnwidth]{images/improved_sdh}}
+ \caption{New approach of using shared memory}
+ \label{fg:improved_sdh}
+\end{figure}
+
+Basically, as you can see from Figure \ref{fg:improved_sdh}, now we allocate more shared memory. Yellow sections are the atoms that are stored in shared memory throughout the whole thread execution of the entire block, since those atoms are needed at every step, while the green ones are the working zones. We load twice size of the block into shared memory, because the very first one thread in the block is going to communicate starting from second one, while the last one will start with the next block, which means that it will have to be twice size. Fortunately, the first part of the threads in the block will consequently use the next block which is already loaded, thus, at each step we load one more block size simply moving window and re-using the ones that are already loaded for first part.
+
+
+\begin{table}[h!]
+	\renewcommand*{\arraystretch}{1.5}
+	\tabcolsep=0.12cm
+  \centering
+  \begin{tabular}{| c | c | c | c | c | c |}
+   \hline
+
+$Duration $ & $ Grid Size $ & $ Block Size $ & $ DSMem* $ & $ Size $ & $ Throughput $ \\ \hline 
+$1.4080us $ & $ - $ & $ - $ & $ - $ & $ 4B $ & $ 2.8409MB/s $ \\ \hline 
+$1.0769ms $ & $ - $ & $ - $ & $ - $ & $ 3.6000MB $ & $ 3.3429GB/s $ \\ \hline 
+$1.0880us $ & $ - $ & $ - $ & $ - $ & $ 36B $ & $ 33.088MB/s $ \\ \hline 
+$1.2800us $ & $ - $ & $ - $ & $ - $ & $ 1.4080KB $ & $ 1.1000GB/s $ \\ \hline 
+$3.0340ms $ & $ (98, 1, 1) $ & $ (1024, 1, 1) $ & $ 40.960KB $ & $ - $  & $-$ \\ \hline 
+$24.5691s $ & $ (98, 1, 1) $ & $  (1024, 1, 1) $ & $ 38.272KB $ & $ - $ & $ - $ \\ \hline 
+$2.7520us $ & $ - $ & $ - $ & $ - $ & $ 36B $ & $ 13.081MB/s $ \\ \hline 
+$2.7830us $ & $ - $ & $ - $ & $ - $ & $ 1.4080KB $ & $ 505.93MB/s $    
+ \\ \hline 
+
+	\hline
+  \end{tabular}
+    \caption{Memory profiling results for 100,000 atoms in improved SDH}
+    	  \label{tb:gpumem100000_improved}
+\end{table}
+
+
+
+\begin{table}[h!]
+	\renewcommand*{\arraystretch}{1.5}
+	\tabcolsep=0.12cm
+  \centering
+  \begin{tabular}{| c | c | c | c | c | c |}
+   \hline
+	Device & Context & Stream & Kernel & Warps Launched & Shared Load \\ \hline
+	GRID K520 (0) & 1 & 13 & ${gpu\_one\_body\_function}$ & 3136 & 196 \\ \hline
+	GRID K520 (0) & 1 & 14 & ${gpu\_two\_body\_function}$ & 3136 & 246,323,337 \\ \hline
+
+  \end{tabular}
+    \caption{GPU profiling results for 100,000 atoms for improved SDH}
+    	  \label{tb:gpuprofile100000}
+\end{table}
+
+
+\begin{figure}
+ \centerline{ \includegraphics[width=0.5\columnwidth]{images/sdhvsimproved}}
+ \caption{Comparison of GPU SDH with GPU SDH Improved}
+ \label{fg:gpusdhsdh}
+\end{figure}
+
+As you may have noticed, even though we increased utilization of shared memory, number of loads is around the same. The trick is that we replaced atoms in shared memory with simpler data structure called $coordinates$ that would contains 3 float type variables which saves huge amount of memory. The results that we have achieved are extremely great, in general all the run times get twice less in comparison with simple SDH approach. You may observe run times for some sample data sets on Figure \ref{fg:gpusdhsdh}. In general, it is quite visible that it is twice less. 
+This is a sample improvement which proves that a little more elaboration on a particular query can bring much better results which could end up saving scientists days and months of time of computation.
+
+
+\subsection{SDH resolution performance impact}
+
+
+
+\subsection{Overall performance}
+
+It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. One of possible reasons could the fact that we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+
+\begin{figure}
+ \centerline{\includegraphics[width=0.8\columnwidth]{images/overall_speedup}}
  \caption{Speedup for larger number of atoms}
  \label{fg:chart_max}
 \end{figure}
 
-
+With improved version of SDH speedup gets up to more than 75 times (Figure \ref{fg:chart_max}). We believe that these numbers could get even better depending on queries and elaboration of improvement of particular cases.
 
 \chapter{Conclusions and Future Work}\label{sc:conclusion}
 The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts, the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
