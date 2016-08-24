@@ -1,26 +1,28 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Snapshots of two MS systems with 890,000 atoms with 402,400 atoms\relax }}{4}{figure.caption.4}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Speed up over different levels of atom selection for 838,400 atoms\relax }}{5}{figure.caption.5}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Example of atom mapping with kernels\relax }}{8}{figure.caption.6}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Snapshots of two MS systems with 890,000 atoms with 402,400 atoms\relax }}{4}{figure.caption.5}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Speed up over different levels of atom selection for 838,400 atoms\relax }}{5}{figure.caption.6}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Example of atom mapping with kernels\relax }}{7}{figure.caption.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Data flow in the improved design of push-based system for MS analysis\relax }}{20}{figure.caption.8}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces GPU array reduction algorithm sample representation\relax }}{24}{figure.caption.9}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Overall system architecture\relax }}{25}{figure.caption.10}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces SDH thread loading\relax }}{26}{figure.caption.11}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Representation of example of shared memory usage\relax }}{31}{figure.caption.16}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Data flow in the improved design of push-based system for MS analysis\relax }}{19}{figure.caption.9}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces GPU array reduction algorithm sample representation\relax }}{23}{figure.caption.10}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Overall system architecture\relax }}{24}{figure.caption.11}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces SDH thread loading\relax }}{25}{figure.caption.12}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Representation of example of shared memory usage\relax }}{30}{figure.caption.17}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Time for 1000 atoms and 10 frames\relax }}{38}{figure.caption.19}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Time for 1000 atoms and 100 frames\relax }}{38}{figure.caption.19}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Time for 1000 atoms and 1000 frames\relax }}{38}{figure.caption.19}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Speedup for 1000 atoms\relax }}{38}{figure.caption.19}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Time for 10000 atoms and 10 frames\relax }}{40}{figure.caption.22}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Time for 10000 atoms and 100 frames\relax }}{40}{figure.caption.22}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Time for 10000 atoms and 1000 frames\relax }}{40}{figure.caption.22}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Speedup for 10000 atoms\relax }}{40}{figure.caption.22}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Time for 100,000 atoms and 10 frames\relax }}{41}{figure.caption.25}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Time for 100,000 atoms and 100 frames\relax }}{41}{figure.caption.25}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Speedup for 100,000 atoms\relax }}{41}{figure.caption.25}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Speedup for larger number of atoms\relax }}{43}{figure.caption.28}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Time for 1000 atoms and 10 frames\relax }}{37}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Time for 1000 atoms and 100 frames\relax }}{37}{figure.caption.20}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Time for 1000 atoms and 1000 frames\relax }}{37}{figure.caption.20}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Speedup for 1000 atoms\relax }}{37}{figure.caption.20}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Time for 10000 atoms and 10 frames\relax }}{39}{figure.caption.23}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Time for 10000 atoms and 100 frames\relax }}{39}{figure.caption.23}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Time for 10000 atoms and 1000 frames\relax }}{39}{figure.caption.23}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Speedup for 10000 atoms\relax }}{39}{figure.caption.23}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Time for 100,000 atoms and 10 frames\relax }}{40}{figure.caption.26}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Time for 100,000 atoms and 100 frames\relax }}{40}{figure.caption.26}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Speedup for 100,000 atoms\relax }}{40}{figure.caption.26}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces New approach of using shared memory\relax }}{41}{figure.caption.29}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Comparison of GPU SDH with GPU SDH Improved\relax }}{42}{figure.caption.32}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Speedup for larger number of atoms\relax }}{43}{figure.caption.33}
 \addvspace {10\p@ }

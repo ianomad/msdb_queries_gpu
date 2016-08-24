@@ -1,40 +1,39 @@
-\contentsline {chapter}{LIST OF FIGURES}{6}{chapter*.1}
-\contentsline {chapter}{LIST OF TABLES}{8}{chapter*.2}
-\contentsline {chapter}{ABSTRACT}{1}{chapter*.3}
-\contentsline {chapter}{\numberline {1}\MakeUppercase {Introduction}}{1}{chapter.1}
+\contentsline {chapter}{LIST OF FIGURES}{4}{chapter*.1}
+\contentsline {chapter}{LIST OF TABLES}{6}{chapter*.2}
+\contentsline {chapter}{ABSTRACT}{7}{chapter*.3}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Problem Statement}{4}{section.1.1}
 \contentsline {section}{\numberline {1.2}Our approach with improvement}{5}{section.1.2}
-\contentsline {section}{\numberline {1.3}Contribution and roadmap of the paper}{8}{section.1.3}
-\contentsline {chapter}{\numberline {2}\MakeUppercase {Related Work}}{11}{chapter.2}
-\contentsline {section}{\numberline {2.1}Scientific software}{11}{section.2.1}
-\contentsline {section}{\numberline {2.2}Stream processing}{12}{section.2.2}
-\contentsline {section}{\numberline {2.3}Big Data Frameworks}{12}{section.2.3}
-\contentsline {section}{\numberline {2.4}GPU and Big Data Processing}{13}{section.2.4}
-\contentsline {chapter}{\numberline {3}\MakeUppercase {Benchmark scientific queries}}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}One body functions}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}Multiple body functions}{17}{section.3.2}
-\contentsline {chapter}{\numberline {4}\MakeUppercase {The system design}}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Data input}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}Data flow architecture}{21}{section.4.2}
-\contentsline {section}{\numberline {4.3}Queries organization}{22}{section.4.3}
-\contentsline {section}{\numberline {4.4}Computation work flow}{26}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}One-body functions implementation}{27}{subsection.4.4.1}
-\contentsline {subsubsection}{One-body functions implementation in CPU version}{27}{subsubsection*.12}
-\contentsline {subsubsection}{One-body functions implementation in GPU version}{28}{subsubsection*.13}
-\contentsline {subsection}{\numberline {4.4.2}Two-body functions implementation}{30}{subsection.4.4.2}
-\contentsline {subsubsection}{Two-body functions implementation in CPU Version}{30}{subsubsection*.14}
-\contentsline {subsubsection}{Two-body functions implementation in GPU Version}{30}{subsubsection*.15}
-\contentsline {subsection}{\numberline {4.4.3}Data flow implementation in CPU}{33}{subsection.4.4.3}
-\contentsline {chapter}{\numberline {5}\MakeUppercase {Experiments Results}}{35}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hardware stack}{35}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}CPU}{35}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}GPU}{36}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Data Sets}{37}{section.5.2}
-\contentsline {section}{\numberline {5.3}Results}{37}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Experiment results for 1000 atoms}{38}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Experiment results for 10,000 atoms}{39}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Experiment results for 100,000 atoms}{41}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Advanced SDH implementation}{42}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}SDH resolution performance impact}{44}{subsection.5.3.5}
-\contentsline {subsection}{\numberline {5.3.6}Overall performance}{44}{subsection.5.3.6}
-\contentsline {chapter}{\numberline {6}\MakeUppercase {Conclusions and Future Work}}{46}{chapter.6}
+\contentsline {section}{\numberline {1.3}Contribution and roadmap of the paper}{7}{section.1.3}
+\contentsline {chapter}{\numberline {2}Related Work}{10}{chapter.2}
+\contentsline {section}{\numberline {2.1}Scientific software}{10}{section.2.1}
+\contentsline {section}{\numberline {2.2}Stream processing}{11}{section.2.2}
+\contentsline {section}{\numberline {2.3}Big Data Frameworks}{11}{section.2.3}
+\contentsline {section}{\numberline {2.4}GPU and Big Data Processing}{12}{section.2.4}
+\contentsline {chapter}{\numberline {3}Benchmark scientific queries}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}One body functions}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Multiple body functions}{16}{section.3.2}
+\contentsline {chapter}{\numberline {4}The system design}{18}{chapter.4}
+\contentsline {section}{\numberline {4.1}Data input}{18}{section.4.1}
+\contentsline {section}{\numberline {4.2}Data flow architecture}{20}{section.4.2}
+\contentsline {section}{\numberline {4.3}Queries organization}{21}{section.4.3}
+\contentsline {section}{\numberline {4.4}Computation work flow}{25}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}One-body functions implementation}{25}{subsection.4.4.1}
+\contentsline {subsubsection}{One-body functions implementation in CPU version}{26}{subsubsection*.12}
+\contentsline {subsubsection}{One-body functions implementation in GPU version}{27}{subsubsection*.13}
+\contentsline {subsection}{\numberline {4.4.2}Two-body functions implementation}{27}{subsection.4.4.2}
+\contentsline {subsubsection}{Two-body functions implementation in CPU Version}{29}{subsubsection*.14}
+\contentsline {subsubsection}{Two-body functions implementation in GPU Version}{29}{subsubsection*.15}
+\contentsline {subsection}{\numberline {4.4.3}Data flow implementation in CPU}{31}{subsection.4.4.3}
+\contentsline {chapter}{\numberline {5}Experiments Results}{34}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hardware stack}{34}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}CPU}{34}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}GPU}{34}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Data Sets}{36}{section.5.2}
+\contentsline {section}{\numberline {5.3}Results}{36}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Experiment results for 1000 atoms}{37}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Experiment results for 10,000 atoms}{38}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Experiment results for 100,000 atoms}{40}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Advanced SDH implementation}{41}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Overall performance}{43}{subsection.5.3.5}
+\contentsline {chapter}{\numberline {6}Conclusions and Future Work}{44}{chapter.6}

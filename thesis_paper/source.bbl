@@ -22,8 +22,8 @@
 \BIBdecl
 
 \bibitem{mainPaper}
-{Vladimir Grupcev, Yicheng Tu {\it et. al.}}, ``Push-based system for molecular
-  simulation data analysis.'' 2015.
+V.~Grupcev, Y.-C. Tu, J.~C. Fogarty, and S.~Pandit, ``Push-based system for
+  molecular simulation data analysis,'' in \emph{BIGDATACONF}, 2015.
 
 \bibitem{nature_bigdata08}
 D.~H. et~al., ``Big data: The future of biocuration,'' \emph{Nature}, vol. 455,
@@ -92,10 +92,6 @@ J.~Bollen, H.~Mao, and X.-J. Zeng, ``Twitter mood predicts the stock market,''
 \bibitem{CooperativeScans}
 {Marcin Zukowski and Sandor Heman and Niels Nes and Peter Boncz}, ``Cooperative
   scans: Dynamic bandwidth sharing in dbms,'' \emph{VLDB}, pp. 723--734, 2007.
-
-\bibitem{mainArticle}
-{Vladimir Grupcev, Yicheng Tu, Meryem Berrada {\it et. al.}}, ``Dcms: A data
-  analytics and management system for molecular simulation,'' 2014.
 
 \bibitem{GROMACS4}
 B.~Hess, C.~Kutzner, D.~van~der Spoel, and E.~Lindahl, ``{GROMACS 4: Algorithms
@@ -187,17 +183,6 @@ B.~L.~{\it et. al.}. Moo-Ryong~Ra, ``{Medusa: A Programming Framework for
 {Apache}, ``{Aurora Framework}.'' [Online]. Available:
   \url{http://aurora.apache.org/}
 \BIBentrySTDinterwordspacing
-
-\bibitem{SDSS_SIGMOD02}
-A.~S. Szalay, J.~Gray, A.~Thakar, P.~Z. Kunszt, T.~Malik, J.~Raddick,
-  C.~Stoughton, and J.~vandenBerg, ``{The SDSS Skyserver: Public Access to the
-  Sloan Digital Sky Server Data},'' in \emph{Proceedings of International
-  Conference on Management of Data (SIGMOD)}, 2002, pp. 570--581.
-
-\bibitem{QBISM_ICDE94}
-M.~Arya, W.~F. Cody, C.~Faloutsos, J.~Richardson, and A.~Toya, ``{QBISM:
-  Extending a DBMS to Support 3D Medical Images},'' in \emph{ICDE}, 1994, pp.
-  314--325.
 
 \bibitem{sdhgpu}
 {\it et. al.}.~Yicheng~Tu, ``Computing spatial distance histograms for large

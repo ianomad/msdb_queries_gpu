@@ -8,25 +8,25 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: references.bib.bib
-Repeated entry---line 358 of file references.bib.bib
+Repeated entry---line 359 of file references.bib.bib
  : @book{Frenkel:api01
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 367 of file references.bib.bib
+Repeated entry---line 368 of file references.bib.bib
  : @book{Landau:cup05
  :                   ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 590 of file references.bib.bib
+I was expecting a `,' or a `}'---line 591 of file references.bib.bib
  :   
  :   volume    = {32},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 710 of file references.bib.bib
+I was expecting a `,' or a `}'---line 711 of file references.bib.bib
  :   
  :   url={https://aws.amazon.com/ru/ec2/instance-types}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 746 of file references.bib.bib
+I was expecting a `,' or a `}'---line 747 of file references.bib.bib
  :   
  :   year = {2014}
 (Error may have been on previous line)
@@ -34,10 +34,8 @@ I'm skipping whatever remains of this entry
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--empty journal in mainPaper
 Warning--empty journal in fbStats
 Warning--empty year in fbStats
-Warning--empty journal in mainArticle
 Warning--empty year in MDAnalysis
 Warning--empty journal in borealis
 Too many commas in name 1 of "Konstantin Shvachko, Hairong Kuang, Sanjay Radia, Robert Chansler" for entry hadoop
@@ -54,45 +52,45 @@ Warning--empty journal in gpureduction
 Warning--empty year in gpureduction
 
 Done.
-You've used 40 entries,
+You've used 37 entries,
             4039 wiz_defined-function locations,
-            1020 strings with 12574 characters,
-and the built_in function-call counts, 23102 in all, are:
-= -- 1837
-> -- 423
-< -- 176
-+ -- 254
-- -- 69
-* -- 1014
-:= -- 3663
-add.period$ -- 80
-call.type$ -- 40
-change.case$ -- 38
-chr.to.int$ -- 414
-cite$ -- 56
-duplicate$ -- 1778
-empty$ -- 1977
-format.name$ -- 78
-if$ -- 5266
+            1004 strings with 11956 characters,
+and the built_in function-call counts, 21026 in all, are:
+= -- 1686
+> -- 364
+< -- 160
++ -- 220
+- -- 58
+* -- 923
+:= -- 3367
+add.period$ -- 74
+call.type$ -- 37
+change.case$ -- 35
+chr.to.int$ -- 372
+cite$ -- 51
+duplicate$ -- 1626
+empty$ -- 1801
+format.name$ -- 66
+if$ -- 4782
 int.to.chr$ -- 0
-int.to.str$ -- 40
-missing$ -- 284
-newline$ -- 153
-num.names$ -- 40
-pop$ -- 702
+int.to.str$ -- 37
+missing$ -- 257
+newline$ -- 144
+num.names$ -- 37
+pop$ -- 628
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1827
+skip$ -- 1666
 stack$ -- 0
-substring$ -- 996
-swap$ -- 1285
-text.length$ -- 38
+substring$ -- 895
+swap$ -- 1171
+text.length$ -- 36
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 40
-warning$ -- 16
-while$ -- 99
-width$ -- 42
-write$ -- 369
+type$ -- 37
+warning$ -- 14
+while$ -- 90
+width$ -- 39
+write$ -- 345
 (There were 6 error messages)
