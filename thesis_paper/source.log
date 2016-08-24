@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 AUG 2016 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  24 AUG 2016 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -872,71 +872,34 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 5.
 
 
 ]
-(./source.lof [5
-
-])
+(./source.lof)
 \tf@lof=\write5
 \openout5 = `source.lof'.
 
- [6] (./source.lot)
+ [5
+
+] (./source.lot)
 \tf@lot=\write6
 \openout6 = `source.lot'.
 
- [7
+ [6
 
-] [8
+] [7
 
-] [9]
+] [8]
 Chapter 1.
 [1
 
 
 ] [2] [3]
-Package epstopdf Info: Source file: <images/sample_snapshot_of_simulation.eps>
-(epstopdf)                    date: 2016-01-23 18:14:14
-(epstopdf)                    size: 1485626 bytes
-(epstopdf)             Output file: <images/sample_snapshot_of_simulation-eps-c
-onverted-to.pdf>
-(epstopdf)                    date: 2016-01-23 18:16:51
-(epstopdf)                    size: 224747 bytes
-(epstopdf)             Command: <repstopdf --outfile=images/sample_snapshot_of_
-simulation-eps-converted-to.pdf images/sample_snapshot_of_simulation.eps>
-(epstopdf)             \includegraphics on input line 230.
-Package epstopdf Info: Output file is already uptodate.
-
-<images/sample_snapshot_of_simulation-eps-converted-to.pdf, id=320, 568.1225pt 
-x 364.36125pt>
-File: images/sample_snapshot_of_simulation-eps-converted-to.pdf Graphic file (t
-ype pdf)
- <use images/sample_snapshot_of_simulation-eps-converted-to.pdf>
-Package pdftex.def Info: images/sample_snapshot_of_simulation-eps-converted-to.
-pdf used on input line 230.
-(pdftex.def)             Requested size: 241.84843pt x 155.11pt.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 235.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 229.
 
-[4 <./images/sample_snapshot_of_simulation-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <images/speedup838K-pomalo-za-4.eps>
-(epstopdf)                    date: 2015-03-21 23:47:20
-(epstopdf)                    size: 296803 bytes
-(epstopdf)             Output file: <images/speedup838K-pomalo-za-4-eps-convert
-ed-to.pdf>
-(epstopdf)                    date: 2016-01-16 18:01:16
-(epstopdf)                    size: 11464 bytes
-(epstopdf)             Command: <repstopdf --outfile=images/speedup838K-pomalo-
-za-4-eps-converted-to.pdf images/speedup838K-pomalo-za-4.eps>
-(epstopdf)             \includegraphics on input line 239.
-Package epstopdf Info: Output file is already uptodate.
 
-<images/speedup838K-pomalo-za-4-eps-converted-to.pdf, id=350, 403.5075pt x 187.
-70125pt>
-File: images/speedup838K-pomalo-za-4-eps-converted-to.pdf Graphic file (type pd
-f)
- <use images/speedup838K-pomalo-za-4-eps-converted-to.pdf>
-Package pdftex.def Info: images/speedup838K-pomalo-za-4-eps-converted-to.pdf us
-ed on input line 239.
-(pdftex.def)             Requested size: 241.84843pt x 112.50133pt.
- [5 <./images/speedup838K-pomalo-za-4-eps-converted-to.pdf>] [6]
+LaTeX Warning: Reference `fg:sample_estimation_old_paper' on page 4 undefined o
+n input line 230.
+
+[4] [5] [6]
 Package epstopdf Info: Source file: <images/kernelatom.eps>
 (epstopdf)                    date: 2016-01-31 23:13:54
 (epstopdf)                    size: 1929502 bytes
@@ -945,15 +908,15 @@ Package epstopdf Info: Source file: <images/kernelatom.eps>
 (epstopdf)                    size: 24618 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/kernelatom-eps-conv
 erted-to.pdf images/kernelatom.eps>
-(epstopdf)             \includegraphics on input line 265.
+(epstopdf)             \includegraphics on input line 253.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/kernelatom-eps-converted-to.pdf, id=370, 343.2825pt x 219.82124pt>
+<images/kernelatom-eps-converted-to.pdf, id=347, 343.2825pt x 219.82124pt>
 File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/kernelatom-eps-converted-to.pdf>
 Package pdftex.def Info: images/kernelatom-eps-converted-to.pdf used on input l
-ine 265.
+ine 253.
 (pdftex.def)             Requested size: 241.84843pt x 154.86665pt.
  [7 <./images/kernelatom-eps-converted-to.pdf>] [8] [9]
 Chapter 2.
@@ -961,14 +924,12 @@ Chapter 2.
 
 ] [11] [12] [13] [14]
 Chapter 3.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 388.
 [15
 
-] [16] [17]
+]
+LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10.95> not available
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 361.
+ [16] [17]
 Chapter 4.
 Package epstopdf Info: Source file: <images/memory-organization.eps>
 (epstopdf)                    date: 2016-02-07 02:37:44
@@ -979,203 +940,203 @@ o.pdf>
 (epstopdf)                    size: 20575 bytes
 (epstopdf)             Command: <repstopdf --outfile=images/memory-organization
 -eps-converted-to.pdf images/memory-organization.eps>
-(epstopdf)             \includegraphics on input line 407.
+(epstopdf)             \includegraphics on input line 380.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/memory-organization-eps-converted-to.pdf, id=472, 334.24875pt x 473.77p
+<images/memory-organization-eps-converted-to.pdf, id=447, 334.24875pt x 473.77p
 t>
 File: images/memory-organization-eps-converted-to.pdf Graphic file (type pdf)
  <use images/memory-organization-eps-converted-to.pdf>
 Package pdftex.def Info: images/memory-organization-eps-converted-to.pdf used o
-n input line 407.
+n input line 380.
 (pdftex.def)             Requested size: 314.40001pt x 445.66917pt.
  [18
 
 ] [19 <./images/memory-organization-eps-converted-to.pdf>] [20] [21]
-<images/reduction.png, id=508, 228.855pt x 168.63pt>
+<images/reduction.png, id=484, 228.855pt x 168.63pt>
 File: images/reduction.png Graphic file (type png)
 
 <use images/reduction.png>
-Package pdftex.def Info: images/reduction.png used on input line 438.
+Package pdftex.def Info: images/reduction.png used on input line 411.
 (pdftex.def)             Requested size: 314.40001pt x 231.67268pt.
 
-<images/overallarchitecture.png, id=510, 334.24875pt x 532.99126pt>
+<images/overallarchitecture.png, id=486, 334.24875pt x 532.99126pt>
 File: images/overallarchitecture.png Graphic file (type png)
 
 <use images/overallarchitecture.png>
-Package pdftex.def Info: images/overallarchitecture.png used on input line 444.
+Package pdftex.def Info: images/overallarchitecture.png used on input line 417.
 
 (pdftex.def)             Requested size: 314.40001pt x 501.37784pt.
  [22] [23 <./images/reduction.png>]
 [24 <./images/overallarchitecture.png>]
-<images/threadload.png, id=530, 416.55624pt x 211.79124pt>
+<images/threadload.png, id=506, 416.55624pt x 211.79124pt>
 File: images/threadload.png Graphic file (type png)
 
 <use images/threadload.png>
-Package pdftex.def Info: images/threadload.png used on input line 458.
+Package pdftex.def Info: images/threadload.png used on input line 431.
 (pdftex.def)             Requested size: 241.84843pt x 122.96504pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 478.
+put line 451.
  [25 <./images/threadload.png>] [26]pdfTeX warning (ext4): destination with the
  same identifier (name{ALG@line.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.540 \Procedure
+l.513 \Procedure
                 {gpuonebodyfunctionskernel}{atomsCount, atoms, results}pdfTeX w
 arning (ext4): destination with the same identifier (name{ALG@line.2}) has been
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.541 \State
+l.514 \State
              \Comment{ $atoms$ is vector of atoms kept in global gpu memory}pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.3}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.542 \State
+l.515 \State
              \Comment{ $atomsCount$ is number of atoms in the frame kept in ...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.4}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.543 \State
+l.516 \State
              \Comment{ $results$ is number of atoms in the frame kept in glo...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.5}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.545 \BState
+l.518 \BState
               \emph{top}:pdfTeX warning (ext4): destination with the same ident
 ifier (name{ALG@line.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.547 \State
+l.520 \State
              $\textit{sdata} \gets \textit{allocate shared memory in each GP...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.7}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.548 \State
+l.521 \State
              \Comment{We will use this further to accumulate data across blo...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.8}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.550 \State
+l.523 \State
              $\textit{indexX} \gets \textit{blockIdsx.x * blockDim.x + threa...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.9}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.551 \State
+l.524 \State
              \Comment{Identify position of the kernel in the grid scale for ...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.10})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.552 \State
+l.525 \State
              $\textit{indexY} \gets \textit{blockIdsx.y * blockDim.y + threa...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.11})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.553 \State
+l.526 \State
              \Comment{Identify position of the kernel in the grid scale for ...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.12})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.555 \State
+l.528 \State
              $\textit{gridWidth} \gets \textit{gridDim.x * blockDim.x}$pdfTeX w
 arning (ext4): destination with the same identifier (name{ALG@line.13}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.556 \State
+l.529 \State
              \Comment{Calculate grid size in kernel units}pdfTeX warning (ext4)
 : destination with the same identifier (name{ALG@line.14}) has been already use
 d, duplicate ignored
 <to be read again> 
                    \relax 
-l.557 \State
+l.530 \State
              $\textit{i} \gets \textit{indexY * gridWidth + indexX}$pdfTeX warn
 ing (ext4): destination with the same identifier (name{ALG@line.15}) has been a
 lready used, duplicate ignored
 <to be read again> 
                    \relax 
-l.558 \State
+l.531 \State
              \Comment{Finally get the index of current atom mapped to this k...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.16})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.560 \State
+l.533 \State
              $\textit{sharedResult} \gets \textit{pointer to shared memory h...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.17})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.562 \State
+l.535 \State
              $\textit{currentAtom} \gets \textit{atoms[i]}$pdfTeX warning (ext4
 ): destination with the same identifier (name{ALG@line.18}) has been already us
 ed, duplicate ignored
 <to be read again> 
                    \relax 
-l.563 \State
+l.536 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.19}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.564 \State
+l.537 \State
              $\textit{atomicAdd(\&sharedResult[0], currentAtom.mass);}$pdfTeX w
 arning (ext4): destination with the same identifier (name{ALG@line.20}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.565 \State
+l.538 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.21}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.566 \State
+l.539 \State
              $\textit{atomicAdd(\&sharedResult[1], currentAtom.charge);}$pdfTeX
  warning (ext4): destination with the same identifier (name{ALG@line.22}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.567 \State
+l.540 \State
              $\textit{atomicAdd(\&sharedResult[2], currentAtom.mass * curren...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.23})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.568 \State
+l.541 \State
              $\textit{atomicAdd(\&sharedResult[3], currentAtom.mass * curren...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.24})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.569 \State
+l.542 \State
              $\textit{atomicAdd(\&sharedResult[3], currentAtom.mass * curren...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.25})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.570 \State
+l.543 \State
              $\textit{// other function steps...}$pdfTeX warning (ext4): destin
 ation with the same identifier (name{ALG@line.26}) has been already used, dupli
 cate ignored
 <to be read again> 
                    \relax 
-l.572 \State
+l.545 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.27}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.574 \State
+l.547 \State
             $\textit{// make sure all kernel threads get here and wait for e...
 
-Overfull \hbox (34.73596pt too wide) in paragraph at lines 578--579
+Overfull \hbox (34.73596pt too wide) in paragraph at lines 551--552
 [] $[]$ 
  []
 
@@ -1183,474 +1144,474 @@ Overfull \hbox (34.73596pt too wide) in paragraph at lines 578--579
 line.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.609 \Procedure
+l.582 \Procedure
                 {SDHCPU}{atoms, atomsCount, histogram}pdfTeX warning (ext4): de
 stination with the same identifier (name{ALG@line.2}) has been already used, du
 plicate ignored
 <to be read again> 
                    \relax 
-l.611 \State
+l.584 \State
              $\textit{i} \gets 0$pdfTeX warning (ext4): destination with the sa
 me identifier (name{ALG@line.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.612 \While
+l.585 \While
             {i < atomsCount}pdfTeX warning (ext4): destination with the same id
 entifier (name{ALG@line.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.614 \State
+l.587 \State
              $\textit{j} \gets i + 1$pdfTeX warning (ext4): destination with th
 e same identifier (name{ALG@line.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.615 \While
+l.588 \While
             {j < atomsCount}pdfTeX warning (ext4): destination with the same id
 entifier (name{ALG@line.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.616 \State
+l.589 \State
              $\textit{dist} \gets calcDistance(atoms[i], atoms[j])$pdfTeX warni
 ng (ext4): destination with the same identifier (name{ALG@line.7}) has been alr
 eady used, duplicate ignored
 <to be read again> 
                    \relax 
-l.617 \State
+l.590 \State
              $\textit{Save dist in histogram bucket}$pdfTeX warning (ext4): des
 tination with the same identifier (name{ALG@line.8}) has been already used, dup
 licate ignored
 <to be read again> 
                    \relax 
-l.618 \State
+l.591 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.619 \State
+l.592 \State
              $\textit{j} \gets j + 1$pdfTeX warning (ext4): destination with th
 e same identifier (name{ALG@line.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.620 \EndWhile
+l.593 \EndWhile
                pdfTeX warning (ext4): destination with the same identifier (nam
 e{ALG@line.11}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.622 \State
+l.595 \State
              $\textit{i} \gets i + 1$pdfTeX warning (ext4): destination with th
 e same identifier (name{ALG@line.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.623 \EndWhile
+l.596 \EndWhile
                pdfTeX warning (ext4): destination with the same identifier (nam
 e{ALG@line.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.625 \EndProcedure
+l.598 \EndProcedure
                     [29]
-<images/sharedMem.png, id=607, 438.63875pt x 369.38pt>
+<images/sharedMem.png, id=583, 438.63875pt x 369.38pt>
 File: images/sharedMem.png Graphic file (type png)
 
 <use images/sharedMem.png>
-Package pdftex.def Info: images/sharedMem.png used on input line 648.
+Package pdftex.def Info: images/sharedMem.png used on input line 621.
 (pdftex.def)             Requested size: 241.84843pt x 203.66689pt.
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.1}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.663 \Procedure
+l.636 \Procedure
                 {gpusdhkernel}{atomsCount, pdhRes, histogram, atoms, numOfBu...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.2}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.665 \State
+l.638 \State
              $\textit{smem} \gets \textit{pointer to head of SM}$pdfTeX warning
  (ext4): destination with the same identifier (name{ALG@line.3}) has been alrea
 dy used, duplicate ignored
 <to be read again> 
                    \relax 
-l.667 \State
+l.640 \State
              $\textit{sharedHisto} \gets \textit{pointer to the head of smem}$p
 dfTeX warning (ext4): destination with the same identifier (name{ALG@line.4}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.668 \State
+l.641 \State
              $\textit{sharedAtoms} \gets \textit{pointer to the tail of shar...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.5}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.669 \State
+l.642 \State
              $\textit{index} \gets \textit{calculate index of kernel mapped ...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.6}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.671 \State
+l.644 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.672 \If
+l.645 \If
           {$\textit{threadIdx.x} = 0$}pdfTeX warning (ext4): destination with t
 he same identifier (name{ALG@line.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.674 \State
+l.647 \State
              $\textit{sharedHisto} \gets \textit{Set all values to 0}$pdfTeX wa
 rning (ext4): destination with the same identifier (name{ALG@line.9}) has been 
 already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.675 \State
+l.648 \State
              $\textit{start} \gets \textit{index, }pdfTeX warning (ext4): desti
 nation with the same identifier (name{ALG@line.10}) has been already used, dupl
 icate ignored
 <to be read again> 
                    \relax 
-l.679 \For
+l.652 \For
            {$i < start + blockDim.x$ and $i < atomsCount$}pdfTeX warning (ext4)
 : destination with the same identifier (name{ALG@line.11}) has been already use
 d, duplicate ignored
 <to be read again> 
                    \relax 
-l.680 	\State
+l.653 	\State
               $\textit{sharedAtoms[k]} \gets \textit{atoms[i]}$pdfTeX warning (
 ext4): destination with the same identifier (name{ALG@line.12}) has been alread
 y used, duplicate ignored
 <to be read again> 
                    \relax 
-l.682 	\State
+l.655 	\State
               $\textit{i} \gets \textit{i + 1, } \textit{k} \gets \textit{k ...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.13})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.683 \EndFor
+l.656 \EndFor
              pdfTeX warning (ext4): destination with the same identifier (name{
 ALG@line.14}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.685 \EndIf
+l.658 \EndIf
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.687 \State
+l.660 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.688 \State
+l.661 \State
              $\textit{\_\_syncthreads()}$pdfTeX warning (ext4): destination wit
 h the same identifier (name{ALG@line.17}) has been already used, duplicate igno
 red
 <to be read again> 
                    \relax 
-l.689 \State
+l.662 \State
              $\textit{threadLoad} = \textit{(atomsCount + 1) / 2}$pdfTeX warnin
 g (ext4): destination with the same identifier (name{ALG@line.18}) has been alr
 eady used, duplicate ignored
 <to be read again> 
                    \relax 
-l.690 \State
+l.663 \State
              $\textit{start} \gets \textit{i+1}$pdfTeX warning (ext4): destinat
 ion with the same identifier (name{ALG@line.19}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.691 \State
+l.664 \State
              $\textit{end} \gets \textit{i + threadLoad, }pdfTeX warning (ext4)
 : destination with the same identifier (name{ALG@line.20}) has been already use
 d, duplicate ignored
 <to be read again> 
                    \relax 
-l.694 \State
+l.667 \State
              $\textit{bi} \gets \textit{blockDim.x * blockIdx.x, } \textit{e...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.21})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.696 \State
+l.669 \State
              $\textit{ind1} \gets \textit{threadIdx.x}$pdfTeX warning (ext4): d
 estination with the same identifier (name{ALG@line.22}) has been already used, 
 duplicate ignored
 <to be read again> 
                    \relax 
-l.698 \State
+l.671 \State
              $\textit{j} \gets \textit{start}$pdfTeX warning (ext4): destinatio
 n with the same identifier (name{ALG@line.23}) has been already used, duplicate
  ignored
 <to be read again> 
                    \relax 
-l.700 \For
+l.673 \For
            {$\textit{j} < \textit{end}$}pdfTeX warning (ext4): destination with
  the same identifier (name{ALG@line.24}) has been already used, duplicate ignor
 ed
 <to be read again> 
                    \relax 
-l.702 \State
+l.675 \State
              $\textit{ind2} \gets \textit{j mod atomsCount}$pdfTeX warning (ext
 4): destination with the same identifier (name{ALG@line.25}) has been already u
 sed, duplicate ignored
 <to be read again> 
                    \relax 
-l.703 \State
+l.676 \State
              $\textit{atom1} \gets \textit{load from shared memory}$pdfTeX warn
 ing (ext4): destination with the same identifier (name{ALG@line.26}) has been a
 lready used, duplicate ignored
 <to be read again> 
                    \relax 
-l.705 \If
+l.678 \If
          { $\textit{atom2 can be loaded from shared memory}$}pdfTeX warning (ex
 t4): destination with the same identifier (name{ALG@line.27}) has been already 
 used, duplicate ignored
 <to be read again> 
                    \relax 
-l.706 \State
+l.679 \State
              $\textit{atom2} \gets \textit{load from local memory}$pdfTeX warni
 ng (ext4): destination with the same identifier (name{ALG@line.28}) has been al
 ready used, duplicate ignored
 <to be read again> 
                    \relax 
-l.707 \Else
+l.680 \Else
            pdfTeX warning (ext4): destination with the same identifier (name{AL
 G@line.29}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.708 \State
+l.681 \State
              $\textit{atom2} \gets \textit{load from global memory}$pdfTeX warn
 ing (ext4): destination with the same identifier (name{ALG@line.30}) has been a
 lready used, duplicate ignored
 <to be read again> 
                    \relax 
-l.709 \EndIf
+l.682 \EndIf
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.31}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.711 \State
+l.684 \State
              $\textit{calc distance and atomically write to local histogram}$pd
 fTeX warning (ext4): destination with the same identifier (name{ALG@line.32}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.712 \EndFor
+l.685 \EndFor
              pdfTeX warning (ext4): destination with the same identifier (name{
 ALG@line.33}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.714 \State
+l.687 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.34}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.715 \State
+l.688 \State
              $\textit{synchronize all threads}$pdfTeX warning (ext4): destinati
 on with the same identifier (name{ALG@line.35}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.716 \State
+l.689 \State
              $\textit{gather all histogram from shared into global memory}$pdfT
 eX warning (ext4): destination with the same identifier (name{ALG@line.36}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.717 \EndProcedure
+l.690 \EndProcedure
                     [30 <./images/sharedMem.png>]pdfTeX warning (ext4): destina
 tion with the same identifier (name{ALG@line.1}) has been already used, duplica
 te ignored
 <to be read again> 
                    \relax 
-l.736 \Procedure
+l.709 \Procedure
                 {runsinglekernel}{atomsCount, atoms, workload}pdfTeX warning (e
 xt4): destination with the same identifier (name{ALG@line.2}) has been already 
 used, duplicate ignored
 <to be read again> 
                    \relax 
-l.738 \State
+l.711 \State
              $\textit{stream1} \gets \textit{create CUDA stream with cudaStr...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.3}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.739 \State
+l.712 \State
              $\textit{stream2} \gets \textit{create CUDA stream with cudaStr...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.4}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.740 \State
+l.713 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.741 \State
+l.714 \State
              $\textit{gpuResults} \gets \textit{allocate gpu global memory}$pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.6}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.742 \State
+l.715 \State
              $\textit{gpuAtoms} \gets \textit{allocate gpu global memory}$pdfTe
 X warning (ext4): destination with the same identifier (name{ALG@line.7}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.743 \State
+l.716 \State
              $\textit{gpuHistogram} \gets \textit{allocate gpu global memory}$p
 dfTeX warning (ext4): destination with the same identifier (name{ALG@line.8}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.744 \State
+l.717 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.745 \State
+l.718 \State
              $\textit{gpuAtoms} \gets \textit{copy atoms from CPU to GPU wit...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.10})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.747 \State
+l.720 \State
              $\textit{gridSize} \gets \textit{compute grid size depending on...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.11})
  has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.749 \State
+l.722 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.751 \For
+l.724 \For
            {$workload$}pdfTeX warning (ext4): destination with the same identif
 ier (name{ALG@line.13}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.753 \State
+l.726 \State
              $\textit{gpukernel1(stream1, sharedMemorySize, gpuAtoms, ...)}$pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.14}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.755 \State
+l.728 \State
              $\textit{gpukernel2(stream2, sharedMemorySize, gpuAtoms, ...)}$pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.15}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.758 \State
+l.731 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.16}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.759 \State
+l.732 \State
              $\textit{cudaStreamSynchronize(stream1)}$pdfTeX warning (ext4): de
 stination with the same identifier (name{ALG@line.17}) has been already used, d
 uplicate ignored
 <to be read again> 
                    \relax 
-l.760 \State
+l.733 \State
              $\textit{cudaStreamSynchronize(stream2)}$pdfTeX warning (ext4): de
 stination with the same identifier (name{ALG@line.18}) has been already used, d
 uplicate ignored
 <to be read again> 
                    \relax 
-l.762 \EndFor
+l.735 \EndFor
              pdfTeX warning (ext4): destination with the same identifier (name{
 ALG@line.19}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.764 \EndProcedure
+l.737 \EndProcedure
                     [31]pdfTeX warning (ext4): destination with the same identi
 fier (name{ALG@line.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.781 \Procedure
+l.754 \Procedure
                 {runsinglekernel}{atomsCount, atoms, nextAtoms, workload}pdfTeX
  warning (ext4): destination with the same identifier (name{ALG@line.2}) has be
 en already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.783 \State
+l.756 \State
              $\textit{stream1, stream2} \gets \textit{create CUDA stream wit...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.3}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.785 \State
+l.758 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.786 \State
+l.759 \State
              $\textit{The same routing with allocating memory for now for ne...
 pdfTeX warning (ext4): destination with the same identifier (name{ALG@line.5}) 
 has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.788 \State
+l.761 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.789 \State
+l.762 \State
              $\textit{Here we start loading nextAtoms to GPU on stream2 }$pdfTe
 X warning (ext4): destination with the same identifier (name{ALG@line.7}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.790 \State
+l.763 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.792 \For
+l.765 \For
            {$workload$}pdfTeX warning (ext4): destination with the same identif
 ier (name{ALG@line.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.794 \State
+l.767 \State
              $\textit{gpukernel1(stream1, sharedMemorySize, gpuAtoms, ...)}$pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.10}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.796 \State
+l.769 \State
              $\textit{gpukernel2(stream1, sharedMemorySize, gpuAtoms, ...)}$pdf
 TeX warning (ext4): destination with the same identifier (name{ALG@line.11}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.799 \State
+l.772 \State
             pdfTeX warning (ext4): destination with the same identifier (name{A
 LG@line.12}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.800 \State
+l.773 \State
              $\textit{cudaStreamSynchronize(stream1)}$pdfTeX warning (ext4): de
 stination with the same identifier (name{ALG@line.13}) has been already used, d
 uplicate ignored
 <to be read again> 
                    \relax 
-l.801 \State
+l.774 \State
              $\textit{cudaStreamSynchronize(stream2)}$pdfTeX warning (ext4): de
 stination with the same identifier (name{ALG@line.14}) has been already used, d
 uplicate ignored
 <to be read again> 
                    \relax 
-l.803 \EndFor
+l.776 \EndFor
              pdfTeX warning (ext4): destination with the same identifier (name{
 ALG@line.15}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.805 \EndProcedure
+l.778 \EndProcedure
                     [32] [33]
 Chapter 5.
 
@@ -1658,32 +1619,32 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [34
 
-] [35] [36] <images/exp_1000_10.png, id=653, 504.88625pt x 312.16624pt>
+] [35] [36] <images/exp_1000_10.png, id=629, 504.88625pt x 312.16624pt>
 File: images/exp_1000_10.png Graphic file (type png)
 
 <use images/exp_1000_10.png>
-Package pdftex.def Info: images/exp_1000_10.png used on input line 895.
+Package pdftex.def Info: images/exp_1000_10.png used on input line 868.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_1000_100.png, id=654, 504.88625pt x 312.16624pt>
+<images/exp_1000_100.png, id=630, 504.88625pt x 312.16624pt>
 File: images/exp_1000_100.png Graphic file (type png)
 
 <use images/exp_1000_100.png>
-Package pdftex.def Info: images/exp_1000_100.png used on input line 901.
+Package pdftex.def Info: images/exp_1000_100.png used on input line 874.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_1000_1000.png, id=655, 504.88625pt x 312.16624pt>
+<images/exp_1000_1000.png, id=631, 504.88625pt x 312.16624pt>
 File: images/exp_1000_1000.png Graphic file (type png)
 
 <use images/exp_1000_1000.png>
-Package pdftex.def Info: images/exp_1000_1000.png used on input line 907.
+Package pdftex.def Info: images/exp_1000_1000.png used on input line 880.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_1000.png, id=656, 602.25pt x 372.39125pt>
+<images/speedup_1000.png, id=632, 602.25pt x 372.39125pt>
 File: images/speedup_1000.png Graphic file (type png)
 
 <use images/speedup_1000.png>
-Package pdftex.def Info: images/speedup_1000.png used on input line 913.
+Package pdftex.def Info: images/speedup_1000.png used on input line 886.
 (pdftex.def)             Requested size: 193.47578pt x 119.63358pt.
 
 
@@ -1691,32 +1652,32 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [37 <./images/exp_1000_10.png> <./images/exp_1000_100.png> <./images/exp_1000_1
 000.png> <./images/speedup_1000.png>]
-<images/exp_10000_10.png, id=666, 504.88625pt x 312.16624pt>
+<images/exp_10000_10.png, id=642, 504.88625pt x 312.16624pt>
 File: images/exp_10000_10.png Graphic file (type png)
 
 <use images/exp_10000_10.png>
-Package pdftex.def Info: images/exp_10000_10.png used on input line 968.
+Package pdftex.def Info: images/exp_10000_10.png used on input line 941.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_10000_100.png, id=667, 504.88625pt x 312.16624pt>
+<images/exp_10000_100.png, id=643, 504.88625pt x 312.16624pt>
 File: images/exp_10000_100.png Graphic file (type png)
 
 <use images/exp_10000_100.png>
-Package pdftex.def Info: images/exp_10000_100.png used on input line 974.
+Package pdftex.def Info: images/exp_10000_100.png used on input line 947.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_10000_1000.png, id=668, 504.88625pt x 312.16624pt>
+<images/exp_10000_1000.png, id=644, 504.88625pt x 312.16624pt>
 File: images/exp_10000_1000.png Graphic file (type png)
 
 <use images/exp_10000_1000.png>
-Package pdftex.def Info: images/exp_10000_1000.png used on input line 980.
+Package pdftex.def Info: images/exp_10000_1000.png used on input line 953.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_10000.png, id=669, 602.25pt x 372.39125pt>
+<images/speedup_10000.png, id=645, 602.25pt x 372.39125pt>
 File: images/speedup_10000.png Graphic file (type png)
 
 <use images/speedup_10000.png>
-Package pdftex.def Info: images/speedup_10000.png used on input line 986.
+Package pdftex.def Info: images/speedup_10000.png used on input line 959.
 (pdftex.def)             Requested size: 193.47578pt x 119.63358pt.
 
 
@@ -1727,25 +1688,25 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [38] [39 <./images/exp_10000_10.png> <./images/exp_10000_100.png> <./images/exp
 _10000_1000.png> <./images/speedup_10000.png>]
-<images/exp_100000_10.png, id=684, 504.88625pt x 312.16624pt>
+<images/exp_100000_10.png, id=660, 504.88625pt x 312.16624pt>
 File: images/exp_100000_10.png Graphic file (type png)
 
 <use images/exp_100000_10.png>
-Package pdftex.def Info: images/exp_100000_10.png used on input line 1047.
+Package pdftex.def Info: images/exp_100000_10.png used on input line 1020.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/exp_100000_100.png, id=685, 504.88625pt x 312.16624pt>
+<images/exp_100000_100.png, id=661, 504.88625pt x 312.16624pt>
 File: images/exp_100000_100.png Graphic file (type png)
 
 <use images/exp_100000_100.png>
-Package pdftex.def Info: images/exp_100000_100.png used on input line 1053.
+Package pdftex.def Info: images/exp_100000_100.png used on input line 1026.
 (pdftex.def)             Requested size: 193.47578pt x 119.62468pt.
 
-<images/speedup_100000.png, id=686, 602.25pt x 372.39125pt>
+<images/speedup_100000.png, id=662, 602.25pt x 372.39125pt>
 File: images/speedup_100000.png Graphic file (type png)
 
 <use images/speedup_100000.png>
-Package pdftex.def Info: images/speedup_100000.png used on input line 1059.
+Package pdftex.def Info: images/speedup_100000.png used on input line 1032.
 (pdftex.def)             Requested size: 193.47578pt x 119.63358pt.
 
 
@@ -1758,26 +1719,26 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 p_100000.png>]
 File: images/sharedMem.png Graphic file (type png)
  <use images/sharedMem.png>
-Package pdftex.def Info: images/sharedMem.png used on input line 1113.
+Package pdftex.def Info: images/sharedMem.png used on input line 1086.
 (pdftex.def)             Requested size: 145.11053pt x 122.20013pt.
  [41]
-<images/sdhvsimproved.png, id=703, 602.25pt x 372.39125pt>
+<images/sdhvsimproved.png, id=678, 602.25pt x 372.39125pt>
 File: images/sdhvsimproved.png Graphic file (type png)
 
 <use images/sdhvsimproved.png>
-Package pdftex.def Info: images/sdhvsimproved.png used on input line 1164.
+Package pdftex.def Info: images/sdhvsimproved.png used on input line 1137.
 (pdftex.def)             Requested size: 241.84843pt x 149.5448pt.
  [42 <./images/sdhvsimproved.png>]
-<images/overall_speedup.png, id=710, 602.25pt x 372.39125pt>
+<images/overall_speedup.png, id=685, 602.25pt x 372.39125pt>
 File: images/overall_speedup.png Graphic file (type png)
 
 <use images/overall_speedup.png>
-Package pdftex.def Info: images/overall_speedup.png used on input line 1177.
+Package pdftex.def Info: images/overall_speedup.png used on input line 1150.
 (pdftex.def)             Requested size: 386.95897pt x 239.27852pt.
  [43 <./images/overall_speedup.png>]
 Chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1185--1186
+Underfull \hbox (badness 10000) in paragraph at lines 1158--1159
 
  []
 
@@ -1786,48 +1747,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 1185--1186
 ] [45
 
 ] [46] [47])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1190.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1163.
  [48]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1190.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1163.
  (./source.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1190.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1190.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1163.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1163.
 
 Package rerunfilecheck Info: File `source.out' has not changed.
 (rerunfilecheck)             Checksum: E86DCDD373D525B8DE977B66D206A3DB;2324.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1190.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1163.
  ) 
 Here is how much of TeX's memory you used:
- 13302 strings out of 493089
- 211006 string characters out of 6134842
+ 13288 strings out of 493089
+ 210416 string characters out of 6134842
  351268 words of memory out of 5000000
- 16146 multiletter control sequences out of 15000+600000
+ 16137 multiletter control sequences out of 15000+600000
  53233 words of font info for 187 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,19n,42p,2502b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/time
-s/utmri8a.pfb>
-Output written on source.pdf (57 pages, 737163 bytes).
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/font
+s/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
+rw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
+tmri8a.pfb>
+Output written on source.pdf (56 pages, 496347 bytes).
 PDF statistics:
- 844 PDF objects out of 1000 (max. 8388607)
- 718 compressed objects within 8 object streams
- 215 named destinations out of 1000 (max. 500000)
- 24962 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 816 PDF objects out of 1000 (max. 8388607)
+ 698 compressed objects within 7 object streams
+ 212 named destinations out of 1000 (max. 500000)
+ 24952 words of extra memory for PDF output out of 29859 (max. 10000000)
 
