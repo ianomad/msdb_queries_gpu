@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 SEP 2016 01:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 SEP 2016 01:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -802,11 +802,11 @@ LaTeX Info: Redefining \nameref on input line 88.
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 635.97623pt, 86.72377pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
 * \textwidth=469.75502pt
-* \textheight=650.43001pt
+* \textheight=635.97623pt
 * \oddsidemargin=0.0pt
 * \evensidemargin=0.0pt
 * \topmargin=-37.0pt
@@ -877,7 +877,7 @@ LaTeX Font Info:    Try loading font information for OMS+rsfs on input line 1.
 sed, duplicate ignored
 <to be read again> 
                    \relax 
-l.37 ... SDH implementation}{48}{subsection.5.3.4}
+l.36 ...s for 100,000 atoms}{50}{subsection.5.3.3}
                                                    [1
 
 ])
@@ -889,37 +889,36 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
 <to be read again> 
                    \relax 
 l.164 \clearpage
-                 [2] (./source.lofpdfTeX warning (ext4): destination with the s
-ame identifier (name{page.iii}) has been already used, duplicate ignored
+                 [2] (./source.lot)
+\tf@lot=\write5
+\openout5 = `source.lot'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.iii}) ha
+s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.25 ...r of atoms\relax }}{50}{figure.caption.28}
-                                                   [3
+l.169 \clearpage
+                 [3
+
+] (./source.lof [4
 
 ])
-\tf@lof=\write5
-\openout5 = `source.lof'.
+\tf@lof=\write6
+\openout6 = `source.lof'.
 
- [4] (./source.lot)
-\tf@lot=\write6
-\openout6 = `source.lot'.
-
-
-[5
-
-] [6
+ [5] [6
 
 ] [7]
 Chapter 1.
 [1
 
 
-] [2] [3]
+] [2] [3] [4]
 
-LaTeX Warning: Reference `fg:sample_estimation_old_paper' on page 4 undefined o
+LaTeX Warning: Reference `fg:sample_estimation_old_paper' on page 5 undefined o
 n input line 230.
 
-[4] [5] [6] [7]
+[5] [6] [7] [8]
 Package epstopdf Info: Source file: <images/kernelatom.eps>
 (epstopdf)                    date: 2016-01-31 20:13:54
 (epstopdf)                    size: 1929502 bytes
@@ -931,14 +930,14 @@ erted-to.pdf images/kernelatom.eps>
 (epstopdf)             \includegraphics on input line 253.
 Package epstopdf Info: Output file is already uptodate.
 
-<images/kernelatom-eps-converted-to.pdf, id=357, 343.2825pt x 219.82124pt>
+<images/kernelatom-eps-converted-to.pdf, id=361, 343.2825pt x 219.82124pt>
 File: images/kernelatom-eps-converted-to.pdf Graphic file (type pdf)
 
 <use images/kernelatom-eps-converted-to.pdf>
 Package pdftex.def Info: images/kernelatom-eps-converted-to.pdf used on input l
 ine 253.
 (pdftex.def)             Requested size: 234.8775pt x 150.4022pt.
- [8] [9 <./images/kernelatom-eps-converted-to.pdf>] [10] [11]
+ [9 <./images/kernelatom-eps-converted-to.pdf>] [10] [11]
 Chapter 2.
 [12
 
@@ -997,11 +996,12 @@ File: images/threadload.png Graphic file (type png)
 <use images/threadload.png>
 Package pdftex.def Info: images/threadload.png used on input line 428.
 (pdftex.def)             Requested size: 234.8775pt x 119.41989pt.
- [29 <./images/threadload.png>]
+ [29]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 446.
- [30] [31] [32]pdfTeX warning (ext4): destination with the same identifier (nam
-e{ALG@line.1}) has been already used, duplicate ignored
+ [30 <./images/threadload.png>] [31] [32]pdfTeX warning (ext4): destination wit
+h the same identifier (name{ALG@line.1}) has been already used, duplicate ignor
+ed
 <to be read again> 
                    \relax 
 l.506 \Procedure
@@ -1646,7 +1646,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [40
 
-] [41] [42] <images/exp_1000_10.png, id=660, 504.88625pt x 312.16624pt>
+]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[41] [42] <images/exp_1000_10.png, id=660, 504.88625pt x 312.16624pt>
 File: images/exp_1000_10.png Graphic file (type png)
 
 <use images/exp_1000_10.png>
@@ -1758,7 +1762,7 @@ File: images/overall_speedup.png Graphic file (type png)
 <use images/overall_speedup.png>
 Package pdftex.def Info: images/overall_speedup.png used on input line 1120.
 (pdftex.def)             Requested size: 375.80544pt x 232.3803pt.
- [50 <./images/sdhvsimproved.png> <./images/overall_speedup.png>] [51]
+ [50 <./images/sdhvsimproved.png>] [51 <./images/overall_speedup.png>]
 Chapter 6.
 
 Underfull \hbox (badness 10000) in paragraph at lines 1128--1129
@@ -1778,7 +1782,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1134.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1134.
 
 Package rerunfilecheck Info: File `source.out' has not changed.
-(rerunfilecheck)             Checksum: 2ED31EE9F46488F9B6892AF34D840524;2367.
+(rerunfilecheck)             Checksum: E8BDBF733342FB6764BF19554FB6B897;2367.
 
 
 LaTeX Warning: There were undefined references.
@@ -1791,7 +1795,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1134.
 Here is how much of TeX's memory you used:
  13414 strings out of 493089
  212348 string characters out of 6134842
- 359144 words of memory out of 5000000
+ 359148 words of memory out of 5000000
  16273 multiletter control sequences out of 15000+600000
  53028 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1810,7 +1814,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf
 s/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on source.pdf (65 pages, 500785 bytes).
+Output written on source.pdf (65 pages, 493707 bytes).
 PDF statistics:
  853 PDF objects out of 1000 (max. 8388607)
  725 compressed objects within 8 object streams
