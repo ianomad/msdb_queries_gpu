@@ -1,4 +1,4 @@
-\documentclass[11pt,letterpaper]{report}
+\documentclass[12pt,letterpaper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -17,15 +17,6 @@
 \usepackage{subfigure}
 \usepackage{cleveref}
 
-\usepackage{listings}
-\lstset{
-  language={XML},
-  basicstyle=\ttfamily,
-  showspaces=true,
-  showstringspaces=false
-}
-
-
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -37,11 +28,7 @@ linkcolor=black,urlcolor=black,citecolor=black,% PRINT
 bookmarks=true,bookmarksopenlevel=2]{hyperref}
 
 \usepackage{geometry}
-% PDF VIEW
-\geometry{
-left=25mm,right=25mm,%
-bindingoffset=0mm, top=25mm,bottom=25mm}
-%PRINT
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
 
 \titleformat{\chapter}[hang] 
 {\centering\normalfont\bfseries}{\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
@@ -53,12 +40,10 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 
 \newcommand\frontmatter{%
     \cleardoublepage
-  %\@mainmatterfalse
   \pagenumbering{roman}}
 
 \newcommand\mainmatter{%
     \cleardoublepage
- % \@mainmattertrue
   \pagenumbering{arabic}}
 
 \newcommand\backmatter{%
@@ -67,12 +52,11 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
   \else
     \clearpage
   \fi
- % \@mainmatterfalse
    }
 
 \makeatother
 
-\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
 \renewcommand{\listtablename}{LIST OF TABLES}
 \renewcommand{\abstractname}{ABSTRACT}
@@ -80,13 +64,7 @@ bindingoffset=0mm, top=25mm,bottom=25mm}
 
 \begin{document}
 {
-\frontmatter
-
-\thispagestyle{empty}
-
-\linespread{1}\selectfont
-\centering
-\vspace*{5\baselineskip}
+\frontmatter\thispagestyle{empty}\linespread{1}\selectfont\centering\vspace*{4\baselineskip}
 Parallelization of Push-based System for 
 
 \vspace*{1\baselineskip}
@@ -94,7 +72,8 @@ Parallelization of Push-based System for
 Molecular Simulation Data Analysis with GPU 
 \vspace*{3\baselineskip}
 
-%{ by }
+{ by }
+
 \vspace*{3\baselineskip}
 
 { Iliiazbek Akhmedov }
@@ -115,10 +94,9 @@ University of South Florida
 Major Professor:  Yicheng Tu, Ph.D.
 
 \vspace*{2\baselineskip}
-\vspace{.5cm}
 Date of Approval:
 
-N/A
+August 23, 2016
 
 \vspace*{3\baselineskip}
 Keywords: data processing, cuda optimization, big data,
@@ -130,34 +108,26 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
 }
 
-\clearpage
-\pagestyle{plain}
+\linespread{1}\selectfont\clearpage
+\thispagestyle{empty}
 \centering
-
-\vspace*{5\baselineskip}
-\linespread{2}\selectfont
+\linespread{1}\selectfont
+\vspace*{3\baselineskip}
 \textbf{DEDICATION}
-
-\vspace*{1\baselineskip}
-
+\linespread{2}\selectfont
 \begin{flushleft}
 \hspace{3em} I dedicate my thesis work to my family who have always been supporting me throughout my life. I also dedicate it to my closest friends who have shared my passion and encouraged me to explore and try my ideas in life.
 \end{flushleft}
 
 \clearpage
 
-\pagestyle{plain}
+\linespread{1}\selectfont\clearpage
+\thispagestyle{empty}
 \centering
-
 \linespread{1}\selectfont
-\vspace*{5\baselineskip}
-
+\vspace*{3\baselineskip}
 \textbf{ACKNOWLEDGMENTS}
-
-\vspace*{1\baselineskip}
-
 \linespread{2}\selectfont
-
 \begin{flushleft}
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
 \end{flushleft}
@@ -166,6 +136,7 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \restoregeometry
 
 \linespread{1}\selectfont
+\frontmatter
 \tableofcontents
 
 \linespread{2}\selectfont
@@ -198,7 +169,6 @@ In this paper, we propose improved version of Push-based System for Molecular Si
 
 \mainmatter
 \linespread{1}\selectfont
-
 \chapter{Introduction} \linespread{2}\selectfont \justify
 
 \hspace{3em} In various sciences simulation systems take big place and often times they may be the clue for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations have the following flow:
