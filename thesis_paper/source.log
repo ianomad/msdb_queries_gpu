@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 SEP 2016 02:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  16 SEP 2016 02:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1783,7 +1783,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1142.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1142.
 
 Package rerunfilecheck Info: File `source.out' has not changed.
-(rerunfilecheck)             Checksum: E8BDBF733342FB6764BF19554FB6B897;2367.
+(rerunfilecheck)             Checksum: 6D06F43E3235FB155A797BD31A66A21D;2350.
 
 
 LaTeX Warning: There were undefined references.
@@ -1815,7 +1815,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/texmf
 s/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
 tmri8a.pfb>
-Output written on source.pdf (65 pages, 501241 bytes).
+Output written on source.pdf (65 pages, 493812 bytes).
 PDF statistics:
  853 PDF objects out of 1000 (max. 8388607)
  725 compressed objects within 8 object streams

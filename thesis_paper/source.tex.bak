@@ -82,8 +82,16 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \setlength\cftafterlottitleskip{15pt}
 \setlength\cftafterloftitleskip{15pt}
 
+\renewcommand{\cftfigpresnum}{Figure\ }
+\renewcommand{\cfttabpresnum}{Table\ }
+
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
 \settowidth\mylength{\cftchappresnum\cftchapaftersnum}
-\addtolength\cftchapnumwidth{\mylength}
+\addtolength\cftchapnumwidth{\mylength-0.5em}
 
 \begin{document}
 {
