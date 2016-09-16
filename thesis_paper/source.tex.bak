@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,letterpaper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -17,6 +17,15 @@
 \usepackage{subfigure}
 \usepackage{cleveref}
 
+\usepackage{listings}
+\lstset{
+  language={XML},
+  basicstyle=\ttfamily,
+  showspaces=true,
+  showstringspaces=false
+}
+
+
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -29,13 +38,10 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 
 \usepackage{geometry}
 % PDF VIEW
-\geometry{total={210mm,297mm},
+\geometry{
 left=25mm,right=25mm,%
 bindingoffset=0mm, top=25mm,bottom=25mm}
 %PRINT
-\geometry{total={210mm,297mm},
-left=20mm,right=20mm,
-bindingoffset=0mm, top=15mm,bottom=35mm}
 
 \titleformat{\chapter}[hang] 
 {\centering\normalfont\bfseries}{\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
@@ -214,7 +220,7 @@ be considered and possibly incorporated in the process of analytic
 investigation in order to achieve relevant result".\cite{mainPaper, nature_bigdata08,nature_bigdata12,science_social10,jcs_twitter11} Another good example would be data scale of Facebook Inc. Being the largest social network, it has huge data coming in daily \cite{fbStats}. The data warehouse of Facebook is measured to be 300PB in 2014, and the daily growth is 600TB, most of the raw data is logs, which, most of the times, are used for analytics. Analytical queries involve entire data sets that will be handy for any future strategical planning in big companies, being able to observe data behavior and much more.
 
 The primary focus and problem in this paper is scientific data analysis. Examples brought up above are real life problems that are very similar to the scientific problem that we are focusing on in terms of data sizes. Particles simulation is one of the most popular methods of analyzing certain chemical reactions, physical processes, or other behavior of different materials.
-Molecular simulations (Molecular Dynamics) are applied in different fields and represent a method of analyzing physical movements of particles, atoms, and molecules in a fixed space with a given period of time, apparently with a possibility of giving initial state for each item that is involved in the process and can affect the system. These systems are most of the time N-body simulations. The number of atoms in simulations vary in hundred of thousands, particularly, we may observe two simulation systems of a collagen fiber structure and dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system consisting of 890,000 and 402,400 atoms respectively on Figure \ref{fg:collagen_dipal}. Simulation data represents number of records of physical properties such as mass, charge, velocity, coordinates, and forces for each item aggregated as frames, where each frame represents a snapshot of time, placed with a fixed time interval which may also vary depending on the simulation itself and simulation precision requirement. "Quantities measured during the simulations are analyzed to test the theoretical
+Molecular simulations (Molecular Dynamics) are applied in different fields and represent a method of analyzing physical movements of particles, atoms, and molecules in a fixed space with a given period of time, apparently with a possibility of giving initial state for each item that is involved in the process and can affect the system. These systems are most of the time N-body simulations. The number of atoms in simulations vary in hundred of thousands, particularly, we may observe two simulation systems of a collagen fiber structure and dipalmitoylphosphatidylcholine (DPPC) bi-layer lipid system consisting of 890,000 and 402,400 atoms as mentioned and illustrated in previous work of the system \cite{mainPaper}. Simulation data represents number of records of physical properties such as mass, charge, velocity, coordinates, and forces for each item aggregated as frames, where each frame represents a snapshot of time, placed with a fixed time interval which may also vary depending on the simulation itself and simulation precision requirement. "Quantities measured during the simulations are analyzed to test the theoretical
 model~\cite{Frenkel:api01,Landau:cup05}. In short, the MS is proven
 and powerful tool for understanding the inner-workings of a
 biological system, by supplying a model description of the
@@ -226,20 +232,8 @@ This type of approach has already been revised by other systems \cite {DataPath,
 
 In this paper, we are incorporating parallelization into the processing part of the proposed design by means of CUDA programming language for GPU. Since storage of the simulation data is very expensive, it might come to the point of analyzing the data on the fly (meaning running the simulation and analyzing it at the same time in a streaming manner), which leads to a problem of optimizing the processing part of the design proposed in the previous paper, because time spent on generating data should be tried to conceal the time spent on the processing part by means of overlapping or simply running it in a quick manner. We will talk about this in details as well in further sections.
 
-\begin{figure}
- \centerline{ \includegraphics[width=0.5\columnwidth]{images/sample_snapshot_of_simulation.eps} }
- \caption{ Snapshots of two MS systems with 890,000 atoms with 402,400 atoms}
- \label{fg:collagen_dipal}
-\end{figure}
-
 \section{Problem Statement}
 \hspace{3em} Simulation software systems, in general, follow the same methodology of running and storing simulation data. The simulation software system examples are: Gromacs \cite{GROMACS4}, VMD\cite{VMD}, MDAnalysis~\cite{MDAnalysis}, Wordom~\cite{wordom}, MD-TRACKS~\cite{MDtracks}, SimulaidOne~\cite{Simulaid}, Charmm~\cite{CHARMM}. In the type of simulations brought up as examples above, the flow of the data is the following. Once the simulation is run, the output files are contained as trajectory files with descriptors (they contain information about space dimensions, number of atoms and frames, etc.) that can be easily transposed into simple flat files containing the physical properties atom by atom, frame by frame, which are consequently read and processed by the proposed push-based system. Since we have certain amount of queries needed to be run on given simulation data, generating high I/O traffic followed by design of pull-based system is not considerable. The approach proposed in the previous paper is very good in terms of performance in comparison with the original pull-based system\cite{mainPaper}. As you can see on Figure \ref{fg:sample_estimation_old_paper}, it gets up to over 100 times of speedup which is quite crucial, if we think about days of computations. The problem is still that some of the queries processed by those means are still improvable, especially taking into consideration the fact that in the used previous works for calculation of 2-body functions, which take the biggest time for processing~\cite{ytu:icde09, EDBT12}, we might have some error bounds, which might be unacceptable for certain simulation analysis where sacrifice on loss of data is unbearable. Besides it, although we might have huge performance boost on specific data structure as density map, we still have certain expectation from data nature (such as its uniformity), thus, it makes sense to have desire to simplify the processing and still having pure computation based on any values, considering that the queries should be available to be pre-programmed by user in a separate module of the code. All the benchmarks will be done in comparison with already push-based system versus push-based system with GPU improvements. We think that it is  not fair to compare pull-based against GPU push-based approach, since the goal of the paper is to demonstrate capabilities of GPU approach that can beat simple sequential push-based system.
-
-\begin{figure}
- \centerline{ \includegraphics[width=0.5\columnwidth]{images/speedup838K-pomalo-za-4.eps} }
- \caption{ Speed up over different levels of atom selection for 838,400 atoms}
- \label{fg:sample_estimation_old_paper}
-\end{figure}
 
 \section{Our approach with improvement}
 
@@ -250,7 +244,7 @@ Original non-improvement standard approach with pull-based querying is probably 
 After all, push-based system for solution of the given problem is tremendously fast in comparison with pull-based system. General idea is to push a chunk of data (frame) through the pre-defined network of queries that will be needed to run on the data sets, which basically means chunk of data will be read from file and loaded into memory only once in order to go through all the queries. As you can observe \cite{mainPaper}, it can speed up for more than 100 times (depending on workload, number of atoms, and functions being used). It is clear that the biggest challenges in this approach were related to implementation of non-linear functions like SDH, since once the data is pushed through the queries, it is almost not coming back (if it is coming back, the point of optimization is lost), and the idea is to come up with approach to eliminate this overhead and weakness. In this case, it is also important what memory exactly is being used, because trying not to use used parts of the same chunk also matters, because L-level caches of CPU might play a huge role in big data sets. One of the solutions is building quad-tree based data structure that will help optimize the calculation, and it has some expectation from data distribution which can speed up depending on dimensions (2D and 3D). This is a mutual problem of both data loading (memory usage) and its processing, and push-based system is a great approach, because it still remains as an abstract concept applicable to different queries and probably wide variety of other problems of similar kind in different fields.
 
 Finally, we've analyzed some main ideas, advantages, and disadvantages of our approach in this paper which is basically push-based system with optimization on data processing part by means of GPU computation (in other words, parallelism). Reading the data from files is a huge overhead, thus, speedup of push-based system in general is significant over pull-based system in our given case. 
-It's been demonstrated in the previous paper with different amount of atoms, frames, and workloads. Since we have to load the data every time there is a different query versus push-based system loads a chunk of data once, it is quite noticeable how the framework contributes to efficiency of analysis of simulation data. You can observe some estimation samples in Figure \ref{fg:sample_estimation_old_paper}. Even though the memory loading and pushing steps are the key features of the proposed design, nevertheless, having general knowledge about the network of queries, in this paper, we will try to focus on optimizing the actual execution of them.
+It's been demonstrated in the previous paper with different amount of atoms, frames, and workloads. Since we have to load the data every time there is a different query versus push-based system loads a chunk of data once, it is quite noticeable how the framework contributes to efficiency of analysis of simulation data. Even though the memory loading and pushing steps are the key features of the proposed design, nevertheless, having general knowledge about the network of queries, in this paper, we will try to focus on optimizing the actual execution of them.
 
 Some of the queries may be very slow due to their nature on a sequential type of computation,  especially, 2-body functions. Since the nature of the data that comes with simulation is basically physical properties of atoms, there is a lot of computation that involves independent primitive mathematical operations, which makes it a perfect problem for parallelism. For example, image processing computations and graphics processing are done on GPUs, because they have a lot of minor primitive independent pixel-based computations.
 
@@ -326,6 +320,7 @@ Gromacs generate output files with physical properties description for each atom
 
 In previous work, there has already been developed a network of queries widely used by scientists for MS systems. In Table~\ref{tb:queries} you may observe the common set of queries that has been developed. Basically, these are the queries that need to be improved with our new approach of parallelism. Respectively, $n$, $r_i$, $m_i$, $c_i$ and $q_i$ denote number of particles, coordinates (vector form), mass, charge, and number of electrons of a particle $i$.
 
+\vspace{3em}
 
 \begin{table}[h]
 \centering
@@ -337,11 +332,9 @@ In previous work, there has already been developed a network of queries widely u
 \tabcolsep=0.12cm
 \begin{tabular}{|c| c|}
 \hline %inserts horizontal line
-Function Name & Equation/Description \\[0.5ex] 
+Function Name & Equation\\[0.5ex] 
 \hline
 Moment of Inertia & $\begin{array} {lcl} I & = & \sum\limits_{i=1}^n m_ir_i \end{array}$ \\[0.5ex]
-\hline
-Moment of Inertia on z axis & $\begin{array} {lcl} I_z & = & \sum\limits_{i=1}^n m_ir_{zi} \end{array}$ \\[0.5ex]
 \hline
 Sum of masses & $\begin{array} {lcl} M & = & \sum\limits_{i=1}^n m_i \end{array}$ \\[0.5ex]
 \hline
@@ -353,20 +346,6 @@ Dipole Moment& $\begin{array} {lcl} D & = & \sum\limits_{i=1}^n q_ir_i \end{arra
 \hline
 Dipole Histogram & $\begin{array} {lcl} D_z & = & \sum\limits_{i=1}^n \frac{D}{z} \end{array}$ \\[0.5ex]
 \hline
-Electron Density & $\begin{array} {lcl} ED & = & \frac{\sum\limits_{i=1}^n (e_i-q_i)}{dz \cdot x \cdot y} \end{array}$ \\[0.5ex]
-\hline
-Heat Capacity & $\begin{array} {lcl} HC & = & \frac{3000 \cdot \sqrt{T} \cdot boltz}{2 \cdot \sqrt{T}-n \cdot df \cdot VarT} \end{array}$ \\[0.5ex]
-\hline
-Isothermal Compressibility & $\begin{array} {lcl} I & = & \frac{VarV}{V_{avg} \cdot boltz \cdot T \cdot PresFac} \end{array}$ \\[0.5ex]
-\hline
-Mean Square Displacement& $\begin{array} {lcl} msd & = & \langle (r_{t+\Delta_t}-r_t)^2 \rangle \end{array}$ \\[0.5ex]
-\hline
-Diffusion Constant & $\begin{array} {lcl} D_t & = & \frac{6 \cdot msd(t)}{t} \end{array}$ \\[0.5ex]
-\hline Velocity Autocorrelation & $\begin{array} {lcl} V_{acor} & =&
-\langle (V_{t+\Delta_t}\cdot V_t) \rangle \end{array}$ \\[0.5ex]
-\hline
-Force Autocorrelation & $\begin{array} {lcl} F_{acor} & = & \langle (F_{t+\Delta_t} \cdot F_t) \rangle \end{array}$ \\[0.5ex]
-\hline
 Density Function & Histogram of atom counts \\[0.5ex]
 \hline
 SDH & Histogram of all distances \\[0.5ex]
@@ -374,7 +353,7 @@ SDH & Histogram of all distances \\[0.5ex]
 RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdot \sigma_r \cdot \rho} \end{array}$ \\[0.5ex]
 \hline
 \end{tabular}
-\caption[Popular analytical queries in MS]{Popular analytical queries in MS }
+\caption[Some of the popular analytical queries in MS]{Popular analytical queries in MS }
 \label{tb:queries}
 
 \end{minipage}
