@@ -27,7 +27,7 @@ linkcolor=black,urlcolor=black,citecolor=black,% PRINT
 bookmarks=true,bookmarksopenlevel=2]{hyperref}
 
 \usepackage{geometry}
-\geometry{left=1in,right=1in,top=1in,bottom=1in}
+\geometry{left=1in,right=1in,top=1in,bottom=1.2in}
 
 \titleformat{\chapter}[hang]{\normalfont\normalsize\filcenter\bfseries}{\centering\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
 
@@ -38,7 +38,7 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
   {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
 %toc
 
-\titlespacing*{\chapter} {0pt}{50pt}{20pt}
+\titlespacing*{\chapter} {0pt}{50pt}{15pt}
 \titlespacing*{\section}{0pt}{0\baselineskip}{0\baselineskip}
 \titlespacing*{\subsection}{0pt}{0\baselineskip}{0\baselineskip}
 \titlespacing*{\subsubsection}{0pt}{0\baselineskip}{0\baselineskip}
@@ -79,8 +79,8 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \renewcommand\cftchapaftersnum{:}
 
 \setlength\cftaftertoctitleskip{20pt}
-\setlength\cftafterlottitleskip{20pt}
-\setlength\cftafterloftitleskip{20pt}
+\setlength\cftafterlottitleskip{15pt}
+\setlength\cftafterloftitleskip{15pt}
 
 \settowidth\mylength{\cftchappresnum\cftchapaftersnum}
 \addtolength\cftchapnumwidth{\mylength}
@@ -163,12 +163,12 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
 \clearpage
 \linespread{2}\selectfont
-\addcontentsline{toc}{chapter}{\listfigurename}
-\listoffigures
-
-\clearpage
 \addcontentsline{toc}{chapter}{\listtablename} 
 \listoftables
+
+\clearpage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
 
 \linespread{1}\selectfont
 \vspace*{5\baselineskip}
