@@ -7,15 +7,15 @@
 \usepackage{times}
 \usepackage{ragged2e}
 \usepackage{titlesec}
-\usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
+\usepackage{wrapfig,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{amsfonts,amssymb,calc,calrsfs,cleveref}
 \usepackage[justification=centering]{caption}
 \usepackage{url}
-\usepackage{subfigure}
 \usepackage{cleveref}
+
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -30,11 +30,17 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \usepackage{geometry}
 \geometry{left=1in,right=1in,top=1in,bottom=1in}
 
-\titleformat{\chapter}[hang] 
-{\centering\normalfont\bfseries}{\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
+\titleformat{\chapter}[hang]{\normalfont\normalsize\filcenter\bfseries}{\centering\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
 
 \titleformat{\section}
   {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{} \titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{0\baselineskip}{0\baselineskip}
+\titlespacing*{\subsection}{0pt}{0\baselineskip}{0\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{0\baselineskip}{0\baselineskip}
 
 \makeatletter
 
@@ -56,11 +62,22 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 
 \makeatother
 
-\renewcommand{\contentsname}{TABLE OF CONTENTS}
-\renewcommand{\listfigurename}{LIST OF FIGURES}
-\renewcommand{\listtablename}{LIST OF TABLES}
-\renewcommand{\abstractname}{ABSTRACT}
+\renewcommand{\contentsname}{\normalsize TABLE OF CONTENTS}
+\renewcommand{\listfigurename}{\normalsize LIST OF FIGURES}
+\renewcommand{\listtablename}{\normalsize LIST OF TABLES}
+\renewcommand{\abstractname}{\normalsize ABSTRACT}
 
+\usepackage{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} 
+\renewcommand{\cftchapfont}{\normalfont\bfseries}% titles in bold
+\renewcommand{\cftchappagefont}{\MakeUppercase\normalfont\bfseries}% page numbers in bold
+
+\newlength\mylength
+\renewcommand\cftchappresnum{\chaptername~}
+\renewcommand\cftchapaftersnum{:}
+\settowidth\mylength{\cftchappresnum\cftchapaftersnum}
+\addtolength\cftchapnumwidth{\mylength}
 
 \begin{document}
 {
@@ -132,18 +149,18 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
 \end{flushleft}
 
-\clearpage
-\restoregeometry
-
 \linespread{1}\selectfont
+\vspace{1in}
+
 \frontmatter
 \tableofcontents
 
-
+\clearpage
 \linespread{2}\selectfont
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
+\clearpage
 \addcontentsline{toc}{chapter}{\listtablename} 
 \listoftables
 
@@ -346,10 +363,7 @@ For computation of histogram it is not enough to visit every value for each atom
 
 There might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more details in further sections.
 
-
-\vspace{3mm}
 \chapter{The system design}\label{sc:system}
-\vspace{3mm}
 
 \hspace{3em} The proposed design has a pretty straightforward structure which is going to be explained in this section. Shortly, the system starts with original input files (or data) and gets consumed in a sequential manner by simple disk IO framework into random access memory by chunks, then, chunk gets uploaded to GPU device and processed. At some point, the results that need to be shown to the user are transported from global memory of GPU (where they initially get accumulated) to the main memory, and then might get written as well to an output file. General data flow map is represented in Figure  \ref{fg:data-flow}.
 
@@ -422,8 +436,6 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 
 \hspace{3em} As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand which is what we tried to explain further.
 
-\vspace{1cm}
-
 \begin{algorithm}
 \caption{One body functions implementation in CPU version}
 \label{alg:onebodycpu}
@@ -480,8 +492,6 @@ We have provided Pseudocode \ref{alg:onebodycpu} of the implementation of one bo
 \hspace{3em} The approach in GPU version of one-body computation code is a lot different, because there are two major changes: the way we deal with the data in memory and mapping of GPU thread kernels to atoms. Both of these approaches drastically change the way we perceive the solution implementation. Basically in the kernel function we assume we've pre-loaded all the needed atoms for current calculations (loading into memory and higher level parts will be described in later sections).
 
 As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in the thread kernel function it starts with allocation of memory in the block. To be more explicit, every block has its own level of memory called shared memory. To understand the importance of shared memory, it is on-chip memory which can get latency roughly 100x lower than global memory. Further down, we calculate the current index of the atom we need to work with, and this computation takes two lines of code, because we have a grid-based dimensions that have to be flattened back to one-dimension array indexing which was explained in previous sections. Once we are setup, we start accumulating results into the shared memory atomically, because threads within same block might have race condition on write operation. This is one of the reasons why we are doing it locally, because it would also take much more time and overhead to have locks in global memory that would increase race conditions and locking times. After all, we synchronize all threads to make sure that all the records from atoms have been collected to appropriate local results in shared memory. Finally, we collect all the results from blocks' shared memory into global memory in which case it will be much faster, because number of block is not that big. Once a block is finished, first thread of each block will accumulate data from shared memory into global synchronizing the results, every write operation to shared and global memories is atomic (we use native CUDA function atomicAdd which guarantees atomicity). 
-
-\vspace{1cm}
 
 \begin{algorithm}
 \caption{Kernel function implementation for one-body queries in GPU}
@@ -550,8 +560,6 @@ As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in th
 
 \hspace{3em} Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them, though results don't change a lot for sequential computation.
 
-\vspace{1cm}
-
 \begin{algorithm}
 \caption{SDH in CPU version}
 \label{alg:sdhcpu}
@@ -602,7 +610,6 @@ Here are the main steps of the algorithm:
 
 As we already mentioned, the main purpose of our proposal is the system that allows integration of GPU into push-based system, thus, we didn't go with too sophisticated and optimized implementations for each query that we benchmark, assuming that user's wouldn't do it and having more or less realistic speedup results. Figure \ref{fg:sharedMem} shows swimlanes as execution thread for blocks. Every row is an execution block for an atom, where first element is the mapped atom. First of all, you can observe that we can clearly see that the execution threads are almost equally balanced (exceptions on odd number of atoms) which means that there is no code divergence and low utilization of kernels (no awaiting redundant threads). In this particular example, we have block size 5 with total number of atoms to be 15 (of course, these are just simple examples, realistically it would be millions). Every swimlane (bordered with black) represent within block execution. Secondly, colored numbers are the atoms that we loaded into shared memory. Of course, this is a small improvement, and we can happily add improvement of adding more shared memory and loading as it moves synchronizing threads in the future.
 
-\vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%      SDH GPU      %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -674,8 +681,6 @@ As we already mentioned, the main purpose of our proposal is the system that all
 \subsection{Data flow implementation in CPU}
 
 \hspace{3em} As we have described in earlier sections, our CPU is primarily used for data flow management, triggering of GPU functions, data structure changes, and GPU computation stream manipulations.
-
-\vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%      CPU FLOW %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -715,12 +720,7 @@ As we already mentioned, the main purpose of our proposal is the system that all
 \end{algorithmic}
 \end{algorithm}
 
-\vspace{1cm}
-
 In the Pseudocode \ref{alg:cpuflow} you can see rough logic of our CPU mapping function that primarily allocates all the memory in GPU, triggers kernel function and manipulates streams. This is a prototype which definitely is not the last version, because we can as well avoid overhead of copying data into shared memory while synchronously it will be computing data already contained there. The main steps here are the following. we create to instances of CUDA streams that are again abstract data types that are scheduled by GPU in a special way. We as well allocate memory in GPU for atoms list, histogram results and common results for one-body queries (in this case it is a data structure with fields that represent some accumulated result). Once we are setup with memory management on GPU, we trigger kernel calls one by one each running on a separate CUDA stream. We don't expect them to run really concurrently, because our two kernels are quite heavily loaded, though streaming can definitely be use for memory management optimization.
-
-
-\vspace{1cm}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%    CPU FLOW %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -756,21 +756,12 @@ In the Pseudocode \ref{alg:cpuflow} you can see rough logic of our CPU mapping f
 \end{algorithmic}
 \end{algorithm}
 
-\vspace{1cm}
-
 The above Pseudocode \ref{alg:cpuflowfuture} shows what memory concurrent could look like. As you can see it is pretty much overlapping $nextAtoms$ loading with computation of $atoms$, which reduces this tiny overhead of copy data over.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \chapter{Experiments Results}\label{sc:experiments}
-
 \hspace{3em} The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed in C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
 
-
-
 \section{Hardware stack}
-
 \hspace{3em} There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory, Of course, things like PCI bus and all the transportation are important as well, but for speedup benchmarks against CPU vs GPU those stay the same for both sides. RAM on the node that we were running has 16GBs. 
 
 \subsection{CPU}
@@ -866,8 +857,6 @@ NUMA node0 CPU(s) & 0-7 \\  \hline
   \end{minipage}
 \end{figure}
 
-
-\vspace{1cm}
 \begin{table}[h!]
 	\renewcommand*{\arraystretch}{1.5}
 	\tabcolsep=0.12cm
@@ -940,8 +929,6 @@ On Table \ref{tb:gpuprofile1000} you can observe results of Nvidia Profiling Too
 \end{figure}
 
 \hspace{3em} You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
-
-\vspace{1cm}
 \begin{table}[h!]
 	\renewcommand*{\arraystretch}{1.5}
 	\tabcolsep=0.12cm
@@ -1134,7 +1121,7 @@ With improved version of SDH speedup gets up to more than 75 times (Figure \ref{
 \chapter{Conclusions and Future Work}\label{sc:conclusion}
 \hspace{3em} The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts, the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
 
-%\bibliographystyle{plain}
+\linespread{1}\selectfont
 \bibliographystyle{IEEEtran}
 \bibliography{references.bib}
 \end{document}

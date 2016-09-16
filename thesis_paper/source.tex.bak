@@ -7,15 +7,15 @@
 \usepackage{times}
 \usepackage{ragged2e}
 \usepackage{titlesec}
-\usepackage{wrapfig,subfigure,setspace,verbatim,cite,url,graphicx,float}
+\usepackage{wrapfig,setspace,verbatim,cite,url,graphicx,float}
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{amsfonts,amssymb,calc,calrsfs,cleveref}
 \usepackage[justification=centering]{caption}
 \usepackage{url}
-\usepackage{subfigure}
 \usepackage{cleveref}
+
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -30,11 +30,17 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \usepackage{geometry}
 \geometry{left=1in,right=1in,top=1in,bottom=1in}
 
-\titleformat{\chapter}[hang] 
-{\centering\normalfont\bfseries}{\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
+\titleformat{\chapter}[hang]{\normalfont\normalsize\filcenter\bfseries}{\centering\MakeUppercase{\chaptertitlename}\ \thechapter:}{0.5em}{\uppercase}
 
 \titleformat{\section}
   {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{} \titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{0\baselineskip}{0\baselineskip}
+\titlespacing*{\subsection}{0pt}{0\baselineskip}{0\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{0\baselineskip}{0\baselineskip}
 
 \makeatletter
 
@@ -56,11 +62,22 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 
 \makeatother
 
-\renewcommand{\contentsname}{TABLE OF CONTENTS}
-\renewcommand{\listfigurename}{LIST OF FIGURES}
-\renewcommand{\listtablename}{LIST OF TABLES}
-\renewcommand{\abstractname}{ABSTRACT}
+\renewcommand{\contentsname}{\normalsize TABLE OF CONTENTS}
+\renewcommand{\listfigurename}{\normalsize LIST OF FIGURES}
+\renewcommand{\listtablename}{\normalsize LIST OF TABLES}
+\renewcommand{\abstractname}{\normalsize ABSTRACT}
 
+\usepackage{tocloft}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} 
+\renewcommand{\cftchapfont}{\normalfont\bfseries}% titles in bold
+\renewcommand{\cftchappagefont}{\MakeUppercase\normalfont\bfseries}% page numbers in bold
+
+\newlength\mylength
+\renewcommand\cftchappresnum{\chaptername~}
+\renewcommand\cftchapaftersnum{:}
+\settowidth\mylength{\cftchappresnum\cftchapaftersnum}
+\addtolength\cftchapnumwidth{\mylength}
 
 \begin{document}
 {
@@ -132,17 +149,18 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
 \end{flushleft}
 
-\clearpage
-\restoregeometry
-
 \linespread{1}\selectfont
+\vspace{1in}
+
 \frontmatter
 \tableofcontents
 
+\clearpage
 \linespread{2}\selectfont
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoffigures
 
+\clearpage
 \addcontentsline{toc}{chapter}{\listtablename} 
 \listoftables
 
