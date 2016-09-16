@@ -16,7 +16,6 @@
 \usepackage{url}
 \usepackage{cleveref}
 
-
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
@@ -37,7 +36,9 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \titleformat{\subsection}
   {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{} \titleformat{\subsubsection}
   {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0.5em}{}
+%toc
 
+\titlespacing*{\chapter} {0pt}{50pt}{15pt}
 \titlespacing*{\section}{0pt}{0\baselineskip}{0\baselineskip}
 \titlespacing*{\subsection}{0pt}{0\baselineskip}{0\baselineskip}
 \titlespacing*{\subsubsection}{0pt}{0\baselineskip}{0\baselineskip}
@@ -66,16 +67,21 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \renewcommand{\listfigurename}{\normalsize LIST OF FIGURES}
 \renewcommand{\listtablename}{\normalsize LIST OF TABLES}
 \renewcommand{\abstractname}{\normalsize ABSTRACT}
+\renewcommand{\bibname}{\normalsize REFERENCES}
 
 \usepackage{tocloft}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} 
-\renewcommand{\cftchapfont}{\normalfont\bfseries}% titles in bold
+\renewcommand{\cftchapfont}{\normalfont\bfseries}
 \renewcommand{\cftchappagefont}{\MakeUppercase\normalfont\bfseries}% page numbers in bold
-
 \newlength\mylength
-\renewcommand\cftchappresnum{\chaptername~}
+\renewcommand\cftchappresnum{\MakeUppercase{\chaptername~}}
 \renewcommand\cftchapaftersnum{:}
+
+\setlength\cftaftertoctitleskip{20pt}
+\setlength\cftafterlottitleskip{15pt}
+\setlength\cftafterloftitleskip{15pt}
+
 \settowidth\mylength{\cftchappresnum\cftchapaftersnum}
 \addtolength\cftchapnumwidth{\mylength}
 
@@ -187,8 +193,8 @@ In this paper, we propose improved version of Push-based System for Molecular Si
 
 \mainmatter
 \linespread{1}\selectfont
-\chapter{Introduction} \linespread{2}\selectfont \justify
-
+\chapter{Introduction} 
+\linespread{2}\selectfont\justify
 \hspace{3em} In various sciences simulation systems take big place and often times they may be the clue for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations have the following flow:
 
 \begin{enumerate}
@@ -1122,6 +1128,7 @@ With improved version of SDH speedup gets up to more than 75 times (Figure \ref{
 \hspace{3em} The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts, the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
 
 \linespread{1}\selectfont
+\addcontentsline{toc}{chapter}{\bibname}
 \bibliographystyle{IEEEtran}
 \bibliography{references.bib}
 \end{document}

@@ -5,7 +5,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {5.1}{\ignorespaces Hardware stack for CPU version of Push-based system benchmark\relax }}{41}{table.caption.13}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Hardware stack for GPU version of Push-based system\relax }}{42}{table.caption.14}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Hardware stack for GPU version of Push-based system\relax }}{41}{table.caption.14}
 \contentsline {table}{\numberline {5.3}{\ignorespaces GPU profiling results for 1000 atoms\relax }}{43}{table.caption.16}
 \contentsline {table}{\numberline {5.4}{\ignorespaces Memory profiling results for 1000 atoms\relax }}{44}{table.caption.17}
 \contentsline {table}{\numberline {5.5}{\ignorespaces GPU profiling results for 10,000 atoms\relax }}{46}{table.caption.19}
