@@ -72,8 +72,8 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \usepackage{tocloft}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} 
-\renewcommand{\cftchapfont}{\normalfont\bfseries}
-\renewcommand{\cftchappagefont}{\MakeUppercase\normalfont\bfseries}% page numbers in bold
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\MakeUppercase\normalfont}
 \newlength\mylength
 \renewcommand\cftchappresnum{\MakeUppercase{\chaptername~}}
 \renewcommand\cftchapaftersnum{:}
@@ -82,8 +82,21 @@ bookmarks=true,bookmarksopenlevel=2]{hyperref}
 \setlength\cftafterlottitleskip{15pt}
 \setlength\cftafterloftitleskip{15pt}
 
+\newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
+\addtocontents{lof}{\protect\noaddvspace}
+\addtocontents{lot}{\protect\noaddvspace}
+
 \renewcommand{\cftfigpresnum}{Figure\ }
 \renewcommand{\cfttabpresnum}{Table\ }
+
+\cftsetindents{section}{0.5in}{0.3in}
+\cftsetindents{subsection}{1in}{0.4in}
+\cftsetindents{subsubsection}{1.5in}{0.5in}
+
+\setlength{\cfttabindent}{0in}
+\setlength{\cftfigindent}{0in}
+
+\setlength{\parindent}{5cm}
 
 \newlength{\mylenf}
 \settowidth{\mylenf}{\cftfigpresnum}
@@ -117,17 +130,23 @@ of the requirements for the degree of
 
 Master of Science in Computer Science 
 
-Department of Computer Science and Engineering College of Engineering 
+Department of Computer Science and Engineering 
+
+College of Engineering 
 
 University of South Florida
 
 \vspace*{3\baselineskip}
 Major Professor:  Yicheng Tu, Ph.D.
 
+Srinivas Katkoori, Ph. D.
+
+Sameer Varma, Ph. D.
+
 \vspace*{2\baselineskip}
 Date of Approval:
 
-August 23, 2016
+October 10, 2016
 
 \vspace*{3\baselineskip}
 Keywords: data processing, cuda optimization, big data,
@@ -146,9 +165,8 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \vspace*{3\baselineskip}
 \textbf{DEDICATION}
 \linespread{2}\selectfont
-\begin{flushleft}
+\justify
 \hspace{3em} I dedicate my thesis work to my family who have always been supporting me throughout my life. I also dedicate it to my closest friends who have shared my passion and encouraged me to explore and try my ideas in life.
-\end{flushleft}
 
 \clearpage
 
@@ -159,14 +177,14 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 \vspace*{3\baselineskip}
 \textbf{ACKNOWLEDGMENTS}
 \linespread{2}\selectfont
-\begin{flushleft}
+\justify
 \hspace{3em} I would like to thank my major professor throughout my master thesis Dr. Yicheng Tu for his guidance and knowledge that I received through all the time I worked with him. I really appreciate his contribution and very happy that I got a chance to work with him. I as well want to thank the committee members for their support and encouragement.
-\end{flushleft}
 
 \linespread{1}\selectfont
 \vspace{1in}
 
 \frontmatter
+\centering
 \tableofcontents
 
 \clearpage
@@ -189,7 +207,7 @@ Copyright \textcopyright\space 2016, Iliiazbek Akhmedov
 
 \chapter*{Abstract}
 \justify
-\hspace{3em} Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on traditional disk random I/O framework while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. Besides it, indexing will also cause delay during write operations and since most of the queries work with the entire data sets, indexing loses its point.
+\hspace{3em}Modern simulation systems generate big amount of data, which consequently has to be analyzed in a timely fashion. Traditional database management systems follow principle of pulling the needed data, processing it, and then returning the results. This approach is then optimized by means of caching, storing in different structures, or doing some sacrifices on precision of the results to make it faster. When it comes to the point of doing various queries that require analysis  of the whole data,  this design has the following disadvantages: considerable overhead on traditional disk random I/O framework while reading from the simulation output files and low throughput of the data that consequently results in long latency, and, if there was any indexing to optimize selections, overhead of storing those becomes too big, too. Beside it, indexing will also cause delay during write operations and since most of the queries work with the entire data sets, indexing loses its point.
 
 There is a new approach to this problem -- Push-based System for Molecular Simulation Data Analysis for processing network of queries proposed in the previous paper and its primary steps are: i) it uses traditional scan-based I/O framework to load the data from files to the main memory and then ii) the data is pushed through a network of queries which consequently filters the data and collect all the needed information which increases efficiency and data throughput. It has a considerable advantage in analysis of molecular simulation data, because it normally involves all the data sets to be processed by the queries.
 
@@ -201,7 +219,7 @@ In this paper, we propose improved version of Push-based System for Molecular Si
 
 \mainmatter
 \linespread{1}\selectfont
-\chapter{Introduction} 
+\chapter{INTRODUCTION} 
 \linespread{2}\selectfont\justify
 \hspace{3em} In various sciences simulation systems take big place and often times they may be the clue for results. One of such sciences, which is primarily related to this paper, is physics. In this case, from computer engineering point of view, simulations have the following flow:
 
@@ -213,7 +231,7 @@ In this paper, we propose improved version of Push-based System for Molecular Si
 
 The purpose of this paper is primarily focused on the third step, which basically involves the entire simulation data to be processed by the analysis software. It is important to underline scale of data being discussed. Molecular simulations represent systems starting from hundreds thousands of atoms and more which are tracked by frames as snapshot of specific time and can last for months. Thus, the size of data starts from couple of gigabytes up to terabytes and petabytes.
 
-Big data processing is becoming one of the key issues with the amount of data being generated by modern systems. Eventually, this data is required to be processed on the fly, thus, analysis software should be able to handle massive data in a very short period of time. When working with huge volume of data, there are non-trivial issues arise. For example, it can take days and weeks to analyze big enough data sets, because the data cannot be simply loaded into memory, since it can get up to terabytes, thus, it has extra overhead because of traditional random access disk I/O framework to read from disk chunks by chunks. Besides it, analysis of the data can get even more complicated, since going through certain parts of the data once would not be enough, which leads to low throughput and efficiency of loaded data. One such example, the data analysis approach has polynomial complexity just for reading the data in order to come up with result, and since the data can't simply be saved in memory, it raises the overhead of disk I/O, too. Pull-based architectures in data processing engines are inefficient, since having a set of specific queries, in order to compute them all, it is needed to fetch data, filter it, and apply needed formulas. It is inefficient, since for every query the same chunk of data needs to be pulled into the memory at least the number of queries times or more in case of more complex queries.
+Big data processing is becoming one of the key issues with the amount of data being generated by modern systems. Eventually, this data is required to be processed on the fly, thus, analysis software should be able to handle massive data in a very short period of time. When working with huge volume of data, there are non-trivial issues arise. For example, it can take days and weeks to analyze big enough data sets, because the data cannot be simply loaded into memory, since it can get up to terabytes, thus, it has extra overhead because of traditional random access disk I/O framework to read from disk chunks by chunks. Beside it, analysis of the data can get even more complicated, since going through certain parts of the data once would not be enough, which leads to low throughput and efficiency of loaded data. One such example, the data analysis approach has polynomial complexity just for reading the data in order to come up with result, and since the data can't simply be saved in memory, it raises the overhead of disk I/O, too. Pull-based architectures in data processing engines are inefficient, since having a set of specific queries, in order to compute them all, it is needed to fetch data, filter it, and apply needed formulas. It is inefficient, since for every query the same chunk of data needs to be pulled into the memory at least the number of queries times or more in case of more complex queries.
 
 As it has already been mentioned in the previous paper \cite{mainPaper}, one of the modern issues of analyzing massive data on the fly is social networks. "In order for a system to be able to perform analytical examination of the data produced in such streaming media, the system should have the capability of fast data access. The reason is millions of data records (tweets) produced every second. Moreover, these tweets may have different geographical origin, introducing different languages and forms and often times containing unsolicited messages, errors,
 malicious content, etc. Therefore, some low level data uniformity
@@ -235,9 +253,9 @@ This type of approach has already been revised by other systems \cite {DataPath,
 In this paper, we are incorporating parallelization into the processing part of the proposed design by means of CUDA programming language for GPU. Since storage of the simulation data is very expensive, it might come to the point of analyzing the data on the fly (meaning running the simulation and analyzing it at the same time in a streaming manner), which leads to a problem of optimizing the processing part of the design proposed in the previous paper, because time spent on generating data should be tried to conceal the time spent on the processing part by means of overlapping or simply running it in a quick manner. We will talk about this in details as well in further sections.
 
 \section{Problem Statement}
-\hspace{3em} Simulation software systems, in general, follow the same methodology of running and storing simulation data. The simulation software system examples are: Gromacs \cite{GROMACS4}, VMD\cite{VMD}, MDAnalysis~\cite{MDAnalysis}, Wordom~\cite{wordom}, MD-TRACKS~\cite{MDtracks}, SimulaidOne~\cite{Simulaid}, Charmm~\cite{CHARMM}. In the type of simulations brought up as examples above, the flow of the data is the following. Once the simulation is run, the output files are contained as trajectory files with descriptors (they contain information about space dimensions, number of atoms and frames, etc.) that can be easily transposed into simple flat files containing the physical properties atom by atom, frame by frame, which are consequently read and processed by the proposed push-based system. Since we have certain amount of queries needed to be run on given simulation data, generating high I/O traffic followed by design of pull-based system is not considerable. The approach proposed in the previous paper is very good in terms of performance in comparison with the original pull-based system\cite{mainPaper}. As you can see on Figure \ref{fg:sample_estimation_old_paper}, it gets up to over 100 times of speedup which is quite crucial, if we think about days of computations. The problem is still that some of the queries processed by those means are still improvable, especially taking into consideration the fact that in the used previous works for calculation of 2-body functions, which take the biggest time for processing~\cite{ytu:icde09, EDBT12}, we might have some error bounds, which might be unacceptable for certain simulation analysis where sacrifice on loss of data is unbearable. Besides it, although we might have huge performance boost on specific data structure as density map, we still have certain expectation from data nature (such as its uniformity), thus, it makes sense to have desire to simplify the processing and still having pure computation based on any values, considering that the queries should be available to be pre-programmed by user in a separate module of the code. All the benchmarks will be done in comparison with already push-based system versus push-based system with GPU improvements. We think that it is  not fair to compare pull-based against GPU push-based approach, since the goal of the paper is to demonstrate capabilities of GPU approach that can beat simple sequential push-based system.
+\hspace{3em} Simulation software systems, in general, follow the same methodology of running and storing simulation data. The simulation software system examples are: Gromacs \cite{GROMACS4}, VMD\cite{VMD}, MDAnalysis~\cite{MDAnalysis}, Wordom~\cite{wordom}, MD-TRACKS~\cite{MDtracks}, SimulaidOne~\cite{Simulaid}, Charmm~\cite{CHARMM}. In the type of simulations brought up as examples above, the flow of the data is the following. Once the simulation is run, the output files are contained as trajectory files with descriptors (they contain information about space dimensions, number of atoms and frames, etc.) that can be easily transposed into simple flat files containing the physical properties atom by atom, frame by frame, which are consequently read and processed by the proposed push-based system. Since we have certain amount of queries needed to be run on given simulation data, generating high I/O traffic followed by design of pull-based system is not considerable. The approach proposed in the previous paper is very good in terms of performance in comparison with the original pull-based system\cite{mainPaper}. As you can see on Figure \ref{fg:sample_estimation_old_paper}, it gets up to over 100 times of speedup which is quite crucial, if we think about days of computations. The problem is still that some of the queries processed by those means are still improvable, especially taking into consideration the fact that in the used previous works for calculation of 2-body functions, which take the biggest time for processing~\cite{ytu:icde09, EDBT12}, we might have some error bounds, which might be unacceptable for certain simulation analysis where sacrifice on loss of data is unbearable. Beside it, although we might have huge performance boost on specific data structure as density map, we still have certain expectation from data nature (such as its uniformity), thus, it makes sense to have desire to simplify the processing and still having pure computation based on any values, considering that the queries should be available to be pre-programmed by user in a separate module of the code. All the benchmarks will be done in comparison with already push-based system versus push-based system with GPU improvements. We think that it is  not fair to compare pull-based against GPU push-based approach, since the goal of the paper is to demonstrate capabilities of GPU approach that can beat simple sequential push-based system.
 
-\section{Our approach with improvement}
+\section{Our Approach With Improvement}
 
 \hspace{3em} Reviewing the approach we are coming up with and what it was before helps us analyzing the weak parts and things that we can focus on to eliminate old bottlenecks.
 
@@ -267,7 +285,7 @@ We believe that having this nature of computational problems, the proposed GPU i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Contribution and roadmap of the paper} 
+\section{Contribution And Roadmap Of The Paper} 
 
 \hspace{3em} In collaboration with Physics Department, the original motivation came from the need of improving analytic query executions performance over big data being generated by simulation software. The idea was to take input stream coming from simulation software (ideally live) and run network of queries very efficiently, because sometimes they might take days and more to compute. The proposed improved version of push-based system for molecular simulation data analysis, we believe, gives an opportunity for scientists to run their analysis fast having an ability to expand network of queries and customize computation functions to get the desired results. 
 Our system primarily represents a system that works in several modules that were developed in C, CUDA, Python programming languages that, in combination, give us the desired result to perform efficient computations for the network of queries developed in the previous paper \cite{mainPaper} as well as to prove the concept of optimization of push-based system by means of parallelism with no data loss. We've developed the following modules:
@@ -287,15 +305,15 @@ The structure of the framework which will be described later is developed in suc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Related Work}\label{sc:relatedwork}
+\chapter{RELATED WORK}\label{sc:relatedwork}
 
 \hspace{3em} Push-based System for molecular simulation data analysis with its improved GPU features has couple of main focuses in terms of technical implementation and challenges related to those that have already been tried to be solved by other different approaches and software. Here is the review of other works.
 
-\section{Scientific software}
+\section{Scientific Software}
 
 \hspace{3em} First of all, this system is a tool for scientific computation and in this case particularly for molecular simulation data analysis. PeriScope is a project and initiative by University of Michigan which is a system that will optimize data management for scientific explorations. Relational Database Management Systems were created to optimize business applications and it was revolutionary. Those couldn't be built without these systems with abstract languages like SQL, since it manipulates and automatically takes use of indexes, etc. PeriScope is a project that tries to come up with same approach against scientific data and computation with respectively larger scale.\cite{PeriScope} It is kind of difficult to compare our proposed system with PeriScope, but the original motivation is very similar: optimize scientific computation. PeriScope is a larger project directed towards more abstract solution like RDBMs that would work for any type of data. Another existing tool for scientific data and optimized processing is SciDB. It was created to make scientific data storage and querying better and faster. It is very similar to traditional RDBMS systems in terms of querying language and represent data storage in tables, but states to be faster than Postgres in 2 orders of magnitude. Some of the main features is distributed processing with atomicity and durability (the latter is quite difficult for large scale data), while the disadvantages are no-overwriting (only append mode), single value columns only (no arrays, etc), where records are like simple tuples with join function on querying multiple tables \cite{SciDB}. One of the major differences between Push-based Molecular simulation data analysis tool and the projects above is that our proposed design doesn't do anything with storing the data, because we are mainly concentrating it as a side plugin for processing and querying data in an optimized way, while the actual data generation and storage will be done with the actual simulation software.
 
-\section{Stream processing}
+\section{Stream Processing}
 \hspace{3em} Another major modern issue is live data streaming and live processing, which is also possible with our system. Basically, streaming function is a big challenge and need nowadays, because such networks as Twitter and Facebook are able to keep track of live trends and events, including people's reaction and feedback that have to be reflected real time for tremendous amount of users across the globe. Borealis Stream Processing Software is a tool being developed by MIT, Brown, and Brandeis Universities. It's primary goal is a distributed stream processing and based on Medusa and Aurora. Some of the major functions of the software are highly available distributed large streams processing live, dynamic and highly-scalable with possibility of changing queries live and dynamic vision of query results. \cite{borealis} There is also a similar need in scientific world, since being able to keep track of results in real time might be crucial to be able to make certain explorations. 
 
 As a plugin for optimizing computation of scientific queries against large data sets being produced, Push-based System for Molecular Simulation Data Analysis with GPU improvement should be able to handle data streams as well, in order to get real time results and saving up on time, instead of pulling everything from files later on.
@@ -304,7 +322,7 @@ As a plugin for optimizing computation of scientific queries against large data 
 
 \hspace{3em} We are potentially dealing with data that could easily get up to terabytes and petabytes in sizes, and it will be fair to apply term of big data. Traditional software tools are not able to process Big Data apparently because of huge data sets, thus, special frameworks were developed to handle them. Nowadays there are bunch of frameworks that try to solve this problem. Some of these frameworks are Hadoop \cite{hadoop}, Hadoop with GPU extension \cite{hadoopgpu}, Spark \cite{spark}, Flink \cite{flink} (this is more of a big data stream processing framework) and other ones that are possibly just custom modifications and distributions of these. The mentioned tools help dealing with big data giving an ability to process them in batches on clusters using underlying HDFS (Highly Distributed File System), and normally go along with other utilities that help to apply MapReduce concept. The relationship between our system and this concept along with its implementations is in data sets sizes. Even though we are not using or introducing any non-traditional file systems, in certain scale and problems it could be required, too. In fact, the frameworks listed above could even be used for our problem on top of our system, because, as we discuss in section \ref{sc:conclusion}, it could be extended to a distributed system for analyzing independent frames in parallel. 
 
-\section{GPU and Big Data Processing}
+\section{GPU And Big Data Processing}
 \hspace{3em} GPU is becoming more popular being used by not only graphics processing, but machine learning, deep learning, search algorithms, sorting, and so on. Having an ability to optimize in tremendous speedups it is being involved in video classifications, natural language processing. Particularly about distributed processing and GPU applications along with it, there has been made some overview and research on what is the current state for common solutions in industry. "There were a lot of custom GPU-Hadoop frameworks after the launch of Mars project. These include C-MR, SteamMR, GPMR, Grex, Panda, Shredder and many others. However, most of these frameworks are no longer supported and were developed for some particular scientific projects. Therefore, a Monte Carlo simulation framework can be hardly applied for a bioinformatics project (say) based on the other algorithms. Moreover, processor technologies are evolving very rapidly. Many new revolutionary architectures have been developed for Sony PlayStation 4, Mali GPU by ARM, Adapteva Multicore Microprocessor etc. Both Mali GPU and Adapteva will be compatible with OpenCL. Xeon Phi co-processor works with OpenCL too, which was launched by INTEL. It has an x86-like architecture and is a 60 core co-processor that supports the PCI Express standard. It consumes just 300watts of energy and provides by giving a performance of 1 TFLOPS in double precision. Tianhe-2 which is the most powerful supercomputer till date implements this co-processor. Though, it is very difficult determine which Processor Computing framework architecture will more robust and high
 performance." \cite{hadoopgpu}
 
@@ -317,7 +335,7 @@ This version of Push-based System of MS data analysis is primarily about taking 
 Gromacs generate output files with physical properties description for each atom in each frame. Modern CPUs do great job in terms of caching and computing, but obviously in this particular problem massive monolithic computation is needed, thus, GPU devices are perfect candidates for such a problem following SIMD type of computation. To be more exact, for example, a single kernel in a GPU device could be dedicated to a single atom (this relationship might change depending on the query, but this is to understand the scale and relationship of multiprocessors), and since we have scientific data of MS, the data is appended, which means that we will only move forward and not take an advantage of caching on chunks high level (though we might take an advantage of GPU caching features particularly in processing phase) having multiple workloads per chunk. Just to make it more clear, workloads in this particular case represent transactions based on number of clients. For example, if we were to serve it all in a streaming fashion, 100 clients might demand concurrent queries with different slight selection properties and expect their results, each workload might be dedicated to each client if not aggregated. Thus, the performance of GPU is certainly increasing based on workload too, which might benefit considerably.
 
 
-\chapter{Benchmark scientific queries}\label{sc:querynetwork}
+\chapter{BENCHMARK SCIENTIFIC QUERIES}\label{sc:querynetwork}
 \hspace{3em} Having generated big amount of data in large files, now scientists need to get useful information out of it by means of analysis utilities. Often times, the queries that need to be run over the data look like selection and some kind of accumulation, if it is not more complicated. To be more exact, in this section we will try to summarize common set of queries that were already introduced in the previous work of Push-Based System for Molecular Simulation Data Analysis \cite{mainPaper}. 
 
 In previous work, there has already been developed a network of queries widely used by scientists for MS systems. In Table~\ref{tb:queries} you may observe the common set of queries that has been developed. Basically, these are the queries that need to be improved with our new approach of parallelism. Respectively, $n$, $r_i$, $m_i$, $c_i$ and $q_i$ denote number of particles, coordinates (vector form), mass, charge, and number of electrons of a particle $i$.
@@ -365,19 +383,19 @@ RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdo
 
 The queries that we consider are related to computations limited within one frame of a molecular simulation. In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
 
-\section{One body functions}
+\section{One Body Functions}
 \hspace{3em} \emph{\textbf{One body functions}} such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough, and taking into consideration the fact that we are going with push-based system, it is done at the same time for all of them.
 
 As you can see in the given table, most of them are basically based on primitive summation or other basic mathematical operations, in our experiments in further sections we will be running result on single precision values or to be more explicit we use float type in C programming language.
 
-\section{Multiple body functions}
+\section{Multiple Body Functions}
 \emph{\textbf{Multiple body functions}} such as SDH and RDF (Spacial Distance Histogram and Radial Distribution function) require computation of distances pairwise across all the particles. This is generally combination of two across N data: 	$C\binom{N}{2}$. These are the most expensive queries, thus, it is important to focus on their implementation taking advantage of GPU nature and its processing power. SDH is a very expensive computation, and we have used some of the existing work of ours\cite{sdhgpu} to incorporate in this design.
 
 For computation of histogram it is not enough to visit every value for each atom once, since we have to do pairwise computations, thus it increases complexity of the problem not only computation-wise, but memory-wise as well, which is a bigger concern in our case, since the overhead will be huge and non-linearly relative to the size of data. For this purpose we have come up with a way to optimize the way we use references to memory for each atom, so that we minimize overhead of pulling data all the way from DRAM (GPU).
 
 There might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more details in further sections.
 
-\chapter{The system design}\label{sc:system}
+\chapter{THE SYSTEM DESIGN}\label{sc:system}
 
 \hspace{3em} The proposed design has a pretty straightforward structure which is going to be explained in this section. Shortly, the system starts with original input files (or data) and gets consumed in a sequential manner by simple disk IO framework into random access memory by chunks, then, chunk gets uploaded to GPU device and processed. At some point, the results that need to be shown to the user are transported from global memory of GPU (where they initially get accumulated) to the main memory, and then might get written as well to an output file. General data flow map is represented in Figure  \ref{fg:data-flow}.
 
@@ -387,12 +405,12 @@ There might be some dependencies and preliminary computation possibilities. For 
  \label{fg:data-flow}
 \end{figure}
 
-\section{Data input}
+\section{Data Input}
 \hspace{3em} Since the size of the data in the problem is huge, organization of the data flow is crucial. As mentioned before, original data is retrieved from simulation software output files and in our case it is Gromacs Software's trajectory files\footnote{The file types, their structure, and their decompression has been well explained in the previous paper in section "Data orgranization in main memory"}. For a simulation, there can be several files of different format and usually they are also compressed without any loss of information. Tool for decompressing those files to a flat format for each frame and atom has been developed in the previous work\cite{mainPaper}. 
 
 In order to experiment with different input cases, the input files have been generated with a tool that we have built in Python language. Thus, we are able to generate mock data files with any number of frames and atoms, and the values are random and can be adjusted with needs of the experiment (for example, for cases when we want to analyze bucket widths in a limited space, the coordinates are generated in range of $0 - 1$, etc.). As it has already been mentioned earlier, we don't expect the data to be distributed with a certain behavior, the importance of having this kind of tool to generate mock data is having a variety of random data sets that could reveal any issues related to values provided to the program, on top of that, having the actual file written and then being read has been a part of the experiments to have more realistic use case. In the future, the same script for generating the mock data could be used for regression and performance tests in a distributed implementation of this design as a single source. Potentially input can be technically anything including simple IO sockets that could simply the way the system communicates with other components (f.e. over network) which would also contribute to expanding it to distributed cluster processing (though we believe that it would require additional components such as scheduler or job queues, etc.). To be more exact, the input format of the data and the data represents nothing but a simple array of tuples where each element represents certain descriptor of the given atom in the current frame. We believe that this simple approach makes it a good generalization of solution which would be user friendly for any scientist that wants to run any custom analysis on his data sets.
 
-\section{Data flow architecture}
+\section{Data Flow Architecture}
 
 \hspace{3em} MS data roughly can be represented as a list of atoms with physical properties aggregated as frames. Thus, we consider a single frame as a chunk which will be loaded into the memory\footnote{Memory in this design might be interpreted differently, since we have a separate device memory on GPUs, but it will be explained better later} and pushed through our network of queries. In this case, it is very convenient, because there are almost no dependencies between frames, rather than list of atoms in the same frame, which potentially again could create additional disk I/O overhead.
 
@@ -400,7 +418,7 @@ Having defined the chunk, we load it from flat format file to RAM. A single atom
 
 To summarize, the data goes through several levels of memory hierarchy in our system. Coming as an input from either streaming tool, flat file (our case), or other type of input (f.e. socket) which is either disk memory or RAM it goes to RAM of our system process. After it is loaded to RAM, we continue further and load it to Global Memory of GPU, meanwhile while it is loading the given chunk of data to GPU Global Memory (which happens asynchronously), we as well load the next chunk of data to RAM. In this case, it helps us avoid minor overhead of transferring data between CPU to GPU. Further, we take use of different types of memories in GPU to optimize different queries which will be described in further sections.
 
-\section{Queries organization}
+\section{Queries Organization}
 
 Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
 
@@ -441,12 +459,12 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Computation work flow}
+\section{Computation Work Flow}
 
-\hspace{3em} Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Besides it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
+\hspace{3em} Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Beside it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
 
 
-\subsection{One-body functions implementation} 
+\subsection{One-body Functions Implementation} 
 
 \hspace{3em} As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand which is what we tried to explain further.
 
@@ -495,13 +513,13 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{One-body functions implementation in CPU version}
+\subsubsection{One-body Functions Implementation In CPU Version}
 
 \hspace{3em} Basically being given a vector of atoms in CPU version implementation (the one that we use for speedup benchmark) we loop through every atom and accumulate all the needed information to RAM. Once we have the result for one-body functions, we take it out for further usage, it can as well be used for further calculations where there are dependencies on such things as total mass, total charge, etc.
 
 We have provided Pseudocode \ref{alg:onebodycpu} of the implementation of one body functions for CPU, which has detailed step-by-step description of the CPU sequential version of push-based system for calculating one-body functions.
 
-\subsubsection{One-body functions implementation in GPU version}
+\subsubsection{One-body Functions Implementation In GPU Version}
 
 \hspace{3em} The approach in GPU version of one-body computation code is a lot different, because there are two major changes: the way we deal with the data in memory and mapping of GPU thread kernels to atoms. Both of these approaches drastically change the way we perceive the solution implementation. Basically in the kernel function we assume we've pre-loaded all the needed atoms for current calculations (loading into memory and higher level parts will be described in later sections).
 
@@ -566,11 +584,11 @@ As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in th
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Two-body functions implementation}
+\subsection{Two-body Functions Implementation}
 
 \hspace{3em} Since one of the physical queries is RDF which has underlying SDH calculation, we will describe our approach with SDH for CPU and GPU versions.
 
-\subsubsection{Two-body functions implementation in CPU Version}
+\subsubsection{Two-body Functions Implementation In CPU Version}
 
 \hspace{3em} Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them, though results don't change a lot for sequential computation.
 
@@ -601,7 +619,7 @@ As you can see from the given algorithm (Pseudocode \ref{alg:onebodygpu}), in th
 
 
 
-\subsubsection{Two-body functions implementation in GPU Version} 
+\subsubsection{Two-body Functions Implementation In GPU Version} 
 
 \hspace{3em} The approach of solving SDH with GPU is absolutely different just like with one-body queries, though number of computations are the same. We do brute force  $O(\frac{N^2}{2})$ complex solution which is pretty much looking at distance between every pair of atoms. In Pseudocode \ref{alg:sdhgpu} we have tried to provide main logic flow that explains how exactly we implemented kernel for SDH computation. 
 Once the first kernel is finished we run the two-body kernel with its own stream. As it has already been mentioned, the bigger workload is in this kernel, because it has higher complexity. GPU streaming multiprocessors are very powerful for straightforward primitive independent calculations, and each core is much weaker than a moden CPU which has a whole bunch of L caches with some prediction behavior systems for code divergence. As you can see on Figure \ref{fg:threadload}, unbalanced thread load assumes for GPU kernel to check every time if the target atom can interact with other atom and if it has to wait till other threads finish their jobs. Thus, we had to come up with a strategy of making equally balanced thread jobs and distribute them among the threads leaving atom to thread mapping as is. 
@@ -692,7 +710,7 @@ As we already mentioned, the main purpose of our proposal is the system that all
 
 
 
-\subsection{Data flow implementation in CPU}
+\subsection{Data Flow Implementation In CPU}
 
 \hspace{3em} As we have described in earlier sections, our CPU is primarily used for data flow management, triggering of GPU functions, data structure changes, and GPU computation stream manipulations.
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -772,10 +790,10 @@ In the Pseudocode \ref{alg:cpuflow} you can see rough logic of our CPU mapping f
 
 The above Pseudocode \ref{alg:cpuflowfuture} shows what memory concurrent could look like. As you can see it is pretty much overlapping $nextAtoms$ loading with computation of $atoms$, which reduces this tiny overhead of copy data over.
 
-\chapter{Experiments Results}\label{sc:experiments}
+\chapter{EXPERIMENTS RESULTS}\label{sc:experiments}
 \hspace{3em} The framework has been developed in a programming language CUDA, and the sequential version for benchmark\cite{mainPaper} has been originally developed in C++. Experiments were run on operating systems which didn't have any additional workload besides usual installation, and the operating systems particularly were Amazon Linux, which doesn't have a lot of modifications except for some additional features for management with Amazon EC-2 Console. We have generated mock data sets with different variations of atoms, frames and ran them with different workloads comparing sequential version of Push-based system with improved version written in CUDA.
 
-\section{Hardware stack}
+\section{Hardware Stack}
 \hspace{3em} There are primarily several parts that are really important in this hardware stack. Since this is primarily big data processing, we care about processing power and memory, Of course, things like PCI bus and all the transportation are important as well, but for speedup benchmarks against CPU vs GPU those stay the same for both sides. RAM on the node that we were running has 16GBs. 
 
 \subsection{CPU}
@@ -840,7 +858,7 @@ NUMA node0 CPU(s) & 0-7 \\  \hline
 
 \hspace{3em} We have run number of experiments with different number of atoms and frames. Results vary as we choose different data sets, but we can see some tendency towards growth and, fortunately, it is very positive for our improved version of push-based system.
 
-\subsection{Experiment results for 1000 atoms}
+\subsection{Experiment Results For 1000 Atoms}
 
 \hspace{3em} Even though we assume that majority of our cases involve huge amount of atoms (starting from hundred thousands), we still ran experiments on smaller amount of atoms to see difference in speedup relatively with the data set sizes. You can observe summary in Figures \ref{fg:exp_1000_10}, \ref{fg:exp_1000_100}, \ref{fg:exp_1000_1000}, \ref{fg:speedup_1000}. There is a minor threshold, where CPU version is faster, where workload is less than 20 on Figure \ref{fg:exp_1000_10}, but it is changed with growth of workload. That presumably is the minor overhead of loading data from CPU to GPU and number of kernels versus computation work actually needs to be done. Once there is more load on computation, strongly GPU accelerates and becomes faster.
 
@@ -913,7 +931,7 @@ On Table \ref{tb:gpuprofile1000} you can observe results of Nvidia Profiling Too
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Experiment results for 10,000 atoms}
+\subsection{Experiment Results For 10,000 Atoms}
 
 \begin{figure}[!tbp]
   \centering
@@ -986,7 +1004,7 @@ $2.7850us $ & $ - $ & $ - $ & $ - $ & $ 1.4080KB $ & $ 505.57MB/s$ \\
 As you can see, speedup bumps up to almost 30 with 10000 atoms. Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too, while GPU does pretty straightforward multicore processing, which is the main reason it stagnates.
 Result of another profiling on Table \ref{tb:gpuprofile100000} changed significantly in terms of warps launched, which is reasonable, and shared memory. It is also noticeable that growth of shared memory loading instructions is non-linear which you can observe in the results for 100K atoms.
 
-\subsection{Experiment results for 100,000 atoms}
+\subsection{Experiment Results For 100,000 Atoms}
 
 
 \hspace{3em} When we finally get to the number of atoms that are realistic to the ones scientists use, happily, speedup gets pretty good. Speedup gets up to almost 40 times (Figure \ref{fg:speedup_100000}).
@@ -1056,7 +1074,7 @@ Fortunately, scientific data is much bigger than above examples. You can see ave
 
 Finally, for 100,000 atoms the warps launched for execution seems to be growing reasonable along with number of atoms (Table \ref{tb:gpuprofile100000}), while on the other hand usage of shared load for SDH computation is extremely high.
 
-\subsection{Advanced SDH implementation}
+\subsection{Advanced SDH Implementation}
 
 \hspace{3em} We implemented more advanced version of SDH algorithm taking better use of shared memory just to demonstrate what improvement and speedup could be achieved if we focus on particular query implementation.
 
@@ -1120,9 +1138,9 @@ $2.7830us $ & $ - $ & $ - $ & $ - $ & $ 1.4080KB $ & $ 505.93MB/s $
 As you may have noticed, even though we increased utilization of shared memory, number of loads is around the same. The trick is that we replaced atoms in shared memory with simpler data structure called $coordinates$ that would contains 3 float type variables which saves huge amount of memory. The results that we have achieved are extremely great, in general all the run times get twice less in comparison with simple SDH approach. You may observe run times for some sample data sets on Figure \ref{fg:gpusdhsdh}. In general, it is quite visible that it is twice less. 
 This is a sample improvement which proves that a little more elaboration on a particular query can bring much better results which could end up saving scientists days and months of time of computation.
 
-\subsection{Overall performance}
+\subsection{Overall Performance}
 
-\hspace{3em} It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. One of possible reasons could the fact that we've used static approach of computing grid dimensions. Besides it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
+\hspace{3em} It is noticable that growth of the speedup is not stable and with certain number of atoms it drops dramatically. One of possible reasons could the fact that we've used static approach of computing grid dimensions. Beside it, in the future, it can be expanded into a dynamic version that will automatically adjust the grid dimensions choosing least overhead that it has to go with.
 
 \begin{figure}
  \centerline{\includegraphics[width=0.8\columnwidth]{images/overall_speedup}}
@@ -1132,7 +1150,7 @@ This is a sample improvement which proves that a little more elaboration on a pa
 
 With improved version of SDH speedup gets up to more than 75 times (Figure \ref{fg:chart_max}). We believe that these numbers could get even better depending on queries and elaboration of improvement of particular cases.
 
-\chapter{Conclusions and Future Work}\label{sc:conclusion}
+\chapter{CONCLUSION}\label{sc:conclusion}
 \hspace{3em} The ultimate goal of this work was to get an improved version of Push-based system for molecular simulation data analysis. As you could see from result on charts, the proposed improved version of the system could save a lot of time for scientists which is up to 60-70 times less of time. The results have been gathered with a single snapshot of the framework tracked in control version system which can be improved with means of data converter module and dynamic grid dimensions computation module. In the future, this system has all potentials to be expanded into a distributed system, where frames could be aggregated by nodes and processed in parallel.\\
 
 \linespread{1}\selectfont
