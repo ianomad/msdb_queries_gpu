@@ -5,14 +5,14 @@
 \contentsline {table}{\numberline {3.1}{\ignorespaces Some of the popular analytical queries in MS}}{19}{table.3.1}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Hardware stack for CPU version of Push-based system benchmark\relax }}{40}{table.5.1}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Hardware stack for GPU version of Push-based system\relax }}{41}{table.5.2}
-\contentsline {table}{\numberline {5.3}{\ignorespaces GPU profiling results for 1000 atoms\relax }}{43}{table.5.3}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Memory profiling results for 1000 atoms\relax }}{44}{table.5.4}
-\contentsline {table}{\numberline {5.5}{\ignorespaces GPU profiling results for 10,000 atoms\relax }}{45}{table.5.5}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Memory profiling results for 10,000 atoms\relax }}{45}{table.5.6}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Memory profiling results for 100,000 atoms\relax }}{47}{table.5.7}
-\contentsline {table}{\numberline {5.8}{\ignorespaces GPU profiling results for 100,000 atoms\relax }}{47}{table.5.8}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Memory profiling results for 100,000 atoms in improved SDH\relax }}{48}{table.5.9}
-\contentsline {table}{\numberline {5.10}{\ignorespaces GPU profiling results for 100,000 atoms for improved SDH\relax }}{48}{table.5.10}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Hardware stack for CPU version of Push-based system benchmark\relax }}{41}{table.5.1}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Hardware stack for GPU version of Push-based system\relax }}{42}{table.5.2}
+\contentsline {table}{\numberline {5.3}{\ignorespaces GPU profiling results for 1000 atoms\relax }}{44}{table.5.3}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Memory profiling results for 1000 atoms\relax }}{45}{table.5.4}
+\contentsline {table}{\numberline {5.5}{\ignorespaces GPU profiling results for 10,000 atoms\relax }}{46}{table.5.5}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Memory profiling results for 10,000 atoms\relax }}{46}{table.5.6}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Memory profiling results for 100,000 atoms\relax }}{48}{table.5.7}
+\contentsline {table}{\numberline {5.8}{\ignorespaces GPU profiling results for 100,000 atoms\relax }}{48}{table.5.8}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Memory profiling results for 100,000 atoms in improved SDH\relax }}{49}{table.5.9}
+\contentsline {table}{\numberline {5.10}{\ignorespaces GPU profiling results for 100,000 atoms for improved SDH\relax }}{49}{table.5.10}
 \addvspace {10\p@ }

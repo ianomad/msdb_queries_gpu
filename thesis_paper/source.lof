@@ -10,18 +10,18 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces SDH thread loading\relax }}{29}{figure.caption.6}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Representation of example of shared memory usage\relax }}{35}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Time for 1000 atoms and 10 frames\relax }}{43}{figure.caption.8}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Time for 1000 atoms and 100 frames\relax }}{43}{figure.caption.8}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Time for 1000 atoms and 1000 frames\relax }}{43}{figure.caption.8}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Speedup for 1000 atoms\relax }}{43}{figure.caption.8}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Time for 10000 atoms and 10 frames\relax }}{44}{figure.caption.9}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Time for 10000 atoms and 100 frames\relax }}{44}{figure.caption.9}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Time for 10000 atoms and 1000 frames\relax }}{44}{figure.caption.9}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Speedup for 10000 atoms\relax }}{44}{figure.caption.9}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Time for 100,000 atoms and 10 frames\relax }}{46}{figure.caption.10}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Time for 100,000 atoms and 100 frames\relax }}{46}{figure.caption.10}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Speedup for 100,000 atoms\relax }}{46}{figure.caption.10}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces New approach of using shared memory\relax }}{48}{figure.caption.11}
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Comparison of GPU SDH with GPU SDH improved\relax }}{49}{figure.caption.12}
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Speedup for larger number of atoms\relax }}{50}{figure.caption.13}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Time for 1000 atoms and 10 frames\relax }}{44}{figure.caption.8}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Time for 1000 atoms and 100 frames\relax }}{44}{figure.caption.8}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Time for 1000 atoms and 1000 frames\relax }}{44}{figure.caption.8}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Speedup for 1000 atoms\relax }}{44}{figure.caption.8}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Time for 10000 atoms and 10 frames\relax }}{45}{figure.caption.9}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Time for 10000 atoms and 100 frames\relax }}{45}{figure.caption.9}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Time for 10000 atoms and 1000 frames\relax }}{45}{figure.caption.9}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Speedup for 10000 atoms\relax }}{45}{figure.caption.9}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Time for 100,000 atoms and 10 frames\relax }}{47}{figure.caption.10}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Time for 100,000 atoms and 100 frames\relax }}{47}{figure.caption.10}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Speedup for 100,000 atoms\relax }}{47}{figure.caption.10}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces New approach of using shared memory\relax }}{49}{figure.caption.11}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Comparison of GPU SDH with GPU SDH improved\relax }}{50}{figure.caption.12}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Speedup for larger number of atoms\relax }}{51}{figure.caption.13}
 \addvspace {10\p@ }

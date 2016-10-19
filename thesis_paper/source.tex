@@ -380,13 +380,13 @@ RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdo
 \noindent\hspace{3em}The queries that we consider are related to computations limited within one frame of a molecular simulation. In general, with the given queries we have divided them into two categories: one body functions and multiple body functions. The first ones apparently have linear complexity of $O(n)$, while the other ones have bigger complexity. 
 
 \section{One Body Functions}
-\hspace{3em} One body functions such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough, and taking into consideration the fact that we are going with push-based system, it is done at the same time for all of them.
+\hspace{3em} One body functions such as sum of masses, center of mass, or simple counting with selection  are of a complexity $O(n)$, thus, in order to get the results for them going through every atom (essentially over the entire data) only once is enough..
 
 \noindent\hspace{3em}As you can see in the given table, most of them are basically based on primitive summation or other basic mathematical operations, in our experiments in further sections we will be running result on single precision values or to be more explicit we use float type in C programming language.
 
 \section{Multiple Body Functions}
 \noindent\hspace{3em}Multiple body functions such as SDH and RDF (Spacial Distance Histogram and Radial Distribution function) require computation of distances pairwise across all the particles. This is generally combination of two across N data: 	$C\binom{N}{2}$. These are the most expensive queries, thus, it is important to focus on their implementation taking advantage of GPU nature and its processing power. SDH is a very expensive computation, and we have used some of the existing work of ours\cite{sdhgpu} to incorporate in this design.
-
+\clearpage
 \noindent\hspace{3em}For computation of histogram it is not enough to visit every value for each atom once, since we have to do pairwise computations, thus it increases complexity of the problem not only computation-wise, but memory-wise as well, which is a bigger concern in our case, since the overhead will be huge and non-linearly relative to the size of data. For this purpose we have come up with a way to optimize the way we use references to memory for each atom, so that we minimize overhead of pulling data all the way from DRAM (GPU).
 
 \noindent\hspace{3em}There might be some dependencies and preliminary computation possibilities. For example, some queries need total mass, and we could compute it before we push it further, but this can be easily done by user based on the complexity and dependency. It is explained in more detail in further sections.
@@ -417,7 +417,7 @@ RDF & $\begin{array} {lcl} rdf(r) & = & \frac{SDH(r)}{4 \cdot \pi \cdot r^2 \cdo
 \section{Queries Organization}
 
 \noindent\hspace{3em}Since we assume that our framework should be easily used by a scientist doing MS analysis, it is important to keep queries module as a separate piece of code to make it easily extendable. In order to understand how queries module is organized and the reason for it, we need to understand how CUDA and GPU work.
-
+\clearpage
 \noindent\hspace{3em} From hardware standpoint, it is important to understand that every GPU device consists of SMs (streaming multiprocessors), and each SM has thousands of registers, which can be partitioned among execution threads. Having this in mind, since this is a pure parallel processing power, the goal is to increase hardware throughput and keep highest utilization to exploit every register given. CUDA is an amazing tool that tries to help developers map this hardware capabilities with the actual application layer. In CUDA we have grids, blocks, and threads, where grid is 3 dimensional unit where each cell is a block, and the same relationship applies between blocks and threads\footnote{This explanation doesn't include memory setup in GPU devices, but it is covered in further sections}. Abstract dimensions given by CUDA are not real entities of physical GPU memory and its organization, but it is just a very convenient way of organizing data and tasks to help GPU scheduler pick and execute the instructions. Originally, this mapping was perfect for solving image processing problems or other graphics computation, since dimensions and such division (e.g. by pixels to threads) is very inherent. As a language feature, in CUDA we have to define such a function called 'kernel' function. Essentially, it is the function where we are supposed to map every execution thread with data and perform the actual execution, this approach is widely known as SIMD\footnote{SIMD - Single Instruction Multiple Data}. As a convenience we have separated one-body functions with multiple-body functions into separate kernels.
 
 \noindent\hspace{3em}Commonly used CUDA array reduction\cite{gpureduction} makes the implementation of all the one-body queries obvious. Figure \ref{fg:reduction} represents general idea of the data mapping, where each cell of the vector can be associated with a thread of execution in the kernel. Having an array of atom data structures, we reduce the array accumulating all the needed data from each atom's attributes. We don't expect much performance improvement from coalesced memory access, since the data structure for atom can eliminate any gain of coalesced memory access, though for specific types of queries it could be possible to aggregate certain attributes into merged arrays and take an advantage of it. In this case, the solution should be simple in order to keep it easily extendable for other simple one-body queries for a scientist to program. We fetch all the atoms from GPU global memory, since we use references to atoms once. In this case, allocating shared memory and copying it over would complicate the implementation and possibly create additional overhead for one time reference usage. Finally, memory transportation and data consumption are implemented for user, thus, he only needs to extend the queries module which consequently can be turned into plugins model.
@@ -450,7 +450,7 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\clearpage
 \noindent\hspace{3em} Once the data is loaded into global memory of GPU, we have two kernels for two types of queries setup for two different streams. Beside it, we allocate some memory in GPU global memory for results, too, and keep it as an object with fields to easily pull it back when it is ready, in our case all the data sizes are static before the kernels are executed, which follows nature of GPU devices. 
 
 \noindent\hspace{3em} As it has already been mentioned in previous sections, one body functions are relatively easy to implement, since they don't require iteration through data more than once with a write approach. Our implementation of one-body functions are relatively easy to understand which is what we tried to explain further.
@@ -569,7 +569,7 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 
 \noindent\hspace{3em} Since one of the physical queries is RDF which has underlying SDH calculation, we will describe our approach with SDH for CPU and GPU versions.
 
-\noindent\hspace{3em} Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them, though results don't change a lot for sequential computation.
+\noindent\hspace{3em} Implementation for CPU version of SDH is very simple, we do 2 nested loops that calculate histogram. Since SDH criteria and parameters might vary by bucket width and box size for the simulation space, we've used one sample size for most of them.
 
 \begin{algorithm}
 \caption{SDH in CPU version}
@@ -598,7 +598,7 @@ The approach we came up with is 1 execution thread per atom. For CUDA version 2.
 
 \noindent\hspace{3em} The approach of solving SDH with GPU is absolutely different just like with one-body queries, though number of computations are the same. We do brute force  $O(\frac{N^2}{2})$ complex solution which is pretty much looking at distance between every pair of atoms. In Pseudocode \ref{alg:sdhgpu} we have tried to provide main logic flow that explains how exactly we implemented kernel for SDH computation. 
 Once the first kernel is finished we run the two-body kernel with its own stream. As it has already been mentioned, the bigger workload is in this kernel, because it has higher complexity. GPU streaming multiprocessors are very powerful for straightforward primitive independent calculations, and each core is much weaker than a moden CPU which has a whole bunch of L caches with some prediction behavior systems for code divergence. As you can see on Figure \ref{fg:threadload}, unbalanced thread load assumes for GPU kernel to check every time if the target atom can interact with other atom and if it has to wait till other threads finish their jobs. Thus, we had to come up with a strategy of making equally balanced thread jobs and distribute them among the threads leaving atom to thread mapping as is. 
-
+\clearpage
 \noindent\hspace{3em}Here are the main steps of the algorithm:
 \begin{itemize}
 \item[1.] Get mapped atom
@@ -759,6 +759,7 @@ Once the first kernel is finished we run the two-body kernel with its own stream
 \end{algorithmic}
 \end{algorithm}
 
+\clearpage
 \noindent\hspace{3em}The above Pseudocode \ref{alg:cpuflowfuture} shows what memory concurrent could look like. As you can see it is pretty much overlapping $nextAtoms$ loading with computation of $atoms$, which reduces this tiny overhead of copy data over.
 
 \chapter{EXPERIMENTS RESULTS}\label{sc:experiments}
@@ -926,7 +927,7 @@ $2.4960us$ & $-$ & $-$ & $-$ & $1.4080KB$ & $564.10MB/s$ \\
   \end{minipage}
 \end{figure}
 
-\hspace{3em} You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
+\noindent\hspace{3em} You can instantly notice that speedup for 1000 atoms is not very impressive, especially for $10$ frames, and the reason for that is nature of GPU and memory transfer. There is a small overhead we have to consider before computing part: in order to let GPU process the data, we have to transfer the data to Global Memory, and upon completion it is needed to load the results back to RAM to show it to the user. In this particular case, for small workload and frames, it is even slower than the sequential processing. Afterwards, the bigger workload the more convincing speedup gets, unfortunately, it doesn't get more than $4$ times for 1000 atoms. Fortunately, scientists usually work with much larger data sets, thus, this doesn't really represent general speedup for average use case.
 \begin{table}[h!]
 	\renewcommand*{\arraystretch}{1.5}
 	\tabcolsep=0.12cm
@@ -970,7 +971,7 @@ $2.7850us $ & $ - $ & $ - $ & $ - $ & $ 1.4080KB $ & $ 505.57MB/s$ \\
 \noindent\hspace{3em}As you can see, speedup bumps up to almost 30 with 10000 atoms. Once the overhead on memory transfer is covered by computation speedup, it keeps growing. It is important to pay attention to the growth of speedup over growth of workload. It is not that significant, because even though CPUs are much slower, they still use smart caching and internal multi-core processing, which is pretty fast, too, while GPU does pretty straightforward multicore processing, which is the main reason it stagnates.
 Result of another profiling on Table \ref{tb:gpuprofile100000} changed significantly in terms of warps launched, which is reasonable, and shared memory. It is also noticeable that growth of shared memory loading instructions is non-linear which you can observe in the results for 100K atoms.
 
-\hspace{3em} When we finally get to the number of atoms that are realistic to the ones scientists use, happily, speedup gets pretty good. Speedup gets up to almost 40 times (Figure \ref{fg:speedup_100000}).
+\noindent\hspace{3em}When we finally get to the number of atoms that are realistic to the ones scientists use, happily, speedup gets pretty good. Speedup gets up to almost 40 times (Figure \ref{fg:speedup_100000}).
 
 
 \begin{figure}[!tbp]

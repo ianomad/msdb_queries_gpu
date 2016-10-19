@@ -17,9 +17,9 @@
 \contentsline {section}{\numberline {4.1}Data Input}{21}{section.4.1}
 \contentsline {section}{\numberline {4.2}Data Flow Architecture}{23}{section.4.2}
 \contentsline {section}{\numberline {4.3}Queries Organization}{24}{section.4.3}
-\contentsline {chapter}{\numberline {5}EXPERIMENTS RESULTS}{39}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hardware Stack}{39}{section.5.1}
-\contentsline {section}{\numberline {5.2}Data Sets}{41}{section.5.2}
-\contentsline {section}{\numberline {5.3}Results}{42}{section.5.3}
-\contentsline {chapter}{\numberline {6}CONCLUSION}{51}{chapter.6}
-\contentsline {chapter}{\relax \fontsize {12}{14.5}\selectfont \abovedisplayskip 12\p@ plus3\p@ minus7\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \belowdisplayskip \abovedisplayskip \let \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ REFERENCES}{51}{chapter.6}
+\contentsline {chapter}{\numberline {5}EXPERIMENTS RESULTS}{40}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hardware Stack}{40}{section.5.1}
+\contentsline {section}{\numberline {5.2}Data Sets}{42}{section.5.2}
+\contentsline {section}{\numberline {5.3}Results}{43}{section.5.3}
+\contentsline {chapter}{\numberline {6}CONCLUSION}{52}{chapter.6}
+\contentsline {chapter}{\relax \fontsize {12}{14.5}\selectfont \abovedisplayskip 12\p@ plus3\p@ minus7\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \belowdisplayskip \abovedisplayskip \let \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ REFERENCES}{52}{chapter.6}
